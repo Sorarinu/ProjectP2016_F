@@ -4,7 +4,6 @@
  * vue init, router init and config
  * routing start!!
  */
-"use strict";
 import Vue = require('vue');
 import VueRouter = require('vue-router');
 import {App} from './app';
