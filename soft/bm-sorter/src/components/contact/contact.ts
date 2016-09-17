@@ -1,11 +1,11 @@
 import Component from 'vue-class-component';
 
-
-export interface Contact extends vuejs.Vue{}
-
+/**
+ * ContactPage Component
+ */
 @Component({
     template: require('./contact.jade'),
 })
-export class Contact{
+export class Contact {
 
 }

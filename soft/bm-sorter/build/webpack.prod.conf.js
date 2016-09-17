@@ -1,5 +1,6 @@
 /**
- *　Production環境　webpack設定
+ * Production環境
+ * webpack設定
  */
 
 var webpack = require('webpack')
@@ -17,60 +18,60 @@ config.devtool = SOURCE_MAP ? 'source-map' : false
 
 
 // css系はextract-loaderで別ファイル出力かけるので
-// ローダーの編集 にしてもぐちゃぐちゃ　くそわろ　いつか直す
+// ローダーの編集にしてもぐちゃぐちゃくそわろいつか直す
 
 // generate loader string to be used with extract text plugin
 function generateExtractLoaders (loaders) {
-    return loaders.map(function (loader) {
-        return loader + '-loader' + (SOURCE_MAP ? '?sourceMap' : '')
-    }).join('!')
+  return loaders.map(function (loader) {
+    return loader + '-loader' + (SOURCE_MAP ? '?sourceMap' : '')
+  }).join('!')
 }
 config.module.loaders.shift();
 config.module.loaders.shift();
 config.module.loaders.push([
-    {
-        test: /\.css$/,
-        loader : ExtractTextPlugin.extract('style-loader',generateExtractLoaders(['css']))
-    },
-    {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader',generateExtractLoaders(['css','sass']))
-    }
-]);
+  {
+    test: /\.css$/,
+    loader: ExtractTextPlugin.extract('style-loader',generateExtractLoaders(['css']))
+  },
+  {
+    test: /\.scss$/,
+    loader: ExtractTextPlugin.extract('style-loader',generateExtractLoaders(['css','sass']))
+  }
+])
 
 
 // プラグイン設定
 
 config.plugins = (config.plugins || []).concat([
-    // http://vuejs.github.io/vue-loader/workflow/production.html
-    new webpack.DefinePlugin({
-        'process.env': {
-            NODE_ENV: '"production"'
-        }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false
-        }
-    }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    // extract css into its own file
-    new ExtractTextPlugin('[name].[contenthash].css'),
-    // generate dist index.html with correct asset hash for caching.
-    // you can customize output by editing /src/index.html
-    // see https://github.com/ampedandwired/html-webpack-plugin
-    new HtmlWebpackPlugin({
-        filename: '../dist/index.html',
-        template: 'src/index.html',
-        inject: true,
-        minify: {
-            removeComments: true,
-            collapseWhitespace: true,
-            removeAttributeQuotes: true
-            // more options:
-            // https://github.com/kangax/html-minifier#options-quick-reference
-        }
-    })
+  // http://vuejs.github.io/vue-loader/workflow/production.html
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: '"production"'
+    }
+  }),
+  new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  }),
+  new webpack.optimize.OccurenceOrderPlugin(),
+  // extract css into its own file
+  new ExtractTextPlugin('[name].[contenthash].css'),
+  // generate dist index.html with correct asset hash for caching.
+  // you can customize output by editing /src/index.html
+  // see https://github.com/ampedandwired/html-webpack-plugin
+  new HtmlWebpackPlugin({
+    filename: '../dist/index.html',
+    template: 'src/index.html',
+    inject: true,
+    minify: {
+      removeComments: true,
+      collapseWhitespace: true,
+      removeAttributeQuotes: true
+      // more options:
+      // https://github.com/kangax/html-minifier#options-quick-reference
+    }
+  })
 ])
 
 module.exports = config

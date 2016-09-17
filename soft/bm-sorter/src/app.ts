@@ -5,15 +5,15 @@ import Component from 'vue-class-component';
  */
 require('./app.scss');
 @Component({
-    template:require('./app.html'),
+    template: require('./app.html'),
     components: { Navbar }
 })
-export class App{
-    active :string;
+export class App {
+    active : string;
 
-    data(){
+    data() {
         return{
-            active: ""
+            active: ''
         };
     }
 }
