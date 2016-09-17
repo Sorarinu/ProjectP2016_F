@@ -1,11 +1,10 @@
 import Component from 'vue-class-component';
-
-
-export interface About extends vuejs.Vue{}
-
+/**
+ * AboutPage Component
+ */
 @Component({
     template: require('./about.jade'),
 })
-export class About{
+export class About {
 
 }

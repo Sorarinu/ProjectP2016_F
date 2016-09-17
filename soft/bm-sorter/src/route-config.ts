@@ -6,33 +6,33 @@ import {Help} from "./components/help/help";
 /**
  * Vue-routerのルーケティング設定.
  */
-export function configureRouter(router: vuejs.Router<App>){
+export function configureRouter(router: vuejs.Router<App>) {
     router.map({
-        '/':{ //ルートパスはIndexへとばす
+        '/': { // ルートパスはIndexへとばす
             component: Index,
             name : 'index'
         },
-        '/index':{　//indexでもindexへ飛ばす
+        '/index': {　// indexでもindexへ飛ばす
             component: Index,
             name : 'index'
         },
-        '/about':{　//aboutページ
+        '/about': {　// aboutページ
             component: About,
             name : 'about'
         },
-        '/contact':{ //contactページ
+        '/contact': { // contactページ
             component: Contact,
             name : 'contact'
         },
-        '/help':{　//helpページ
+        '/help': {　// helpページ
             component: Help,
             name : 'help'
         }
     });
 
-    router.afterEach((transition)=>{
-        //app.active に現在表示中のコンポーネント名を渡します
-        //navbar componentで現在表示中のリンクのスタイルを変えたりするのに使っていきます.
-        router.app.active = transition.to.path.split("/")[1];
+    router.afterEach((transition) => {
+        // app.active に現在表示中のコンポーネント名を渡します
+        // navbarcomponentで現在表示中のリンクのスタイルを変えたりするのに使っていきます.
+        router.app.active = transition.to.path.split('/')[1];
     });
 }

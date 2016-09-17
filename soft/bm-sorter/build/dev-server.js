@@ -14,11 +14,11 @@ app.use(require('connect-history-api-fallback')())
 
 // serve webpack bundle output
 app.use(require('webpack-dev-middleware')(compiler, {
-    publicPath: config.output.publicPath,
-    stats: {
-        colors: true,
-        chunks: false
-    }
+  publicPath: config.output.publicPath,
+  stats: {
+    colors: true,
+    chunks: false
+  }
 }))
 
 // enable hot-reload and state-preserving
@@ -26,9 +26,9 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler))
 
 app.listen(8080, 'localhost', function (err) {
-    if (err) {
-        console.log(err)
-        return
-    }
-    console.log('Listening at http://localhost:8080')
+  if (err) {
+    console.log(err)
+    return
+  }
+  console.log('Listening at http://localhost:8080')
 })

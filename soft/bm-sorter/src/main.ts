@@ -13,4 +13,4 @@ Vue.use(VueRouter);
 const router = new VueRouter<App>();
 configureRouter(router);
 
-router.start(App,"#app");
+router.start(App, '#app');

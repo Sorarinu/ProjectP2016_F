@@ -3,17 +3,17 @@
  */
 import Component from 'vue-class-component';
 
-export interface Navbar extends vuejs.Vue{ }
 
-
+/**
+ * NavigationBar Component
+ */
 require('./navbar.scss');
-
 @Component({
     template: require('./navbar.jade'),
-    props:{
-        active:{
-            type:String,
-            default:""
+    props: {
+        active: {
+            type : String,
+            default: ''
         }
     }
 })

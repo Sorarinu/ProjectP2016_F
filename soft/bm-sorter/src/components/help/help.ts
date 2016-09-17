@@ -1,11 +1,11 @@
 import Component from 'vue-class-component';
 
-
-export interface Help extends vuejs.Vue{}
-
+/**
+ * HelpPage Component
+ */
 @Component({
     template: require('./help.jade'),
 })
-export class Help{
+export class Help {
 
 }
