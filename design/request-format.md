@@ -97,6 +97,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
     "bookmark": [
       {
         "id" : "2",
+        "parent_id" : "1",
         "title" : "Effective Java",
         "detail" : "JavaでプログラミングをするすべてのSE必読の書籍",
         "reg_date":"2014/03/11 10:10:10",
@@ -105,6 +106,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
       },
       {
         "id" : "3",
+        "parent_id" : "1",
         "title": "リーダブルコード",
         "detail" : "より良いコードを書くためのシンプルで実践的なテクニック",
         "reg_date" : "2014/03/11 10:10:10",
@@ -113,6 +115,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
       },
       {
         "id" : "4",
+        "parent_id" : "1",
         "title": "Androidまとめ",
         "detail" : "",
         "reg_date" : "2016/03/22 10:10:10",
@@ -150,15 +153,14 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 
 例
 * folderならfolderがtrueになりurlはないか空文字列
-* parentは親の要素のid つまり親のディレクトリのid
+* parent_idは親の要素のid つまり親のディレクトリのid
 
 ```JSON
 {
   "title" : "Twitter",
   "detail" : "",
   "reg_date" : "2016/09/18 20:38:00",
-
-  "parent" : "1",
+  "parent_id" : "1",
   "folder" : "false",
   "url" : "https://twitter.com/"
 }
