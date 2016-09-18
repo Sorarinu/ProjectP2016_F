@@ -8,6 +8,10 @@
 
 各種APIを提供するサーバ（？）
 
+## あばうと
+* PHP 5.6  
+* Laravel 5.3
+
 ## 最初にやること
 
 ### Composerパッケージインストール
@@ -17,7 +21,7 @@
 `npm install`
 
 ## 起動の仕方
-`php artisan serve`
+`php artisan serve`  
 http://localhost:8000/ にアクセス
 
 ## .env
