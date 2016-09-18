@@ -30,7 +30,7 @@ Bookmark
 * created_atとかupdated_atとかを必要なら追加していく
 
 ## ブックマークの木階層どうする？
-拡張ＲＤＢ以外を使うとかＯＲマッパがなんとかしてくれるとかあるかもしれない  
+拡張ＲＤＢを使うとかＯＲマッパがなんとかしてくれるとかあるかもしれない  
 SQL叩いたりするならこのへん？ＲＤＢで木階層を実現する方法
 * [隣接リストモデル](http://blog.neo.jp/dnblog/index.php?module=Blog&action=Entry&blog=pg&entry=3955&rand=15db1)
 * [入れ子構造モデル](http://www.geocities.jp/mickindex/database/db_tree_ns.html)
