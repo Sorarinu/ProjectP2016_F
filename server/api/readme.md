@@ -10,7 +10,8 @@
 
 ## あばうと
 * PHP 5.6
-* Laravel 5.3
+* Laravel 5.1
+* Windowsでも構築できるけど面倒
 
 ## 最初にやること
 
@@ -23,9 +24,6 @@
 ## 起動の仕方
 `php artisan serve`
 http://localhost:8000/ にアクセス
-
-## .env
-都度追記
 
 ## License
 
