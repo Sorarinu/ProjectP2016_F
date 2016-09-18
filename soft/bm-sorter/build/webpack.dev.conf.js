@@ -9,7 +9,6 @@ var config = require('./webpack.base.conf')
 // indexのhtmlファイルにwebpackで生成したファイルを自動挿入してくれる子
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
-
 // eval-source-map is faster for development
 config.devtool = 'eval-source-map'
 
@@ -24,7 +23,6 @@ Object.keys(config.entry).forEach(function (name, i) {
 // necessary for the html plugin to work properly
 // when serving the html from in-memory
 config.output.publicPath = '/'
-
 
 config.plugins = (config.plugins || []).concat([
 	// https://github.com/glenjamin/webpack-hot-middleware#installation--usage

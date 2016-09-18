@@ -9,11 +9,5 @@ require('./app.scss');
     components: { Navbar }
 })
 export class App {
-    active : string;
 
-    data() {
-        return{
-            active: ''
-        };
-    }
 }

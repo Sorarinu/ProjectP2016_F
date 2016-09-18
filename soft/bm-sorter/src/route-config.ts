@@ -1,8 +1,9 @@
-import {App} from "./app";
-import {Index} from "./components/index/index";
-import {About} from "./components/about/about";
-import {Contact} from "./components/contact/contact";
-import {Help} from "./components/help/help";
+import {App} from './app';
+import {Index} from './components/index/index';
+import {About} from './components/about/about';
+import {Contact} from './components/contact/contact';
+import {Help} from './components/help/help';
+import {SignIn} from './components/signin/signin';
 /**
  * Vue-routerのルーケティング設定.
  */
@@ -27,12 +28,10 @@ export function configureRouter(router: vuejs.Router<App>) {
         '/help': {　// helpページ
             component: Help,
             name : 'help'
+        },
+        '/signin': { // SingInフォーム
+            component: SignIn,
+            name : 'signin'
         }
-    });
-
-    router.afterEach((transition) => {
-        // app.active に現在表示中のコンポーネント名を渡します
-        // navbarcomponentで現在表示中のリンクのスタイルを変えたりするのに使っていきます.
-        router.app.active = transition.to.path.split('/')[1];
     });
 }

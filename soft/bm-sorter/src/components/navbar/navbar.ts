@@ -10,14 +10,10 @@ import Component from 'vue-class-component';
 require('./navbar.scss');
 @Component({
     template: require('./navbar.jade'),
-    props: {
-        active: {
-            type : String,
-            default: ''
-        }
+    components: {
+        navbar : require('vue-strap').navbar
     }
 })
 export class Navbar {
-    public active: string;
 
 }
