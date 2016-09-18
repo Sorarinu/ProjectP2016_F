@@ -2,16 +2,16 @@
 
 ## ユーザー
 User
-* user_id : string
+* email : string
 * password : string
-* (admin) 管理者フラグ　いる？
 
 
 ## ブックマーク
 > フォルダもブックマークも同じオブジェクトで
 
 Bookmark
-* id: integer
+* id: integer (リソースＩＤ)
+* parent_id : integer (親のリソースＩＤ)
 * title: string (タイトル（ページ名）)
 * detail: string (詳細)
 * reg_date: datetime (ブックマークに登録された時間)
@@ -25,8 +25,6 @@ Bookmark
 
 
 # DBどうすんの？
-* ユーザーのPKはidとか作るかuser_idをPKにしてもいい
-* パスワードはＤＢ側では当然hashで
 * created_atとかupdated_atとかを必要なら追加していく
 
 ## ブックマークの木階層どうする？
