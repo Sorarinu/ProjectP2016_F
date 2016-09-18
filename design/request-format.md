@@ -23,7 +23,7 @@
 
 # サインアップ
 * メソッド : POST
-* URL : 未定
+* URL : /api/v1/signup
 * パラメータ :
  * user_id : string
  * password : string
@@ -51,7 +51,7 @@
 
 # サインイン
 * メソッド : GET
-* URL : 未定
+* URL : /api/v1/signin
 * パラメータ :
  * user_id : string
  * password :string
@@ -66,7 +66,7 @@
 # サインアウト
 
 * メソッド : GET
-* URL : 未定
+* URL : /api/v1/singout
 * パラメータ : なし
 * 応答 : JSON
  * status : string  
@@ -78,7 +78,7 @@
 
 # Bookmarkファイルアップロード
 * メソッド : POST
-* URL : 未定
+* URL : /api/v1/bookmarks/upload
 * enc-type : multipart/form-data
 * 送るファイル : ブックマークのブラウザからエクスポートしたファイル
 * 応答 : 解析されたブックマークデータと応答 JSON
@@ -133,7 +133,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 
 # Bookmarkファイルエクスポート
 * メソッド : GET
-* URL : 未定
+* URL : /api/v1/bookmarks/export
 * パラメータ :
  * browser_type : string  
  エクスポートしてほしいブラウザの種類　firefoxとかchoromeとかsafariとかを指定
@@ -145,7 +145,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 
 ## 作成
 * メソッド : POST
-* URL : 未定
+* URL : /api/v1/bookmarks
 * パラメータ : JSON
 
 例
@@ -180,7 +180,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 
 ## 更新
 * メソッド:PUT
-* URL:未定 (ブックマークのidを含める)　/bookmark/(bookmarkid) みたいなとこにPUT
+* URL: /api/v1/bookmarks/[bookmark_id]
 * パラメータ:JSON  
 
 * 応答:JSON
@@ -190,7 +190,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 
 ## 削除
 * メソッド:DELETE
-* URL:未定 (putと同じところにdeleteする)
+* URL: /api/v1/bookmarks/[bookmark_id]
 * パラメータ:なし
 * 応答：JSON
  * status : string  
@@ -199,7 +199,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 
 ## 取得1(ブックマーク全取得)
 * メソッド:GET
-* URL:未定
+* URL: /api/v1/bookmarks/
 * パラメータ:なし
 * 応答: JSON
 ブックマークファイルのアップロードの時と同じ感じの形式のJSONがこればいいです
@@ -207,13 +207,14 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 
 
 ## 取得2(リソース指定取得)
-これ正直いらないかもしれない、GETでＵＲＬにリソースＩＤつけてとるやつ
+これ正直いらないかもしれない  
+/api/v1/bookmarks/[bookmark_id]　にGETでデータとれるやつ
 
 
 
 # 類似度検出
 * メソッド : POST
-* URL : 未定
+* URL : /api/v1/similarity-search/
 * パラメータ : JSON
 パラメータというかＪＳＯＮ文字列入れて送ります
 Content-Type:application/json
