@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "rimraf dist && webpack --progress --hide-modules --config build/webpack.prod.conf.js",
-    "deploy":"npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "font-awesome": "^4.6.3",
     "jquery": "^3.1.0",
     "vue": "^1.0.21",
     "vue-class-component": "^3.2.0",
