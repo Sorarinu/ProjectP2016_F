@@ -11,7 +11,7 @@ export class User implements IValidation {
         return [
             User.passwordValidate(this.password) ,
             User.emailValidate(this.email) ,
-        ].every(x => x);
+        ].every((x: boolean) => x);
     }
 
     static passwordValidate(password: string) : boolean {
