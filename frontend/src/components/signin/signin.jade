@@ -1,0 +1,18 @@
+#signin
+    .container
+        h3  SignIn
+        bs-input(
+            :value.sync="email",
+            required,
+            rabel="User Name",
+            pattern=User.emailValidate()
+        )
+        bs-input(
+            :value.sync="password",
+            type="password",
+            required,
+            rabel="Password",
+            pattern=User.passwordValidate()
+        )
+
+

@@ -1,0 +1,46 @@
+#help
+    h2 help-component
+    p そのうちサービスのhelpページになります
+    p いまはbootstrapが使えることを示すサンプルがあります.
+
+
+    h3 Bootstrapのグリッドシステムを使ってみるよ
+    p 適当にbootstrapを使ってみますよ? index.jadeのクラス指定を見てみてグリッドシステムのクラスが入ってるでしょう？
+    p こんな感じに使っていくのだ,それにしてもjadeのクラス指定のかっこよさよ＞＿＜
+
+    .row
+        .blue.col-md-4 col-md-4
+        .red.col-md-6 col-md-6
+        .yellow.col-md-2 col-md-2
+
+
+
+    h3 次にbootstrapのようなUIコンポーネントを使用する例を示すよ
+    p 普通にbootstrapでボタンとか使おうとしたらjqueryとbootstrap.jsを呼ぶよね？あれは中でDOMを操作していい感じにやってくれるんだ
+    p でも今回のアプリはDOMを勝手にいじってほしくないよ JSフレームワークの考え方とDOMを直接操作して書き換えたりすることは相反するからね　
+    p もしそんなことをしたらパフォーマンスの低下や不明なバグに悩まされる可能性が高いよ
+    p そこで今回はVueJSをベースに作られたbootstrapのコンポーネント（ボタンとか日付ピッカーとかタブとかアコーディオンとかモーダルとか・・・）を実現するvue-strapっていうのを使うよ
+
+
+    h4 アラートを出してみる
+    p コンポーネントはいっぱいあるけどアラートを出してみる例を示すよ
+
+    button.btn.btn-danger.btn-lg(@click="showTop = !showTop") click to toggle alert on top
+    alert(:show.sync="showTop" placement="top" duration="3000" type="danger" width="400px" dissmissable)
+        span.icon-info-circled.alert-icon-float-left
+        strong Heads up!
+        p This alert needs your attention.
+
+    p ボタン押すとアラートが出たと思うよ！ コードを読むとほとんど何も書いてないのにこれだけのことができたことがわかるよ
+
+
+    h4 ほかのUIコンポーネントは
+    a(href='https://yuche.github.io/vue-strap/') vue-strap
+    p 今のアラートはこのサイトの丸パクリだよ　jadeに書き直しはしたけどね. こんな感じでどんどん使っていこう
+
+
+    h3 Font-awesome
+    p font-awesomeのアイコンが使えるよ　クエスチョンマークとgithubアイコン出すよ
+    .text-center
+        i.fa.fa-4x.fa-question
+        i.fa.fa-4x.fa-github
