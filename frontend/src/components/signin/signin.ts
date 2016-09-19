@@ -12,8 +12,13 @@ import Component from 'vue-class-component';
 export class SignIn {
     data() {
         return {
-            userId: '',
-            password: ''
+            email: '',
+            password: '',
         };
+    }
+
+
+    signIn() : void {
+        return;
     }
 }
