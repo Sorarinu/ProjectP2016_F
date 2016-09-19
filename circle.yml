@@ -1,14 +1,23 @@
+es (20 sloc) 499 Bytes
 machine:
-    timezome: Asia/Tokyo
-checkout:
-    post:
-      #パッケージ、型定義Ｉｎｓｔａｌｌ
-      - cd frontend && npm install
-      - cd frontend && typings install
+    timezone: Asia/Tokyo
+
+dependencies:
+    cache_directories:
+      - ~/cache
+    override:
+      - mkdir -p ~/cache
+      # node_moduelsのコピーとかさせる
+      - bash circle.sh
+      # setup
+      - cd frontend && npm run setup
 test:
-    pre:
-      #テスト前実行コマンド
-      - npm install -g karma
     override:
       #テストコマンドの上書き ここにテストのコマンドを
-      - karma start ./frontend/build/karma.conf.js --single-run
+      - cd frontend && npm run test
+
+deployment:
+    deploy:
+        branch: master
+        commands:
+          - cd frontend && npm run deploy
