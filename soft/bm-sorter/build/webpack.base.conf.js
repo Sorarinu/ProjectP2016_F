@@ -26,14 +26,13 @@ module.exports = {
       {
         test: /\.jade$/,
         loader: 'jade-html'
+      },
+      {
+        test: /\.ts(x?)$/,
+        exclude: /node_modules/,
+        include: __dirname,
+        loader: 'tslint'
       }
-      // ,
-      // {
-      //   test: /\.ts(x?)$/,
-      //   exclude: /node_modules/,
-      //   include: __dirname,
-      //   loader: 'tslint'
-      // }
     ],
 
     loaders: [
@@ -72,19 +71,34 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif)$/,
         loader: 'url',
         query: {
           limit: 10000,
           name: '[name].[ext]?[hash:7]'
         }
       },
-      { test: /\.woff$/, loader: 'url-loader?mimetype=application/font-woff' },
-      { test: /\.woff2$/, loader: 'url-loader?mimetype=application/font-woff' },
-      { test: /\.eot$/, loader: 'url-loader?mimetype=application/font-woff' },
-      { test: /\.ttf$/, loader: 'url-loader?mimetype=application/font-woff' }
+      {
+        test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?mimetype=application/font-woff'
+      },
+      {
+        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?mimetype=application/font-woff'
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?mimetype=application/font-woff'
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?mimetype=application/font-woff'
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=10000&mimetype=image/svg+xml'
+      }
     ]
-
   },
   eslint: {
     formatter: require('eslint-friendly-formatter')

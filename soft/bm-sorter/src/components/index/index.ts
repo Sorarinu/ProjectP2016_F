@@ -11,9 +11,5 @@ require('./index.scss');
     }
 })
 export class Index {
-    data() {
-        return {
-            showTop: false
-        };
-    }
+
 }
