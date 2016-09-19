@@ -1,0 +1,14 @@
+machine:
+    timezome: Asia/Tokyo
+checkout:
+    post:
+      #パッケージ、型定義Ｉｎｓｔａｌｌ
+      - cd frontend && npm install
+      - cd frontend && typings install
+test:
+    pre:
+      #テスト前実行コマンド
+      - npm install -g karma
+    override:
+      #テストコマンドの上書き ここにテストのコマンドを
+      - karma start ./frontend/build/karma.conf.js --single-run
