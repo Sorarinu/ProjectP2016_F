@@ -16,10 +16,9 @@ test:
       - cd frontend && npm run test
 
 deployment:
-    pre:
-        - git config --global user.name "CircleCI"
-        - git config --global user.email "circleci@example.com"
     deploy:
         branch: master
         commands:
+          - git config --global user.name "CircleCI"
+          - git config --global user.email "circleci@example.com"
           - cd frontend && npm run deploy
