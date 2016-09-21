@@ -23,6 +23,11 @@ http://localhost:8000/ にアクセスするとLaravelのトップページが�
 するとJsonがぶん投げられる  
 各種URLは、app/http/routes.phpなどを参照してね
 
+## .env（都度追記）
+```
+
+```
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
