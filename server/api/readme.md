@@ -20,7 +20,8 @@ http://localhost:8000/ にアクセスするとLaravelのトップページが�
 
 ## APIアクセス
 起動した状態で、`http://localhost:8000/api/v1/~~~~~~~`にリクエストぶん投げる  
-するとJsonがぶん投げられる
+するとJsonがぶん投げられる  
+各種URLは、app/http/routes.phpなどを参照してね
 
 ## License
 
