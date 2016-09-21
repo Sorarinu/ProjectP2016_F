@@ -8,11 +8,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Users;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 
 class ApiController extends Controller
 {
@@ -23,15 +22,45 @@ class ApiController extends Controller
         $this->request = $request;
     }
 
-    public function signup()
+    public function signUp()
+    {
+        try {
+            $rules = [
+                'userId' => 'required|between:6,10|alpha_num',
+                'email' => 'required|email',
+                'password' => 'required|between:8,32'
+            ];
+
+            $validation = \Validator::make($this->request->all(), $rules);
+
+            if ($validation->passes()) {
+                $data = [
+                    'userId' => $this->request->input('userId'),
+                    'password' => $this->request->input('password'),
+                    'email' => $this->request->input('email')
+                ];
+
+                $users = new Users;
+                $users->id = $data['userId'];
+                $users->password = Hash::make($data['password']);
+                $users->email = $data['email'];
+                $users->save();
+
+                return json_encode(['status' => 'OK', 'message' => $data['userId'] . ' created.']);
+            }
+
+            return json_encode(['status' => 'NG', 'message' => $this->request->input('userId') . ' signUp Failed.']);
+
+        }catch(\Exception $e) {
+            return json_encode(['status' => 'NG', 'message' => $data['userId'] . ' signUp Failed.']);
+        }
+    }
+
+    public function signIn()
     {
     }
 
-    public function signin()
-    {
-    }
-
-    public function signout()
+    public function signOut()
     {
     }
 
@@ -53,8 +82,5 @@ class ApiController extends Controller
 
     public function getAll()
     {
-        $users = DB::table('users')->get();
-Log::debug($users);
-        //return json_encode($users);
     }
 }
