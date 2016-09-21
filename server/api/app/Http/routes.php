@@ -15,9 +15,9 @@
         return view('welcome');
     });
 
-    Route::post('api/v1/signup',                 ['uses' => 'api\ApiController@signup']);
-    Route::get('api/v1/signin',                  ['uses' => 'api\ApiController@signin']);
-    Route::get('api/v1/signout',                 ['uses' => 'api\ApiController@signout']);
+    Route::post('api/v1/signup',                 ['uses' => 'api\ApiController@signUp']);
+    Route::get('api/v1/signin',                  ['uses' => 'api\ApiController@signIn']);
+    Route::get('api/v1/signout',                 ['uses' => 'api\ApiController@signOut']);
     Route::post('api/v1/bookmarks/upload',       ['uses' => 'api\ApiController@upload']);
     Route::get('api/v1/bookmarks/export',        ['uses' => 'api\ApiController@export']);
     Route::post('api/v1/bookmarks',              ['uses' => 'api\ApiController@create']);
