@@ -25,7 +25,11 @@ http://localhost:8000/ にアクセスするとLaravelのトップページが�
 
 ## .env（都度追記）
 ```
-
+DB_CONNECTION=mysql  
+DB_HOST=nxtg-t.net  
+DB_DATABASE=bm_sorter  
+DB_USERNAME=bm_sorter  
+DB_PASSWORD=bm_sorter  
 ```
 
 ## License
