@@ -1,12 +1,16 @@
 #類似度チェック
 
-単語をベクトル化して類似度を求める。
+- word2vecとdoc2vecを用いて類似度を求める。
+- ダメなら適当なライブラリを利用して類似度比較を求める(not_word2vec_sample)。
 
-## Library
+## gorl
+- スクレイピングを行い、ユーザーが求めた単語との類似度を求める。
+
+### Tool
 - Word2Vec
 - Mecab
 
-##pip list
+### pip list
 - appnope (0.1.0)
 - boto (2.42.0)
 - bz2file (0.98)
@@ -17,6 +21,7 @@
 - ipython-genutils (0.1.0)
 - mecab-python3 (0.7)
 - numpy (1.11.1)
+- nltk
 - pexpect (4.2.1)
 - pickleshare (0.7.4)
 - pip (8.1.2)
@@ -31,4 +36,4 @@
 - smart-open (1.3.4)
 - traitlets (4.3.0)
 - wcwidth (0.1.7)
-
+- word2vec
