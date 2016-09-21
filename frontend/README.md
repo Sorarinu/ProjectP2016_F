@@ -29,14 +29,14 @@
  * Linuxとかのじょうつよさんはもうはいってるよね(´・ω・`)
 
 ### 黒画面で以下を叩く！
-> 一応:cwd は bm-sorterだよ？
+> 一応:cwd は frontendだよ？
 
 ``` bash
 # 依存ソフトウェアをインストールするよ
 npm install
 
-# typescriptの型定義ファイルを入れるよ
-typings install
+# プロジェクト初期セットアップ
+npm run setup
 
 # 開発環境でサーバーを起動するよ
 npm run dev
@@ -49,6 +49,16 @@ npm run dev
 
 ### 開発IDE
 typescript使ってるのはIDEでがりがり補完させるためでもあるよ,IDEとして[Webstorm](https://www.jetbrains.com/webstorm/)とかインストールするといいかもね. これ有償のソフトだけど学生なら無料で使えるよ　かなり優秀　まぁ好きに
+
+
+### テスト実行,デプロイ
+```bash
+#Test by Karma
+npm run test
+
+#Deploy to Github-pages
+npm run deploy
+```
 
 
 ## アプリケーション構成？説明？
@@ -86,15 +96,12 @@ cssのすげーやつだよ.リンク先の最強機能とかかいてあるの�
  画像とか置く,vendorは外部提供のファイル
  * /compoents  
  vueのコンポーネント作ってそれ単位でまとめていく、それぞれ中にはそのコンポーネントのtsとテンプレートのjadeとスタイルのscssを配置
- * app.html + app.ts  
+ * app.jade + app.ts  
  アプリケーションのトップレベルになるコンポーネント
  * app.scss  
  アプリケーション全体にかかわるレイアウトを設定する用
  * route-config.ts  
  Vueルータの設定ファイル
-* index.html  
- サーバーが真っ先にサーブしてるのはこのファイル中でビルドされたjsを呼んで機能を全部呼び出してるよ
 * package.json  
  アプリケーションの依存関係とかいろいろ記述するファイル
-* webpack.config.js  
- webpackの設定ファイル　ビルド設定とかね　かなりグダグダな書き方になってるのでそのうち治します(lintとか無効にしちゃったし...)
+* /build : webpack設定とかtest設定とか
