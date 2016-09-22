@@ -19,7 +19,7 @@ class Scraping(object):
 
     def get_body_text(self):
         soup = self.convert_html()
-        with open('html_body.txt', 'w') as file:
+        with open('test_html_body.txt', 'w') as file:
             for string in soup.stripped_strings:
                 string = repr(string).rstrip("'").lstrip("'")
                 file.write(string + '\n')
