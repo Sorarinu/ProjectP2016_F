@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Maknz\Slack\Facades\Slack;
 
 class ApiController extends Controller
 {
@@ -26,9 +27,9 @@ class ApiController extends Controller
     {
         try {
             $rules = [
-                'userId' => 'required|between:6,10|alpha_num',
+                'userId' => 'required|min:6|alpha_num',
                 'email' => 'required|email',
-                'password' => 'required|between:8,32'
+                'password' => 'required|min:8'
             ];
 
             $validation = \Validator::make($this->request->all(), $rules);
@@ -46,13 +47,14 @@ class ApiController extends Controller
                 $users->email = $data['email'];
                 $users->save();
 
+                Slack::send('New user has been created！ This userId is ' . $data['userId'] . '.');
                 return json_encode(['status' => 'OK', 'message' => $data['userId'] . ' created.']);
             }
 
-            return json_encode(['status' => 'NG', 'message' => $this->request->input('userId') . ' signUp Failed.']);
+            return json_encode(['status' => 'NG', 'message' => $validation->messages()]);
 
         }catch(\Exception $e) {
-            return json_encode(['status' => 'NG', 'message' => $data['userId'] . ' signUp Failed.']);
+            return json_encode(['status' => 'NG', 'message' => $e->getMessage()]);
         }
     }
 
