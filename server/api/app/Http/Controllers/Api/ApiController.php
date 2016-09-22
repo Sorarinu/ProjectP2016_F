@@ -47,7 +47,7 @@ class ApiController extends Controller
                 $users->email = $data['email'];
                 $users->save();
 
-                Slack::send('New user has been created！ This userId is ' . $data['userId'] . '.');
+                Slack::send('New user has been created！ This userId is *' . $data['userId'] . '*.');
                 return json_encode(['status' => 'OK', 'message' => $data['userId'] . ' created.']);
             }
 
