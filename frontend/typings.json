@@ -3,6 +3,7 @@
   "dependencies": {},
   "globalDependencies": {
     "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
+    "jquery": "registry:dt/jquery#1.10.0+20160908203239",
     "karma-jasmine": "registry:dt/karma-jasmine#0.0.0+20160316155526",
     "require": "registry:dt/require#2.1.20+20160316155526",
     "vue": "registry:dt/vue#1.0.21+20160720100422",

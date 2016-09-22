@@ -1,2 +1,37 @@
 #signup
-    h2 signup-component
+    .container
+        .col-sm-6.col-sm-offset-3
+            h3 SignUp
+            form
+                bs-input(
+                    require icon,
+                    :value.sync="user.email",
+                    error="Insert your email",
+                    validate="user.emailValidate()"
+                )
+                    div(slot="label") email
+                bs-input(
+                    require icon,
+                    type="password",
+                    :value.sync="user.password",
+                    error="Insert password",
+                    validate="user.passwordValidate()"
+                )
+                    div(slot="label") password
+                bs-input(
+                    require icon,
+                    type="password",
+                    :value.sync="passwordConfilm",
+                    error="Don't match password",
+                    :match="user.password"
+                )
+                    div(slot="label") password-confilm
+
+                button.form-control.btn.btn-primary(
+                    type="button",
+                    :disabled="formValidate()",
+                    :click="signUp()"
+                ) SignUp
+
+    alert
+
