@@ -1,8 +1,5 @@
-/vendor
 /node_modules
 Homestead.yaml
-.env
-../../.idea
 .idea
 # Created by https://www.gitignore.io
 
@@ -124,13 +121,6 @@ build/Release
 node_modules
 
 
-### Bower ###
-bower_components
-.bower-cache
-.bower-registry
-.bower-tmp
-
-
 ### grunt ###
 # Grunt usually compiles files inside this directory
 dist/
@@ -138,14 +128,6 @@ dist/
 # Grunt usually preprocesses files such as coffeescript, compass... inside the .tmp directory
 .tmp/
 
-
-### Laravel ###
-/bootstrap/compiled.php
-
-
-### Composer ###
-composer.phar
-vendor/
 
 # Commit your application's lock file http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file
 # You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
