@@ -21,7 +21,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-# サインアップ *Done*
+# サインアップ <*Done*>
 * メソッド : POST
 * URL : /api/v1/signup
 * パラメータ :
