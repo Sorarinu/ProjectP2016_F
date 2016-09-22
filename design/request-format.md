@@ -25,8 +25,8 @@
 * メソッド : POST
 * URL : /api/v1/signup
 * パラメータ :
- * user_id : string
- * password : string
+ * email : string
+ * password : string (min6)
 * 応答 : JSON
  * status : string  
  要求が成功したかどうか　"OK" or "NG"
@@ -53,8 +53,8 @@
 * メソッド : GET
 * URL : /api/v1/signin
 * パラメータ :
- * user_id : string
- * password :string
+ * email : string
+ * password :string (min6)
 * 応答 : JSON
  * status : string  
  "OK" or "NG"
