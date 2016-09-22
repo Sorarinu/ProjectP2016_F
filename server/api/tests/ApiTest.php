@@ -8,11 +8,14 @@ class ApiTest extends TestCase
 {
     public function testSignUpSuccess()
     {
+        $email = 'hoge@hoge.jp';
+        $password = 'hogehoge';
+
         $this->withoutMiddleware();
-        $this->post('/api/v1/signup', ['userId' => 'testCase', 'password' => 'hogehoge', 'email' => 'hoge@hoge.jp'])
+        $this->post('/api/v1/signup', ['email' => $email, 'password' => $password])
             ->seeJson([
                 'status' => 'OK',
-                'message' => 'testCase created.',
+                'message' => $email . ' created.',
             ]);
     }
 }

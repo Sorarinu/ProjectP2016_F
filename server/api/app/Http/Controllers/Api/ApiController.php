@@ -9,7 +9,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Users;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Maknz\Slack\Facades\Slack;
@@ -27,34 +27,33 @@ class ApiController extends Controller
     {
         try {
             $rules = [
-                'userId' => 'required|min:6|alpha_num',
                 'email' => 'required|email',
-                'password' => 'required|min:8'
+                'password' => 'required|min:6'
             ];
 
             $validation = \Validator::make($this->request->all(), $rules);
 
             if ($validation->passes()) {
-                $data = [
-                    'userId' => $this->request->input('userId'),
+                $data = json_decode(json_encode([
                     'password' => $this->request->input('password'),
                     'email' => $this->request->input('email')
-                ];
+                ]));
 
-                $users = new Users;
-                $users->id = $data['userId'];
-                $users->password = Hash::make($data['password']);
-                $users->email = $data['email'];
-                $users->save();
+                $user = new User;
+                $user->email = $data->email;
+                $user->password = Hash::make($data->password);
+                $user->save();
 
-                Slack::send('New user has been created！ This userId is *' . $data['userId'] . '*.');
-                return json_encode(['status' => 'OK', 'message' => $data['userId'] . ' created.']);
+                Slack::send('New user has been created！ This Email Address is *' . $data->email . '*.');
+                return response()->json(['status' => 'OK', 'message' => $data->email . ' created.']);
             }
 
-            return json_encode(['status' => 'NG', 'message' => $validation->messages()]);
+            return response()->json(['status' => 'NG', 'message' => $validation->messages()]);
 
         }catch(\Exception $e) {
-            return json_encode(['status' => 'NG', 'message' => $e->getMessage()]);
+            return response()->json([
+                'status' => 'NG',
+                'message' => $e->getCode() === '23000' ? 'This Email address is already registered.' : $e->getMessage()]);
         }
     }
 
