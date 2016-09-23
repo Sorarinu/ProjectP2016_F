@@ -19,11 +19,8 @@ class Scraping(object):
 
     def get_body_text(self):
         soup = self.convert_html()
-        with open('test_html_body.txt', 'w') as file:
-            for string in soup.stripped_strings:
-                string = repr(string).rstrip("'").lstrip("'")
-                file.write(string + '\n')
-
-
-if __name__ == '__main__':
-    Scraping('http://www.yahoo.co.jp/').get_body_text()
+        str_list = []
+        for string in soup.stripped_strings:
+            string = repr(string).rstrip("'").lstrip("'")
+            str_list.append(string)
+        return str_list
