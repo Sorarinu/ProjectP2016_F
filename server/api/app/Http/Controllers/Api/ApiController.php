@@ -6,7 +6,7 @@
      * Time: 20:30
      */
 
-namespace App\Http\Controllers\Api;
+namespace app\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\User;
@@ -50,8 +50,7 @@ class ApiController extends Controller
             }
 
             return response()->json(['status' => 'NG', 'message' => $validation->messages()]);
-
-        }catch(\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json([
                 'status' => 'NG',
                 'message' => $e->getCode() === '23000' ? 'This Email address is already registered.' : $e->getMessage()]);
@@ -77,7 +76,7 @@ class ApiController extends Controller
                 $user = User::where('email', $data->email)
                     ->firstOrFail();
                 
-                if(Hash::check($data->password, $user->password)) {
+                if (Hash::check($data->password, $user->password)) {
                     return response()->json(['status' => 'OK', 'message' => 'Login success: ' . $user->email]);
                 }
 
@@ -85,8 +84,7 @@ class ApiController extends Controller
             }
             
             return response()->json(['status' => 'NG', 'message' => $validation->messages()]);
-
-        }catch(\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json(['status' => 'NG', 'message' => 'User Login is Failed.']);
         }
     }
