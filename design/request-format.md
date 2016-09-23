@@ -50,7 +50,7 @@
 
 
 # サインイン
-* メソッド : GET
+* メソッド : POST
 * URL : /api/v1/signin
 * パラメータ :
  * email : string
