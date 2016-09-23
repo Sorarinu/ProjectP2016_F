@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Maknz\Slack\Facades\Slack;
 
 class ApiController extends Controller
@@ -59,6 +60,35 @@ class ApiController extends Controller
 
     public function signIn()
     {
+        try {
+            $rules = [
+                'email' => 'required|email',
+                'password' => 'required|min:6'
+            ];
+            
+            $validation = \Validator::make($this->request->all(), $rules);
+
+            if ($validation->passes()) {
+                $data = json_decode(json_encode([
+                    'password' => $this->request->input('password'),
+                    'email' => $this->request->input('email')
+                ]));
+
+                $user = User::where('email', $data->email)
+                    ->firstOrFail();
+                
+                if(Hash::check($data->password, $user->password)) {
+                    return response()->json(['status' => 'OK', 'message' => 'Login success: ' . $user->email]);
+                }
+
+                throw new \Exception;
+            }
+            
+            return response()->json(['status' => 'NG', 'message' => $validation->messages()]);
+
+        }catch(\Exception $e) {
+            return response()->json(['status' => 'NG', 'message' => 'User Login is Failed.']);
+        }
     }
 
     public function signOut()

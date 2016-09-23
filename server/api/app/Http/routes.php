@@ -16,7 +16,7 @@
     });
 
     Route::post('api/v1/signup',                 ['uses' => 'api\ApiController@signUp']);
-    Route::get('api/v1/signin',                  ['uses' => 'api\ApiController@signIn']);
+    Route::post('api/v1/signin',                 ['uses' => 'api\ApiController@signIn']);
     Route::get('api/v1/signout',                 ['uses' => 'api\ApiController@signOut']);
     Route::post('api/v1/bookmarks/upload',       ['uses' => 'api\ApiController@upload']);
     Route::get('api/v1/bookmarks/export',        ['uses' => 'api\ApiController@export']);
