@@ -1,7 +1,8 @@
 /**
  *  API AccessURLs
  */
-namespace  apiUrl {
+export class ApiUrl {}
+export namespace ApiUrl {
 
     export const SIGN_UP = '/api/v1/signup';
     export const SIGN_IN = '/api/v1/signin';
@@ -9,9 +10,7 @@ namespace  apiUrl {
 
     export const BOOKMARK_LOAD = '/api/v1/';
 
-
     export const BOOKMARK_UPLOAD = '/api/v1/';
     export const BOOKMARK_EXPORT = '/api/v1/';
-
 
 }

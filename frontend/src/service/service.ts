@@ -1,7 +1,7 @@
 /**
  * サービスクラス
  */
-class Service {
+export class Service {
 
     /**
      * API提供のURL

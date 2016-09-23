@@ -6,10 +6,10 @@
          form
              bs-input(
                 name="email",
+                type="email",
                 required,
                 :error="'Insert your email'",
                 :value.sync="user.email",
-                pattern="user.emailValidate()"
              )
                 div(slot="label") email
 
@@ -17,9 +17,9 @@
                  name="password",
                  type="password",
                  required ,
-                 :error="'Insert your password longer than 6'",
+                 :error="'Insert your password'",
                  :value.sync="user.password",
-                 pattern="user.passwordValidate()"
+                 minLength="6"
              )
                 div(slot="label") password
                     

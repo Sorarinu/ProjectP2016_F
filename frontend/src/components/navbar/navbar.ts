@@ -2,6 +2,7 @@
  * ナビゲーションバー
  */
 import Component from 'vue-class-component';
+import {UserService} from '../../service/userservice';
 
 
 /**
@@ -15,5 +16,13 @@ require('./navbar.scss');
     }
 })
 export class Navbar {
+    data() {
+        return {
+            loginNow : UserService.getInstance().loginNow
+        };
+    }
 
+    signOut() : void {
+        return;
+    }
 }

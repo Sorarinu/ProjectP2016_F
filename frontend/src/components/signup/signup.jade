@@ -2,36 +2,44 @@
     .container
         .col-sm-6.col-sm-offset-3
             h3 SignUp
+
+            alert(
+                :show.sync="alertProp.show",
+                :type="alertProp.type",
+                dismissable
+            )
+                span {{alertProp.message}}
+
             form
                 bs-input(
-                    require icon,
+                    required icon,
+                    type="email",
+                    label="email",
                     :value.sync="user.email",
-                    error="Insert your email",
-                    validate="user.emailValidate()"
+                    error="Insert your email"
                 )
-                    div(slot="label") email
                 bs-input(
-                    require icon,
+                    required icon,
+                    label="password",
                     type="password",
                     :value.sync="user.password",
                     error="Insert password",
-                    validate="user.passwordValidate()"
+                    minLength="6"
                 )
-                    div(slot="label") password
                 bs-input(
-                    require icon,
+                    required icon,
+                    label="password-confilm",
                     type="password",
                     :value.sync="passwordConfilm",
                     error="Don't match password",
-                    :match="user.password"
+                    match="user.password"
                 )
-                    div(slot="label") password-confilm
 
+                p debug=>{email : {{user.email}} | pass : {{user.password}}}
                 button.form-control.btn.btn-primary(
                     type="button",
-                    :disabled="formValidate()",
-                    :click="signUp()"
+                    :disabled="!formValidate()",
+                    @click="signUp()"
                 ) SignUp
 
-    alert
 

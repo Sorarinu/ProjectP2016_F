@@ -1,5 +1,6 @@
 import Component from 'vue-class-component';
 import {UserService} from '../../service/userservice';
+import router from '../../main';
 
 
 /**
@@ -17,13 +18,18 @@ export class SignUp {
 
     private userService : UserService;
 
-
     private passwordConfilm : string;
-    private alertProp: {show: boolean , message: string};
+    private alertProp: {show: boolean, type: string, message: string};
 
     data() {
 
         this.userService = UserService.getInstance();
+
+        this.alertProp = {
+            show: false,
+            type: 'info',
+            message: 'sign-in-alert-message'
+        };
 
         return {
             user : this.userService.user,
@@ -44,17 +50,19 @@ export class SignUp {
         this.userService.signUp({
             ok: () => this.transitionHome(),
             ng: (message: string) => this.alert(message, 'danger'),
-            failed: () => { return; }
+            failed: (message: string) => this.alert(message, 'danger')
         });
     }
 
     alert(message: string, type : string) : void {
-
-        return;
+        this.alertProp.show = true;
+        this.alertProp.type = type;
+        this.alertProp.message = message;
     }
 
     transitionHome() : void {
         //TODO:Homeページへ遷移
         // メインのページ作ったら実装
+        router.replace('index');
     }
 }

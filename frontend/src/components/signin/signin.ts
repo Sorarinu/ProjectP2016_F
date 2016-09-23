@@ -1,5 +1,6 @@
 import Component from 'vue-class-component';
 import {User} from '../../model/user';
+import {UserService} from '../../service/userservice';
 
 /**
  * SignIn Component
@@ -8,25 +9,39 @@ require('./signin.scss');
 @Component({
     template: require('./signin.jade'),
     components: {
-        bsInput : require('vue-strap').input
+        bsInput : require('vue-strap').input ,
+        alert: require('vue-strap').alert
     }
 })
 export class SignIn {
 
-    user : User;
+    userService : UserService;
 
     data() {
+
+        this.userService = UserService.getInstance();
+        this.userService.user = new User('', '');
+
         return {
-            user : new User('', '')
+            user : this.userService.user
         };
     }
 
     signIn() : void {
-        //TODO: SingIn処理実実装
-        //signInする処理　UserServiceのSingIn処理を呼び出し応答を返答.
+        this.userService.signIn({
+            ok: (data: any) => {
+                return;
+            },
+            ng: (message: string) => {
+                return;
+            },
+            failed: (message: string) => {
+                return;
+            }
+        });
     }
 
     isValidFormData() : boolean {
-        return this.user.validate();
+        return this.userService.user.validate();
     }
 }

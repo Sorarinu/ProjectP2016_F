@@ -1,6 +1,8 @@
 import {User} from '../model/user';
 import * as $ from 'jquery';
-import SIGN_UP = apiUrl.SIGN_UP;
+import {ApiUrl} from './apiurl';
+import {Service} from './service';
+
 
 
 export class UserService extends Service {
@@ -42,34 +44,31 @@ export class UserService extends Service {
     signUp(requestListener: IRequestListener): void {
 
         // TODO:Defferとかつかってまともな書き方すること
-        // TODO:ボタン連打の対策くらいすること
-
         if (!this.user.validate()) {
-            return;
+            requestListener.failed('form data is not valid');
         }
 
         $.ajax({
-            url: super.resolvePath(SIGN_UP),
+            url: super.resolvePath(ApiUrl.SIGN_UP),
             dataType: 'json',
             method: 'POST',
             data: {
                 email: this.user.email,
-                password: this.user.password,
+                password: this.user.password
             }
         })
-            .done((data: any) => {
-                // 登録成功.
-                if (data.status === 'OK') {
-                    this.loginNow = true;
-                    requestListener.ok(data);
-                }
-                // 登録失敗.
-                if (data.status === 'NG') {
-                    requestListener.ng(data.message);
-                }
-            });
-            //TODO:まともなメッセージ返す
-            //.fail(() => requestListener.failed('failed'));
+        .done((data: any) => {
+            // 登録成功.
+            if (data.status === 'OK') {
+                this.loginNow = true;
+                requestListener.ok(data);
+            }
+            // 登録失敗.
+            if (data.status === 'NG') {
+                requestListener.ng(data.message);
+            }
+        })
+        .fail(() => requestListener.failed('Request Failed'));
     }
 
     /**
@@ -77,8 +76,30 @@ export class UserService extends Service {
      * @param requestListener
      */
     signIn(requestListener: IRequestListener): void {
-        // TODO:SignIn実処理実装
+        if (!this.user.validate()) {
+            requestListener.failed('form data is not valid');
+            return;
+        }
 
+        $.ajax({
+            url: super.resolvePath(ApiUrl.SIGN_IN),
+            dataType: 'json',
+            method: 'GET',
+            data: {
+                email: this.user.email,
+                password: this.user.password
+            }
+        })
+        .done((data : any) => {
+            if (data.status === 'OK') {
+                this.loginNow = true;
+                requestListener.ok(data);
+            }
+            if (data.status === 'NG') {
+                requestListener.ng(data.message);
+            }
+        })
+        .fail(() => requestListener.failed('Request Failed'));
     }
 
     /**
