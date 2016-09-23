@@ -30,6 +30,9 @@ DB_HOST=nxtg-t.net
 DB_DATABASE=bm_sorter  
 DB_USERNAME=bm_sorter  
 DB_PASSWORD=bm_sorter  
+SLACK_WEBHOOK_URI=https://hooks.slack.com/services/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  
+SLACK_CHANNEL=#bm_slack_bot  
+SLACK_USERNAME=田胡先生  
 ```
 
 ## License
