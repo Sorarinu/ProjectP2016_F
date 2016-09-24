@@ -84,6 +84,7 @@ class ApiController extends Controller
                     ->firstOrFail();
 
                 if (Hash::check($data->password, $user->password)) {
+                    $this->request->session()->put('email', $user->email);
                     return response()->json(['status' => 'OK', 'message' => 'Login success: ' . $user->email]);
                 }
 
@@ -102,6 +103,12 @@ class ApiController extends Controller
 
     public function signOut()
     {
+        if ($this->request->session()->has('email')) {
+            $this->request->session()->forget('email');
+            return response()->json(['status' => 'OK', 'message' => 'Logged out.']);
+        }
+
+        return response()->json(['status' => 'NG', 'message' => 'This user is not authenticated.']);
     }
 
     public function upload()
