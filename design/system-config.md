@@ -11,6 +11,8 @@ JSON受け取ってJSON返す子
 
 * クライアントサイド
   * Vuejs (1.系)
+  * vue-router
+  * vuex
   * jQuery
   * bootstrap 3 (css)
   * vue-strap
