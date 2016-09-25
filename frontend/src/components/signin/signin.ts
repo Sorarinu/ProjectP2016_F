@@ -1,6 +1,7 @@
 import Component from 'vue-class-component';
 import {User} from '../../model/user';
 import {UserService} from '../../service/userservice';
+import router from '../../main';
 
 /**
  * SignIn Component
@@ -9,39 +10,56 @@ require('./signin.scss');
 @Component({
     template: require('./signin.jade'),
     components: {
-        bsInput : require('vue-strap').input ,
+        bsInput: require('vue-strap').input ,
         alert: require('vue-strap').alert
-    }
+    },
 })
 export class SignIn {
 
-    userService : UserService;
+    private user : User;
+    private alertProp: {show: boolean, type: string, message: string};
 
     data() {
 
-        this.userService = UserService.getInstance();
-        this.userService.user = new User('', '');
+        this.user = new User('', '');
+
+        this.alertProp = {
+            show: false,
+            type: 'info',
+            message: 'alert-message'
+        };
 
         return {
-            user : this.userService.user
+            alertProp: this.alertProp,
+            user: this.user
         };
     }
 
     signIn() : void {
-        this.userService.signIn({
-            ok: (data: any) => {
-                return;
-            },
-            ng: (message: string) => {
-                return;
-            },
-            failed: (message: string) => {
-                return;
-            }
-        });
+        // this.userService.signIn({
+        //     ok: (data: any) => {
+        //         this.transitionHome();
+        //     },
+        //     ng: (message: string) => {
+        //         this.alertProp.show = true;
+        //         this.alertProp.type = 'danger';
+        //         this.alertProp.message = message;
+        //     },
+        //     failed: (message: string) => {
+        //         this.alertProp.show = true;
+        //         this.alertProp.type = 'danger';
+        //         this.alertProp.message = message;
+        //     }
+        // });
     }
 
     isValidFormData() : boolean {
-        return this.userService.user.validate();
+        return this.user.validate();
+    }
+
+    transitionHome() : void {
+        //TODO:Homeページへ遷移
+        // メインのページ作ったら実装
+        router.replace('index');
     }
 }

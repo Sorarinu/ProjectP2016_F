@@ -3,6 +3,7 @@ import Component from 'vue-class-component';
 import {Footbar} from './components/footer/footbar';
 import {UserService} from './service/userservice';
 import {User} from './model/user';
+import {BookmarkService} from './service/bookmarkservice';
 /*
 * アプリケーションのトップレベルコンポーネントです
  */
@@ -12,11 +13,5 @@ require('./app.scss');
     components: { Navbar, Footbar }
 })
 export class App {
-
-    userService : UserService;
-
-    constructor() {
-        this.userService = new UserService();
-    }
 
 }

@@ -16,7 +16,7 @@ export class User implements IValidation {
 
     static passwordValidate(password: string) : boolean {
         // Passwordは6文字以上
-        return password.length >= 6 ;
+        return password.length >= 6;
     }
 
     static emailValidate(email: string) : boolean {

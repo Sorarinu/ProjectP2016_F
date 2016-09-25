@@ -4,7 +4,12 @@ import {ApiUrl} from './apiurl';
 import {Service} from './service';
 
 
-
+/**
+ * ユーザーについて管理するサービスクラス.
+ * SignUp,SignIn,SignOutの機能を提供.
+ * リクエスト送るのが思いっきり$.ajaxと結合しててモック差し替えとか大変だけどまぁご愛敬
+ * //TODO:CSRFのトークン
+ */
 export class UserService extends Service {
 
     /**
@@ -24,7 +29,7 @@ export class UserService extends Service {
 
     constructor() {
         super();
-
+        console.log('UserService created!!');
         this.user = new User('', '');
         this.loginNow = false;
     }
@@ -39,13 +44,14 @@ export class UserService extends Service {
 
     /**
      * SingUpリクエストを送ります.
+     * 成功ならSignInリクエストを送ります.
      * @param requestListener
      */
     signUp(requestListener: IRequestListener): void {
 
-        // TODO:Defferとかつかってまともな書き方すること
+        // TODO:Defferとかつかっていけてる書き方すること
         if (!this.user.validate()) {
-            requestListener.failed('form data is not valid');
+            requestListener.failed('Form data is not valid');
         }
 
         $.ajax({
@@ -60,31 +66,32 @@ export class UserService extends Service {
         .done((data: any) => {
             // 登録成功.
             if (data.status === 'OK') {
-                this.loginNow = true;
                 requestListener.ok(data);
+                //ログイン成功で続けてSinginリクエスト送信.
+                this.signIn(requestListener);
             }
             // 登録失敗.
             if (data.status === 'NG') {
                 requestListener.ng(data.message);
             }
         })
-        .fail(() => requestListener.failed('Request Failed'));
+        .fail(() => requestListener.failed('Signup Request Failed'));
     }
 
     /**
-     * SignIn
+     * SignInリクエストを送りSignInします
      * @param requestListener
      */
     signIn(requestListener: IRequestListener): void {
         if (!this.user.validate()) {
-            requestListener.failed('form data is not valid');
+            requestListener.failed('Form data is not valid');
             return;
         }
 
         $.ajax({
             url: super.resolvePath(ApiUrl.SIGN_IN),
             dataType: 'json',
-            method: 'GET',
+            method: 'POST',
             data: {
                 email: this.user.email,
                 password: this.user.password
@@ -99,7 +106,10 @@ export class UserService extends Service {
                 requestListener.ng(data.message);
             }
         })
-        .fail(() => requestListener.failed('Request Failed'));
+        .fail(() => {
+            this.loginNow = true;
+            requestListener.failed('Signin Request Failed');
+        });
     }
 
     /**
@@ -107,7 +117,25 @@ export class UserService extends Service {
      * @param requestListener
      */
     signOut(requestListener: IRequestListener): void {
-        // TODO:SignOut実処理実装
+        if (!this.loginNow) {
+            return;
+        }
+
+        $.ajax({
+            url: super.resolvePath(ApiUrl.SIGN_OUT),
+            dataType: 'json',
+            method: 'GET',
+        })
+        .done((data: any) => {
+            if (data.status === 'OK') {
+                this.loginNow = false;
+                requestListener.ok(data);
+            }
+            if (data.status === 'NG') {
+                requestListener.ng(data.message);
+            }
+        })
+        .fail(() => requestListener.failed('Logout Request Failed'));
     }
 }
 

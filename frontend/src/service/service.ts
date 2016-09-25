@@ -6,7 +6,7 @@ export class Service {
     /**
      * API提供のURL
      */
-    private BASE_URL = 'http://localhost:8080';
+    private BASE_URL = 'http://localhost:8000';
 
     /**
      * APIパスを絶対パスへと解決します.

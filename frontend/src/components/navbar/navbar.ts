@@ -16,13 +16,25 @@ require('./navbar.scss');
     }
 })
 export class Navbar {
+
+    private userService: UserService;
+
     data() {
+
+        this.userService = UserService.getInstance();
+
         return {
-            loginNow : UserService.getInstance().loginNow
+            loginNow : this.userService.loginNow,
+            user : this.userService.user
         };
     }
 
     signOut() : void {
-        return;
+        //TODO: エラー処理実装.
+        this.userService.signOut({
+            ok: () => {return; },
+            ng: () => {return; },
+            failed: () => {return; }
+        });
     }
 }

@@ -9,10 +9,10 @@
         a.navbar-brand(slot="brand" v-link="{name:'index'}") BM-Sorter
 
         //- signIn Up (非ログイン中)
-        li(slot="right" v-if="!loginNow")
+        li(slot="right" v-if.sync="!loginNow")
             a(v-link="{name:'signin'}") SignIn
-        li(slot="right" v-if="!loginNow")
+        li(slot="right" v-if.sync="!loginNow")
             a(v-link="{name:'signup'}") SignUp
         //- signOut (ログイン中））
-       li(slot="right" v-if="loginNow")
+        li(slot="right" v-if.sync="loginNow")
             a(@click="signOut()") SignOut

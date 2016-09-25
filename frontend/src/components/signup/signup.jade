@@ -1,4 +1,5 @@
 #signup
+    //- ユーザーのSingUpフォーム
     .container
         .col-sm-6.col-sm-offset-3
             h3 SignUp
@@ -32,10 +33,9 @@
                     type="password",
                     :value.sync="passwordConfilm",
                     error="Don't match password",
-                    match="user.password"
+                    :match="user.password"
                 )
 
-                p debug=>{email : {{user.email}} | pass : {{user.password}}}
                 button.form-control.btn.btn-primary(
                     type="button",
                     :disabled="!formValidate()",

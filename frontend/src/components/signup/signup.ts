@@ -1,6 +1,7 @@
 import Component from 'vue-class-component';
 import {UserService} from '../../service/userservice';
 import router from '../../main';
+import {User} from '../../model/user';
 
 
 /**
@@ -16,14 +17,14 @@ require('./signup.scss');
 })
 export class SignUp {
 
-    private userService : UserService;
+    private user: User;
 
     private passwordConfilm : string;
+
     private alertProp: {show: boolean, type: string, message: string};
 
     data() {
 
-        this.userService = UserService.getInstance();
 
         this.alertProp = {
             show: false,
@@ -31,9 +32,10 @@ export class SignUp {
             message: 'sign-in-alert-message'
         };
 
+        this.user = new User('', '');
+
         return {
-            user : this.userService.user,
-            login : this.userService.loginNow,
+            user : this.user,
             passwordConfilm : this.passwordConfilm,
             alertProp : this.alertProp
         };
@@ -41,17 +43,17 @@ export class SignUp {
 
     formValidate() : boolean {
         return [
-            this.userService.user.validate(),
-            this.userService.user.password === this.passwordConfilm
+            this.user.validate(),
+            this.user.password === this.passwordConfilm
         ].every((x: boolean) => x);
     }
 
     signUp() : void {
-        this.userService.signUp({
-            ok: () => this.transitionHome(),
-            ng: (message: string) => this.alert(message, 'danger'),
-            failed: (message: string) => this.alert(message, 'danger')
-        });
+        // this.userService.signUp({
+        //     ok: () => this.transitionHome(),
+        //     ng: (message: string) => this.alert(message, 'danger'),
+        //     failed: (message: string) => this.alert(message, 'danger')
+        // });
     }
 
     alert(message: string, type : string) : void {
