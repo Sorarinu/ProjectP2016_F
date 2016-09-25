@@ -1,7 +1,8 @@
-import Component from 'vue-class-component';
-import {UserService} from '../../service/userservice';
+import {UserService} from '../../api/userservice';
 import router from '../../main';
 import {User} from '../../model/user';
+import {Component, Action} from 'vue-typed';
+import {Actions} from '../../vuex/actions';
 
 
 /**
@@ -41,6 +42,9 @@ export class SignUp {
         };
     }
 
+    @Action(Actions.signIn)
+    signInCommit(user : User) {return; }
+
     formValidate() : boolean {
         return [
             this.user.validate(),
@@ -49,11 +53,22 @@ export class SignUp {
     }
 
     signUp() : void {
-        // this.userService.signUp({
-        //     ok: () => this.transitionHome(),
-        //     ng: (message: string) => this.alert(message, 'danger'),
-        //     failed: (message: string) => this.alert(message, 'danger')
-        // });
+        UserService.signUp({
+            ok: (data: any) => {
+                this.signInCommit(this.user);
+                this.transitionHome();
+            },
+            ng: (message: string) => {
+                this.alertProp.show = true;
+                this.alertProp.type = 'danger';
+                this.alertProp.message = message;
+            },
+            failed: (message: string) => {
+                this.alertProp.show = true;
+                this.alertProp.type = 'danger';
+                this.alertProp.message = message;
+            }
+        }, this.user);
     }
 
     alert(message: string, type : string) : void {

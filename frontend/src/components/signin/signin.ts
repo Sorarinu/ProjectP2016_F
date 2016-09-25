@@ -1,7 +1,8 @@
-import Component from 'vue-class-component';
 import {User} from '../../model/user';
-import {UserService} from '../../service/userservice';
+import {UserService} from '../../api/userservice';
 import router from '../../main';
+import {Component, Action} from 'vue-typed';
+import {Actions} from '../../vuex/actions';
 
 /**
  * SignIn Component
@@ -35,22 +36,29 @@ export class SignIn {
         };
     }
 
+    @Action(Actions.signIn)
+    signInCommit(user : User) {return; }
+
+
     signIn() : void {
-        // this.userService.signIn({
-        //     ok: (data: any) => {
-        //         this.transitionHome();
-        //     },
-        //     ng: (message: string) => {
-        //         this.alertProp.show = true;
-        //         this.alertProp.type = 'danger';
-        //         this.alertProp.message = message;
-        //     },
-        //     failed: (message: string) => {
-        //         this.alertProp.show = true;
-        //         this.alertProp.type = 'danger';
-        //         this.alertProp.message = message;
-        //     }
-        // });
+        UserService.signIn({
+            ok: (data: any) => {
+                this.transitionHome();
+            },
+            ng: (message: string) => {
+                this.alertProp.show = true;
+                this.alertProp.type = 'danger';
+                this.alertProp.message = message;
+            },
+            failed: (message: string) => {
+                this.alertProp.show = true;
+                this.alertProp.type = 'danger';
+                this.alertProp.message = message;
+            }
+        }, this.user);
+
+        // debug 強制ログイン成功
+        this.signInCommit(this.user);
     }
 
     isValidFormData() : boolean {

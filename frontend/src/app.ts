@@ -1,16 +1,15 @@
 import {Navbar} from './components/navbar/navbar';
-import Component from 'vue-class-component';
 import {Footbar} from './components/footer/footbar';
-import {UserService} from './service/userservice';
-import {User} from './model/user';
-import {BookmarkService} from './service/bookmarkservice';
+import store from './vuex/store';
+import {Component} from 'vue-typed';
 /*
 * アプリケーションのトップレベルコンポーネントです
  */
 require('./app.scss');
 @Component({
     template: require('./app.jade'),
-    components: { Navbar, Footbar }
+    components: { Navbar, Footbar },
+    store: store
 })
 export class App {
 

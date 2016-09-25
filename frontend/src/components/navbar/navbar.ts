@@ -1,14 +1,14 @@
-/**
- * ナビゲーションバー
- */
-import Component from 'vue-class-component';
-import {UserService} from '../../service/userservice';
+import {UserService} from '../../api/userservice';
+import {Component, Action, Getter} from 'vue-typed';
+import {Actions} from '../../vuex/actions';
+import {getSignInNow} from '../../vuex/getter';
 
 
 /**
  * NavigationBar Component
  */
 require('./navbar.scss');
+
 @Component({
     template: require('./navbar.jade'),
     components: {
@@ -17,24 +17,24 @@ require('./navbar.scss');
 })
 export class Navbar {
 
-    private userService: UserService;
+    @Getter(getSignInNow)
+    signInNow: boolean;
 
-    data() {
-
-        this.userService = UserService.getInstance();
-
-        return {
-            loginNow : this.userService.loginNow,
-            user : this.userService.user
-        };
-    }
+    @Action(Actions.signOut)
+    signOutCommit() { return; }
 
     signOut() : void {
         //TODO: エラー処理実装.
-        this.userService.signOut({
-            ok: () => {return; },
+        UserService.signOut({
+            ok: () => {
+                this.signOutCommit();
+                return;
+            },
             ng: () => {return; },
             failed: () => {return; }
         });
+
+        this.signOutCommit();
     }
+
 }

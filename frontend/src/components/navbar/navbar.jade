@@ -8,11 +8,11 @@
             a(v-link="{name:'help' , activeClass:'active'}" ) Help
         a.navbar-brand(slot="brand" v-link="{name:'index'}") BM-Sorter
 
-        //- signIn Up (非ログイン中)
-        li(slot="right" v-if.sync="!loginNow")
+        //- signIn,Up (非ログイン中)
+        li(slot="right" v-if="!signInNow")
             a(v-link="{name:'signin'}") SignIn
-        li(slot="right" v-if.sync="!loginNow")
+        li(slot="right" v-if="!signInNow")
             a(v-link="{name:'signup'}") SignUp
         //- signOut (ログイン中））
-        li(slot="right" v-if.sync="loginNow")
+        li(slot="right" v-if="signInNow")
             a(@click="signOut()") SignOut
