@@ -10,7 +10,7 @@ export class Actions {
 
     // user actions
     static signIn: Action<State> =
-        ({dispatch}, user: User) => {
+        ({dispatch}:any, user: User) => {
             dispatch(MutationTypes.SIGN_IN, user);
         };
 
