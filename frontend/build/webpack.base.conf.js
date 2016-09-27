@@ -24,17 +24,12 @@ module.exports = {
   module: {
     preLoaders: [
       {
-        test: /\.pug$/,
-        loader: 'pug-html'
-      },
-      {
         test: /\.ts(x?)$/,
         exclude: /node_modules/,
         include: __dirname,
         loader: 'tslint'
       }
     ],
-
     loaders: [
       // production側の設定でごにょごにょするので
       // これより上に要素かかないでください
@@ -51,7 +46,7 @@ module.exports = {
       // 下は適当に
       {
         test: /\.pug$/,
-        loader: 'raw'
+        loader: 'pug-html'
       },
       {
         test: /\.html$/,
