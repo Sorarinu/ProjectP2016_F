@@ -10,7 +10,7 @@ import {getSignInNow} from '../../vuex/getter';
 require('./navbar.scss');
 
 @Component({
-    template: require('./navbar.jade'),
+    template: require('./navbar.pug'),
     components: {
         navbar : require('vue-strap').navbar
     }

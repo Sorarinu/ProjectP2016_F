@@ -9,7 +9,7 @@ import {Actions} from '../../vuex/actions';
  */
 require('./signin.scss');
 @Component({
-    template: require('./signin.jade'),
+    template: require('./signin.pug'),
     components: {
         bsInput: require('vue-strap').input ,
         alert: require('vue-strap').alert

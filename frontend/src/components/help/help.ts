@@ -4,7 +4,7 @@ import {Component} from 'vue-typed';
  */
 require('./help.scss');
 @Component({
-    template: require('./help.jade'),
+    template: require('./help.pug'),
     components: {
         alert : require('vue-strap').alert ,
         bsInput : require('vue-strap').input

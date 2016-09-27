@@ -4,7 +4,7 @@ import {Component} from 'vue-typed';
  */
 require('./index.scss');
 @Component({
-    template: require('./index.jade'),
+    template: require('./index.pug'),
     components: {
         alert : require('vue-strap').alert
     }

@@ -4,7 +4,7 @@ import {Component} from 'vue-typed';
  */
 require('./footbar.scss');
 @Component({
-    template: require('./footbar.jade'),
+    template: require('./footbar.pug'),
 })
 export class Footbar {
 
