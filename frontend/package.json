@@ -8,7 +8,7 @@
     "dev": "node build/dev-server.js",
     "build": "rimraf dist && webpack --progress --hide-modules --config build/webpack.prod.conf.js",
     "test": "karma start build/karma.conf.js  --single-run",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist -m update [ci skip]"
   },
   "dependencies": {
     "font-awesome": "^4.6.3",
