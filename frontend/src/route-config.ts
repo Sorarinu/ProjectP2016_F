@@ -4,6 +4,7 @@ import {About} from './components/about/about';
 import {Contact} from './components/contact/contact';
 import {Help} from './components/help/help';
 import {SignIn} from './components/signin/signin';
+import {SignUp} from './components/signup/signup';
 /**
  * Vue-routerのルーケティング設定.
  */
@@ -32,6 +33,10 @@ export function configureRouter(router: vuejs.Router<App>) {
         '/signin': { // SingInフォーム
             component: SignIn,
             name : 'signin'
+        },
+        '/signup': { // SingUpフォーム
+            component: SignUp,
+            name : 'signup'
         }
     });
 }

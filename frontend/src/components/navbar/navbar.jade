@@ -7,4 +7,12 @@
         li(v-link-active)
             a(v-link="{name:'help' , activeClass:'active'}" ) Help
         a.navbar-brand(slot="brand" v-link="{name:'index'}") BM-Sorter
-        li(slot="right"): a(v-link="{name:'signin'}") SignIn
+
+        //- signIn,Up (非ログイン中)
+        li(slot="right" v-if="!signInNow")
+            a(v-link="{name:'signin'}") SignIn
+        li(slot="right" v-if="!signInNow")
+            a(v-link="{name:'signup'}") SignUp
+        //- signOut (ログイン中））
+        li(slot="right" v-if="signInNow")
+            a(@click="signOut()") SignOut

@@ -1,33 +1,39 @@
 #signin
-    //Userのサインインフォーム
+    //- Userのサインインフォーム
     .container
         .col-sm-6.col-sm-offset-3
          h3  SignIn
+
+         alert(
+            :show.sync="alertProp.show",
+            :type="alertProp.type",
+            dismissable
+         )
+             span {{alertProp.message}}
+
          form
              bs-input(
                 name="email",
+                type="email",
                 required,
                 :error="'Insert your email'",
                 :value.sync="user.email",
-                pattern="user.emailValidate()"
              )
                 div(slot="label") email
 
              bs-input(
                  name="password",
                  type="password",
-                 required ,
-                 :error="'Insert your password longer than 6'",
+                 required,
+                 :error="'Insert your password'",
                  :value.sync="user.password",
-                 pattern="user.passwordValidate()"
+                 minLength="6"
              )
                 div(slot="label") password
-                    
-             p debug=> email:{{user.email}} password:{{user.password}}
 
              //- 入力値がUserのvalidateionを通過する場合のみ押せるようにする
              button.form-control.btn.btn-primary(
                  type="button",
                  :disabled="!isValidFormData()",
-                 :click="signIn()"
+                 @click="signIn()"
              ) SignIn

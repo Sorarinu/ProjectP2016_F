@@ -8,8 +8,17 @@ import {configureRouter} from './route-config';
  * vue init, router init and config
  * routing start!!
  */
+
+
+// Router -----------------------------
+
 Vue.use(VueRouter);
 const router = new VueRouter<App>();
 configureRouter(router);
 
 router.start(App, '#app');
+export default router; // エクスポートしたrouter これを使うことで任意にルーティングできる
+
+//--------------------------------------
+
+

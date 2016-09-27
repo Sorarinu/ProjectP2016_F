@@ -1,3 +1,11 @@
 /**
- * Created by namaz on 2016/09/20.
+ * Navbarのテスト
+ * ルーティングのテストも
  */
+describe('navbar-routing', () => {
+    beforeEach(() => {
+        //ページ構築
+
+    });
+    it('')
+});

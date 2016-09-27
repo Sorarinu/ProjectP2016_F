@@ -1,5 +1,4 @@
-import Component from 'vue-class-component';
-
+import {Component} from 'vue-typed';
 /**
  * HelpPage Component
  */

@@ -1,9 +1,6 @@
 import {App} from '../../../src/app';
 import Vue = require('vue');
-/**
- * Created by namaz on 016/09/19.2
- * AppComponentのTest
- */
+
 describe('AppComponent-Test', () => {
 
     const vm = new Vue({
