@@ -7,7 +7,7 @@ import {Component} from 'vue-typed';
  */
 require('./app.scss');
 @Component({
-    template: require('./app.jade'),
+    template: require('./app.pug'),
     components: { Navbar, Footbar },
     store: store
 })

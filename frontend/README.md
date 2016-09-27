@@ -76,7 +76,7 @@ npm run deploy
 * [typescript](https://www.typescriptlang.org/)  
 AltJSと呼ばれるJavaScriptのすごいやつの１種だよ. 大体ＪａｖａＳｃｒｉｐｔって適当に書いてるとぐちゃぐちゃになっていくし人が書く言語じゃないよねってなって[AltJS](http://sterfield.co.jp/designer/javascript%E3%81%AE%E4%BB%A3%E6%9B%BF%E8%A8%80%E8%AA%9E%E3%81%A8%E3%81%AA%E3%82%8Baltjs%E3%81%AE%E4%BB%A3%E8%A1%A85%E3%81%A4/)っていうJavaScriptを生成する目的の言語群が出てきたん. typescriptは型が追加されてコンパイラチェックとか安全になった上,IDEでめっちゃ補完が効いて,さらにES2016に近い仕様でそのうえAngular2が正式採用したことで最近とても熱い言語だよ　今プロジェクトのコードは基本これで書いていくよ
 
-* [jade](http://blog.mismithportfolio.com/web/20160117jadebeginner)  
+* [pug](http://blog.mismithportfolio.com/web/20160117jadebeginner)  
 リンク先を読めば5分で使えるようになるよ！　要はHTMLをさくっとシンプルに書くものだよ.  
 htmlってタグ長いし閉じタグわすれてたりするしクラス指定するのは面倒だし生で書くとか私はやりたくないな(´・ω・｀)  
 シンプルに書く以外にほかにももっと便利な機能があるんだけど今回は基本HTMLをシンプルに書くために使ってくよ.
@@ -85,7 +85,7 @@ htmlってタグ長いし閉じタグわすれてたりするしクラス指定�
 cssのすげーやつだよ.リンク先の最強機能とかかいてあるのを見れば何ができるかわかると思うよ.　cssが書けるなら10分で書けるようになるよ
 
 * [webpack](http://qiita.com/yosisa/items/61cfd3ede598e194813b)  
-上にあげたtypescriptとかjadeとかsassてのは普通じゃブラウザで実行できないよ.ブラウザはhtmlを表示してjavascriptが走るものだからね.  
+上にあげたtypescriptとかpugとかsassてのは普通じゃブラウザで実行できないよ.ブラウザはhtmlを表示してjavascriptが走るものだからね.  
 そのためにこのwebpackでこれらをコンパイルしたりしてひとまとめのjavascriptにまとめあげるんよ あとはこの出力されたjsファイルを読めば全部適用されるって仕組み（すごく適当）.  
 詳しくは全然分かってないけど大量の機能があります.
 
@@ -95,8 +95,8 @@ cssのすげーやつだよ.リンク先の最強機能とかかいてあるの�
  * /assets  
  画像とか置く,vendorは外部提供のファイル
  * /compoents  
- vueのコンポーネント作ってそれ単位でまとめていく、それぞれ中にはそのコンポーネントのtsとテンプレートのjadeとスタイルのscssを配置
- * app.jade + app.ts  
+ vueのコンポーネント作ってそれ単位でまとめていく、それぞれ中にはそのコンポーネントのtsとテンプレートのpugとスタイルのscssを配置
+ * app.pug + app.ts  
  アプリケーションのトップレベルになるコンポーネント
  * app.scss  
  アプリケーション全体にかかわるレイアウトを設定する用

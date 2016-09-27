@@ -19,4 +19,4 @@ JSON受け取ってJSON返す子
   * webpack
   * typescript
   * sass
-  * jade
+  * pug(jade)

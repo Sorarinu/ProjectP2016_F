@@ -24,8 +24,8 @@ module.exports = {
   module: {
     preLoaders: [
       {
-        test: /\.jade$/,
-        loader: 'jade-html'
+        test: /\.pug$/,
+        loader: 'pug-html'
       },
       {
         test: /\.ts(x?)$/,
@@ -50,7 +50,7 @@ module.exports = {
       // ごにょごにょする領域はここまで
       // 下は適当に
       {
-        test: /\.jade$/,
+        test: /\.pug$/,
         loader: 'raw'
       },
       {
