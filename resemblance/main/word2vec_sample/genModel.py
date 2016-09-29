@@ -24,9 +24,3 @@ class CreateModel(object):
                                       negative=0)
             model.save("models/sample.model")
             print("Finish")
-        return model
-
-
-
-if __name__ == '__main__':
-    CreateModel('./panoramato_kidan.txt').create_model
