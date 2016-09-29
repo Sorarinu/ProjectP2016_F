@@ -1,6 +1,6 @@
 #類似度チェック
 
-- word2vecとdoc2vecを用いて類似度を求める。
+- word2vecを用いて類似度を求める。
 - ダメなら適当なライブラリを利用して類似度比較を求める(not_word2vec_sample)。
 
 ## gorl
