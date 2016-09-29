@@ -10,7 +10,7 @@ class Resemblance(object):
     def __init__(self, url):
         self.url = url
 
-    def Resemblance(self):
+    def resemblance(self):
         # 互いに類似度を比較する文字列のリスト
         str_list = Scraping(self.url).get_body_text()
         # リスト内包表記で strs の中の文字列から重複なしの組み合わせを作る
