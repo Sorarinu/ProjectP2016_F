@@ -1,3 +1,22 @@
 #index{
-
+header {
+  &.jumbotron {
+    background: url("img/bible-1166261_1920.jpg");
+    background-position: center center;
+    background-size: cover;
+    color: #fff;
+  
+  .container {
+    margin-top: 13%; 
+    text-align: center;
+    
+    }
+   }
+  } 
+  .service{
+    text-align: center;
+    .explanation{
+    word-break: keep-all;
+    }
+  }
 }

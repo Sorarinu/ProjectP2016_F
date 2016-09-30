@@ -1,4 +1,5 @@
 import {Component} from 'vue-typed';
+
 /**
  * IndexPage Component
  */
@@ -10,5 +11,7 @@ require('./index.scss');
     }
 })
 export class Index {
-
+	goSignIn() {
+			
+	}
 }
