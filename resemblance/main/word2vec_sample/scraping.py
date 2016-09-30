@@ -24,3 +24,10 @@ class Scraping(object):
             string = repr(string).rstrip("'").lstrip("'")
             str_list.append(string)
         return str_list
+
+    def create_scraping_file(self):
+        with open('html_body.txt', 'w') as file:
+            str_list = self.get_body_text()
+            for strings in str_list:
+                file.write(strings + "\n")
+        return file.name

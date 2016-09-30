@@ -10,7 +10,7 @@ class MeacabWakati(object):
 
     def write_wakati(self):
         tagger = MeCab.Tagger('-F\s%f[6] -U\s%m -E\\n')
-        with open(self.file_name, 'r', encoding='shift-jis') as read_file:
+        with open(self.file_name, 'r', encoding='utf-8') as read_file:
             with open('wakati.txt', 'w', encoding='utf-8') as write_file:
                 line = read_file.readline()
                 while line:
