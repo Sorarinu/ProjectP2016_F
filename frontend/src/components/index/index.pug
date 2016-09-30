@@ -3,9 +3,7 @@
   .container
     h1 BM-Sorter
     p ブックマークをわかりやすく１つに
-    br
-    br
-    .button
+   
     btn.btn-info.btn-lg(@click="goSignIn()") サインイン 
     btn.btn-info.btn-lg(href='') サインアップ
    
@@ -17,22 +15,19 @@
         h3 ブックマークを1つに
         i.fa.fa-4x.fa-bookmark-o
         
-      p.explanation 異なるブラウザで保存されたブックマークを
-      まとめて同時に表示します。
+      p explanation 異なるブラウザで保存されたブックマークをまとめて同時に表示します。
 
     .col-md-4 
      .service
       .desc
         h3 シンプルな操作で簡単整理
         i.fa.fa-4x.fa-hand-pointer-o
-      p.explanation 散らかったブックマークを単純な操作で、整理できます。
-      フォルダ作成、並び替え、名前変更etc
+      p explanation 散らかったブックマークを単純な操作で、整理できます。フォルダ作成、並び替え、名前変更etc
      
     .col-md-4 
      .service 
       .desc
         h3 自動で類似度チェック
         i.fa.fa-4x.fa-file
-      p.explanation 増えてしまったブックマークから類似度の高いページを
-      抽出、フォルダを作成できます。
+      p explanation 増えてしまったブックマークから類似度の高いページを抽出、フォルダを作成できます。
      
