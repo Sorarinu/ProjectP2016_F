@@ -1,6 +1,6 @@
 # coding:utf-8
 from gensim.models import word2vec
-
+from resemblance.main.scraping import Scraping
 from resemblance.main.word2vec_sample.genModel import CreateModel
 
 
@@ -13,5 +13,6 @@ def load_model(fname):
 
 
 if __name__ == '__main__':
+    page = Scraping('http://yahoo.co.jp').get_body_text()
     CreateModel('./panoramato_kidan.txt').create_model()
     load_model('./models/sample.model')
