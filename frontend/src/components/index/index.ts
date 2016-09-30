@@ -11,5 +11,7 @@ require('./index.scss');
     }
 })
 export class Index {
-
+	goSignIn() {
+		console.log('called');
+	}
 }

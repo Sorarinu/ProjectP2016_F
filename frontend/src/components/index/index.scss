@@ -7,11 +7,18 @@ header {
     color: #fff;
   
   .container {
-    margin-top: 12%;
+    margin-top: 13%; 
+    text-align: center;
+    .button{ 
+    margin-right:20px; 
+    }   
     }
    }
   } 
   .service{
     text-align: center;
+    .explanation{
+    word-break: keep-all;
+    }
   }
 }
