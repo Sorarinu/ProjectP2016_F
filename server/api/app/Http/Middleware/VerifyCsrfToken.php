@@ -12,6 +12,6 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        //
+            '/api/v1/*',    //Debug：本番は削除する
     ];
 }

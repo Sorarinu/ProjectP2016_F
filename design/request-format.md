@@ -21,12 +21,12 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-# サインアップ
+# サインアップ <*Done*>
 * メソッド : POST
 * URL : /api/v1/signup
 * パラメータ :
- * user_id : string
- * password : string
+ * email : string
+ * password : string (min6)
 * 応答 : JSON
  * status : string  
  要求が成功したかどうか　"OK" or "NG"
@@ -49,12 +49,12 @@
  ```
 
 
-# サインイン
-* メソッド : GET
+# サインイン <*Done*>
+* メソッド : POST
 * URL : /api/v1/signin
 * パラメータ :
- * user_id : string
- * password :string
+ * email : string
+ * password :string (min6)
 * 応答 : JSON
  * status : string  
  "OK" or "NG"
@@ -63,7 +63,7 @@
 サインアップと同じ感じでお願いします
 
 
-# サインアウト
+# サインアウト <*Done*>
 
 * メソッド : GET
 * URL : /api/v1/singout

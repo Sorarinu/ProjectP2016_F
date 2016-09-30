@@ -6,7 +6,7 @@ var path = require('path')
 
 module.exports = {
   entry: {
-    app: './src/main.ts'
+    app: ['./src/main.ts']
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
@@ -24,17 +24,12 @@ module.exports = {
   module: {
     preLoaders: [
       {
-        test: /\.jade$/,
-        loader: 'jade-html'
-      },
-      {
         test: /\.ts(x?)$/,
         exclude: /node_modules/,
         include: __dirname,
         loader: 'tslint'
       }
     ],
-
     loaders: [
       // production側の設定でごにょごにょするので
       // これより上に要素かかないでください
@@ -50,8 +45,8 @@ module.exports = {
       // ごにょごにょする領域はここまで
       // 下は適当に
       {
-        test: /\.jade$/,
-        loader: 'raw'
+        test: /\.pug$/,
+        loader: 'pug-html'
       },
       {
         test: /\.html$/,

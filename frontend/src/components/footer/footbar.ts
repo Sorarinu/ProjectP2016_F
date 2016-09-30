@@ -1,10 +1,10 @@
-import Component from 'vue-class-component';
+import {Component} from 'vue-typed';
 /**
  * Footer Component
  */
 require('./footbar.scss');
 @Component({
-    template: require('./footbar.jade'),
+    template: require('./footbar.pug'),
 })
 export class Footbar {
 

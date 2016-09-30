@@ -26,4 +26,6 @@ deployment:
         commands:
           - git config --global user.name "CircleCI"
           - git config --global user.email "circleci@example.com"
+          - cd frontend && npm run build
+          - cp circle.yml frontend/dist/circle.yml
           - cd frontend && npm run deploy

@@ -1,10 +1,9 @@
-import Component from 'vue-class-component';
-
+import {Component} from 'vue-typed';
 /**
  * ContactPage Component
  */
 @Component({
-    template: require('./contact.jade'),
+    template: require('./contact.pug'),
 })
 export class Contact {
 

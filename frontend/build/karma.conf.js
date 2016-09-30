@@ -11,7 +11,7 @@ module.exports = function (config) {
     reporters: ['spec'],
     files: ['../test/unit/index.js'],
     preprocessors: {
-      '../test/unit/index.js': ['webpack', 'sourcemap']
+      '../test/unit/index.js': ['webpack','babel', 'sourcemap']
     },
     webpack: webpackConf,
     webpackMiddleware: {
