@@ -1,7 +1,7 @@
 import {User} from '../../model/user';
 import {UserService} from '../../api/userservice';
 import router from '../../main';
-import {Component, Action} from 'vue-typed';
+import {Component, Action} from '../../vue-typed/vue-typed';
 import {Actions} from '../../vuex/actions';
 
 /**

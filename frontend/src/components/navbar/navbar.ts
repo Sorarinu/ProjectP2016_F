@@ -1,5 +1,5 @@
 import {UserService} from '../../api/userservice';
-import {Component, Action, Getter} from 'vue-typed';
+import {Component, Action , Getter} from '../../vue-typed/vue-typed';
 import {Actions} from '../../vuex/actions';
 import {getSignInNow} from '../../vuex/getter';
 

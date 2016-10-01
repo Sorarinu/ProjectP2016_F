@@ -1,4 +1,4 @@
-import {Component} from 'vue-typed';
+import {Component} from '../../vue-typed/vue-typed';
 /**
  * Footer Component
  */
