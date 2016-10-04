@@ -1,7 +1,7 @@
 /**
  * Make normal class property to be data attribute.
  */
-
+/* tslint:disable */
 var dataFactory = function (target: any, key: string)  {
 
 	if (target['data'] && target['data'] instanceof Function) {

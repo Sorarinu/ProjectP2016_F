@@ -12,7 +12,7 @@ require('./index.scss');
     }
 })
 export class Index {
-    goSignIn() {
+	goSignIn() {
         router.go('signin');
-    }
+	}
 }
