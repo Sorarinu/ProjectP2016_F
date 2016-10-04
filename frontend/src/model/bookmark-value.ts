@@ -71,7 +71,7 @@ export class BookmarkValue {
         };
 
         const bms : Bookmark[] = topBMVs.map((v: BookmarkValue) => {return bmvTobm(v, bmRoot); });
-        bms.forEach(bm => {
+        bms.forEach((bm: Bookmark) => {
             bmRoot.addChild(bm);
         });
 
