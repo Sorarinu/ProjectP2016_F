@@ -121,7 +121,7 @@ export class Bookmark implements Validation {
             return 1;
         }
         return this.bookmark
-            .map( bm => { return bm.getSize(); })
+            .map( (bm: Bookmark) => { return bm.getSize(); })
             .reduce((x: number, y: number) => { return x + y; }, 1);
     }
 
