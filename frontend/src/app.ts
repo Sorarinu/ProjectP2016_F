@@ -13,4 +13,12 @@ require('./app.scss');
 })
 export class App {
 
+    showFooter : boolean;
+
+    data() {
+        this.showFooter = false;
+        return {
+            showFooter: this.showFooter
+        };
+    }
 }

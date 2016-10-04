@@ -5,6 +5,11 @@ import {MutationTree} from '~vuex/index';
 import {MutationTypes} from './mutation-types';
 import SIGN_IN = MutationTypes.SIGN_IN;
 import SIGN_OUT = MutationTypes.SIGN_OUT;
+import GET_BOOKMARK = MutationTypes.GET_BOOKMARK;
+import ADD_BOOKMARK = MutationTypes.ADD_BOOKMARK;
+import DELETE_BOOKMARK = MutationTypes.DELETE_BOOKMARK;
+import {Bookmark} from '../model/bookmark';
+import SET_BOOKMARK_ERROR = MutationTypes.SET_BOOKMARK_ERROR;
 
 Vue.use(Vuex.install);
 
@@ -14,11 +19,35 @@ Vue.config.debug = debug;
 // root state object
 // each Vuex instance is just a single state tree.
 export class State {
-    // user state
+
+    // user stateーーーーーーーーーーーーーー
+
+    /**
+     * サインイン中かどうか
+     */
     signInNow : boolean;
+
+    /**
+     * ログイン中のユーザー情報
+     */
     user : User;
 
-    // bookmark state
+    // bookmark stateーーーーーーーーーーーーー
+
+    /**
+     * ブックマーク処理通信にエラーがあるか
+     */
+    bookmarkComError : boolean;
+
+    /**
+     * ブックマーク通信処理のエラーメッセージ
+     */
+    bookmarkComErrorMessage : string;
+
+    /**
+     * ブックマーク
+     */
+    bookmark : Bookmark;
 
 
     // state initializer
@@ -46,12 +75,28 @@ const mutations : MutationTree<State> = {
     [SIGN_OUT] (state: State) {
         state.signInNow = false;
         state.user = new User('', '');
-    }
+    },
 
     // ----------------------------------------------------
 
     // bookmark mutations ---------------------------------
+    [GET_BOOKMARK] (state: State, bookmark: Bookmark) {
+        state.bookmark = bookmark;
+    },
 
+    [ADD_BOOKMARK] (state: State, bookmark: Bookmark) {
+        state.bookmark.addChild(bookmark);
+    },
+
+    [DELETE_BOOKMARK] (state: State, bookmark: Bookmark) {
+        var tagrget = state.bookmark.search(bookmark.id);
+        tagrget.remove();
+    },
+
+    [SET_BOOKMARK_ERROR] (state: State, message: string) {
+        state.bookmarkComError = true;
+        state.bookmarkComErrorMessage = message;
+    },
 
     // ----------------------------------------------------
 };
