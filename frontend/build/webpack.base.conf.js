@@ -24,9 +24,8 @@ module.exports = {
   module: {
     preLoaders: [
       {
-        test: /\.ts(x?)$/,
+        test: /\.ts$/,
         exclude: /node_modules/,
-        include: __dirname,
         loader: 'tslint'
       }
     ],
@@ -100,5 +99,9 @@ module.exports = {
   },
   ts: {
     experimentalDecorators: true
+  },
+  tslint: {
+    configuration: require('../tslint.json'),
+    emitErrors: true
   }
 }

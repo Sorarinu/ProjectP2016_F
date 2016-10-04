@@ -1,7 +1,7 @@
 /**
  * Vuex Actions
  */
-
+/* tslint:disable */
 
 var vuexActionsFactory = function (target: Object, key: string, descriptor: any, action: Function)  {
 

@@ -2,7 +2,7 @@
  * Vuex Getters
  */
 
-
+/* tslint:disable */
 var vuexGettersFactory = function (target: Object, key: string, getter: Function)  {
 
 	if (!target['vuex']) {

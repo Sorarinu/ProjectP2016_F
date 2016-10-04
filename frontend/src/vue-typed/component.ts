@@ -1,7 +1,7 @@
 /**
  * Vue Component
  */
-
+/* tslint:disable */
 
 import * as Vue from 'vue';
 

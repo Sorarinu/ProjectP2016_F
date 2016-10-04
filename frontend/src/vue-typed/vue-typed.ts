@@ -1,7 +1,7 @@
 /**
  * Main module
  */
-
+/* tslint:disable */
 
 import * as Action  from './action';
 import * as Data  from './data';
