@@ -32,11 +32,13 @@ html {
 
     font-family: "mplus-1p-regular";
     min-height:100%;
+
     display:flex;
     flex-direction: column;
 
     .maincontent{
       flex: 1;
     }
+
   }
 }
