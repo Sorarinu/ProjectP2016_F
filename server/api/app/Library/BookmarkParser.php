@@ -22,7 +22,8 @@ class BookmarkParser
      *                              - '1' => public
      *                              - '0' => private)
      */
-    public function __construct($keepNestedTags = true, $defaultTags = array(), $defaultPub = '0') {
+    public function __construct($keepNestedTags = true, $defaultTags = array(), $defaultPub = '0')
+    {
         if ($keepNestedTags) {
             $this->keepNestedTags = true;
         }

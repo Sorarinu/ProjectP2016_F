@@ -160,8 +160,9 @@ class ApiController extends Controller
 
         //タグごとにまとめる
         foreach ($bookmarks as $b) {
-            if ($tmpTags === $b['tags'])
+            if ($tmpTags === $b['tags']) {
                 continue;
+            }
 
             $tmpTags = $b['tags'];
             $i++;
