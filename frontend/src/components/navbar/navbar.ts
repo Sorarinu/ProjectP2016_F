@@ -1,7 +1,7 @@
-import {UserService} from '../../api/userservice';
-import {Component, Action , Getter} from '../../vue-typed/vue-typed';
+import {Component, Action, Getter} from '../../vue-typed/vue-typed';
 import {Actions} from '../../vuex/actions';
 import {getSignInNow} from '../../vuex/getter';
+import {ServiceFactory} from '../../api/service-factory';
 
 
 /**
@@ -25,12 +25,11 @@ export class Navbar {
 
     signOut() : void {
         //TODO: エラー処理実装.
-        UserService.signOut({
+        ServiceFactory.getUserService().signOut({
             ok: () => {
                 this.signOutCommit();
                 return;
             },
-            ng: () => {return; },
             failed: () => {return; }
         });
 

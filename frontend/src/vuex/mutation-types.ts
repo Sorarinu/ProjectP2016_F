@@ -14,4 +14,5 @@ export namespace MutationTypes {
     export const GET_BOOKMARK = 'GET_BOOKMARK';
     export const UPDATE_BOOKMARK = 'UPDATE_BOOKMARK';
     export const DELETE_BOOKMARK = 'DELETE_BOOKMARK';
+    export const SET_BOOKMARK_ERROR = 'SET_BOOKMARK_ERROR';
 }

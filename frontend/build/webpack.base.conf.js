@@ -57,6 +57,10 @@ module.exports = {
         loader: 'ts-loader'
       },
       {
+        test: /\.json$/,
+        loader: 'json'
+      },
+      {
         test: /\.vue$/,
         loader: 'vue'
       },

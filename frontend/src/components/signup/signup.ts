@@ -1,8 +1,8 @@
-import {UserService} from '../../api/userservice';
 import router from '../../main';
 import {User} from '../../model/user';
 import {Component, Action} from '../../vue-typed/vue-typed';
 import {Actions} from '../../vuex/actions';
+import {ServiceFactory} from '../../api/service-factory';
 
 
 /**
@@ -53,15 +53,10 @@ export class SignUp {
     }
 
     signUp() : void {
-        UserService.signUp({
+        ServiceFactory.getUserService().signUp({
             ok: (data: any) => {
                 this.signInCommit(this.user);
                 this.transitionHome();
-            },
-            ng: (message: string) => {
-                this.alertProp.show = true;
-                this.alertProp.type = 'danger';
-                this.alertProp.message = message;
             },
             failed: (message: string) => {
                 this.alertProp.show = true;
@@ -78,8 +73,6 @@ export class SignUp {
     }
 
     transitionHome() : void {
-        //TODO:Homeページへ遷移
-        // メインのページ作ったら実装
-        router.replace('index');
+        router.replace('main');
     }
 }

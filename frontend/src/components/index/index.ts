@@ -1,4 +1,5 @@
 import {Component} from '../../vue-typed/vue-typed';
+import router from '../../main';
 
 /**
  * IndexPage Component
@@ -11,7 +12,7 @@ require('./index.scss');
     }
 })
 export class Index {
-	goSignIn() {
-			
-	}
+    goSignIn() {
+        router.go('signin');
+    }
 }
