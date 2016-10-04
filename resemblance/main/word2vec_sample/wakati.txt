@@ -1,42 +1,33 @@
 Yahoo ! JAPAN
-<!--\ nbody { word - break : break - all ; font : 12 px / 1 . 22 " Osaka "," ＭＳ Ｐ ゴシック ", Arial , sans - serif ;* font - size : small ;* font : x - small ;}\ ntable { font - size : inherit ; font : 100 %;}\ npre , code , kbd , samp , tt { font - family : monospace ;* font - size : 108 %; line - height : 99 %;}\ nh 1 , h 2 , h 3 , h 4 , h 5 { font - size : 100 %;}\ n # p { width : 350 px ;}\ na { color :# 1 d 3994 ; text - decoration : none ;}\ na : visited { color :# 941 d 55 ;}\ na : hover { text - decoration : underline ;}\ n -->
-<!--\ nform { margin : 0 ;}\ n # p { border : 1 px solid # 7 e 9 db 9 ;}\ n -->
+<!--\ nbody { word - break : break - all ; font : 12 px / 1 . 22 " Osaka "," ＭＳ ゴシック ", Arial , sans - serif ;* font - size : small ;* font : x - small ;}\ ntable { font - size : inherit ; font : 100 %;}\ npre , code , kbd , samp , tt { font - family : monospace ;* font - size : 108 %; line - height : 99 %;}\ nh 1 , h 2 , h 3 , h 4 , h 5 { font - size : 100 %;}\ n # p { width : 350 px ;}\ na { color :# 1 d 3994 ; text - decoration : none ;}\ na : visited { color :# 941 d 55 ;}\ na : hover { text - decoration : underline ;}\ n -->
+<!--\ nform { margin : 0 ;}\ n # p { border : 1 pxsolid # 7 e 9 db 9 ;}\ n -->
 ヘルプ
-Yahoo ! JAPAN トップページ の 機能 を 正しく ご 利用 いただく に は 、 下記 の 環境 が 必要 です 。
-Windows ： Internet Explorer 9 . 0 以上 / Chrome 最新 版 / Firefox 最新 版 / Microsoft Edge \ u 3000 Macintosh ： Safari 5 . 0 以上
-※ Internet Explorer 9 . 0 以上 を ご 利用 の 場合 は 、 「
-Internet Explorer の 互換 表示 について
-」 を 参考 に 、 互換 表示 の 無効 化 を お 試し くださる 。
-ボランティア を 始める たい 人 ＆ 募集 する たい 人 へ
+Yahoo ! JAPAN トップページ 機能 利用 下記 環境 必要
+WindowsInternetExplorer 9 . 0 以上 / Chrome 最新 版 / Firefox 最新 版 / MicrosoftEdge \ u 3000 MacintoshSafari 5 . 0 以上
+InternetExplorer 9 . 0 以上 利用 場合
+InternetExplorer 互換 表示
+参考 互換 表示 無効 化 試し
+秋 ファッション アイテム 満載 今年 トレンド
 -
-LOHACO 誕生 祭 、 限定 セール や 福袋 など お 得 が 満載
-デニーズ 「 紫 芋 ティラミス 」 が 検索 で 割引
+ネット 予約 串カツ 田中 串 全品 100 円
+無料 ゲーム 脳 トレ 系 追加
 ニュース
-14 時 21 分 更新
-・
-前 市場 長 盛り土 ない と 認識
-・
-劇 物 380 トン 積載 タンカー 浸水
-・
-バイク で 店内 走る 高 2 逮捕
-・
-市 副 議長 欠席 する ネパール 旅行
-・
-マーチ 3 ナンバー に ? 新型 公開
-・
-米 で 話題 大谷 の 二刀流 可能 か
-・
-さすが 永 ちゃん 20 m を 高級 車 で
-・
-声優 の 豊口 めぐみ 結婚 & 妊娠
-もっと 見る
+21 時 46 分 更新
+台風 勢力 維持 3 日 沖縄
+禁煙 外来 病院 職員 喫煙 島根
+居酒屋 男性 意識 不明
+外国 人 客 過剰 わさび 店 謝罪
+英 EU 離脱 3 月末 交渉
+松坂 大輔 5 失点 1
+メジャー V 畑岡 米
+南 果歩 乳がん イベント 涙
 記事 一覧
-甚大 被害 から 1 カ月
-9 月 30 日 10 時 38 分 配信
-河北 新報
+西日本 各地 真夏 日
+10 月 2 日 19 時 7 分 配信
+朝日新聞 デジタル
 ショッピング
 ヤフオク !
-旅行 、 ホテル 予約
+旅行 ホテル 予約
 ニュース
 天気
 スポーツナビ
@@ -47,8 +38,8 @@ Y ! モバゲー
 地域
 地図
 路線
-食べる ログ
-求人 、 アルバイト
+ログ
+求人 アルバイト
 不動産
 自動車
 掲示板
@@ -61,17 +52,17 @@ Y ! モバゲー
 占い
 >> サービス 一覧
 ログイン
-ID で もっと 便利 に [
+ID 便利 [
 新規 取得
 ]
 メール
 -
-メールアドレス を 取得
+メールアドレス 取得
 カレンダー
 -
-カレンダー を 活用
-ポイント を 確認
-ログイン 履歴 を 確認
+カレンダー 活用
+ポイント 確認
+ログイン 履歴 確認
 会社 概要
 -
 投資 家 情報
@@ -80,7 +71,7 @@ ID で もっと 便利 に [
 -
 企業 行動 憲章
 -
-広告 掲載 について
+広告 掲載
 -
 採用 情報
 利用 規約
@@ -89,7 +80,7 @@ ID で もっと 便利 に [
 -
 メディア ステートメント
 -
-セキュリティー の 考え方
+セキュリティー 考え方
 -
 プライバシー ポリシー
-Copyright ( C ) 2016 Yahoo Japan Corporation . All Rights Reserved .
+Copyright ( C ) 2016 YahooJapanCorporation . AllRightsReserved .
