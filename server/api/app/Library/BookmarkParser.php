@@ -98,7 +98,8 @@ class BookmarkParser
                     $this->items[$i]['uri'] = '';
                 }
                 if (preg_match('/<a.*>(.*?)<\/a>/i', $line, $m4)) {
-                    if (strcmp($m4[1], 'よく見るページ') === 0 || strcmp($m4[1], '最近付けたタグ') === 0) {
+                    if (strcmp($m4[1], 'よく見るページ') === 0 ||
+                        strcmp($m4[1], '最近付けたタグ') === 0) {
                         continue;
                     }
                     
