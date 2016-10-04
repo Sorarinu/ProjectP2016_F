@@ -22,12 +22,7 @@ class BookmarkParser
      *                              - '1' => public
      *                              - '0' => private)
      */
-    public function __construct(
-        $keepNestedTags = true,
-        $defaultTags = array(),
-        $defaultPub = '0'
-    )
-    {
+    public function __construct($keepNestedTags = true, $defaultTags = array(), $defaultPub = '0') {
         if ($keepNestedTags) {
             $this->keepNestedTags = true;
         }
@@ -102,8 +97,9 @@ class BookmarkParser
                     $this->items[$i]['uri'] = '';
                 }
                 if (preg_match('/<a.*>(.*?)<\/a>/i', $line, $m4)) {
-                    if (strcmp($m4[1], 'よく見るページ') === 0 || strcmp($m4[1], '最近付けたタグ') === 0)
+                    if (strcmp($m4[1], 'よく見るページ') === 0 || strcmp($m4[1], '最近付けたタグ') === 0) {
                         continue;
+                    }
                     
                     $this->items[$i]['title'] = $m4[1];
                 } else {
@@ -146,6 +142,7 @@ class BookmarkParser
             }
         }
         ksort($this->items);
+
         return $this->items;
     }
 
@@ -165,10 +162,11 @@ class BookmarkParser
         if (strtotime('@' . $date)) {
             // Unix timestamp
             return strtotime('@' . $date);
-        } else if (strtotime($date)) {
+        } elseif (strtotime($date)) {
             // attempt to parse a known compound date/time format
             return strtotime($date);
         }
+
         // current date & time
         return time();
     }
@@ -196,6 +194,7 @@ class BookmarkParser
         if (preg_match("/^(" . self::FALSE_PATTERN . ")$/i", $value)) {
             return false;
         }
+
         return $this->defaultPub;
     }
 
@@ -237,6 +236,7 @@ class BookmarkParser
         // e.g. <A HREF="...">My Link</A><DD>List<br>- item1<br>- item2
         $sanitized = preg_replace('@\n<br>@mis', "<br>", $sanitized);
         $sanitized = preg_replace('@\n<DD@i', '<DD', $sanitized);
+
         return $sanitized;
     }
 }

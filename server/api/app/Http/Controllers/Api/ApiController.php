@@ -163,7 +163,7 @@ class ApiController extends Controller
             if ($tmpTags === $b['tags'])
                 continue;
 
-            $tmpTags = $b['tags'];;
+            $tmpTags = $b['tags'];
             $i++;
 
             foreach ($bookmarks as $bookmark) {
@@ -238,8 +238,9 @@ class ApiController extends Controller
 
         //タグの空白要素消す
         foreach ($tagLists as $tagList) {
-            if ($tagList['tag'] === '')
+            if ($tagList['tag'] === '') {
                 unset($tagLists[$tagList['id']]);
+            }
         }
 
         //フォルダ構成だけぶっこむ
@@ -264,8 +265,9 @@ class ApiController extends Controller
                         if (strstr($bookmarkItem[0]['tags'], $tag)) {
                             foreach ($bookmarkItem as $item) {
                                 foreach ($tagLists as $tagList) {
-                                    if ($tagList['tag'] === $tag)
+                                    if ($tagList['tag'] === $tag) {
                                         $parent_id = $tagList['id'];
+                                    }
                                 }
 
                                 $bookmarkItemAfter[] = [
@@ -307,7 +309,7 @@ class ApiController extends Controller
                 }
             }
         }
-        
+
         return response()->json($bookmarkJson);
     }
 
