@@ -10,7 +10,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use Htmldom;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -30,6 +29,11 @@ class ApiController extends Controller
         header("Access-Control-Allow-Origin: *");
     }
 
+    /**
+     * サインアップ
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function signUp()
     {
         $errors = '';
@@ -69,6 +73,11 @@ class ApiController extends Controller
         }
     }
 
+    /**
+     * サインイン
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function signIn()
     {
         $errors = '';
@@ -108,6 +117,11 @@ class ApiController extends Controller
         }
     }
 
+    /**
+     * サインアウト
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function signOut()
     {
         if ($this->request->session()->has('email')) {
@@ -118,14 +132,19 @@ class ApiController extends Controller
         return response()->json(['status' => 'NG', 'message' => 'This user is not authenticated.']);
     }
 
+    /**
+     * ブックマークファイル(HTML)のアップロード
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function upload()
     {
         $filePath = $this->request->file('bmfile')->getRealPath();
         $tmpTags = '';
         $i = 0;
         $id = 0;
+        $parent_id = null;
         $isFind = false;
-        $tagId = 0;
         $tagPrevValue = null;
         $tagPrevId = null;
         $tagLists = [];
@@ -162,9 +181,9 @@ class ApiController extends Controller
                 if (!isset($tagLists[0])) {
                     $tagLists[] = [
                         'tag' => $tag,
-                        'id' => $tagId,
+                        'id' => $id,
                     ];
-                    $tagId++;
+                    $id++;
                 } else {
                     for ($j = 0; $j < count($tagLists); $j++) {
                         if ($tag === $tagLists[$j]['tag']) {
@@ -177,10 +196,10 @@ class ApiController extends Controller
                     if (!$isFind) {
                         $tagLists[] = [
                             'tag' => $tag,
-                            'id' => $tagId,
+                            'id' => $id,
                         ];
 
-                        $tagId++;
+                        $id++;
                     }
                 }
             }
@@ -191,7 +210,7 @@ class ApiController extends Controller
             $tags = explode(',', $bookmarkItem[0]['tags']);
             $end = end($tags);
             foreach ($tags as $tag) {
-                if($tag === $end) {
+                if ($tag === $end) {
                     @$tagPrevValue = $tags[(count($tags) - 2)];
 
                     if (!is_null($tagPrevValue)) {
@@ -217,6 +236,13 @@ class ApiController extends Controller
             }
         }
 
+        //タグの空白要素消す
+        foreach ($tagLists as $tagList) {
+            if ($tagList['tag'] === '')
+                unset($tagLists[$tagList['id']]);
+        }
+
+        //フォルダ構成だけぶっこむ
         foreach ($tagLists as $tagList) {
             $tagListItems[] = [
                 'id' => $tagList['id'],
@@ -231,19 +257,41 @@ class ApiController extends Controller
         //いい感じにする
         foreach ($bookmarkItems as $bookmarkItem) {
             $tags = explode(',', $bookmarkItem[0]['tags']);
-            
+
             foreach ($tags as $tag) {
                 if ($tag === end($tags)) {
-                    if (strstr($bookmarkItem[0]['tags'], $tag)) {
-                        foreach ($bookmarkItem as $item) {
-                            foreach ($tagLists as $tagList) {
-                                if($tagList['tag'] === $tag)
-                                    $parent_id = $tagList['id'];
+                    if ($bookmarkItem[0]['tags'] !== '') {
+                        if (strstr($bookmarkItem[0]['tags'], $tag)) {
+                            foreach ($bookmarkItem as $item) {
+                                foreach ($tagLists as $tagList) {
+                                    if ($tagList['tag'] === $tag)
+                                        $parent_id = $tagList['id'];
+                                }
+
+                                $bookmarkItemAfter[] = [
+                                    'id' => $id,
+                                    'parent_id' => $parent_id,
+                                    'title' => $item['title'],
+                                    'detail' => $item['note'],
+                                    'reg_date' => $item['time'],
+                                    'folder' => false,
+                                    'url' => $item['uri']
+                                ];
+
+                                for ($i = 0; $i < count($bookmarkJson['bookmark']); $i++) {
+                                    if ($bookmarkJson['bookmark'][$i]['title'] === $tag) {
+                                        $bookmarkJson['bookmark'][$i]['bookmark'] = $bookmarkItemAfter;
+                                        $id++;
+                                    }
+                                }
                             }
-                            
-                            $bookmarkItemAfter[] = [
+                            unset($bookmarkItemAfter);
+                        }
+                    } else {
+                        foreach ($bookmarkItem as $item) {
+                            $bookmarkItemAfter = [
                                 'id' => $id,
-                                'parent_id' => $parent_id,
+                                'parent_id' => null,
                                 'title' => $item['title'],
                                 'detail' => $item['note'],
                                 'reg_date' => $item['time'],
@@ -251,19 +299,15 @@ class ApiController extends Controller
                                 'url' => $item['uri']
                             ];
 
-                            for($i = 0; $i < count($bookmarkJson['bookmark']); $i++) {
-                                if($bookmarkJson['bookmark'][$i]['title'] === $tag) {
-                                    $bookmarkJson['bookmark'][$i]['bookmark'] = $bookmarkItemAfter;
-                                    $id++;
-                                }
-                            }
+                            array_push($bookmarkJson['bookmark'], $bookmarkItemAfter);
+                            $id++;
                         }
                         unset($bookmarkItemAfter);
                     }
                 }
             }
         }
-
+        
         return response()->json($bookmarkJson);
     }
 
