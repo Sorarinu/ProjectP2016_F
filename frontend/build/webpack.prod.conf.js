@@ -44,14 +44,11 @@ config.plugins = (config.plugins || []).concat([
       NODE_ENV: '"production"'
     }
   }),
-  // ES2015で書かれたコードをUglifyJsが読めない。。。
-  // 対応中の新しいやつもあるんだけど未完成気味でちょっと怖い
-  // 公開するようなときには完成してそうだからそれまでは圧縮やめ
-  // new webpack.optimize.UglifyJsPlugin({
-  //   compress: {
-  //     warnings: false
-  //   }
-  // }),
+  new webpack.optimize.UglifyJsPlugin({
+     compress: {
+       warnings: false
+     }
+  }),
   new webpack.optimize.OccurenceOrderPlugin(),
   // extract css into its own file
   new ExtractTextPlugin('[name].[contenthash].css'),
