@@ -17,6 +17,7 @@ use Log;
 use Maknz\Slack\Facades\Slack;
 use App\Library\BookmarkParser;
 use Illuminate\Http\JsonResponse;
+use Psy\Util\Json;
 
 class ApiController extends Controller
 {
