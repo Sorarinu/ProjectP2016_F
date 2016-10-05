@@ -17,7 +17,7 @@ export class UserService {
      * @param requestListener
      * @param user
      */
-    static signUp(requestListener: IRequestListener, user: User) : void {
+    static signUp(requestListener: RequestListener, user: User) : void {
         Object.freeze(user);
 
         if (!user.validate()) {
@@ -53,7 +53,7 @@ export class UserService {
      * @param requestListener
      * @param user
      */
-    static signIn(requestListener: IRequestListener, user: User): void {
+    static signIn(requestListener: RequestListener, user: User): void {
         Object.freeze(user);
 
         if (!user.validate()) {
@@ -87,7 +87,7 @@ export class UserService {
      * SignOut
      * @param requestListener
      */
-    static signOut(requestListener: IRequestListener): void {
+    static signOut(requestListener: RequestListener): void {
         $.ajax({
             url: ApiUrl.resolvePath(ApiUrl.SIGN_OUT),
             dataType: 'json',
