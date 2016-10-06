@@ -357,7 +357,8 @@ class ApiController extends Controller
      *
      * @param $data
      */
-    private function insertDB($data) {
+    private function insertDB($data)
+    {
         $user_id = $this->request->session()->get('user_id', function() {
             return 1;
         });
@@ -404,7 +405,8 @@ class ApiController extends Controller
      *
      * @return mixed
      */
-    private function getId() {
+    private function getId()
+    {
         return DB::table('bookmark')->max('id') + 1;
     }
 
@@ -414,7 +416,8 @@ class ApiController extends Controller
      * @param $user_id
      * @return bool
      */
-    private function checkExists($user_id) {
+    private function checkExists($user_id)
+    {
         $result = DB::table('bookmark')->select('user_id')->where('user_id', '=', $user_id)->get();
 
         if (isset($result[0])) {
@@ -430,7 +433,8 @@ class ApiController extends Controller
      * @param $user_id
      * @return mixed
      */
-    private function deleteOldData($user_id) {
+    private function deleteOldData($user_id)
+    {
         return DB::table('bookmark')->where('user_id', '=', $user_id)->delete();
     }
 
