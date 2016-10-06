@@ -359,7 +359,7 @@ class ApiController extends Controller
      */
     private function insertDB($data)
     {
-        $user_id = $this->request->session()->get('user_id', function() {
+        $user_id = $this->request->session()->get('user_id', function () {
             return 1;
         });
 
@@ -395,7 +395,7 @@ class ApiController extends Controller
                     $bookmark->save();
                 }
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             $this->upload();
         }
     }
