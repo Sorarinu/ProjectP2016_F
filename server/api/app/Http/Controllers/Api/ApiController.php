@@ -10,14 +10,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Bookmark;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Log;
 use Maknz\Slack\Facades\Slack;
 use App\Library\BookmarkParser;
 use Illuminate\Http\JsonResponse;
-use Psy\Util\Json;
 
 class ApiController extends Controller
 {
@@ -28,6 +29,7 @@ class ApiController extends Controller
     {
         $this->request = $request;
         $this->fs = $fs;
+        //$this->bookmark = $bookmark;
         header("Access-Control-Allow-Origin: *");
     }
 
@@ -112,6 +114,7 @@ class ApiController extends Controller
 
                 if (Hash::check($data->password, $user->password)) {
                     $this->request->session()->put('email', $user->email);
+                    $this->request->session()->put('user_id', $user->id);
                     return new JsonResponse([
                         'status' => 'OK',
                         'message' => 'Login success: ' . $user->email
@@ -146,6 +149,7 @@ class ApiController extends Controller
     {
         if ($this->request->session()->has('email')) {
             $this->request->session()->forget('email');
+            $this->request->session()->forget('user_id');
             return new JsonResponse([
                 'status' => 'OK',
                 'message' => 'Logged out.'
@@ -168,7 +172,7 @@ class ApiController extends Controller
         $filePath = $this->request->file('bmfile')->getRealPath();
         $tmpTags = '';
         $i = 0;
-        $id = 0;
+        $id = $this->getId();
         $parent_id = null;
         $isFind = false;
         $tagPrevValue = null;
@@ -184,7 +188,7 @@ class ApiController extends Controller
         try {
             $parser = new BookmarkParser();
             $bookmarks = $parser->parseFile($filePath);
-
+            
             //タグごとにまとめる
             foreach ($bookmarks as $b) {
                 if ($tmpTags === $b['tags']) {
@@ -337,6 +341,7 @@ class ApiController extends Controller
                     }
                 }
             }
+            $this->insertDB($bookmarkJson);
 
             return new JsonResponse($bookmarkJson);
         } catch (\Exception $e) {
@@ -345,6 +350,88 @@ class ApiController extends Controller
                 'message' => $e->getMessage()
             ], 400);
         }
+    }
+
+    /**
+     * アップロードデータをMySQLにぶち込む
+     *
+     * @param $data
+     */
+    private function insertDB($data) {
+        $user_id = $this->request->session()->get('user_id', function() {
+            return 1;
+        });
+
+        //非ログイニンーザはDBに登録しない
+        if ($user_id === 1) {
+            return;
+        }
+
+        try {
+            if ($this->checkExists($user_id)) {
+                $this->deleteOldData($user_id);
+            }
+
+            foreach ($data['bookmark'] as $folder) {
+                $bookmark = new Bookmark();
+                $bookmark->id = $folder['id'];
+                $bookmark->user_id = $user_id;
+                $bookmark->parent_id = $folder['parent_id'];
+                $bookmark->title = $folder['title'];
+                $bookmark->folder = $folder['folder'];
+                $bookmark->save();
+
+                foreach ($folder['bookmark'] as $node) {
+                    $bookmark = new Bookmark();
+                    $bookmark->id = $node['id'];
+                    $bookmark->user_id = $user_id;
+                    $bookmark->parent_id = $node['parent_id'];
+                    $bookmark->title = $node['title'];
+                    $bookmark->detail = $node['detail'];
+                    $bookmark->reg_date = $node['reg_date'];
+                    $bookmark->folder = $node['folder'];
+                    $bookmark->url = $node['url'];
+                    $bookmark->save();
+                }
+            }
+        } catch(\Exception $e) {
+            $this->upload();
+        }
+    }
+
+    /**
+     * MySQLのID + 1を返す
+     *
+     * @return mixed
+     */
+    private function getId() {
+        return DB::table('bookmark')->max('id') + 1;
+    }
+
+    /**
+     * DBにすでにアップロードしてるか判定
+     *
+     * @param $user_id
+     * @return bool
+     */
+    private function checkExists($user_id) {
+        $result = DB::table('bookmark')->select('user_id')->where('user_id', '=', $user_id)->get();
+
+        if (isset($result[0])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * アップロード時にDBから古いデータを消す
+     *
+     * @param $user_id
+     * @return mixed
+     */
+    private function deleteOldData($user_id) {
+        return DB::table('bookmark')->where('user_id', '=', $user_id)->delete();
     }
 
     public function export()
