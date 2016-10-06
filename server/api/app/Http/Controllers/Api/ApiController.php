@@ -28,7 +28,6 @@ class ApiController extends Controller
     {
         $this->request = $request;
         $this->fs = $fs;
-        //$this->bookmark = $bookmark;
         header("Access-Control-Allow-Origin: *");
     }
 
