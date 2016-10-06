@@ -364,7 +364,7 @@ class ApiController extends Controller
             return 1;
         });
 
-        //非ログイニンーザはDBに登録しない
+        //非ログインユーザはDBに登録しない
         if ($user_id === 1) {
             return;
         }
