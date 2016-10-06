@@ -10,7 +10,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Bookmark;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -359,6 +358,8 @@ class ApiController extends Controller
      */
     private function insertDB($data)
     {
+        $insertFolderData = [];
+        $insertNodeData = [];
         $user_id = $this->request->session()->get('user_id', function () {
             return 1;
         });
@@ -374,27 +375,29 @@ class ApiController extends Controller
             }
 
             foreach ($data['bookmark'] as $folder) {
-                $bookmark = new Bookmark();
-                $bookmark->id = $folder['id'];
-                $bookmark->user_id = $user_id;
-                $bookmark->parent_id = $folder['parent_id'];
-                $bookmark->title = $folder['title'];
-                $bookmark->folder = $folder['folder'];
-                $bookmark->save();
+                $insertFolderData[] = [
+                    'id' => $folder['id'],
+                    'user_id' => $user_id,
+                    'parent_id' => $folder['parent_id'],
+                    'title' => $folder['title'],
+                    'folder' => $folder['folder']
+                ];
 
                 foreach ($folder['bookmark'] as $node) {
-                    $bookmark = new Bookmark();
-                    $bookmark->id = $node['id'];
-                    $bookmark->user_id = $user_id;
-                    $bookmark->parent_id = $node['parent_id'];
-                    $bookmark->title = $node['title'];
-                    $bookmark->detail = $node['detail'];
-                    $bookmark->reg_date = $node['reg_date'];
-                    $bookmark->folder = $node['folder'];
-                    $bookmark->url = $node['url'];
-                    $bookmark->save();
+                    $insertNodeData[] = [
+                        'id' => $node['id'],
+                        'user_id' => $user_id,
+                        'parent_id' => $node['parent_id'],
+                        'title' => $node['title'],
+                        'detail' => $node['detail'],
+                        'reg_date' => $node['reg_date'],
+                        'folder' => $node['folder'],
+                        'url' => $node['url']
+                    ];
                 }
             }
+            DB::table('bookmark')->insert($insertFolderData);
+            DB::table('bookmark')->insert($insertNodeData);
         } catch (\Exception $e) {
             $this->upload();
         }
