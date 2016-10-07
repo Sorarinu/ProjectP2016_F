@@ -76,7 +76,7 @@
 サインアップと同じ感じでお願いします
 
 
-# Bookmarkファイルアップロード
+# Bookmarkファイルアップロード <*Done*>
 * メソッド : POST
 * URL : /api/v1/bookmarks/upload
 * enc-type : multipart/form-data
