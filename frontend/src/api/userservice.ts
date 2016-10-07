@@ -39,10 +39,6 @@ export class UserService {
             if (data.status === 'OK') {
                 this.signIn(requestListener, user);
             }
-            // 登録失敗.
-            if (data.status === 'NG') {
-                requestListener.ng(data.message);
-            }
         })
         .fail((xhr) => requestListener.failed((xhr.status) + ': SingUp Request Failed'));
 
@@ -74,9 +70,6 @@ export class UserService {
             if (data.status === 'OK') {
                 requestListener.ok(data);
             }
-            if (data.status === 'NG') {
-                requestListener.ng(data.message);
-            }
         })
         .fail((xhr) => {
             requestListener.failed((xhr.status) + ': SingIn Request Failed');
@@ -96,9 +89,6 @@ export class UserService {
         .done((data: any) => {
             if (data.status === 'OK') {
                 requestListener.ok(data);
-            }
-            if (data.status === 'NG') {
-                requestListener.ng(data.message);
             }
         })
         .fail((xhr) => requestListener.failed((xhr.status) + ': SingOut Request Failed'));
