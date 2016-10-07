@@ -136,10 +136,10 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 
 # Bookmarkファイルエクスポート
 * メソッド : GET
-* URL : /api/v1/bookmarks/export
+* URL : /api/v1/bookmarks/export/{browser_type}
 * パラメータ :
  * browser_type : string  
- エクスポートしてほしいブラウザの種類　firefoxとかchoromeとかsafariとかを指定
+ エクスポートしてほしいブラウザの種類　firefoxとかchromeとかsafariとかを指定
 * 応答
  * 指定したブラウザでインポート可能なブックマークファイルが送られてこればいい
 
