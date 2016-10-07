@@ -1,7 +1,6 @@
 import {Component} from '../../vue-typed/vue-typed';
 import router from '../../main';
 
-
 /**
  * IndexPage Component
  */
