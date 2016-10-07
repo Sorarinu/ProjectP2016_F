@@ -5,6 +5,7 @@ import {Contact} from './components/contact/contact';
 import {Help} from './components/help/help';
 import {SignIn} from './components/signin/signin';
 import {SignUp} from './components/signup/signup';
+import {Main} from './components/main/main';
 /**
  * Vue-routerのルーケティング設定.
  */
@@ -37,6 +38,20 @@ export function configureRouter(router: vuejs.Router<App>) {
         '/signup': { // SingUpフォーム
             component: SignUp,
             name : 'signup'
+        },
+        '/main': {
+            component : Main,
+            name : 'main'
+        }
+    });
+
+    router.afterEach((transition) => {
+        // ページに応じてフッタの表示、非表示の切り替え.
+        // mainページではフッタは表示しない.
+        if (transition.to.path.indexOf('main') > -1) {
+            router.app.showFooter = false;
+        } else {
+            router.app.showFooter = true;
         }
     });
 }

@@ -1,6 +1,6 @@
 /**
  * Validationを行う.
  */
-interface IValidation {
+interface Validation {
     validate() : boolean;
 }

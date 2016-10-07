@@ -1,4 +1,5 @@
-import {Component} from 'vue-typed';
+import {Component} from '../../vue-typed/vue-typed';
+import router from '../../main';
 /**
  * AboutPage Component
  */
@@ -6,5 +7,7 @@ import {Component} from 'vue-typed';
     template: require('./about.pug'),
 })
 export class About {
-
+    toMain() : void {
+        router.go('main');
+    }
 }

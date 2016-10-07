@@ -1,5 +1,6 @@
-import {Component} from 'vue-typed';
-import router from "../../main";
+import {Component} from '../../vue-typed/vue-typed';
+import router from '../../main';
+
 
 /**
  * IndexPage Component
@@ -16,7 +17,9 @@ export class Index {
         router.go('about');
     }
 	goSignIn() {
-		router.go('signin');
+
+        router.go('signin');
+
 	}
     goSignUp(){
         router.go('signup');

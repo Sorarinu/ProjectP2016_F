@@ -1,0 +1,440 @@
+{
+  "status": "OK",
+  "messages": "File Loaded.",
+  "bookmark": [
+    {
+      "id": 0,
+      "parent_id": null,
+      "title": "ブックマーク バー",
+      "folder": true,
+      "bookmark": [
+        {
+          "id": 41,
+          "parent_id": 0,
+          "title": "Alcohol Party",
+          "detail": "",
+          "reg_date": "2016/07/15 01:18:22",
+          "folder": false,
+          "url": "https://nxtg-t.net/AlcoholParty/index.php"
+        },
+        {
+          "id": 42,
+          "parent_id": 0,
+          "title": "Sorarinu Blog",
+          "detail": "",
+          "reg_date": "2014/10/15 04:17:57",
+          "folder": false,
+          "url": "https://nxtg-t.net/blog/wp-admin/"
+        },
+        {
+          "id": 43,
+          "parent_id": 0,
+          "title": "ITプログラマー・エンジニア転職のpaiza",
+          "detail": "",
+          "reg_date": "2015/11/05 14:06:22",
+          "folder": false,
+          "url": "https://paiza.jp/login"
+        },
+        {
+          "id": 44,
+          "parent_id": 0,
+          "title": "niconico",
+          "detail": "",
+          "reg_date": "2015/11/05 14:06:39",
+          "folder": false,
+          "url": "http://www.nicovideo.jp/"
+        },
+        {
+          "id": 45,
+          "parent_id": 0,
+          "title": "Twitter",
+          "detail": "",
+          "reg_date": "2015/11/05 14:06:51",
+          "folder": false,
+          "url": "https://twitter.com/"
+        },
+        {
+          "id": 46,
+          "parent_id": 0,
+          "title": "GitHub",
+          "detail": "",
+          "reg_date": "2015/12/10 13:00:13",
+          "folder": false,
+          "url": "https://github.com/"
+        },
+        {
+          "id": 47,
+          "parent_id": 0,
+          "title": "Facebook",
+          "detail": "",
+          "reg_date": "2016/09/01 15:02:45",
+          "folder": false,
+          "url": "https://www.facebook.com/"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "parent_id": 0,
+      "title": "TUT",
+      "folder": true,
+      "bookmark": [
+        {
+          "id": 32,
+          "parent_id": 1,
+          "title": "ASSIT",
+          "detail": "",
+          "reg_date": "2014/04/17 08:06:44",
+          "folder": false,
+          "url": "http://www.assit.teu.ac.jp/ASSIT/"
+        },
+        {
+          "id": 33,
+          "parent_id": 1,
+          "title": "CampusSquare for WEB",
+          "detail": "",
+          "reg_date": "2014/09/24 02:16:48",
+          "folder": false,
+          "url": "https://kyo-web.teu.ac.jp/campusweb/"
+        },
+        {
+          "id": 34,
+          "parent_id": 1,
+          "title": "学生ポータル",
+          "detail": "",
+          "reg_date": "2014/04/21 04:21:06",
+          "folder": false,
+          "url": "http://service.cloud.teu.ac.jp/"
+        },
+        {
+          "id": 35,
+          "parent_id": 1,
+          "title": "学内サイト",
+          "detail": "",
+          "reg_date": "2014/04/10 06:54:53",
+          "folder": false,
+          "url": "https://www.teu.ac.jp/inside/"
+        },
+        {
+          "id": 36,
+          "parent_id": 1,
+          "title": "休講案内",
+          "detail": "",
+          "reg_date": "2014/05/19 02:11:13",
+          "folder": false,
+          "url": "http://www.teu.ac.jp/info/kigyo/I/cc/qko/"
+        },
+        {
+          "id": 37,
+          "parent_id": 1,
+          "title": "東京工科大学",
+          "detail": "",
+          "reg_date": "2014/09/24 02:14:15",
+          "folder": false,
+          "url": "http://www.teu.ac.jp/"
+        },
+        {
+          "id": 38,
+          "parent_id": 1,
+          "title": "Cloud Service Center moodle",
+          "detail": "",
+          "reg_date": "2015/04/08 04:29:41",
+          "folder": false,
+          "url": "https://service.cloud.teu.ac.jp/moodle/"
+        },
+        {
+          "id": 39,
+          "parent_id": 1,
+          "title": "TUT 八王子 休講案内Web ログイン",
+          "detail": "",
+          "reg_date": "2014/12/10 05:28:46",
+          "folder": false,
+          "url": "https://www.nxtg-t.net/kyukou/"
+        },
+        {
+          "id": 40,
+          "parent_id": 1,
+          "title": "中村太一",
+          "detail": "",
+          "reg_date": "2016/07/13 07:15:38",
+          "folder": false,
+          "url": "http://www.cloud.teu.ac.jp/lecture/CSF/nakamuratc/"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "parent_id": 1,
+      "title": "1年前期講義サイト",
+      "folder": true,
+      "bookmark": [
+        {
+          "id": 7,
+          "parent_id": 2,
+          "title": "コンピュータ概論I",
+          "detail": "",
+          "reg_date": "2014/05/14 05:40:19",
+          "folder": false,
+          "url": "http://class.tezu.jp/cs1/"
+        },
+        {
+          "id": 8,
+          "parent_id": 2,
+          "title": "プログラミング基礎",
+          "detail": "",
+          "reg_date": "2014/04/21 06:21:10",
+          "folder": false,
+          "url": "http://10.204.228.2/~tadokorohr/prog1_bp3/index.html"
+        },
+        {
+          "id": 9,
+          "parent_id": 2,
+          "title": "栄養と健康",
+          "detail": "",
+          "reg_date": "2014/05/08 00:03:13",
+          "folder": false,
+          "url": "http://www2.cc.teu.ac.jp/~hp238/"
+        },
+        {
+          "id": 10,
+          "parent_id": 2,
+          "title": "化学の世界 - 三田池",
+          "detail": "",
+          "reg_date": "2014/07/07 00:03:00",
+          "folder": false,
+          "url": "http://www2.cc.teu.ac.jp/~hp165/CW-**.pdf"
+        },
+        {
+          "id": 11,
+          "parent_id": 2,
+          "title": "化学の世界_杉本",
+          "detail": "",
+          "reg_date": "2014/06/02 00:02:32",
+          "folder": false,
+          "url": "http://www2.cc.teu.ac.jp/~hp063/"
+        },
+        {
+          "id": 12,
+          "parent_id": 2,
+          "title": "亀研-情報リテラシー",
+          "detail": "",
+          "reg_date": "2014/04/28 04:17:58",
+          "folder": false,
+          "url": "http://kameken.clique.jp/JL/"
+        },
+        {
+          "id": 13,
+          "parent_id": 2,
+          "title": "亀田テスト",
+          "detail": "",
+          "reg_date": "2014/07/30 04:22:17",
+          "folder": false,
+          "url": "http://kameken.clique.jp/kamedaTest/"
+        },
+        {
+          "id": 14,
+          "parent_id": 2,
+          "title": "社会学",
+          "detail": "",
+          "reg_date": "2014/04/21 02:57:04",
+          "folder": false,
+          "url": "http://tutsoc.blog135.fc2.com/"
+        },
+        {
+          "id": 15,
+          "parent_id": 2,
+          "title": "情報リテラシー_井上",
+          "detail": "",
+          "reg_date": "2014/06/16 04:24:42",
+          "folder": false,
+          "url": "http://fire.cs.priv.teu.ac.jp/~akifumi/jl/"
+        },
+        {
+          "id": 16,
+          "parent_id": 2,
+          "title": "情報リテラシー_宇田",
+          "detail": "",
+          "reg_date": "2014/06/30 04:21:12",
+          "folder": false,
+          "url": "http://fire.cs.priv.teu.ac.jp/~uda/il/p/"
+        },
+        {
+          "id": 17,
+          "parent_id": 2,
+          "title": "情報リテラシー演習",
+          "detail": "",
+          "reg_date": "2014/04/17 06:23:45",
+          "folder": false,
+          "url": "https://sites.google.com/a/edu.teu.ac.jp/lit/?pli=1"
+        },
+        {
+          "id": 18,
+          "parent_id": 2,
+          "title": "電気電子",
+          "detail": "",
+          "reg_date": "2014/06/04 00:55:00",
+          "folder": false,
+          "url": "http://www.cloud.teu.ac.jp/CSF/kimurayso/"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "parent_id": 1,
+      "title": "1年後期講義サイト",
+      "folder": true,
+      "bookmark": [
+        {
+          "id": 19,
+          "parent_id": 3,
+          "title": "コンピュータ概論II",
+          "detail": "",
+          "reg_date": "2014/09/24 04:22:55",
+          "folder": false,
+          "url": "http://fire.cs.priv.teu.ac.jp/~uda/compgairon2/"
+        },
+        {
+          "id": 20,
+          "parent_id": 3,
+          "title": "プログラミング基礎II",
+          "detail": "",
+          "reg_date": "2014/09/22 06:06:47",
+          "folder": false,
+          "url": "http://fire.cs.priv.teu.ac.jp/~uda/prog2/"
+        },
+        {
+          "id": 21,
+          "parent_id": 3,
+          "title": "芸術論",
+          "detail": "",
+          "reg_date": "2014/09/29 01:49:02",
+          "folder": false,
+          "url": "http://www.cloud.teu.ac.jp/lecture/TMF/h646538c/"
+        },
+        {
+          "id": 22,
+          "parent_id": 3,
+          "title": "生物の世界",
+          "detail": "",
+          "reg_date": "2014/09/29 00:11:32",
+          "folder": false,
+          "url": "https://box.yahoo.co.jp/user/viewer#du%3Dbba16887-05aa-49dd-a368-874f00aca63c%26ds%3Dbox-l-wdpc2mqj72gujwfwcj5ojbxpqq-1001%26tu%3Dc083b2d0-8e5a-4609-9791-97406229e9ac%26ts%3Dbox-l-wdpc2mqj72gujwfwcj5ojbxpqq-1001%26vt%3DmyStorage%26lf%3Dthumbnail%26ls%3D1%26lm%3D20"
+        },
+        {
+          "id": 23,
+          "parent_id": 3,
+          "title": "論理回路",
+          "detail": "",
+          "reg_date": "2014/09/22 04:25:21",
+          "folder": false,
+          "url": "http://www2.cc.teu.ac.jp/~hp202/"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "parent_id": 1,
+      "title": "2年前期講義サイト",
+      "folder": true,
+      "bookmark": [
+        {
+          "id": 24,
+          "parent_id": 4,
+          "title": "データ構造とアルゴリズムの基礎",
+          "detail": "",
+          "reg_date": "2015/04/10 02:08:43",
+          "folder": false,
+          "url": "http://www2.cc.teu.ac.jp/~hp184/"
+        },
+        {
+          "id": 25,
+          "parent_id": 4,
+          "title": "コンピュータシステム開発",
+          "detail": "",
+          "reg_date": "2015/04/10 04:15:08",
+          "folder": false,
+          "url": "http://www.cloud.teu.ac.jp/lecture/AUF/matsu/comsd/"
+        },
+        {
+          "id": 26,
+          "parent_id": 4,
+          "title": "基礎情報技術(PBL)",
+          "detail": "",
+          "reg_date": "2015/04/10 06:28:31",
+          "folder": false,
+          "url": "http://kameken.clique.jp/Lectures/Lectures2015/kisojyoho2015/index.html"
+        },
+        {
+          "id": 27,
+          "parent_id": 4,
+          "title": "情報ネットワーク概論",
+          "detail": "",
+          "reg_date": "2015/04/08 04:55:49",
+          "folder": false,
+          "url": "http://www.cloud.teu.ac.jp/lecture/CSF/tsuboi/"
+        },
+        {
+          "id": 28,
+          "parent_id": 4,
+          "title": "現代社会論",
+          "detail": "",
+          "reg_date": "2015/04/15 05:13:45",
+          "folder": false,
+          "url": "https://service.cloud.teu.ac.jp/moodle/course/view.php?id=2474"
+        },
+        {
+          "id": 29,
+          "parent_id": 4,
+          "title": "応用プログラミングI [QA]",
+          "detail": "",
+          "reg_date": "2015/04/16 04:13:11",
+          "folder": false,
+          "url": "https://service.cloud.teu.ac.jp/moodle/course/view.php?id=2651"
+        },
+        {
+          "id": 30,
+          "parent_id": 4,
+          "title": "応用プログラミングⅠ[QA]避難所",
+          "detail": "",
+          "reg_date": "2015/04/16 04:21:50",
+          "folder": false,
+          "url": "http://fire.cs.priv.teu.ac.jp/~ogiyamtshr/ap1/"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "parent_id": 1,
+      "title": "3年後期",
+      "folder": true,
+      "bookmark": [
+        {
+          "id": 31,
+          "parent_id": 5,
+          "title": "ソフトウェア工学",
+          "detail": "",
+          "reg_date": "2016/09/27 07:48:14",
+          "folder": false,
+          "url": "http://www.cloud.teu.ac.jp/lecture/CSF/kinoshi/%E3%82%BD%E3%83%95%E3%83%88%E3%82%A6%E3%82%A7%E3%82%A2%E5%B7%A5%E5%AD%A6/"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "parent_id": 0,
+      "title": "新しいフォルダ",
+      "folder": true,
+      "bookmark": [
+        {
+          "id": 48,
+          "parent_id": 6,
+          "title": "「Notice: Undefined offset」と表示されるとき | PHPプログラミングの教科書 [php1st.com]",
+          "detail": "",
+          "reg_date": "2016/09/28 11:39:57",
+          "folder": false,
+          "url": "https://php1st.com/569/"
+        }
+      ]
+    }
+  ]
+}

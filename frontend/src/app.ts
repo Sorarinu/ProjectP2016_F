@@ -1,7 +1,7 @@
 import {Navbar} from './components/navbar/navbar';
 import {Footbar} from './components/footer/footbar';
 import store from './vuex/store';
-import {Component} from 'vue-typed';
+import {Component} from './vue-typed/vue-typed';
 /*
 * アプリケーションのトップレベルコンポーネントです
  */
@@ -13,4 +13,12 @@ require('./app.scss');
 })
 export class App {
 
+    showFooter : boolean;
+
+    data() {
+        this.showFooter = false;
+        return {
+            showFooter: this.showFooter
+        };
+    }
 }

@@ -1,4 +1,5 @@
 #index{
+
   .btn-ghost{
     background: transparent;
   }
@@ -10,6 +11,7 @@
     color: #333;
     background: #fff;
   }
+
   header {
     &.jumbotron {
       background: url("img/bible-1166261_1920.jpg");
@@ -20,6 +22,7 @@
       .container {
         margin-top: 13%;
         text-align: center;
+
       }
     }
   }
@@ -33,4 +36,5 @@
     .btnSign{
      text-align: center;
    }
-  }
+}
+
