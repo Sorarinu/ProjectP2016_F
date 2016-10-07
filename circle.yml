@@ -18,6 +18,7 @@ dependencies:
 test:
     override:
       #テストコマンドの上書き ここにテストのコマンドを
+      - cd frontend && npm run build
       - cd frontend && npm run test
 
 deployment:
