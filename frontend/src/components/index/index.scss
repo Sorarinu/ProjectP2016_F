@@ -1,22 +1,36 @@
 #index{
-header {
-  &.jumbotron {
-    background: url("img/bible-1166261_1920.jpg");
-    background-position: center center;
-    background-size: cover;
+  .btn-ghost{
+    background: transparent;
+  }
+  .btn-ghost.btn-white {
     color: #fff;
-  
-  .container {
-    margin-top: 13%; 
-    text-align: center;
-    
-    }
-   }
-  } 
-  .service{
-    text-align: center;
-    .explanation{
-    word-break: keep-all;
+    border: 2px solid #fff;
+  }
+  .btn-ghost.btn-white:hover {
+    color: #333;
+    background: #fff;
+  }
+  header {
+    &.jumbotron {
+      background: url("img/bible-1166261_1920.jpg");
+      background-position: center center;
+      background-size: cover;
+      color: #fff;
+
+      .container {
+        margin-top: 13%;
+        text-align: center;
+      }
     }
   }
-}
+  .service {
+    text-align: center;
+    .explanation {
+      word-break: keep-all;
+      margin-bottom: 50px;
+    }
+  }
+    .btnSign{
+     text-align: center;
+   }
+  }
