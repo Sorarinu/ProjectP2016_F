@@ -24,7 +24,7 @@ export class MockBookmarkService implements BookmarkService {
         this.saveLocalStorage();
     }
 
-    postBookmark(bm: Bookmark, requestListenr: RequestListener): void {
+    postBookmark(bm: Bookmark, requestListener: RequestListener): void {
         //　bookmarkをローカルストレージへ追加する処理.
 
         // bookmarkにIDを付与.
@@ -37,43 +37,43 @@ export class MockBookmarkService implements BookmarkService {
 
         //  応答
         setTimeout(() => {
-            requestListenr.ok(bm);
+            requestListener.ok(bm);
         }, this.PROCESS_TIME);
     }
 
-    getBookmarks(requestListenr: RequestListener): void {
-        //localstorageからbookmark取り出して返す.
+    getBookmarks(requestListener: RequestListener): void {
+        // localstorageからbookmark取り出して返す.
         const bookmark : Bookmark = Bookmark.fromJSON(localStorage.getItem(this.STORAGE_KEY));
         this.rootBM = bookmark;
 
         // 応答
         setTimeout(() => {
-            requestListenr.ok(bookmark);
+            requestListener.ok(bookmark);
         }, this.PROCESS_TIME);
 
     }
 
-    updateBookmark(bm: Bookmark, requestListenr: RequestListener): void {
-        //置き換え
+    updateBookmark(bm: Bookmark, requestListener: RequestListener): void {
+        // 置き換え
         var target = this.rootBM.searchAll(bm.id);
         target = bm;
         this.saveLocalStorage();
 
         // 応答
         setTimeout(() => {
-            requestListenr.ok(bm);
+            requestListener.ok(bm);
         }, this.PROCESS_TIME);
     }
 
-    deleteBookmark(bm: Bookmark, requestListenr: RequestListener): void {
-        //削除
+    deleteBookmark(bm: Bookmark, requestListener: RequestListener): void {
+        // 削除
         var target = this.rootBM.searchAll(bm.id);
         target.remove();
         this.saveLocalStorage();
 
         // 応答
         setTimeout(() => {
-            requestListenr.ok(bm);
+            requestListener.ok(bm);
         }, this.PROCESS_TIME);
     }
 
