@@ -8,7 +8,7 @@ node_modules/
 dist/
 
 # 意外と邪魔な子
-npm-debug.log
+npm-debug.log*
 
 # typings.jsonをもとにインストールできるので
 typings/
