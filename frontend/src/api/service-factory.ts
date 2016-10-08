@@ -11,7 +11,7 @@ export class ServiceFactory {
 
     private static userService: UserService;
     static getUserService() : UserService {
-        if (this.userService) {
+        if (!this.userService) {
             this.userService = new HttpUserService();
             return this.userService;
         }
@@ -21,7 +21,7 @@ export class ServiceFactory {
 
     private static bookmarkService: BookmarkService;
     static getBookmarkService() : BookmarkService {
-        if (this.bookmarkService) {
+        if (!this.bookmarkService) {
             this.bookmarkService = new HttpBookmarkService();
             return this.bookmarkService;
         }
