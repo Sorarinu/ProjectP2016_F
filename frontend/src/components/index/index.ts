@@ -12,7 +12,7 @@ require('./index.scss');
     }
 })
 export class Index {
-    goAbout(){
+    goAbout() {
         router.go('about');
     }
 	goSignIn() {
@@ -20,7 +20,7 @@ export class Index {
         router.go('signin');
 
 	}
-    goSignUp(){
+    goSignUp() {
         router.go('signup');
     }
 }
