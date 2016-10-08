@@ -1,5 +1,17 @@
 #index{
 
+  .btn-ghost{
+    background: transparent;
+  }
+  .btn-ghost.btn-white {
+    color: #fff;
+    border: 2px solid #fff;
+  }
+  .btn-ghost.btn-white:hover {
+    color: #333;
+    background: #fff;
+  }
+
   header {
     &.jumbotron {
       background: url("img/bible-1166261_1920.jpg");
@@ -14,10 +26,15 @@
       }
     }
   }
-  .service{
+  .service {
     text-align: center;
-    .explanation{
+    .explanation {
       word-break: keep-all;
+      margin-bottom: 50px;
     }
   }
+    .btnSign{
+     text-align: center;
+   }
 }
+

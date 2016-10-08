@@ -12,7 +12,15 @@ require('./index.scss');
     }
 })
 export class Index {
+    goAbout() {
+        router.go('about');
+    }
 	goSignIn() {
+
         router.go('signin');
+
 	}
+    goSignUp() {
+        router.go('signup');
+    }
 }

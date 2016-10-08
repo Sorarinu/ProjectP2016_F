@@ -2,12 +2,12 @@
     header.jumbotron
         .container
             h1 BM-Sorter
-            p ブックマークをわかりやすく１つに
 
-            btn.btn-info.btn-lg(@click="goSignIn()") サインイン
-            btn.btn-info.btn-lg(href='') サインアップ
+            p ブックマークをわかりやすく
+            br
+            button.btn-white.btn-ghost.btn-lg(@click="goAbout()") READ MORE
 
-    maincontent.container
+    .maincontent.container
         .row
             .col-md-4
                 .service
@@ -28,4 +28,10 @@
                     .desc
                         h3 自動で類似度チェック
                         i.fa.fa-4x.fa-file
-                    p.explanation 増えてしまったブックマークから類似度の高いページを抽出、フォルダを作成できます。
+                    p.explanation 増えてしまったブックマークから、類似度の高いページを抽出、フォルダを作成できます。
+
+        .btnSign
+            //btn.btn-info.btn-lg(@click="goSignIn()") サインイン
+            button.btn-info.btn-lg(@click="goSignUp()") 今すぐ始める
+     
+
