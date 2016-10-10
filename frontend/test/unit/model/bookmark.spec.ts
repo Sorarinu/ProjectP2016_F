@@ -1,7 +1,7 @@
 import {Bookmark} from '../../../src/model/bookmark';
 
 /**
- * Created by namaz on 2016/09/19.
+ * {@link Bookmark}のテスト.
  */
 describe('bookmark-model unit test', () => {
 
