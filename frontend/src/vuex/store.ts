@@ -10,9 +10,12 @@ import ADD_BOOKMARK = MutationTypes.ADD_BOOKMARK;
 import DELETE_BOOKMARK = MutationTypes.DELETE_BOOKMARK;
 import {Bookmark} from '../model/bookmark';
 import SET_BOOKMARK_ERROR = MutationTypes.SET_BOOKMARK_ERROR;
+import SET_BOOKMARK_OPEN_DIR = MutationTypes.SET_BOOKMARK_OPEN_DIR;
 
 Vue.use(Vuex.install);
 
+// debug setting.
+// TODO: ビルド環境に応じて変わるように
 const debug = true;
 Vue.config.debug = debug;
 
@@ -32,7 +35,7 @@ export class State {
      */
     user : User;
 
-    // bookmark stateーーーーーーーーーーーーー
+    // bookmarkRoot stateーーーーーーーーーーーーー
 
     /**
      * ブックマーク処理通信にエラーがあるか
@@ -47,13 +50,25 @@ export class State {
     /**
      * ブックマーク
      */
-    bookmark : Bookmark;
+    bookmarkRoot : Bookmark;
+
+    /**
+     * 開くブックマークのディレクトリID
+     */
+    openBookmarkDirId : number;
 
 
     // state initializer
     constructor() {
         this.signInNow = false;
         this.user = new User('', '');
+
+        this.bookmarkRoot = new Bookmark(
+            true,
+            Number.MAX_VALUE,
+            null
+        );
+        this.openBookmarkDirId = Number.MAX_VALUE;
     }
 }
 
@@ -79,23 +94,27 @@ const mutations : MutationTree<State> = {
 
     // ----------------------------------------------------
 
-    // bookmark mutations ---------------------------------
+    // bookmarkRoot mutations ---------------------------------
     [GET_BOOKMARK] (state: State, bookmark: Bookmark) {
-        state.bookmark = bookmark;
+        state.bookmarkRoot = bookmark;
     },
 
     [ADD_BOOKMARK] (state: State, bookmark: Bookmark) {
-        state.bookmark.addChild(bookmark);
+        state.bookmarkRoot.addChild(bookmark);
     },
 
     [DELETE_BOOKMARK] (state: State, bookmark: Bookmark) {
-        var tagrget = state.bookmark.search(bookmark.id);
+        var tagrget = state.bookmarkRoot.search(bookmark.id);
         tagrget.remove();
     },
 
     [SET_BOOKMARK_ERROR] (state: State, message: string) {
         state.bookmarkComError = true;
         state.bookmarkComErrorMessage = message;
+    },
+
+    [SET_BOOKMARK_OPEN_DIR] (state: State, dirID: number) {
+        state.openBookmarkDirId = dirID;
     },
 
     // ----------------------------------------------------

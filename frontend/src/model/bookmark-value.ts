@@ -1,9 +1,12 @@
 import {Bookmark} from './bookmark';
+
 /**
  * BookmarkモデルのJSON変換用中継値クラス.
+ * {@link Bookmark} <=> {@link BookmarkValue} <=> JSON
  */
 export class BookmarkValue {
 
+    // プロパティ名はJSONの名前と同じ
     private id: number;
     private parent_id: number;
     private title: string;
@@ -51,6 +54,7 @@ export class BookmarkValue {
     static toBM(topBMVs : BookmarkValue[]) : Bookmark {
         //root
         const bmRoot = new Bookmark(true, Number.MAX_VALUE, null);
+        bmRoot.title = 'TOP';
 
         // bmv -> bm 変換関数
         const bmvTobm = (bmv: BookmarkValue, parent: Bookmark) : Bookmark => {

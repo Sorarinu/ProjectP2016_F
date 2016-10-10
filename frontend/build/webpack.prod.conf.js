@@ -45,9 +45,9 @@ config.plugins = (config.plugins || []).concat([
     }
   }),
   new webpack.optimize.UglifyJsPlugin({
-     compress: {
-       warnings: false
-     }
+    compress: {
+      warnings: false
+    }
   }),
   new webpack.optimize.OccurenceOrderPlugin(),
   // extract css into its own file

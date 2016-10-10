@@ -1,4 +1,5 @@
 import {BookmarkValue} from './bookmark-value';
+
 /**
  * Bookmarkデータモデル
  */
@@ -79,13 +80,14 @@ export class Bookmark implements Validation {
     };
 
     /**
-     * BookmarkモデルのJSON表現を規定する.
-     * JSON.stringfy関数によって呼び出されます.
+     * BookmarkをJSONへ変換する.
+     * @param rootBM BookmarkRoot要素
+     * @returns {string}
      */
     static toJSON(rootBM: Bookmark) : string {
-        //JSON値用クラスへ変換.
+        // JSON値用クラスへ変換.
         const bookmarkValues = BookmarkValue.fromBM(rootBM);
-        //値用クラスをJSONへ変換.
+        // 値用クラスをJSONへ変換.
         return BookmarkValue.toJSON(bookmarkValues);
     };
 
@@ -116,7 +118,6 @@ export class Bookmark implements Validation {
      * @return {number} このブックマークが持つブックマークの数.
      */
     getSize() : number {
-        //TODO: 再帰最適化。
         if (this.folder === false) {
             return 1;
         }
@@ -130,6 +131,7 @@ export class Bookmark implements Validation {
      */
     getRoot() : Bookmark {
         var bm : Bookmark = this;
+        // 親を辿って着くまで探す.
         // 仕様: ルート要素のparentはnull
         while (bm.parent !== null) {
             bm = this.parent;
@@ -190,16 +192,21 @@ export class Bookmark implements Validation {
      */
     search(id: number) : Bookmark {
 
-        //TODO: 末尾呼び出し最適化。　てか最適化したところでJSでこれ上手く呼ばれるの？
+        // 一致したら返す
         if ( this.id === id ) {
             return this;
         }
+
+
+        // フォルダじゃないなら下の階層はないから探索を切る
         if (this.folder === false) {
             return undefined;
         }
 
+        // フォルダに対して
         if (this.bookmark) {
             for (var i = 0; i < this.bookmark.length; i++) {
+                // 深さ優先探索
                 var ret = this.bookmark[i].search(id);
                 if (ret) {
                     return ret;
