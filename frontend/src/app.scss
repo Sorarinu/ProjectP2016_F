@@ -29,16 +29,16 @@
 html {
   height:100%;
   body{
-
     font-family: "mplus-1p-regular";
-    min-height:100%;
+  }
+}
 
-    display:flex;
-    flex-direction: column;
+#app {
+  min-height:100vh;
+  display: flex;
+  flex-direction: column;
 
-    .maincontent{
-      flex: 1;
-    }
-
+  .maincontent {
+    flex-grow: 1;
   }
 }
