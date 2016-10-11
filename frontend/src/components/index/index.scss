@@ -26,15 +26,25 @@
       }
     }
   }
+
   .service {
     text-align: center;
+
+
+    margin-right: 50px;
+    margin-left: 50px;
+
+    h3 {
+      font-size: 3rem;
+    }
+
     .explanation {
-      word-break: keep-all;
       margin-bottom: 50px;
     }
   }
-    .btnSign{
-     text-align: center;
-   }
+  .btnSign{
+    margin: 50px;
+    text-align: center;
+  }
 }
 
