@@ -3,6 +3,17 @@
 > 土曜日に高校で部活同じだった連中に会ったからお寿司食べながら聞いてきた.  
 > よく考えたら俺大学にまともなお友達いなかったわくそわろ
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [1人目](#1%E4%BA%BA%E7%9B%AE)
+- [2人目](#2%E4%BA%BA%E7%9B%AE)
+- [3人目](#3%E4%BA%BA%E7%9B%AE)
+- [<わかったこと>](#%E3%82%8F%E3%81%8B%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # 1人目
 1. 名前,年齢
   * 青木君
