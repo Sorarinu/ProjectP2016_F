@@ -15,14 +15,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Log;
+use Cache;
 use Maknz\Slack\Facades\Slack;
 use App\Library\BookmarkParser;
+use App\Library\Tree;
 use Illuminate\Http\JsonResponse;
 
 class ApiController extends Controller
 {
     protected $request;
     private $fs;
+    private $html;
+    private $flgFiles = false;
+    private $parentId = 0;
+    private $id = 0;
+    private $flg = false;
 
     public function __construct(Request $request, Filesystem $fs)
     {
@@ -186,7 +193,7 @@ class ApiController extends Controller
         try {
             $parser = new BookmarkParser();
             $bookmarks = $parser->parseFile($filePath);
-            
+
             //タグごとにまとめる
             foreach ($bookmarks as $b) {
                 if ($tmpTags === $b['tags']) {
@@ -339,6 +346,7 @@ class ApiController extends Controller
                     }
                 }
             }
+            Log::debug(json_encode($bookmarkJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
             $this->insertDB($bookmarkJson);
 
             return new JsonResponse($bookmarkJson);
@@ -359,24 +367,24 @@ class ApiController extends Controller
     {
         $insertFolderData = [];
         $insertNodeData = [];
-        $user_id = $this->request->session()->get('user_id', function () {
+        $userId = $this->request->session()->get('user_id', function () {
             return 1;
         });
 
         //非ログインユーザはDBに登録しない
-        if ($user_id === 1) {
+        /*if ($userId === 1) {
             return;
-        }
+        }*/
 
         try {
-            if ($this->checkExists($user_id)) {
-                $this->deleteOldData($user_id);
+            if ($this->checkExists($userId)) {
+                $this->deleteOldData($userId);
             }
 
             foreach ($data['bookmark'] as $folder) {
                 $insertFolderData[] = [
                     'id' => $folder['id'],
-                    'user_id' => $user_id,
+                    'user_id' => $userId,
                     'parent_id' => $folder['parent_id'],
                     'title' => $folder['title'],
                     'folder' => $folder['folder']
@@ -385,7 +393,7 @@ class ApiController extends Controller
                 foreach ($folder['bookmark'] as $node) {
                     $insertNodeData[] = [
                         'id' => $node['id'],
-                        'user_id' => $user_id,
+                        'user_id' => $userId,
                         'parent_id' => $node['parent_id'],
                         'title' => $node['title'],
                         'detail' => $node['detail'],
@@ -415,12 +423,12 @@ class ApiController extends Controller
     /**
      * DBにすでにアップロードしてるか判定
      *
-     * @param $user_id
+     * @param $userId
      * @return bool
      */
-    private function checkExists($user_id)
+    private function checkExists($userId)
     {
-        $result = DB::table('bookmark')->select('user_id')->where('user_id', '=', $user_id)->get();
+        $result = DB::table('bookmark')->select('user_id')->where('user_id', '=', $userId)->get();
 
         if (isset($result[0])) {
             return true;
@@ -432,16 +440,163 @@ class ApiController extends Controller
     /**
      * アップロード時にDBから古いデータを消す
      *
-     * @param $user_id
+     * @param $userId
      * @return mixed
      */
-    private function deleteOldData($user_id)
+    private function deleteOldData($userId)
     {
-        return DB::table('bookmark')->where('user_id', '=', $user_id)->delete();
+        return DB::table('bookmark')->where('user_id', '=', $userId)->delete();
     }
 
-    public function export()
+
+    public function testFunction($bookmarks, $html, $browserType)
     {
+        $bookmarks = (array)$bookmarks;
+
+        foreach ($bookmarks as $val) {
+            if (isset($val['bookmark'])) {
+                $this->html = $this->makeHtmlData($browserType, $val, $this->html, 'Folder');
+                $this->testFunction($val['bookmark'], $this->html, $browserType);
+            } else {
+                $this->html = $this->makeHtmlData($browserType, $val, $this->html, 'File');
+            }
+        }
+
+        return $this->html;
+    }
+
+    public function export($browserType)
+    {
+        $prevId = null;
+        $this->html = $this->addHtmlHeaders($browserType);
+        $userId = $this->request->session()->get('user_id', function () {
+            return 1;
+        });
+        $bookmarks = DB::table('bookmark')
+            ->where('user_id', '=', $userId)
+            ->get();
+
+        $bookmarks = Tree::listToTree(json_decode(json_encode($bookmarks), true));
+        $html = $this->testFunction($bookmarks, $this->html, $browserType);
+        exit;
+    }
+
+
+    /**
+     * 各種ブラウザエクスポート用のヘッダをくっつける
+     *
+     * @param $browserType
+     * @return string
+     */
+    private function addHtmlHeaders($browserType)
+    {
+        $html = '';
+
+        switch ($browserType) {
+            case 'chrome':
+                $html = <<< EOF
+<!DOCTYPE NETSCAPE-Bookmark-file-1>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<TITLE>Bookmarks</TITLE>
+<H1>Bookmarks</H1>
+<DL><p>
+
+EOF;
+
+                break;
+
+            case 'firefox':
+                $html = <<< EOF
+<!DOCTYPE NETSCAPE-Bookmark-file-1>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<TITLE>Bookmarks</TITLE>
+<H1>ブックマークメニュー</H1>
+
+EOF;
+
+                break;
+
+            case 'safari':
+                $html = <<< EOF
+<!DOCTYPE NETSCAPE-Bookmark-file-1>
+<HTML>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<Title>ブックマーク</Title>
+<H1>ブックマーク</H1>
+
+EOF;
+
+                break;
+
+            case 'ie':
+                $html = <<< EOF
+<!DOCTYPE NETSCAPE-Bookmark-file-1>
+<TITLE>Bookmarks</TITLE>
+<H1>Bookmarks</H1>
+
+EOF;
+
+                break;
+
+            default:
+                break;
+        }
+
+        return $html;
+    }
+
+    private function makeHtmlData($browserType, $data, $html, $type)
+    {
+        switch ($browserType) {
+            case 'chrome':
+                if ($type === 'Folder') {
+                    if($data['title'] === 'ブックマーク バー') {
+                        return $html;
+                    }
+                    
+                    if ($this->flgFiles) {
+                        $this->flgFiles = false;
+                        $html = $html . '</DL><p>' . PHP_EOL;
+                    }
+                    $this->id = $data['id'];
+                    $html = $html . '<DT><H3 ADD_DATE="' . $data['reg_date'] . '">' . $data['title'] . '</H3>' . PHP_EOL;
+                    if (isset($data['bookmark'])) {
+                        $html = $html . '<DL><p>' . PHP_EOL;
+                    }
+                } else {
+                    if (!$this->flgFiles) {
+                        $this->flgFiles = true;
+                    }
+
+                    if ($this->id === $data['parent_id']) {
+                        $this->flg = true;
+                    } else {
+                        if ($this->flg) {
+                            $html = $html . '</DL><p>' . PHP_EOL;
+                            $this->flg = false;
+                        }
+                    }
+                    
+                    $this->parentId = $data['parent_id'];
+                    $html = $html . '<DT><A HREF="' . $data['url'] . '" ADD_DATE="' . strtotime($data['reg_date']) . '">' . $data['title'] . '</A>' . PHP_EOL;
+                }
+
+                break;
+
+            case 'firefox':
+                break;
+
+            case 'safari':
+                break;
+
+            case 'ie':
+                break;
+
+            default:
+                break;
+        }
+
+        return $html;
     }
 
     public function create()
