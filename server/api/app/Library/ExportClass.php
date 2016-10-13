@@ -16,7 +16,7 @@ class ExportClass
     private $flgFiles = false;
     private $parentId = 0;
     private $id = 0;
-    private $flg = false;
+    private $isChildren = false;
 
     /**
      * 各種ブラウザエクスポート用のヘッダをくっつける
@@ -123,9 +123,9 @@ EOF;
                     if ($this->id === $data['parent_id']) {
                         $this->flg = true;
                     } else {
-                        if ($this->flg) {
+                        if ($this->isChildren) {
                             $html = $html . '</DL><p>' . PHP_EOL;
-                            $this->flg = false;
+                            $this->isChildren = false;
                         }
                     }
 

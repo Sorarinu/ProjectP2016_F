@@ -28,7 +28,7 @@ class UploadClass
     public function makeBookmarkJson($bookmarks)
     {
         $dbClass = new DbClass($this->request);
-        $id = $dbClass->getId();
+        $id = $dbClass->enquiryNextId();
         $parent_id = null;
         $isFind = false;
         $tagPrevValue = null;
@@ -43,7 +43,7 @@ class UploadClass
         $tmpTags = '';
         $i = 0;
 
-        //タグごとにまとめる
+        //ブックマークをフォルダ毎に纏める
         foreach ($bookmarks as $b) {
             if ($tmpTags === $b['tags']) {
                 continue;
@@ -59,7 +59,7 @@ class UploadClass
             }
         }
 
-        //フォルダにID付与
+        //フォルダにIDを付与
         foreach ($bookmarkItems as $bookmarkItem) {
             $tags = explode(',', $bookmarkItem[0]['tags']);
 
@@ -91,7 +91,7 @@ class UploadClass
             }
         }
 
-        //ParentID付与
+        //['bookmark']に含まれるノードにParentIDを付与する
         foreach ($bookmarkItems as $bookmarkItem) {
             $tags = explode(',', $bookmarkItem[0]['tags']);
             $end = end($tags);
@@ -122,14 +122,14 @@ class UploadClass
             }
         }
 
-        //タグの空白要素消す
+        //タグの空白要素を消す
         foreach ($tagLists as $tagList) {
             if ($tagList['tag'] === '') {
                 unset($tagLists[$tagList['id']]);
             }
         }
 
-        //フォルダ構成だけぶっこむ
+        //Folder = trueをもつノードを格納する
         foreach ($tagLists as $tagList) {
             $tagListItems[] = [
                 'id' => $tagList['id'],
@@ -141,7 +141,7 @@ class UploadClass
 
         $bookmarkJson['bookmark'] = $tagListItems;
 
-        //いい感じにする
+        //先に入れたフォルダに対応するノードをParent_IDを付与して纏める
         foreach ($bookmarkItems as $bookmarkItem) {
             $tags = explode(',', $bookmarkItem[0]['tags']);
 
@@ -175,7 +175,7 @@ class UploadClass
                             }
                             unset($bookmarkItemAfter);
                         }
-                    } else {
+                    } else {    //tag(フォルダ)情報を持っていなかった場合にはParentIDをNULLにして格納
                         foreach ($bookmarkItem as $item) {
                             $bookmarkItemAfter = [
                                 'id' => $id,

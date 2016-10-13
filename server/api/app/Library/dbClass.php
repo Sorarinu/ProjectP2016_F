@@ -74,13 +74,13 @@ class DbClass
      *
      * @return mixed
      */
-    public function getId()
+    public function enquiryNextId()
     {
         return DB::table('bookmark')->max('id') + 1;
     }
 
     /**
-     * DBにすでにアップロードしてるか判定
+     * 指定されたユーザーIDのブックマークが存在するか調べる
      *
      * @param $userId
      * @return bool
@@ -97,7 +97,7 @@ class DbClass
     }
 
     /**
-     * アップロード時にDBから古いデータを消す
+     * 指定したユーザIDのアップロードされているブックマークを削除する
      *
      * @param $userId
      * @return mixed
