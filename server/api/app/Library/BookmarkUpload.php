@@ -22,7 +22,7 @@ class BookmarkUpload
 
     /**
      * アップロードされたデータをJsonに整形する
-     * 
+     *
      * @param $bookmarks
      * @return array
      */

@@ -191,10 +191,10 @@ class ApiController extends Controller
             ], 400);
         }
     }
-    
+
     /**
      * ブラウザでインポートできる形式でエクスポートする
-     * 
+     *
      * @param $browserType
      * @return mixed
      */
@@ -212,7 +212,7 @@ class ApiController extends Controller
 
         $bookmarks = Tree::listToTree(json_decode(json_encode($bookmarks), true));
         $this->html .= $bookmarkExport->makeExportData($bookmarks, $this->html, null, $browserType);
-        
+
         return $this->html;
     }
 
