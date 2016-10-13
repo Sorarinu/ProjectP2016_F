@@ -9,8 +9,9 @@
 namespace App\Library;
 
 use Illuminate\Http\Request;
+use Log;
 
-class UploadClass
+class BookmarkUpload
 {
     private $request;
 
@@ -27,8 +28,8 @@ class UploadClass
      */
     public function makeBookmarkJson($bookmarks)
     {
-        $dbClass = new DbClass($this->request);
-        $id = $dbClass->enquiryNextId();
+        $bookmarkDB = new BookmarkDB($this->request);
+        $id = $bookmarkDB->enquiryNextId();
         $parent_id = null;
         $isFind = false;
         $tagPrevValue = null;
@@ -125,10 +126,10 @@ class UploadClass
         //タグの空白要素を消す
         foreach ($tagLists as $tagList) {
             if ($tagList['tag'] === '') {
-                unset($tagLists[$tagList['id']]);
+                unset($tagLists[$tagList['id'] - 1]);
             }
         }
-
+        
         //Folder = trueをもつノードを格納する
         foreach ($tagLists as $tagList) {
             $tagListItems[] = [

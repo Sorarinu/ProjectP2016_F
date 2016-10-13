@@ -9,7 +9,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Library\UploadClass;
+use App\Library\BookmarkUpload;
 use App\User;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
@@ -20,15 +20,15 @@ use Cache;
 use Maknz\Slack\Facades\Slack;
 use App\Library\BookmarkParser;
 use App\Library\Tree;
-use App\Library\ExportClass;
-use App\Library\DbClass;
+use App\Library\BookmarkExport;
+use App\Library\BookmarkDB;
 use Illuminate\Http\JsonResponse;
 
 class ApiController extends Controller
 {
     public $request;
     private $fs;
-    private $html;
+    private $html = '';
 
     public function __construct(Request $request, Filesystem $fs)
     {
@@ -173,15 +173,15 @@ class ApiController extends Controller
      */
     public function upload()
     {
-        $dbClass = new DbClass($this->request);
+        $bookmarkDB = new BookmarkDB($this->request);
         $filePath = $this->request->file('bmfile')->getRealPath();
-        $uploadClass = new UploadClass($this->request);
+        $uploadClass = new BookmarkUpload($this->request);
 
         try {
             $parser = new BookmarkParser();
             $bookmarks = $parser->parseFile($filePath);
             $bookmarkJson = $uploadClass->makeBookmarkJson($bookmarks);
-            $dbClass->insertDB($bookmarkJson);
+            $bookmarkDB->insertDB($bookmarkJson);
 
             return new JsonResponse($bookmarkJson);
         } catch (\Exception $e) {
@@ -200,9 +200,9 @@ class ApiController extends Controller
      */
     public function export($browserType)
     {
-        $exportClass = new ExportClass();
+        $bookmarkExport = new BookmarkExport();
         $prevId = null;
-        $this->html = $exportClass->addHtmlHeaders($browserType);
+        $this->html .= $bookmarkExport->addHtmlHeaders($browserType);
         $userId = $this->request->session()->get('user_id', function () {
             return 1;
         });
@@ -211,9 +211,9 @@ class ApiController extends Controller
             ->get();
 
         $bookmarks = Tree::listToTree(json_decode(json_encode($bookmarks), true));
-        $html = $exportClass->makeExportData($bookmarks, $this->html, $browserType);
+        $this->html .= $bookmarkExport->makeExportData($bookmarks, $this->html, null, $browserType);
         
-        return $html;
+        return $this->html;
     }
 
     public function create()

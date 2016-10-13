@@ -11,8 +11,9 @@ namespace app\Library;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Log;
 
-class DbClass
+class BookmarkDB
 {
     private $request;
 
@@ -44,24 +45,39 @@ class DbClass
         }
 
         foreach ($data['bookmark'] as $folder) {
-            $insertFolderData[] = [
-                'id' => $folder['id'],
-                'user_id' => $userId,
-                'parent_id' => $folder['parent_id'],
-                'title' => $folder['title'],
-                'folder' => $folder['folder']
-            ];
-
-            foreach ($folder['bookmark'] as $node) {
-                $insertNodeData[] = [
-                    'id' => $node['id'],
+            if (!isset($folder['url'])) {
+                $insertFolderData[] = [
+                    'id' => $folder['id'],
                     'user_id' => $userId,
-                    'parent_id' => $node['parent_id'],
-                    'title' => $node['title'],
-                    'detail' => $node['detail'],
-                    'reg_date' => $node['reg_date'],
-                    'folder' => $node['folder'],
-                    'url' => $node['url']
+                    'parent_id' => $folder['parent_id'],
+                    'title' => $folder['title'],
+                    'folder' => $folder['folder']
+                ];
+            }
+
+            if (isset($folder['bookmark'])) {
+                foreach ($folder['bookmark'] as $node) {
+                    $insertNodeData[] = [
+                        'id' => $node['id'],
+                        'user_id' => $userId,
+                        'parent_id' => $node['parent_id'],
+                        'title' => $node['title'],
+                        'detail' => $node['detail'],
+                        'reg_date' => $node['reg_date'],
+                        'folder' => $node['folder'],
+                        'url' => $node['url']
+                    ];
+                }
+            } else if (!isset($folder['bookmark']) && isset($folder['url'])) {
+                $insertNodeData[] = [
+                    'id' => $folder['id'],
+                    'user_id' => $userId,
+                    'parent_id' => $folder['parent_id'],
+                    'title' => $folder['title'],
+                    'detail' => $folder['detail'],
+                    'reg_date' => $folder['reg_date'],
+                    'folder' => $folder['folder'],
+                    'url' => $folder['url']
                 ];
             }
         }

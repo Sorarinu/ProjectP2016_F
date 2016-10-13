@@ -15,11 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('api/v1/signup', ['uses' => 'api\ApiController@signUp']);
-Route::post('api/v1/signin', ['uses' => 'api\ApiController@signIn']);
-Route::get('api/v1/signout', ['uses' => 'api\ApiController@signOut']);
-Route::post('api/v1/bookmarks/upload', ['uses' => 'api\ApiController@upload']);
+Route::post('api/v1/signup',                         ['uses' => 'api\ApiController@signUp']);
+Route::post('api/v1/signin',                         ['uses' => 'api\ApiController@signIn']);
+Route::get('api/v1/signout',                         ['uses' => 'api\ApiController@signOut']);
+Route::post('api/v1/bookmarks/upload',               ['uses' => 'api\ApiController@upload']);
 Route::get('api/v1/bookmarks/export/{browser_type}', ['uses' => 'api\ApiController@export']);
-Route::post('api/v1/bookmarks', ['uses' => 'api\ApiController@create']);
-Route::put('api/v1/bookmarks/{bookmark_id}', ['uses' => 'api\ApiController@update']);
-Route::get('api/v1/bookmarks', ['uses' => 'api\ApiController@getAll']);
+Route::post('api/v1/bookmarks',                      ['uses' => 'api\ApiController@create']);
+Route::put('api/v1/bookmarks/{bookmark_id}',         ['uses' => 'api\ApiController@update']);
+Route::get('api/v1/bookmarks',                       ['uses' => 'api\ApiController@getAll']);
