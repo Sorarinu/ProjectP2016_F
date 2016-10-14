@@ -9,6 +9,8 @@
 namespace app\Library;
 
 use Log;
+use Carbon\Carbon;
+use Storage;
 
 class BookmarkExport
 {
@@ -233,5 +235,36 @@ EOF;
         }
 
         return $html;
+    }
+
+    public function getLocalBookmarkResource($html)
+    {
+        $fileName = self::saveBookmarkFile($html);
+        return self::getBookmarkFile($fileName);
+    }
+
+    private function saveBookmarkFile($html)
+    {
+        $fileName = 'bookmark_' . strtotime(Carbon::now()) . '.html';
+        Storage::disk('local')->put($fileName, $html);
+
+        return $fileName;
+    }
+
+    private function getBookmarkFile($fileName)
+    {
+        if (config('export.export_mode') === 'file') {
+            return Response()->download(storage_path('tmp_file') . '/' . $fileName);
+        } else {
+            $content = Storage::disk('local')->get($fileName);
+            self::deleteLocalBookmarkFile($fileName);
+
+            return $content;
+        }
+    }
+
+    private function deleteLocalBookmarkFile($fileName)
+    {
+        Storage::disk('local')->delete($fileName);
     }
 }

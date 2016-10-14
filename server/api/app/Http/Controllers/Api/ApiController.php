@@ -212,8 +212,10 @@ class ApiController extends Controller
 
         $bookmarks = Tree::listToTree(json_decode(json_encode($bookmarks), true));
         $this->html .= $bookmarkExport->makeExportData($bookmarks, $this->html, null, $browserType);
+        
+        $bookmark = $bookmarkExport->getLocalBookmarkResource($this->html);
 
-        return $this->html;
+        return $bookmark;
     }
 
     public function create()
