@@ -1,0 +1,4 @@
+.bmicon
+    .bookmark(v-if="!bookmark.folder") {{bookmark.title}}
+    .folder(v-if="bookmark.folder", @click="openDir(bookmark.id)")
+        a() {{bookmark.title}}

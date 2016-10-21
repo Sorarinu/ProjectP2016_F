@@ -28,8 +28,5 @@ export class BmView {
     @Action(Actions.fetchBookmark)
     uploadBookmark() {return ; }
 
-    // bookmarkのディレクトリ開く.
-    @Action(Actions.openBookmarkDir)
-    openDir(id: number) { return ; }
 
 }

@@ -1,0 +1,12 @@
+#breadcrumbs {
+  ul{
+    li{
+      display: table-cell;
+
+      &:nth-child(n+2)::before{
+        content: '>';
+        margin: 0 10px;
+      }
+    }
+  }
+}
