@@ -76,7 +76,8 @@
 
 # Bookmarkファイルアップロード <*Done*>
 * メソッド : POST
-* URL : /api/v1/bookmarks/upload
+* URL : /api/v1/bookmarks/upload 
+* パラメータ名 : bmfile
 * enc-type : multipart/form-data
 * 送るファイル : ブックマークのブラウザからエクスポートしたファイル
 * 応答 : 解析されたブックマークデータと応答 JSON
