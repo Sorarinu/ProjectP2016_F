@@ -196,6 +196,7 @@ class BookmarkUpload
                 }
             }
         }
+
         return $bookmarkJson;
     }
 }

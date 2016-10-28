@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Library\Bookmark;
 use App\Library\BookmarkUpload;
 use App\User;
 use Illuminate\Filesystem\Filesystem;
@@ -203,16 +204,8 @@ class ApiController extends Controller
         $bookmarkExport = new BookmarkExport();
         $prevId = null;
         $this->html .= $bookmarkExport->addHtmlHeaders($browserType);
-        $userId = $this->request->session()->get('user_id', function () {
-            return 1;
-        });
-        $bookmarks = DB::table('bookmark')
-            ->where('user_id', '=', $userId)
-            ->get();
-
-        $bookmarks = Tree::listToTree(json_decode(json_encode($bookmarks), true));
+        $bookmarks = Bookmark::getAllBookmarkByDB($this->request);
         $this->html .= $bookmarkExport->makeExportData($bookmarks, $this->html, null, $browserType);
-        
         $bookmark = $bookmarkExport->getLocalBookmarkResource($this->html);
 
         return $bookmark;
@@ -226,7 +219,11 @@ class ApiController extends Controller
     {
     }
 
+    /**
+     * 全てのブックマークを取得する
+     */
     public function getAll()
     {
+        return json_encode(Bookmark::getAllBookmarkByDB($this->request), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     }
 }
