@@ -9,20 +9,27 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Library\Bookmark;
+use App\Library\BookmarkUpload;
 use App\User;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Log;
+use Cache;
 use Maknz\Slack\Facades\Slack;
 use App\Library\BookmarkParser;
+use App\Library\Tree;
+use App\Library\BookmarkExport;
+use App\Library\BookmarkDB;
 use Illuminate\Http\JsonResponse;
 
 class ApiController extends Controller
 {
-    protected $request;
+    public $request;
     private $fs;
+    private $html = '';
 
     public function __construct(Request $request, Filesystem $fs)
     {
@@ -167,179 +174,15 @@ class ApiController extends Controller
      */
     public function upload()
     {
+        $bookmarkDB = new BookmarkDB($this->request);
         $filePath = $this->request->file('bmfile')->getRealPath();
-        $tmpTags = '';
-        $i = 0;
-        $id = $this->getId();
-        $parent_id = null;
-        $isFind = false;
-        $tagPrevValue = null;
-        $tagPrevId = null;
-        $tagLists = [];
-        $bookmarkItems = [];
-        $tagListItems = [];
-        $bookmarkJson = [
-            'status' => 'OK',
-            'messages' => 'File Loaded.'
-        ];
+        $uploadClass = new BookmarkUpload($this->request);
 
         try {
             $parser = new BookmarkParser();
             $bookmarks = $parser->parseFile($filePath);
-            
-            //タグごとにまとめる
-            foreach ($bookmarks as $b) {
-                if ($tmpTags === $b['tags']) {
-                    continue;
-                }
-
-                $tmpTags = $b['tags'];
-                $i++;
-
-                foreach ($bookmarks as $bookmark) {
-                    if ($bookmark['tags'] === $tmpTags) {
-                        $bookmarkItems[$i][] = $bookmark;
-                    }
-                }
-            }
-
-            //フォルダにID付与
-            foreach ($bookmarkItems as $bookmarkItem) {
-                $tags = explode(',', $bookmarkItem[0]['tags']);
-
-                foreach ($tags as $tag) {
-                    if (!isset($tagLists[0])) {
-                        $tagLists[] = [
-                            'tag' => $tag,
-                            'id' => $id,
-                        ];
-                        $id++;
-                    } else {
-                        for ($j = 0; $j < count($tagLists); $j++) {
-                            if ($tag === $tagLists[$j]['tag']) {
-                                $isFind = true;
-                                break;
-                            }
-                            $isFind = false;
-                        }
-
-                        if (!$isFind) {
-                            $tagLists[] = [
-                                'tag' => $tag,
-                                'id' => $id,
-                            ];
-
-                            $id++;
-                        }
-                    }
-                }
-            }
-
-            //ParentID付与
-            foreach ($bookmarkItems as $bookmarkItem) {
-                $tags = explode(',', $bookmarkItem[0]['tags']);
-                $end = end($tags);
-                foreach ($tags as $tag) {
-                    if ($tag === $end) {
-                        @$tagPrevValue = $tags[(count($tags) - 2)];
-
-                        if (!is_null($tagPrevValue)) {
-                            foreach ($tagLists as $tagList) {
-                                if ($tagList['tag'] === $tagPrevValue) {
-                                    $tagPrevId = $tagList['id'];
-                                }
-                            }
-
-                            for ($i = 0; $i < count($tagLists); $i++) {
-                                if ($tagLists[$i]['tag'] === $tag) {
-                                    $tagLists[$i]['parent_id'] = $tagPrevId;
-                                }
-                            }
-                        } else {
-                            for ($i = 0; $i < count($tagLists); $i++) {
-                                if ($tagLists[$i]['tag'] === $tag) {
-                                    $tagLists[$i]['parent_id'] = null;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            //タグの空白要素消す
-            foreach ($tagLists as $tagList) {
-                if ($tagList['tag'] === '') {
-                    unset($tagLists[$tagList['id']]);
-                }
-            }
-
-            //フォルダ構成だけぶっこむ
-            foreach ($tagLists as $tagList) {
-                $tagListItems[] = [
-                    'id' => $tagList['id'],
-                    'parent_id' => $tagList['parent_id'],
-                    'title' => $tagList['tag'],
-                    'folder' => true
-                ];
-            }
-
-            $bookmarkJson['bookmark'] = $tagListItems;
-
-            //いい感じにする
-            foreach ($bookmarkItems as $bookmarkItem) {
-                $tags = explode(',', $bookmarkItem[0]['tags']);
-
-                foreach ($tags as $tag) {
-                    if ($tag === end($tags)) {
-                        if ($bookmarkItem[0]['tags'] !== '') {
-                            if (strstr($bookmarkItem[0]['tags'], $tag)) {
-                                foreach ($bookmarkItem as $item) {
-                                    foreach ($tagLists as $tagList) {
-                                        if ($tagList['tag'] === $tag) {
-                                            $parent_id = $tagList['id'];
-                                        }
-                                    }
-
-                                    $bookmarkItemAfter[] = [
-                                        'id' => $id,
-                                        'parent_id' => $parent_id,
-                                        'title' => $item['title'],
-                                        'detail' => $item['note'],
-                                        'reg_date' => $item['time'],
-                                        'folder' => false,
-                                        'url' => $item['uri']
-                                    ];
-
-                                    for ($i = 0; $i < count($bookmarkJson['bookmark']); $i++) {
-                                        if ($bookmarkJson['bookmark'][$i]['title'] === $tag) {
-                                            $bookmarkJson['bookmark'][$i]['bookmark'] = $bookmarkItemAfter;
-                                            $id++;
-                                        }
-                                    }
-                                }
-                                unset($bookmarkItemAfter);
-                            }
-                        } else {
-                            foreach ($bookmarkItem as $item) {
-                                $bookmarkItemAfter = [
-                                    'id' => $id,
-                                    'parent_id' => null,
-                                    'title' => $item['title'],
-                                    'detail' => $item['note'],
-                                    'reg_date' => $item['time'],
-                                    'folder' => false,
-                                    'url' => $item['uri']
-                                ];
-
-                                array_push($bookmarkJson['bookmark'], $bookmarkItemAfter);
-                                $id++;
-                            }
-                            unset($bookmarkItemAfter);
-                        }
-                    }
-                }
-            }
-            $this->insertDB($bookmarkJson);
+            $bookmarkJson = $uploadClass->makeBookmarkJson($bookmarks);
+            $bookmarkDB->insertDB($bookmarkJson);
 
             return new JsonResponse($bookmarkJson);
         } catch (\Exception $e) {
@@ -351,97 +194,21 @@ class ApiController extends Controller
     }
 
     /**
-     * アップロードデータをMySQLにぶち込む
+     * ブラウザでインポートできる形式でエクスポートする
      *
-     * @param $data
-     */
-    private function insertDB($data)
-    {
-        $insertFolderData = [];
-        $insertNodeData = [];
-        $user_id = $this->request->session()->get('user_id', function () {
-            return 1;
-        });
-
-        //非ログインユーザはDBに登録しない
-        if ($user_id === 1) {
-            return;
-        }
-
-        try {
-            if ($this->checkExists($user_id)) {
-                $this->deleteOldData($user_id);
-            }
-
-            foreach ($data['bookmark'] as $folder) {
-                $insertFolderData[] = [
-                    'id' => $folder['id'],
-                    'user_id' => $user_id,
-                    'parent_id' => $folder['parent_id'],
-                    'title' => $folder['title'],
-                    'folder' => $folder['folder']
-                ];
-
-                foreach ($folder['bookmark'] as $node) {
-                    $insertNodeData[] = [
-                        'id' => $node['id'],
-                        'user_id' => $user_id,
-                        'parent_id' => $node['parent_id'],
-                        'title' => $node['title'],
-                        'detail' => $node['detail'],
-                        'reg_date' => $node['reg_date'],
-                        'folder' => $node['folder'],
-                        'url' => $node['url']
-                    ];
-                }
-            }
-            DB::table('bookmark')->insert($insertFolderData);
-            DB::table('bookmark')->insert($insertNodeData);
-        } catch (\Exception $e) {
-            $this->upload();
-        }
-    }
-
-    /**
-     * MySQLのID + 1を返す
-     *
+     * @param $browserType
      * @return mixed
      */
-    private function getId()
+    public function export($browserType)
     {
-        return DB::table('bookmark')->max('id') + 1;
-    }
+        $bookmarkExport = new BookmarkExport();
+        $prevId = null;
+        $this->html .= $bookmarkExport->addHtmlHeaders($browserType);
+        $bookmarks = Bookmark::getAllBookmarkByDB($this->request);
+        $this->html .= $bookmarkExport->makeExportData($bookmarks, $this->html, null, $browserType);
+        $bookmark = $bookmarkExport->getLocalBookmarkResource($this->html);
 
-    /**
-     * DBにすでにアップロードしてるか判定
-     *
-     * @param $user_id
-     * @return bool
-     */
-    private function checkExists($user_id)
-    {
-        $result = DB::table('bookmark')->select('user_id')->where('user_id', '=', $user_id)->get();
-
-        if (isset($result[0])) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * アップロード時にDBから古いデータを消す
-     *
-     * @param $user_id
-     * @return mixed
-     */
-    private function deleteOldData($user_id)
-    {
-        return DB::table('bookmark')->where('user_id', '=', $user_id)->delete();
-    }
-
-    public function export()
-    {
+        return $bookmark;
     }
 
     public function create()
@@ -452,7 +219,11 @@ class ApiController extends Controller
     {
     }
 
+    /**
+     * 全てのブックマークを取得する
+     */
     public function getAll()
     {
+        return json_encode(Bookmark::getAllBookmarkByDB($this->request), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     }
 }

@@ -4,6 +4,8 @@ Homestead.yaml
 .env
 ../../.idea
 .idea
+
+storage/tmp_file
 # Created by https://www.gitignore.io
 
 ### Eclipse ###
