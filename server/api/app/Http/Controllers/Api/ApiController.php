@@ -213,8 +213,41 @@ class ApiController extends Controller
         return $bookmark;
     }
 
+    /**
+     * 新規ブックマークをデータベースに登録する
+     *
+     * @return JsonResponse
+     */
     public function create()
     {
+        try {
+            $json = json_decode(file_get_contents('php://input'));
+
+            $bookmark = new Db_Bookmark();
+            $bookmark->title = $json->title;
+            $bookmark->detail = $json->detail;
+            $bookmark->reg_date = $json->reg_date;
+            $bookmark->parent_id = $json->parent_id;
+            $bookmark->folder = $json->folder;
+            $bookmark->url = $json->url;
+            $bookmark->save();
+
+            $bookmark = Db_Bookmark::where('title', $json->title)
+                ->where('detail', $json->detail)
+                ->where('url', $json->url)
+                ->firstOrFail();
+
+            return new JsonResponse([
+                'status' => 'OK',
+                'message' => '',
+                'id' => $bookmark['id']
+            ]);
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'status' => 'NG',
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
 
     /**
