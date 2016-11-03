@@ -22,4 +22,5 @@ Route::post('api/v1/bookmarks/upload',               ['uses' => 'api\ApiControll
 Route::get('api/v1/bookmarks/export/{browser_type}', ['uses' => 'api\ApiController@export']);
 Route::post('api/v1/bookmarks',                      ['uses' => 'api\ApiController@create']);
 Route::put('api/v1/bookmarks/{bookmark_id}',         ['uses' => 'api\ApiController@update']);
+Route::delete('api/v1/bookmarks/{bookmark_id}',      ['uses' => 'api\ApiController@delete']);
 Route::get('api/v1/bookmarks',                       ['uses' => 'api\ApiController@getAll']);
