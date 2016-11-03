@@ -12,7 +12,7 @@
 - [Bookmark情報 CRUD](#bookmark%E6%83%85%E5%A0%B1-crud)
   - [作成](#%E4%BD%9C%E6%88%90)
   - [更新](#%E6%9B%B4%E6%96%B0)
-  - [削除](#%E5%89%8A%E9%99%A4)
+  - [削除 <*Done*>](#%E5%89%8A%E9%99%A4)
   - [取得1(ブックマーク全取得) <*Done*>](#%E5%8F%96%E5%BE%971%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF%E5%85%A8%E5%8F%96%E5%BE%97)
   - [取得2(リソース指定取得)](#%E5%8F%96%E5%BE%972%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E6%8C%87%E5%AE%9A%E5%8F%96%E5%BE%97)
 - [類似度検出](#%E9%A1%9E%E4%BC%BC%E5%BA%A6%E6%A4%9C%E5%87%BA)
@@ -189,7 +189,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
  "OK" or "NG"
  * message : string
 
-## 削除
+## 削除 <*Done*>
 * メソッド:DELETE
 * URL: /api/v1/bookmarks/[bookmark_id]
 * パラメータ:なし
