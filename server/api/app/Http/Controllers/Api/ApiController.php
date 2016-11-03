@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\DB_Bookmark;
 use App\Http\Controllers\Controller;
 use App\Library\Bookmark;
 use App\Library\BookmarkUpload;
@@ -24,6 +25,7 @@ use App\Library\Tree;
 use App\Library\BookmarkExport;
 use App\Library\BookmarkDB;
 use Illuminate\Http\JsonResponse;
+use Psy\Util\Json;
 
 class ApiController extends Controller
 {
@@ -217,6 +219,27 @@ class ApiController extends Controller
 
     public function update()
     {
+    }
+
+    /**
+     * 指定されたBookmarkIDをもつブックマークをデータベースから削除する
+     *
+     * @param $bookmarkId
+     * @return JsonResponse
+     */
+    public function delete($bookmarkId)
+    {
+        try {
+            $bookmark = DB_Bookmark::find($bookmarkId);
+            $bookmark->delete();
+
+            return new JsonResponse(['status' => 'OK']);
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'status' => 'NG',
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
 
     /**
