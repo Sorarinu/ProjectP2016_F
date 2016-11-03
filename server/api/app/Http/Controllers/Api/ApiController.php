@@ -8,7 +8,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\DB_Bookmark;
+use App\Db_Bookmark;
 use App\Http\Controllers\Controller;
 use App\Library\Bookmark;
 use App\Library\BookmarkUpload;
@@ -230,7 +230,7 @@ class ApiController extends Controller
     public function delete($bookmarkId)
     {
         try {
-            $bookmark = DB_Bookmark::find($bookmarkId);
+            $bookmark = Db_Bookmark::find($bookmarkId);
             $bookmark->delete();
 
             return new JsonResponse(['status' => 'OK']);
