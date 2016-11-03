@@ -217,8 +217,35 @@ class ApiController extends Controller
     {
     }
 
-    public function update()
+    /**
+     * 指定されたBookmarkIDをもつブックマークの情報を更新する
+     *
+     * @param $bookmarkId
+     * @return JsonResponse
+     */
+    public function update($bookmarkId)
     {
+        try {
+            $json = json_decode(file_get_contents('php://input'));
+            $bookmark = Db_Bookmark::find($bookmarkId);
+            $bookmark->title = $json->title;
+            $bookmark->detail = $json->detail;
+            $bookmark->reg_date = $json->reg_date;
+            $bookmark->parent_id = $json->parent_id;
+            $bookmark->folder = $json->folder;
+            $bookmark->url = $json->url;
+            $bookmark->save();
+
+            return new JsonResponse([
+                'status' => 'OK',
+                'message' => 'Update Success.'
+            ]);
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'status' => 'NG',
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
 
     /**
