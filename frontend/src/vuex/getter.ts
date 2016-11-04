@@ -45,19 +45,8 @@ export function bookmarkIsEmpty(state : State) : boolean {
 export function getBookmarkHierarchy(state: State) : Bookmark[] {
     const openID = state.openBookmarkDirId;
 
-    var hierarchy : Bookmark[] = [];
     const openBM = state.bookmarkRoot.search(openID);
-
-    // rootまでの親を順繰りに辿って配列に入れていく.
-    var tmp = openBM;
-    do {
-        hierarchy.push(tmp);
-    }while ((tmp = (tmp.parent)) !== null);
-
-    // [0] root -> ... -> [END] openDir になるように順番変える.
-    hierarchy.reverse();
-
-    return hierarchy;
+    return openBM.getHierarchy();
 }
 
 /**

@@ -122,8 +122,8 @@ export class Bookmark implements Validation {
             return 1;
         }
         return this.bookmark
-            .map( (bm: Bookmark) => { return bm.getSize(); })
-            .reduce((x: number, y: number) => { return x + y; }, 1);
+        .map( (bm: Bookmark) => { return bm.getSize(); })
+        .reduce((x: number, y: number) => { return x + y; }, 1);
     }
 
     /**
@@ -215,6 +215,21 @@ export class Bookmark implements Validation {
         }
 
         return undefined;
+    }
+
+    /**
+     * rootまでの階層を得る
+     */
+    getHierarchy() : Bookmark[] {
+        const hierarchy : Bookmark[] = [];
+        var tmp : Bookmark = this;
+        // rootまでの親を順繰りに辿って配列に入れていく.
+        do {
+            hierarchy.push(tmp);
+        }while ((tmp = (tmp.parent)) !== null);
+
+        // [0] root -> ... -> this になるように順番変える.
+        return hierarchy.reverse();
     }
 
     /**
