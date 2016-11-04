@@ -3,6 +3,8 @@
     li{
       display: table-cell;
 
+      color: black;
+
       &:nth-child(n+2)::before{
         content: '>';
         margin: 0 10px;

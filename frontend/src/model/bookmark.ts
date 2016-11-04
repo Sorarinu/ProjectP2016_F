@@ -179,8 +179,10 @@ export class Bookmark implements Validation {
         if (!this.parent) {
             throw Error('ブックマーク削除エラー: root要素は消せません.');
         }
-        var index: number = this.parent.bookmark.indexOf(this);
+        const index = this.parent.bookmark.indexOf(this);
         this.parent.bookmark.splice(index, 1);
+
+        this.parent = null;
     }
 
     /**

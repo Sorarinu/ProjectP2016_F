@@ -17,4 +17,5 @@ export class BmIcon {
     // bookmarkのディレクトリ開く.
     @Action(Actions.openBookmarkDir)
     openDir(id: number) { return ; }
+
 }

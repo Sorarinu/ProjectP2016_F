@@ -4,5 +4,11 @@
         p (やりかたとか詳しく載せる)
         button.btn-primary.btn-lg(@click="uploadBookmark()") BookmarkUpload
     #bm-icons(v-if="!bookmarkEmpty")
-        .container
-            bm-icon.col-xs-4.col-sm-3.col-md-2(:bookmark="bm" ,v-for="bm in bookmarks")
+        bm-icon(
+          :bookmark="bm",
+          v-for="bm in bookmarks",
+          draggable="true",
+          @dragstart="onDragStart($event, bm)",
+          @dragover="onDragOver($event, bm)",
+          @drop="onDrop($event, bm)"
+        )

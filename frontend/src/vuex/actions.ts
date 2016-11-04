@@ -62,5 +62,15 @@ export class Actions {
             store.dispatch(MutationTypes.SET_BOOKMARK_OPEN_DIR, dirID);
         };
 
+    /**
+     * ブックマークを移動する.
+     * @param store
+     * @param from 移動するブックマークのid
+     * @param to 移動先ブックマークのid (folder id)
+     */
+    static moveBookmark: Action<State> =
+        (store: Store<State>, from: number , to: number) => {
+            store.dispatch(MutationTypes.MOVE_BOOKMARK, from, to);
+        };
 }
 

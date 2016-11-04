@@ -16,4 +16,6 @@ export namespace MutationTypes {
     export const DELETE_BOOKMARK = 'DELETE_BOOKMARK';
     export const SET_BOOKMARK_ERROR = 'SET_BOOKMARK_ERROR';
     export const SET_BOOKMARK_OPEN_DIR = 'SET_BOOKMARK_OPEN_DIR';
+
+    export const MOVE_BOOKMARK = 'MOVE_BOOKMARK';
 }
