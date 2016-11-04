@@ -1,3 +1,12 @@
+import {Component} from '../../../vue-typed/vue-typed';
 /**
- * Created by namaz on 2016/11/04.
+ * Ribbon Component
+ * リボンUIをつくるよ.
  */
+require('./ribbon.scss');
+@Component({
+    template: require('./ribbon.pug')
+})
+export class Ribbon {
+
+}
