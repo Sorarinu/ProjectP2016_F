@@ -1,0 +1,8 @@
+.tree-item
+    span(
+        v-if="bookmark.folder",
+        @click="toggle") [{{expandNow? '-' : '+' }}]
+    span(@click="openBm") {{bookmark.title}}
+    ul(v-show="expandNow")
+        tree-item(v-for="bm in bookmark.bookmark",
+        :bookmark="bm")

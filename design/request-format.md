@@ -8,12 +8,12 @@
 - [サインイン <*Done*>](#%E3%82%B5%E3%82%A4%E3%83%B3%E3%82%A4%E3%83%B3-done)
 - [サインアウト <*Done*>](#%E3%82%B5%E3%82%A4%E3%83%B3%E3%82%A2%E3%82%A6%E3%83%88-done)
 - [Bookmarkファイルアップロード <*Done*>](#bookmark%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89-done)
-- [Bookmarkファイルエクスポート](#bookmark%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88)
+- [Bookmarkファイルエクスポート <*Done*>](#bookmark%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88)
 - [Bookmark情報 CRUD](#bookmark%E6%83%85%E5%A0%B1-crud)
-  - [作成](#%E4%BD%9C%E6%88%90)
-  - [更新](#%E6%9B%B4%E6%96%B0)
-  - [削除](#%E5%89%8A%E9%99%A4)
-  - [取得1(ブックマーク全取得)](#%E5%8F%96%E5%BE%971%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF%E5%85%A8%E5%8F%96%E5%BE%97)
+  - [作成 <*Done*>](#%E4%BD%9C%E6%88%90)
+  - [更新 <*Done*>](#%E6%9B%B4%E6%96%B0)
+  - [削除 <*Done*>](#%E5%89%8A%E9%99%A4)
+  - [取得1(ブックマーク全取得) <*Done*>](#%E5%8F%96%E5%BE%971%E3%83%96%E3%83%83%E3%82%AF%E3%83%9E%E3%83%BC%E3%82%AF%E5%85%A8%E5%8F%96%E5%BE%97)
   - [取得2(リソース指定取得)](#%E5%8F%96%E5%BE%972%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9%E6%8C%87%E5%AE%9A%E5%8F%96%E5%BE%97)
 - [類似度検出](#%E9%A1%9E%E4%BC%BC%E5%BA%A6%E6%A4%9C%E5%87%BA)
 
@@ -76,7 +76,8 @@
 
 # Bookmarkファイルアップロード <*Done*>
 * メソッド : POST
-* URL : /api/v1/bookmarks/upload
+* URL : /api/v1/bookmarks/upload 
+* パラメータ名 : bmfile
 * enc-type : multipart/form-data
 * 送るファイル : ブックマークのブラウザからエクスポートしたファイル
 * 応答 : 解析されたブックマークデータと応答 JSON
@@ -132,7 +133,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 
 ```
 
-# Bookmarkファイルエクスポート
+# Bookmarkファイルエクスポート <*Done*>
 * メソッド : GET
 * URL : /api/v1/bookmarks/export/{browser_type}
 * パラメータ :
@@ -144,7 +145,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 
 # Bookmark情報 CRUD
 
-## 作成
+## 作成 <*Done*>
 * メソッド : POST
 * URL : /api/v1/bookmarks
 * パラメータ : JSON
@@ -178,7 +179,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 ```
 
 
-## 更新
+## 更新 <*Done*>
 * メソッド:PUT
 * URL: /api/v1/bookmarks/[bookmark_id]
 * パラメータ:JSON  
@@ -188,7 +189,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
  "OK" or "NG"
  * message : string
 
-## 削除
+## 削除 <*Done*>
 * メソッド:DELETE
 * URL: /api/v1/bookmarks/[bookmark_id]
 * パラメータ:なし
@@ -197,7 +198,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
  "OK" or "NG"
  * message : string
 
-## 取得1(ブックマーク全取得)
+## 取得1(ブックマーク全取得) <*Done*>
 * メソッド:GET
 * URL: /api/v1/bookmarks/
 * パラメータ:なし

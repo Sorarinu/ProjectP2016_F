@@ -1,9 +1,14 @@
 #main
     //- mainpageのコンポーネント　大本.
-    #side.hidden-sm.hidden-xs.hidden-md
-        tree-nav.bg-danger
-        bm-detail.bg-info
-    #center
-        breadcrumbs.bg-primary
-        bm-view.bg-success
-        toolbar.bg-warning
+    #ribbon-toggle
+        i.fa.fa-angle-down(@click="openRibbon()", v-if="!ribbonVisible")
+        i.fa.fa-angle-up(@click="closeRibbon()", v-if="ribbonVisible")
+    ribbon(v-if="ribbonVisible")
+    .two-col
+        #side.hidden-sm.hidden-xs.hidden-md
+            tree-nav.bg-danger
+            bm-detail.bg-info
+        #center
+            breadcrumbs.bg-primary
+            bm-view.bg-success
+            toolbar.bg-warning
