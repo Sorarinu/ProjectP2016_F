@@ -11,5 +11,5 @@ rm -rf project/*
 cp frontend/dist/* project/
 
 git add .
-git commit -m "Update"
+git commit -m "Update [ci skip]"
 git push origin master
