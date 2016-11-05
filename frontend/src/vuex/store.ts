@@ -11,6 +11,7 @@ import DELETE_BOOKMARK = MutationTypes.DELETE_BOOKMARK;
 import {Bookmark} from '../model/bookmark';
 import SET_BOOKMARK_ERROR = MutationTypes.SET_BOOKMARK_ERROR;
 import SET_BOOKMARK_OPEN_DIR = MutationTypes.SET_BOOKMARK_OPEN_DIR;
+import MOVE_BOOKMARK = MutationTypes.MOVE_BOOKMARK;
 
 Vue.use(Vuex.install);
 
@@ -116,6 +117,14 @@ const mutations : MutationTree<State> = {
     [SET_BOOKMARK_OPEN_DIR] (state: State, dirID: number) {
         state.openBookmarkDirId = dirID;
     },
+
+    [MOVE_BOOKMARK] (state: State, from: number, to: number) {
+        const fromBM = state.bookmarkRoot.search(from);
+        const toBM = state.bookmarkRoot.search(to);
+
+        fromBM.remove();
+        toBM.addChild(fromBM);
+    }
 
     // ----------------------------------------------------
 };

@@ -1,5 +1,4 @@
 #breadcrumbs
-    h2 breadcrumbs component
     ul
         li(v-for="folder in bookmarkHierarchy")
             button(@click="openDir(folder.id)") {{folder.title}}

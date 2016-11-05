@@ -1,12 +1,14 @@
 #bmview
-    h2 bm-view-component
     #empty-message(v-if="bookmarkEmpty")
         p bookmarkがありませんよ。あっぷろーどしてね　
         p (やりかたとか詳しく載せる)
         button.btn-primary.btn-lg(@click="uploadBookmark()") BookmarkUpload
     #bm-icons(v-if="!bookmarkEmpty")
-        ul
-            li(v-for="bm in bookmarks")
-                a(v-if="bm.folder",
-                @click="openDir(bm.id)") folder:{{bm.title}}
-                a(v-if="!bm.folder", :href="bm.url") bookmark:{{bm.title}}
+        bm-icon(
+          :bookmark="bm",
+          v-for="bm in bookmarks",
+          draggable="true",
+          @dragstart="onDragStart($event, bm)",
+          @dragover="onDragOver($event, bm)",
+          @drop="onDrop($event, bm)"
+        )
