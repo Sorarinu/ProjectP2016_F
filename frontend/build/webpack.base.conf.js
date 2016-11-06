@@ -81,6 +81,13 @@ module.exports = {
         loader: 'url-loader?mimetype=application/font-woff'
       },
       {
+        test: /\.mp4/,
+        loader: 'file-loader',
+        query: {
+          name: '[name].[ext]?[hash:7]'
+        }
+      },
+      {
         test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url-loader?mimetype=application/font-woff'
       },
