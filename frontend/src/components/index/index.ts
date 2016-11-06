@@ -4,23 +4,34 @@ import router from '../../main';
 /**
  * IndexPage Component
  */
-require('./index.scss');
+require('./css/index.css');
+require('./css/animation.min.css');
+require('./css/layout_top.css');
+require('./css/rest.css');
 @Component({
-    template: require('./index.pug'),
+    template: require('./index.html'),
     components: {
-        alert : require('vue-strap').alert
+        alert: require('vue-strap').alert
     }
 })
 export class Index {
     goAbout() {
         router.go('about');
     }
-	goSignIn() {
+
+    goSignIn() {
 
         router.go('signin');
 
-	}
+    }
+
     goSignUp() {
         router.go('signup');
+    }
+
+    data() {
+        return {
+            movie: require('./video/movie_pc.mp4')
+        };
     }
 }

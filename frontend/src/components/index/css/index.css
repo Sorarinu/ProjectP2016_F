@@ -1,0 +1,109 @@
+div {
+    display: block;
+}
+
+h3 {
+    margin-top: 200px;
+}
+
+.btn-ghost.go_about {
+    font-size: 22px;
+    padding: 0px;
+}
+
+.btn-ghost {
+    background: transparent;
+}
+
+.btn-ghost.btn-default {
+    color: #777;
+}
+
+.btn-ghost.btn-primary {
+    color: #337ab7;
+}
+
+.btn-ghost.btn-success {
+    color: #5cb85c;
+}
+
+.btn-ghost.btn-info {
+    color: #5bc0de;
+}
+
+.btn-ghost.btn-warning {
+    color: #f0ad4e;
+}
+
+.btn-ghost.btn-danger {
+    color: #d9534f;
+}
+
+.btn-ghost.btn-primary:hover,
+.btn-ghost.btn-success:hover,
+.btn-ghost.btn-info:hover,
+.btn-ghost.btn-warning:hover,
+.btn-ghost.btn-danger:hover {
+    color: #fff;
+}
+
+.btn-ghost.btn-white {
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+.btn-ghost.btn-white:hover {
+    color: #333;
+    background: #fff;
+}
+
+/*#index{
+
+  .btn-ghost{
+    background: transparent;
+  }
+  .btn-ghost.btn-white {
+    color: #fff;
+    border: 2px solid #fff;
+  }
+  .btn-ghost.btn-white:hover {
+    color: #333;
+    background: #fff;
+  }
+
+  header {
+    &.jumbotron {
+      background: url("img/bible-1166261_1920.jpg");
+      background-position: center center;
+      background-size: cover;
+      color: #fff;
+
+      .container {
+        margin-top: 13%;
+        text-align: center;
+
+      }
+    }
+  }
+
+  .service {
+    text-align: center;
+
+
+    margin-right: 50px;
+    margin-left: 50px;
+
+    h3 {
+      font-size: 3rem;
+    }
+
+    .explanation {
+      margin-bottom: 50px;
+    }
+  }
+  .btnSign{
+    margin: 50px;
+    text-align: center;
+  }
+}*/
+
