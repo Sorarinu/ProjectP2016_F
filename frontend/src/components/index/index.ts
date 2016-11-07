@@ -4,10 +4,8 @@ import router from '../../main';
 /**
  * IndexPage Component
  */
-require('./css/index.css');
-require('./css/animation.min.css');
-require('./css/layout_top.css');
-require('./css/rest.css');
+require('./css/index.scss');
+require('./css/layout_top.scss');
 @Component({
     template: require('./index.html'),
     components: {

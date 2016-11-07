@@ -4,10 +4,20 @@
 */
 
 /*
+* reset CSS
+*/
+@import "assets/vendor/rest.css";
+
+/*
 * bootstrap3 をインポートするよ
 */
 @import "assets/vendor/bootstrap3.3.7/css/bootstrap.min.css";
 @import "assets/vendor/bootstrap3.3.7/css/bootstrap-theme.min.css";
+
+/*
+* Animation.css
+*/
+@import "assets/vendor/animation.min.css";
 
 /*
 * font-awesome
