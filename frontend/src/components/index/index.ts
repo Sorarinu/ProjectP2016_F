@@ -6,7 +6,6 @@ import router from '../../main';
  */
 require('./css/index.scss');
 require('./css/layout_top.scss');
-require('./css/rest.css');
 @Component({
     template: require('./index.html'),
     components: {
