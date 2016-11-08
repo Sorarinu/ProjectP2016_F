@@ -2,7 +2,7 @@
 
 from bs4 import BeautifulSoup
 import urllib.request
-import lxml
+from resemblance.main.word2vec_sample.constants import *
 
 
 class Scraping(object):
@@ -27,7 +27,7 @@ class Scraping(object):
         return str_list
 
     def create_scraping_file(self):
-        with open('html_body.txt', 'w') as file:
+        with open(BODY_TEXT_FILE, 'w') as file:
             str_list = self.get_body_text()
             for strings in str_list:
                 file.write(strings + "\n")

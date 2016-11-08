@@ -4,6 +4,7 @@ import logging
 from gensim.models import word2vec
 
 from resemblance.main.word2vec_sample.wakati import MeacabWakati
+from resemblance.main.word2vec_sample.constants import *
 
 
 class CreateModel(object):
@@ -22,5 +23,5 @@ class CreateModel(object):
                                       window=10,
                                       hs=1,
                                       negative=0)
-            model.save("models/sample.model")
-            print("Finish")
+            model.save(MODEL)
+        print("Finish")
