@@ -104,10 +104,6 @@ const mutations : MutationTree<State> = {
         state.bookmarkRoot.addChild(bookmark);
     },
 
-    [DELETE_BOOKMARK] (state: State, bookmark: Bookmark) {
-        var tagrget = state.bookmarkRoot.search(bookmark.id);
-        tagrget.remove();
-    },
 
     [SET_BOOKMARK_ERROR] (state: State, message: string) {
         state.bookmarkComError = true;
@@ -124,6 +120,11 @@ const mutations : MutationTree<State> = {
 
         fromBM.remove();
         toBM.addChild(fromBM);
+    },
+
+    [DELETE_BOOKMARK] (state: State, id: number) {
+        const targetBM = state.bookmarkRoot.search(id);
+        targetBM.remove();
     }
 
     // ----------------------------------------------------

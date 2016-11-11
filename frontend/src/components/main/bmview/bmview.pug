@@ -5,10 +5,10 @@
         button.btn-primary.btn-lg(@click="uploadBookmark()") BookmarkUpload
     #bm-icons(v-if="!bookmarkEmpty")
         bm-icon(
-          :bookmark="bm",
-          v-for="bm in bookmarks",
-          draggable="true",
-          @dragstart="onDragStart($event, bm)",
-          @dragover="onDragOver($event, bm)",
-          @drop="onDrop($event, bm)"
+            v-for="bm in bookmarks",
+            :bookmark="bm",
+            draggable="true",
+            @dragstart="onDragStart($event, bm)",
+            @dragover="onDragOver($event, bm)",
+            @drop="onDrop($event, bm)",
         )
