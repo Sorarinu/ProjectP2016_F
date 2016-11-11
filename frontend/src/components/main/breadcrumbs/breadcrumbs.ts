@@ -1,7 +1,7 @@
-import {Component, Action, Getter} from '../../../vue-typed/vue-typed';
-import {Actions} from '../../../vuex/actions';
-import {getBookmarkHierarchy} from '../../../vuex/getter';
-import {Bookmark} from '../../../model/bookmark';
+import {Component, Action, Getter} from 'src/vue-typed/vue-typed';
+import {Actions} from 'src/vuex/actions';
+import {getBookmarkHierarchy, getOpenDirId} from 'src/vuex/getter';
+import {Bookmark} from 'src/model/bookmark';
 /**
  * Breadcrumbs Component
  * パンくずナビゲーション
@@ -14,6 +14,9 @@ export class Breadcrumbs {
 
     @Getter(getBookmarkHierarchy)
     bookmarkHierarchy : Bookmark[];
+
+    @Getter(getOpenDirId)
+    openDirId : number;
 
     @Action(Actions.openBookmarkDir)
     openDir(id: number) {

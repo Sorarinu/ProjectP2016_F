@@ -1,8 +1,12 @@
-.tree-item
+.tree-item(:class="{folder : bookmark.folder}")
     span(
         v-if="bookmark.folder",
-        @click="toggle") [{{expandNow? '-' : '+' }}]
-    span(@click="openBm") {{bookmark.title}}
+        @click="toggle")
+            i(v-if="expandNow").fa.fa-minus-square
+            i(v-if="!expandNow").fa.fa-plus-square
+    span(@dblclick="openBm")
+        i(v-if="!bookmark.folder").fa.fa-bookmark
+        | {{bookmark.title}}
     ul(v-show="expandNow")
         tree-item(v-for="bm in bookmark.bookmark",
         :bookmark="bm")

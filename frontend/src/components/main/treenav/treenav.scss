@@ -1,4 +1,15 @@
 #treenav{
   overflow: scroll;
   white-space: nowrap;
+
+  .tree-item{
+    .folder{
+      margin-bottom: 4px;
+      margin-top: 4px;
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+  }
 }

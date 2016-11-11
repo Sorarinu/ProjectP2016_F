@@ -3,15 +3,25 @@ import Vuex = require('vuex');
 import {User} from '../model/user';
 import {MutationTree} from '~vuex/index';
 import {MutationTypes} from './mutation-types';
+import {Bookmark} from '../model/bookmark';
 import SIGN_IN = MutationTypes.SIGN_IN;
 import SIGN_OUT = MutationTypes.SIGN_OUT;
 import GET_BOOKMARK = MutationTypes.GET_BOOKMARK;
 import ADD_BOOKMARK = MutationTypes.ADD_BOOKMARK;
 import DELETE_BOOKMARK = MutationTypes.DELETE_BOOKMARK;
-import {Bookmark} from '../model/bookmark';
 import SET_BOOKMARK_ERROR = MutationTypes.SET_BOOKMARK_ERROR;
 import SET_BOOKMARK_OPEN_DIR = MutationTypes.SET_BOOKMARK_OPEN_DIR;
 import MOVE_BOOKMARK = MutationTypes.MOVE_BOOKMARK;
+import TOGGLE_CONTEXT_MENU = MutationTypes.TOGGLE_CONTEXT_MENU;
+import RESET_SELECT_BOOKMARK = MutationTypes.RESET_SELECT_BOOKMARK;
+import ADD_SELECT_BOOKMARK = MutationTypes.ADD_SELECT_BOOKMARK;
+import DELETE_SELECT_BOOKMARK = MutationTypes.DELETE_SELECT_BOOKMARK;
+import OPEN_DELETE_DIALOG = MutationTypes.OPEN_DELETE_DIALOG;
+import CLOSE_DELETE_DIALOG = MutationTypes.CLOSE_DELETE_DIALOG;
+import CLOSE_SEARCH_DIALOG = MutationTypes.CLOSE_SEARCH_DIALOG;
+import OPEN_SEARCH_DIALOG = MutationTypes.OPEN_SEARCH_DIALOG;
+import OPEN_UPLOAD_DIALOG = MutationTypes.OPEN_UPLOAD_DIALOG;
+import CLOSE_UPLOAD_DIALOG = MutationTypes.CLOSE_UPLOAD_DIALOG;
 
 Vue.use(Vuex.install);
 
@@ -59,17 +69,41 @@ export class State {
     openBookmarkDirId : number;
 
 
+
+
+    // ui state ---------
+    selectBMIds : number[];
+
+    showBMDeleteDialog : boolean;
+    showSearchDialog : boolean;
+    showUploadDialog : boolean;
+
+    /**
+     * 今開いているコンテキストメニューを閉じる関数.
+     */
+    contextMenuCloser : () => void;
+
+
     // state initializer
     constructor() {
+        // user
         this.signInNow = false;
         this.user = new User('', '');
 
+        // bookmark
         this.bookmarkRoot = new Bookmark(
             true,
             Number.MAX_VALUE,
             null
         );
         this.openBookmarkDirId = Number.MAX_VALUE;
+
+        this.showBMDeleteDialog = false;
+        this.showSearchDialog = false;
+        this.showUploadDialog = false;
+
+        this.selectBMIds = [];
+        this.selectBMIds.push(Number.MAX_VALUE);
     }
 }
 
@@ -125,9 +159,60 @@ const mutations : MutationTree<State> = {
     [DELETE_BOOKMARK] (state: State, id: number) {
         const targetBM = state.bookmarkRoot.search(id);
         targetBM.remove();
-    }
+    },
 
     // ----------------------------------------------------
+
+
+    // ui mutations --------------------------------------
+    [TOGGLE_CONTEXT_MENU] (state: State , closer: () => void ) {
+        if (state.contextMenuCloser) {
+           state.contextMenuCloser();
+        }
+        state.contextMenuCloser = closer;
+    },
+
+
+    [OPEN_DELETE_DIALOG] (state: State) {
+        state.showBMDeleteDialog = true;
+    },
+    [CLOSE_DELETE_DIALOG] (state: State) {
+        state.showBMDeleteDialog = false;
+    },
+
+    [OPEN_SEARCH_DIALOG] (state: State) {
+        state.showSearchDialog = true;
+    },
+    [CLOSE_SEARCH_DIALOG] (state: State) {
+        state.showSearchDialog = false;
+    },
+
+
+    [OPEN_UPLOAD_DIALOG] (state: State) {
+        state.showUploadDialog = true;
+    },
+    [CLOSE_UPLOAD_DIALOG] (state: State) {
+        state.showUploadDialog = false;
+    },
+
+    // ブックマーク選択系
+
+    [ADD_SELECT_BOOKMARK] (state: State , id : number) {
+        state.selectBMIds.push(id);
+    },
+
+    [DELETE_SELECT_BOOKMARK] (state : State , id : number) {
+        const i = state.selectBMIds.indexOf(id);
+        if (i >= 0) {
+            state.selectBMIds.$remove(i);
+        }
+    },
+
+    [RESET_SELECT_BOOKMARK] (state: State) {
+        state.selectBMIds = [];
+    }
+
+    // --------------
 };
 
 

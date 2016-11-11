@@ -1,19 +1,17 @@
 .bmicon(
         @contextmenu="toggleContextMenu($event)",
+        @click="selectBookmark($event)",
+        :class = "{active : getSelectBMIds.indexOf(bookmark.id) >= 0}"
     )
-    .bookmark(v-if="!bookmark.folder")
+    .bookmark(v-if="!bookmark.folder", @dblclick="open")
         .img
-            img(alt="" width="128" height="128" src="http://mozshot.nemui.org/shot/128*128?{{bookmark.url}}")
-        .detail {{bookmark.title}}
-    .folder(v-if="bookmark.folder", @click="openDir(bookmark.id)")
+            img(:alt="bookmark.title", :src="imgSrc")
+        .detail {{getTitle()}}
+    .folder(v-if="bookmark.folder", @dblclick="openDir(bookmark.id)")
         .img
-            i.fa.fa-2x.fa-folder
-        .detail {{bookmark.title}}
-    .context-menu.panel.panel-primary(
-            v-show="showContextMenu",
-            :style="posStyle"
-        )
-        ul
-            li(v-if="!bookmark.folder"): button(@click="open") 開く
-            li(v-if="!bookmark.folder"): button(@click="delete(bookmark.id)") 削除
-            li(v-if="bookmark.folder"):  button(@click="delete(bookmark.id)") フォルダ削除
+            i.fa.fa-4x.fa-folder
+        .detail {{getTitle()}}
+    .context-menu(v-show="showContextMenu", :style="posStyle")
+        button.btn.btn-default(v-if="!bookmark.folder", @click="open") 開く
+        button.btn.btn-default(v-if="!bookmark.folder", @click="openDeleteDialog($event)") 削除
+        button.btn.btn-default(v-if="bookmark.folder",  @click="openDeleteDialog($event)") フォルダ削除

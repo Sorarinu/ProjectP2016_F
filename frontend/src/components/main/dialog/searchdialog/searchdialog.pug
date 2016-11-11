@@ -1,4 +1,23 @@
 #searchdialog
-    modal(title="Large Modal", large ,:show.sync="show")
-        div(slot="modal-body", class="modal-body")  ほげぇ
+    modal(large, :show="show", backdrop="false")
+        div(slot="modal-header", class="modal-header")
+            button.close(@click="closeSearchDialogAct")
+                span &times;
+            h4.modal-title ブックマーク検索
 
+        div(slot="modal-body", class="modal-body")
+            .input-group
+                span.input-group-addon From
+                input.form-control(type="text" disabled="disabled", :value="getFromPath()")
+
+            .input-group
+                span.input-group-addon SearchWord
+                input.form-control(type="text", v-model="searchWord")
+                span.input-group-btn
+                  button.btn.btn-primary(@click="search", :disabled="searchWord.length === 0")
+                    i.fa.fa-search
+                    | 検索
+            .res(v-if="showRes")
+                h2 ここには　機械学習プロが　素晴らしい検索結果を　提供してくれる　らしい
+        div(slot="modal-footer", class="modal-footer")
+            button.btn.btn-success(v-show="showRes", @click="grouping") {{searchWord}} フォルダにまとめる
