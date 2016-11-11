@@ -17,6 +17,8 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Library\Knp\Snappy\SnappyImage;
+use Intervention\Image\Facades\Image;
 use Log;
 use Cache;
 use Maknz\Slack\Facades\Slack;
@@ -308,5 +310,13 @@ class ApiController extends Controller
     public function getAll()
     {
         return json_encode(Bookmark::getAllBookmarkByDB($this->request), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    }
+    
+    public function snap()
+    {
+        $url = $this->request->input('url');
+        $apiUrl = 'http://capture.heartrails.com/120×120?' . $url;
+        $image = Image::make(file_get_contents($apiUrl));
+        return $image->response('jpg');
     }
 }
