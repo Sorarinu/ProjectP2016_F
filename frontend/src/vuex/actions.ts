@@ -72,5 +72,15 @@ export class Actions {
         (store: Store<State>, from: number , to: number) => {
             store.dispatch(MutationTypes.MOVE_BOOKMARK, from, to);
         };
+
+    /**
+     * ブックマークを削除する.
+     * @param store
+     * @param id 削除対象ブックマークID
+     */
+    static deleteBookmark: Action<State> =
+        (store: Store<State>, id: number) => {
+            store.dispatch(MutationTypes.DELETE_BOOKMARK, id);
+        };
 }
 

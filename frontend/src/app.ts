@@ -14,11 +14,14 @@ require('./app.scss');
 export class App {
 
     showFooter : boolean;
+    showNav : boolean;
 
     data() {
         this.showFooter = false;
+        this.showNav = false;
         return {
-            showFooter: this.showFooter
+            showFooter: this.showFooter,
+            showNav: this.showNav
         };
     }
 }

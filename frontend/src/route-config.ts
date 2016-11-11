@@ -46,12 +46,14 @@ export function configureRouter(router: vuejs.Router<App>) {
     });
 
     router.afterEach((transition) => {
-        // ページに応じてフッタの表示、非表示の切り替え.
+        // ページに応じてフッタ,Navの表示、非表示の切り替え.
         // mainページではフッタは表示しない.
         if (transition.to.path.indexOf('main') > -1) {
             router.app.showFooter = false;
+            router.app.showNav = false;
         } else {
             router.app.showFooter = true;
+            router.app.showNav = true;
         }
     });
 }

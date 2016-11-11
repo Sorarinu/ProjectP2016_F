@@ -1,12 +1,18 @@
 
 .bmicon{
 
-  width: 15vh;
-  height: 15vh;
+  width: 128px;
+  height: 128px;
 
   overflow: hidden;
 
   background-color: greenyellow;
 
   margin: 5px;
+
+  .contextMenu{
+    position: absolute;
+
+
+  }
 }

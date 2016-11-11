@@ -3,12 +3,12 @@
     #ribbon-toggle
         i.fa.fa-angle-down(@click="openRibbon()", v-if="!ribbonVisible")
         i.fa.fa-angle-up(@click="closeRibbon()", v-if="ribbonVisible")
-    ribbon(v-if="ribbonVisible")
+    ribbon(v-if="ribbonVisible").panel.panel-default
     .two-col
         #side.hidden-sm.hidden-xs.hidden-md
-            tree-nav.bg-danger
-            bm-detail.bg-info
+            tree-nav.panel.panel-default
+            bm-detail.panel.panel-default
         #center
-            breadcrumbs.bg-primary
-            bm-view.bg-success
-            toolbar.bg-warning
+            breadcrumbs.panel.panel-default
+            bm-view.panel.panel-default
+            toolbar

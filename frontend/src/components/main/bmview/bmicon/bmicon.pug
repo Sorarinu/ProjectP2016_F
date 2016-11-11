@@ -1,4 +1,19 @@
-.bmicon
-    .bookmark(v-if="!bookmark.folder") {{bookmark.title}}
+.bmicon(
+        @contextmenu="toggleContextMenu($event)",
+    )
+    .bookmark(v-if="!bookmark.folder")
+        .img
+            img(alt="" width="128" height="128" src="http://mozshot.nemui.org/shot/128*128?{{bookmark.url}}")
+        .detail {{bookmark.title}}
     .folder(v-if="bookmark.folder", @click="openDir(bookmark.id)")
-        a() {{bookmark.title}}
+        .img
+            i.fa.fa-2x.fa-folder
+        .detail {{bookmark.title}}
+    .context-menu.panel.panel-primary(
+            v-show="showContextMenu",
+            :style="posStyle"
+        )
+        ul
+            li(v-if="!bookmark.folder"): button(@click="open") 開く
+            li(v-if="!bookmark.folder"): button(@click="delete(bookmark.id)") 削除
+            li(v-if="bookmark.folder"):  button(@click="delete(bookmark.id)") フォルダ削除

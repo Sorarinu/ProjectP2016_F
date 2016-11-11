@@ -1,4 +1,4 @@
 #breadcrumbs
-    ul
+    ul.breadcrumb
         li(v-for="folder in bookmarkHierarchy")
-            button(@click="openDir(folder.id)") {{folder.title}}
+            a(@click="openDir(folder.id)") {{folder.title}}
