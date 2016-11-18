@@ -4,7 +4,7 @@ import router from '../../main';
  * AboutPage Component
  */
 @Component({
-    template: require('./about.pug'),
+    template: require('./about.html'),
 })
 export class About {
     toMain() : void {

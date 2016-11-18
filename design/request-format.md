@@ -267,7 +267,7 @@ Content-Type:application/json
       "id" : "3",
       "url" : "http://www.oracle.com/jp/java/overview/index.html",
       "similarity_rate":"0.95"
-    },
+    }
   ]
 }
 ```

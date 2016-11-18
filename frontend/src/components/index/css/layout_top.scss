@@ -79,19 +79,19 @@
     }
 
     .MenuContainer {
-        position: fixed;
-        width: 100%;
-        height: 90px;
-        padding: 30px;
-        top: 0;
-        left: 0;
-        z-index: 9999;
+        position:fixed;
+        width:100%;
+        height:90px;
+        padding:30px;
+        top:0;
+        left:0;
+        z-index:9999;
     }
 
     .MenuHeader {
         color: #ffffff;
         display: inline-block;
-        float: right;
+        float:right;
         font-weight: 100;
         line-height: 30px;
         margin: 0 0 0 15px;
@@ -148,7 +148,6 @@
         transition: left 0.4s;
 
     }
-
     .HiddenCheckbox:checked ~ .MenuHeader {
         opacity: 1;
         transform: none;
@@ -169,33 +168,19 @@
 
     .Menu-list {
         font-family: 'Montserrat', sans-serif;
-        font-size: 120%;
-        font-weight: normal;
-        line-height: 4em;
-        letter-spacing: 10px;
+        font-size:120%;
+        font-weight:normal;
+        line-height:4em;
+        letter-spacing:10px;
         list-style-type: none;
-        margin: 100px 40px;
+        margin: 100px 40px ;
         padding: 0;
     }
 
-    .Menu-list a:link {
-        color: #ffffff;
-        text-decoration: none;
-    }
-
-    .Menu-list a:visited {
-        color: #ffffff;
-        text-decoration: none;
-    }
-
-    .Menu-list a:hover {
-        color: #00c5f6;
-    }
-
-    #footer a:link {
-        color: #ffffff;
-        text-decoration: none;
-    }
+    .Menu-list a:link { color: #ffffff; text-decoration:none;}
+    .Menu-list a:visited { color: #ffffff; text-decoration:none;}
+    .Menu-list a:hover { color: #00c5f6; }
+    #footer a:link { color: #ffffff; text-decoration:none;}
 
     .Menu-item {
         margin: 0;
@@ -211,27 +196,17 @@
         z-index: 1;
     }
 
-    .language {
-        color: #333;
-        letter-spacing: 10px;
-        float: right;
+    .language{
+        color:#333;
+        letter-spacing:10px;
+        float:right;
         font-family: 'Montserrat', sans-serif;
-        font-size: 100%;
+        font-size:100%;
     }
 
-    .MenuContainer a:link {
-        color: #ccc;
-        text-decoration: none;
-    }
-
-    .MenuContainer a:visited {
-        color: #ccc;
-        text-decoration: none;
-    }
-
-    .MenuContainer a:hover {
-        color: #00c5f6;
-    }
+    .MenuContainer a:link { color: #ccc; text-decoration:none;}
+    .MenuContainer a:visited { color: #ccc; text-decoration:none;}
+    .MenuContainer a:hover { color: #00c5f6; }
 
     /*KEY VISUAL*/
     #key_visual {
