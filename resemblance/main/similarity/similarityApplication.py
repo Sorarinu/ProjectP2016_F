@@ -1,14 +1,15 @@
 # coding:utf-8
 
-import json
 import codecs
+import json
 from functools import wraps
-from resemblance.main.similarity.conf.constants import *
-from resemblance.main.similarity.api.scraping import Scraping
-from resemblance.main.similarity.api.genModel import CreateModel
-from resemblance.main.similarity.api.loadModel import LoadModel
 
 from flask import Flask, abort, request, Response
+from resemblance.main.similarity.api.search.loadModel import LoadModel
+from resemblance.main.similarity.api.search.scraping import Scraping
+
+from resemblance.main.similarity.api.search.genModel import CreateModel
+from resemblance.main.similarity.conf.constants import *
 
 app = Flask(__name__)
 
@@ -28,7 +29,7 @@ def consumes(content_type):
 
 @app.route('/api/v1/', methods=['POST'])
 @consumes('application/json')
-def hello_cloudBM():
+def hello_cloudBM():x
     test_data = codecs.decode(request.data, 'utf-8')
     json_data = json.dumps(test_data, ensure_ascii=False, sort_keys=True)
     return Response(json_data, mimetype='application/json')
