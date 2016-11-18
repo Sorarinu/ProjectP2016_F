@@ -1,18 +1,43 @@
+$size : 180px;
 
-.bmicon{
 
-  width: 128px;
-  height: 128px;
+.bmicon {
 
-  overflow: hidden;
+  width: $size;
+  height: $size;
 
-  background-color: greenyellow;
+  margin: 20px;
 
-  margin: 5px;
+  border-radius: $size / 20;
+  background-color: rgba(0,0,0,.08);
 
-  .contextMenu{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  &.active {
+    background-color: rgba(0,0,255,.1);
+  }
+
+  .img{
+    text-align: center;
+
+    width: $size * 0.7;
+    height: $size * 0.7;
+
+    overflow: hidden;
+  }
+
+  .detail{
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.7rem;
+  }
+
+  .contextMenu {
     position: absolute;
-
 
   }
 }

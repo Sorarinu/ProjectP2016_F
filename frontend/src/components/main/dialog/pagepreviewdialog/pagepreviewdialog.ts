@@ -1,8 +1,8 @@
-import {Component} from '../../../../vue-typed/vue-typed';
+import {Component} from 'src/vue-typed/vue-typed';
 
 /**
- * SearchDialog
- * ブックマーク検索ダイアログ
+ * PagePreviewDialog
+ * ブックマークのプレビューをオーバーレイ表示するダイアログ
  */
 require('./searchdialog.scss');
 @Component({
@@ -11,7 +11,7 @@ require('./searchdialog.scss');
         modal: require('vue-strap').modal
     }
 })
-export class SearchDialog {
+export class PagePreviewDialog {
 
     show : boolean;
 

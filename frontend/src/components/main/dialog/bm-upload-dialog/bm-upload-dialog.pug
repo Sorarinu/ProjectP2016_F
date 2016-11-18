@@ -1,0 +1,17 @@
+#bmdeletedialog
+    modal(
+        mediam,
+        :show="show",
+        backdrop="false"
+    )
+        div(slot="modal-header", class="modal-header")
+            button.close(@click="closeDialogAct")
+                span &times;
+            h4.modal-title ブックマークファイルアップロード
+        div(slot="modal-body", class="modal-body")
+            .form-group
+                label File
+                input.form-control(type="file" v-model="filePath")
+        div(slot="modal-footer", class="modal-footer")
+            button.btn.btn-default(@click="closeDialog") Cancel
+            button.btn.btn-primary(@click="upload", :disable="filePath.length === 0") Upload

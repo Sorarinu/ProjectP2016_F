@@ -1,2 +1,17 @@
 #bmdetail
-    h2 bmdetail component
+    .single(v-if="selectBMIds.length <= 1")
+        h4
+         i(v-show="getBM().folder").fa.fa-folder-open-o
+         | {{ getBM().title }}
+        table
+            tr
+                th url
+                td: a(:href="getBM().url") {{getBM().url}}
+            tr
+                th regDate
+                td {{getBM().regDate.toDateString() }}
+            tr
+                th detail
+                td {{getBM().detail }}
+    .multi(v-if="selectBMIds.length > 1")
+        h4 {{selectBMIds.length}} 件のブックマーク

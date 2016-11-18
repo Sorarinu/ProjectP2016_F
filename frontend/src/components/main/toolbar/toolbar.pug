@@ -1,2 +1,2 @@
-#toolbar
-    button.btn.btn-primary(@click=""): i.fa.fa-2x.fa-search
+#toolbar(v-show="!bookmarkEmpty")
+    button.btn.btn-primary(@click="openSearchDialogAct"): i.fa.fa-2x.fa-search

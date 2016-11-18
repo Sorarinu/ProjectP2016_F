@@ -58,6 +58,21 @@ export function getShowBookmarks(state : State) : Bookmark[] {
     return state.bookmarkRoot.search(dirID).bookmark;
 }
 
+export function getOpenDirId(state: State) : number {
+    return state.openBookmarkDirId;
+}
+
+
+export function getSelectedBMIds(state : State) : number[] {
+    return state.selectBMIds;
+}
+
+export function getSelectBMs(state : State) : Bookmark[] {
+    const selectIds : number[] = getSelectedBMIds(state);
+    return selectIds.map((id: number) => {
+        return getBookmark(state, id);
+    });
+}
 
 /**
  * Storeから指定したBookmarkを得る.
@@ -69,4 +84,17 @@ export function getBookmark(state : State , bmId : number) {
     return state.bookmarkRoot.searchAll(bmId);
 }
 
+
+
+export function getDeleteDialogShow(state : State) {
+    return state.showBMDeleteDialog;
+}
+
+export function getSearchDialogShow(state : State) {
+    return state.showSearchDialog;
+}
+
+export function getUploadDialogShow(state : State) {
+    return state.showUploadDialog;
+}
 

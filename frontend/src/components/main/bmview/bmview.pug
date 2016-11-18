@@ -1,8 +1,5 @@
-#bmview
-    #empty-message(v-if="bookmarkEmpty")
-        p bookmarkがありませんよ。あっぷろーどしてね　
-        p (やりかたとか詳しく載せる)
-        button.btn-primary.btn-lg(@click="uploadBookmark()") BookmarkUpload
+#bmview(@contextmenu="contextmenu($event)",@click="contextMenuClose")
+    include ./empty-message.pug
     #bm-icons(v-if="!bookmarkEmpty")
         bm-icon(
             v-for="bm in bookmarks",
@@ -12,3 +9,9 @@
             @dragover="onDragOver($event, bm)",
             @drop="onDrop($event, bm)",
         )
+    .context-menu(v-show="showContextMenu", :style="posStyle")
+        button.btn.btn-default(@click="addFolder") フォルダ追加
+
+    bm-delete-dialog
+    search-dialog
+    bm-upload-dialog

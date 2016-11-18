@@ -3,4 +3,12 @@
   ul{
     margin:4px;
   }
+  a{
+    &.active{
+      pointer-events: none;
+      cursor: default;
+      text-decoration: none;
+      color: gray;
+    }
+  }
 }

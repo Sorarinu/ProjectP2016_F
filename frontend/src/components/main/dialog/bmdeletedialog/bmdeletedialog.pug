@@ -1,0 +1,18 @@
+#bmdeletedialog
+    modal(
+        mediam,
+        :show="show",
+        backdrop="false"
+    )
+        div(slot="modal-header", class="modal-header")
+            button.close(@click="closeDialogAct")
+                span &times;
+            h4.modal-title Confilm
+        div(slot="modal-body", class="modal-body")
+            .media
+                .media-left
+                    i.fa.fa-2x.fa-exclamation-triangle
+                .media-body 削除してもよろしいですか？
+        div(slot="modal-footer", class="modal-footer")
+            button.btn.btn-default(@click="closeDialogAct") Cancel
+            button.btn.btn-danger(@click="deleteBookmark") OK

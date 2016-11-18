@@ -1,8 +1,11 @@
-import {Component, Action, Getter} from '../../../vue-typed/vue-typed';
+import {Component, Action, Getter} from 'src/vue-typed/vue-typed';
 import {BmIcon} from './bmicon/bmicon';
-import {bookmarkIsEmpty, getShowBookmarks} from '../../../vuex/getter';
-import {Actions} from '../../../vuex/actions';
-import {Bookmark} from '../../../model/bookmark';
+import {bookmarkIsEmpty, getShowBookmarks} from 'src/vuex/getter';
+import {Actions} from 'src/vuex/actions';
+import {Bookmark} from 'src/model/bookmark';
+import {BmDeleteDialog} from '../dialog/bmdeletedialog/bmdeletedialog';
+import {SearchDialog} from '../dialog/searchdialog/searchdialog';
+import {BmUploadDialog} from '../dialog/bm-upload-dialog/bm-upload-dialog';
 /**
  * BmView Component
  * ブックマーク表示コンポーネント.
@@ -11,7 +14,10 @@ require('./bmview.scss');
 @Component({
     template: require('./bmview.pug'),
     components: {
-        BmIcon
+        BmIcon,
+        BmDeleteDialog,
+        SearchDialog,
+        BmUploadDialog
     }
 })
 export class BmView {
@@ -27,6 +33,25 @@ export class BmView {
     // fetchでモックのBM読まれてストアに追加される.
     @Action(Actions.fetchBookmark)
     uploadBookmark() {return ; }
+
+    showContextMenu : boolean;
+    posStyle : PosStyle;
+
+    data() {
+
+        this.showContextMenu = false;
+
+        this.posStyle = {
+            position: 'absolute',
+            top: '0px',
+            left: '0px'
+        };
+
+        return {
+            showContextMenu: this.showContextMenu,
+            posStyle : this.posStyle,
+        };
+    }
 
 
     private dragNow : Bookmark;
@@ -64,6 +89,9 @@ export class BmView {
         e.preventDefault();
     }
 
+
+
+
     /**
      * Dropでコールされるイベントハンドラ.
      * @param e
@@ -91,4 +119,42 @@ export class BmView {
     moveBookmark(from: number, to: number) {
         return;
     }
+
+
+    contextmenu(e: MouseEvent) {
+        this.posStyle.left = e.clientX + 'px';
+        this.posStyle.top = e.clientY + 'px';
+
+        // 次にどこかのcontextmenu開くときにこれを閉じるための関数をセットし
+        // 今開いている物を閉じる
+        this.contextMenuOpenSet(this.contextMenuClose);
+
+        this.showContextMenu = true;
+        e.preventDefault();
+    }
+
+    @Action(Actions.toggleContextMenu)
+    contextMenuOpenSet(closer : () => void) {
+        return;
+    }
+
+
+    addFolder() {
+        return;
+    }
+
+    /**
+     * コンテキストメニュー閉じる.
+     */
+    contextMenuClose() {
+        this.showContextMenu = false;
+    }
 }
+
+interface PosStyle {
+    position : string;
+    left : string;
+    top : string;
+}
+
+

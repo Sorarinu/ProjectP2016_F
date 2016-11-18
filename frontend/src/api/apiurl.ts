@@ -17,4 +17,5 @@ export namespace ApiUrl {
     export const BOOKMARK_UPLOAD = '/api/v1/bookmarks/upload';
     export const BOOKMARK_EXPORT = '/api/v1/bookmarks/export';
 
+    export const BOOKMARK_SIMIRARY = 'api/v1/bookmarks/similar';
 }
