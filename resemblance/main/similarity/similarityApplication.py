@@ -5,8 +5,9 @@ import json
 from functools import wraps
 
 from flask import Flask, abort, request, Response
-from resemblance.main.similarity.api.search.loadModel import LoadModel
+from resemblance.main.similarity.api.search.loadModel import LoadModelFlag
 from resemblance.main.similarity.api.search.scraping import Scraping
+from resemblance.main.similarity.api.tag.loadModel import LoadModelTag
 
 from resemblance.main.similarity.api.search.genModel import CreateModel
 from resemblance.main.similarity.conf.constants import *
@@ -40,7 +41,7 @@ def add_flag():
     for bookmark_data in data['bookmark']:
         page = Scraping(bookmark_data['url']).create_scraping_file()
         CreateModel(page).create_model()
-        flag = LoadModel(MODEL, data['search_word']).load_model_similar()
+        flag = LoadModelFlag(MODEL, data['search_word']).load_model_similar_flag()
         bookmark_data['similar_flag'] = flag
     return data
 
@@ -53,5 +54,23 @@ def similarity_search():
     return Response(response, mimetype='application/json')
 
 
+@app.route('/api/v1/tags/', methods=['POST'])
+@consumes('application/json')
+def similarity_tag():
+    dict_data = add_tag()
+    response = json.dumps(dict_data, ensure_ascii=False, sort_keys=True)
+    return Response(response, mimetype='application/json')
+
+
+def add_tag():
+    data = eval(codecs.decode(request.data, 'utf-8'))
+    for bookmark_data in data['bookmark']:
+        page = Scraping(bookmark_data['url']).create_scraping_file()
+        CreateModel(page).create_model()
+        tag = LoadModelTag(MODEL, data['search_word']).load_model_similar_tag()
+        bookmark_data['tags'] = tag
+    return data
+
+
 if __name__ == '__main__':
-    app.run()
+    app.run(port=8080)

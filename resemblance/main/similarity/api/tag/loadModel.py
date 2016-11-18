@@ -1,28 +1,25 @@
 # coding:utf-8
 from gensim.models import word2vec
 
-class LoadModelFlag(object):
+class LoadModelTag(object):
     def __init__(self, fname, folder_word):
         self.fname = fname
         self.folder_word = folder_word
 
-    def load_model_similar_flag(self):
+    def load_model_similar_tag(self):
         # 分かち書きしてmodelファイルを生成する。
         load = word2vec.Word2Vec.load(self.fname)
-        isFeature = False
+        tag = []
         try:
-            results = load.most_similar(positive=[self.folder_word], topn=30)
+            results = load.most_similar(positive=[self.folder_word], topn=5)
         except TypeError:
-            return isFeature
+            return tag
         except KeyError:
-            return isFeature
+            return tag
         else:
             for x in results:
-                if x[1] <= 0.9:
-                    continue
-                else:
-                    isFeature = True
-            return isFeature
+                tag.append(x[0])
+            return tag
 
 
 
