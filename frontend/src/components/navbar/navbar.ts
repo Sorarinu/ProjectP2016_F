@@ -10,7 +10,7 @@ import {ServiceFactory} from '../../api/service-factory';
 require('./navbar.scss');
 
 @Component({
-    template: require('./navbar.pug'),
+    template: require('./navbar.html'),
     components: {
         navbar : require('vue-strap').navbar
     }
