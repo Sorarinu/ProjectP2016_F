@@ -2,7 +2,7 @@
 
 import MeCab
 import re
-from resemblance.main.word2vec_sample.constants import *
+from resemblance.main.similarity.conf.constants import *
 
 
 class MeacabWakati(object):

@@ -1,0 +1,181 @@
+var _U = "undefined";\r\n   var g_HttpRelativeWebRoot = "/ocom/";\r\n   var SSContributor = false;\r\n   var SSForceContributor = false;\r\n   var SSHideContributorUI = false;\r\n   var ssUrlPrefix = "/jp/";\r\n   var ssUrlType = "1";\r\n   var ssDomainNum = "631ac958";\r\n   var g_navNode_Path = new Array();\r\n       g_navNode_Path[0] = \'ocomjp_home\';\r\n       g_navNode_Path[1] = \'ocomjp_ojava\';\r\n       g_navNode_Path[2] = \'ocomjp_ojava_ovw\';\r\n   var g_ssSourceNodeId = "ocomjp_ojava_ovw";\r\n   var g_ssSourceSiteId = "ocomjp";
+<ssinfo>\r\n    <fragmentinstance id="fragment1" fragmentid="universal-metatag" library="server:UNIVERSAL-FRAGMENTS">\r\n    </fragmentinstance>\r\n\r\n    <fragmentinstance id="fragment2" fragmentid="compass-commonassets" library="server:COMPASS-COMMONASSETS"></fragmentinstance>\r\n\r\n    <fragmentinstance id="fragment3" fragmentid="xdomain-compass-header" library="server:XDOMAIN-COMPASS-HEADER"></fragmentinstance>\r\n\r\n    <fragmentinstance id="fragment5" fragmentid="MosaicTabs" library="server:MOSAICTABS"></fragmentinstance>\r\n\r\n    <fragmentinstance id="fragment6" fragmentid="xdomain-compass-footer" library="server:XDOMAIN-COMPASS-FOOTER"></fragmentinstance>\r\n\r\n    <fragmentinstance id="fragment7" fragmentid="sitecatalyst-xdomain-standard" library="server:SITECATALYST-XDOMAIN-STANDARD"></fragmentinstance>\r\n\r\n    <fragmentinstance id="fragment8" fragmentid="UniversalSiteStudioManager" library="server:UNIVERSAL_SITE_STUDIO_MANAGER">\r\n    </fragmentinstance>\r\n      <fragmentinstance  id="fragment9" fragmentid="ATGChat" library="server:ATG_CHAT">\r\n        \r\n      </fragmentinstance>\r\n      <fragmentinstance  id="fragment10" fragmentid="x1-xdomain-pixel" library="server:X1-XDOMAIN-PIXEL">\r\n        \r\n      </fragmentinstance>\r\n\r\n     </ssinfo>
+Java Software | Oracle
+.menu-otn {display:none !important;}
+Oracle
+国を選択
+国を選択
+コミュニティ
+お客様別情報
+目的別情報
+ようこそ
+お客様情報
+サインアウト
+サインイン/登録
+ヘルプ
+製品
+ソリューション
+ダウンロード
+価格/ライセンス
+サポート
+研修/資格
+パートナー
+会社概要
+OTN
+Oracle
+Japan
+Oracle and Java
+概要
+Java
+ソフトウェア
+Javaで未来を創造
+Javaは世界No.1のプログラミング言語です。
+開発者向けJava
+エンドユーザー向けJava
+Java Embedded for IoT (2:51)
+IoTのリアルタイムデータ収集・分析力 (事例ビデオ2:51)
+概要
+役割
+テクノロジー
+始めよう
+アプリケーション開発の改革
+あなたの会社は準備ができていますか?
+Javaは、IoT、エンタープライズ・アーキテクチャ、クラウド・コンピューティングに最適なプログラミング言語として、コストの削減、イノベーションの促進、アプリケーション・サービスの改善を可能にします。
+Java 8 Launchビデオ（54:24）
+30億台
+にのぼる自宅や自動車、オフィスのデバイスでJavaが稼動しています。
+Java 8とIoT（ビデオ、10:58）
+97%
+のエンタープライズ・デスクトップでJavaが稼動しています。
+900万人
+のJava開発者が世界中に存在します。
+70億枚
+のJava Cardが販売されています。
+参考資料
+ホワイトペーパー
+Using Java to Control IoT Development Costs
+Javaでコストを節約する方法
+1. 開発リソース 2. プロジェクトの短縮 3. スケジュールの厳格化 4. 開発者コスト
+ホワイトペーパーを読む(PDF)
+開く
+閉じる
+ビデオ
+Oracle Java SE Advanced
+Keep Critical Applications Running at Peak Efficiency
+アプリケーションのパフォーマンス問題を監視、解決することで、ビジネスの継続性を確保し、SLA契約を履行します。
+ビデオを見る (3:08)
+開く
+閉じる
+イベント
+JavaOne Latin America,
+2015年6月23～25日
+Javaによるイノベーション
+JavaOne Latin America 2015では、OracleやJavaのコミュニティ・メンバーが充実したコンテンツをお送りします。
+詳細
+開く
+閉じる
+役割を選択してください
+技術者
+エグゼクティブ
+教師
+エンドユーザー
+V2COM、OracleとJavaでソリューションを改善
+"embedBrightcove('100px100p', false, 'single', '3857780301001');"
+V2COMは、公共事業用の接続ソリューションを提供しています。レガシー環境では対処すべきプロトコルがあまりに多岐にわたっていたため、市場投入の時間短縮にはJavaがまさに理想的でした（1:06）。
+Eclipse Information Technologies：スマートメータリングのケーススタディ
+「当社では、Cinterionソリューションで使用するOracle Java ME Embeddedをハードウェアに統合しています。このOracle Java ME Embeddedのおかげで、当社のデバイスは市場でもっとも優れたスマートメータリングと価格性能比を実現できるのです。また、オープンスタンダード手法によってアプリケーションの耐久性も確保されています」
+—Eclipse Information Technologies 事業開発マネジャー  Cigdem Unalan氏
+ケーススタディを読む
+オーストリアのE-Healthシステム：Java主導
+「私たちがJavaを選んだのは、プラットフォームとしての優位性ゆえです。とくに、各種CPUやハードウェア・プラットフォーム間の移植性は群を抜いています」
+—SVC ソフトウェア開発/セキュリティ担当ディレクター Rainer Shugerl氏
+ケーススタディを読む（PDF）
+トピックスとトレンド
+始めよう
+開発者向けJavaをダウンロード
+エンドユーザー向けJavaをダウンロード
+営業に問い合わせる
+Oracle Cloud
+Oracle Cloudについて
+無料トライアルはこちら
+DaaSについて
+SaaSについて
+PaaSについて
+IaaSについて
+Private Cloudについて
+Managed Cloudについて
+Java
+Javaについて
+エンドユーザー向けJavaダウンロード
+開発者向けJavaダウンロード
+開発者向けJavaドキュメント
+Java Cloud Service
+Java Magazine日本版
+顧客事例/イベント
+顧客事例
+イベント
+Oracle OpenWorld
+JavaOne
+コミュニティ
+ブログ
+掲示板
+Wikis
+Oracle ACEs
+ユーザーグループ (US)
+Social Media Channels (US)
+サービス
+My Oracle Support
+研修/資格
+パートナー登録
+Specialization認定パートナー
+お問い合わせ
+電話: 0120-155-096
+ご質問・ご相談はこちら
+Global Contacts
+お問い合わせ
+Partner Support
+Integrated Cloud Applications & Platform Services
+ニュースレター
+採用
+お問い合わせ
+サイトマップ
+法務関連
+ウェブサイトのご使用条件
+プライバシー
+Oracle Mobile (US)
+Facebook
+Twitter
+LinkedIn
+Google+
+YouTube
+RSSフィード一覧
+87020e8b-9300-4219-b0aa-47f7a4c93362
+Y2:87020e8b-9300-4219-b0aa-47f7a4c93362
+問合せ
+ソーシャル
+お問い合わせ
+エキスパートがお手伝いいたします
+0120-155-096
+ご質問・ご相談はこちら
+Global Contacts
+共有
+Facebook
+Twitter
+LinkedIn
+Google Plus
+フォロー
+Facebook
+Twitter
+LinkedIn
+Google Plus
+Youtube
+オラクルをフォロー
+Facebook
+Twitter
+LinkedIn
+Google Plus
+Youtube
+Oracle Social Media Directory
+Oracle RSS Directory
+var atg_fName = "";\n\tvar atg_lName = "";\n\tvar atg_eMail = "";\n\tvar atg_company = "";\n\t//If User is logged in\n\tif (USER.guid) {\n\t\t//Read user properties from cookie object USER\n\t\tatg_fName = USER.firstname;\n\t\tatg_lName = USER.lastname;\n\t\tatg_eMail = USER.username;\n\n\t\t//Get cookie value ORA_WWW_PERSONALIZE and tokenize it to get value for cn (company name)\n\t\tvar personalizeCookie = (function(){\n\t\t\tvar i,x,y,ARRcookies=document.cookie.split(";");\n\t\t\tfor (i=0;i<ARRcookies.length;i++) {\n\t\t\t\tx=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));\n\t\t\t\ty=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);\n\t\t\t\tx=x.replace(/^\\s+|\\s+$/g,"");\n\t\t\t\tif (x=="ORA_WWW_PERSONALIZE") {\n\t\t\t\t\treturn unescape(y);\n\t\t\t\t}\n\t\t\t}\n\t\t})();\n\t\tjQuery(document).ready(function()\n\t\t{ \n\t\t//check truste to state\n\t\t\ttry {\n\t\t\tvar trustchk = truste.cma.callApi("getConsentDecision","oracle.com");\n\t\t\ttrustchk = (trustchk.consentDecision != 1) ? true : false;\n\t\t \t  }\n\t\t\tcatch(err){\n\t\t\tvar trustchk = true; // LOCAL TESTING -> set to true\n\t\t    \t}\n\t\t\n\t\tif(personalizeCookie != null && trustchk)\n\t\t{\n\t\t\tvar cPair = ""; \n\t\t\tvar cName = "" \n\t\t\tvar cValue = ""; \n\t\t\tvar all_values = personalizeCookie.split( \'~\' ); \n\t\t\tfor (var i = 0; i < all_values.length; i++ )\n\t\t\t{ \n\t\t\t\tcPair = all_values[i].split( \':\' ); \n\t\t\t\tcName = cPair[0].replace(/^\\s+|\\s+$/g, \'\'); \n\t\t\t\tif (cName == "cn")\n\t\t\t\t{ \n\t\t\t\t\tcValue = unescape(cPair[1].replace(/^\\s+|\\s+$/g, \'\')); \n\t\t\t\t\tbreak; \n\t\t\t\t} \n\t\t\t} \n\t\tif (cValue.length != 0)\n\t\t\t{ \n\t\t\t\tatg_company = cValue; \n\t\t\t} \n\t\t} \n\t\t});\n}
+var atg_country = "US";

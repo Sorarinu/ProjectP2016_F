@@ -1,0 +1,172 @@
+v AR U UND EF INED RN v ARG H TTP R ela Tiv e Web Roo TOC om RN v AR SS C ON t RI BU TOR False RN v AR SS F ORC e C ON t RI BU TOR False RN v AR SS HIDE C ON t RI BU TOR UI False RN v ARSS UrlPrefixjprnvarssUrlType 1 rnvarssDomainNum 631 AC 958 RN v ARG NA v N OD e Path newArrayrngnavNodePath 0 ocomjphomerngnavNodePath 1 ocomjpojavarngnavNodePath 2 OC om JPO Java OVW RN v ARG SS Source N OD e I Do COM JPO Java OVW RN vargssSourceSiteIdocomjp
+SSI NF o RN fragment instanceidfragment 1 fragment id Universal Me TA TAG Library SE RV ER UN IV ER SAL FRAGMENTS RN fragment INST an CERN RN fragment instanceidfragment 2 fragment id COMPASS Common ASSE TS Library SE RV ER COMPASS COM MONA SSE TS fragment INST an CERN RN fragment instanceidfragment 3 fragment id xD om AI NC om PAS SHE ADER Library SE RV ER X DOM AI NC O MPA SS HEAD ER fragment INST an CERN RN fragment instanceidfragment 5 fragment id Mosaic T ABS Library SE RV ER MOS AIC TA BS fragment INST an CERN RN fragment instanceidfragment 6 fragment id xD om AI NC om PAS SFO OT ER Library SE RV ER X DOM AI NC O MPA SS FO OT ER fragment INST an CERN RN fragment instanceidfragment 7 fragment id SI te Catalyst xD oma INST AND ARD Library SE RV ER SIT EC AT AL YS TX DOM AI NST AND ARD fragment INST an CERN RN fragment instanceidfragment 8 fragment id Universal S It e Studio THE MAN AG ER Library SE RV ER UN IV ER SAL SIT EST UD IO MAN AG ER RN fragment INST an CERN fragment instanceidfragment 9 fragment id AT GC h at Library SE RV ER AT GC H AT RN RN fragment INST an CERN fragment instanceidfragment 10 fragment id X1 xD omainpixellibraryserverX 1 X DOM AI NP IX EL RN RN fragment instancernrnssinfo
+JavaSoftwareOracle
+Me nuotndisplaynoneimportant
+Oracle
+国 選択
+国 選択
+コミュニティ
+お客様 別 情報
+目的 別 情報
+お客様 情報
+サインアウト
+サインイン 登録
+ヘルプ
+製品
+THE SOLUTION
+ダウンロード
+価格 ライセンス
+サポート
+研修 資格
+パートナー
+会社 概要
+OTN
+Oracle
+JAPAN
+OracleandJava
+概要
+Java
+ソフトウェア
+Java 未来 創造
+Java 世界 No 1 プログラミング言語
+開発者 向け Java
+エンドユーザー 向け Java
+JavaEmbeddedforIoT 251
+IoT リアルタイム データ 収集 分析 力 事例 ビデオ 251
+概要
+役割
+テクノロジー
+アプリケーション 開発 改革
+あなた 会社 準備
+JavaIoT エンタープライズアーキテクチャ クラウド・コンピューティング 最適 プログラミング言語 コスト削減 イノベーション 促進 アプリケーション サービス 改善 可能
+Java 8 Launch ビデオ 5424
+30億 台
+自宅 自動車 オフィス デバイス Java 稼動
+Java 8 IoT ビデオ 1058
+97
+エンタープライズ DESKTOP Java 稼動
+900万人
+Java 開発者 世界中 存在
+70億 枚
+Java Card 販売
+参考 資料
+ホワイトペーパー
+U Sing Java TO C ontrolIoTDevelopmentCosts
+Java コスト 節約 方法
+1 開発 リソース 2 プロジェクト 短縮 3 スケジュール 厳格化 4 開発者 コスト
+ホワイトペーパー PDF
+ビデオ
+Oracle Java SE Advanced
+K e EP C RI ギアル AL APPLICATION sRunningatPeakEfficiency
+アプリケーション パフォーマンス 問題 監視 解決 こと ビジネス 継続 性 確保 SLA 契約 履行
+ビデオ 308
+イベント
+JavaOneLatinAmerica
+2015年 6月 23 ～ 25日
+Java イノベーション
+JavaOneLatinAmerica 2015 OracleJava コミュニティ メンバー 充実 コンテンツ お送り
+詳細
+役割 選択
+技術者
+エグゼクティブ
+教師
+エンドユーザー
+V2 COMOracleJava ソリューション 改善
+embedBrightcove 100 PX 100 pfalsesingle 3857780301001
+V2 COM 公共事業 用 接続 ソリューション 提供 レガシー 環境 対処 プロトコル 多岐 ため 市場 投入 時間短縮 Java 理想的 106
+E クリップコーポレーション seInformationTechnologies スマートメータリングケーススタディ
+当社 Cinterion ソリューション 使用 OracleJavaMEEmbedded ハードウェア 統合 OracleJavaMEEmbedded おかげ 当社 デバイス 市場 スマートメータリング 価格性能比 実現 の オープン スタンダード 手法 アプリケーション 耐久性 確保
+— E クリップコーポレーション seInformationTechnologies 事業 開発 マネジャー CigdemUnalan 氏
+ケーススタディ
+オーストリア EHealth システム Java 主導
+私たち Java の プラットフォーム 優位 性 ゆえ 各種 CPU ハードウェア プラットフォーム 間 移植性 群
+— SVC ソフトウェア開発 セキュリティ 担当 ディレクター RainerShugerl 氏
+ケーススタディ PDF
+トピックス トレンド
+開発者 向け Java ダウンロード
+エンドユーザー 向け Java ダウンロード
+営業
+Oracle CLOUD
+Oracle CLOUD
+無料 トライアル こちら
+DaaS
+SaaS
+PaaS
+IaaS
+PrivateCloud
+ManagedCloud
+Java
+Java
+エンドユーザー 向け Java ダウンロード
+開発者 向け Java ダウンロード
+開発者 向け Java ドキュメント
+JavaCloudService
+Java Magazine 日本版
+顧客 事例 イベント
+顧客 事例
+イベント
+Oracle OpenWorld
+JavaOne
+コミュニティ
+blog
+掲示板
+Wikis
+OracleACEs
+ユーザーグループ US
+SocialMediaChannelsUS
+サービス
+MyOracleSupport
+研修 資格
+パートナー 登録
+Specialization 認定 パートナー
+問い合わせ
+電話 0120155096
+質問 相談 こちら
+GlobalContacts
+問い合わせ
+PartnerSupport
+I NT EG RA TED CLOUD APPLICATION sPlatformServices
+ニュースレター
+採用
+問い合わせ
+サイトマップ
+法務 関連
+WEBサイト 使用 条件
+プライバシー
+OracleMobileUS
+Facebook
+Twitter
+LinkedIn
+Google
+YouTube
+RSSフィード 一覧
+87020 e 8 b 93004219 b 0 AA＝ 47 f 7 a 4 c 93362
+Y 287020 e 8 b 93004219 b 0 AA＝ 47 f 7 a 4 c 93362
+問合せ
+Socl
+問い合わせ
+エキスパート お手伝い
+0120155096
+質問 相談 こちら
+GlobalContacts
+共有
+Facebook
+Twitter
+LinkedIn
+GooglePlus
+フォロー
+Facebook
+Twitter
+LinkedIn
+GooglePlus
+Youtube
+オラクルフォロー
+Facebook
+Twitter
+LinkedIn
+GooglePlus
+Youtube
+Oracle SocialMediaDirectory
+OracleRSSDirectory
+v Ar at GF N Ame NTV Ara TGL N Ame NTV Ar at GE Mail NTV Ara TG Comp Any NT I f U SERI SL Ogg ED INN TIF USER GU IDN TT R EAD USER prop ER TIE SF ROM Cookie object USER NTT AT GF N Ame USER FIRST name NTT AT GL N Ame USER LAST name NTT AT GE Mail USER USER NAM enn TT G ET Cookie v AL ue O RA WWW PERSONA LIZ E AND 東建コーポレーション Ize Itto GE TV AL ue for CN Comp Any name NT TV Ar PERSONA LIZ e Cookie FUN C，T IO NNT TTV Ar Ixy AR R Cookie SDO cumentcookiesplitntttfori 0 iA RR Cookie SL EN GT hinttttxARRcookiesisubstr 0 AR R Cookie SI Index O FN TT TTY AR R Cookie SI substrARRcookiesiindexOf 1 NT TT TX x REPL ACE SSG NTT TT if x O RA WWW PERSONA LIZ E NT TT TTR ET URN UN Escape y NT TT TNT TTN TTN TT jQuery DOC UME NT Ready FUN C，T IO NNT TNT TC he CK TRUSTe TO State NTT TT ry NTT TVA ReTweet RUST c HKT RUST ECMA CA LL A PIG ET C ON SE NT De CI SION Oracle COM NTT TTR us TC hktrustchkconsentDecision 1 TRUE False NTT TNT TTC at Cher RN TT TVA ReTweet RUST c HKT RU e LO CA LTE STING SET TO TRUE NTT TNT TNT TIF PERSONA LIZ e Cookie NULL trust c h k NT TNT TTV Arc P AIR NTT TV Arc N AM ent TTV Arc V AL ue NTT TV Ar AL LV AL UES PERSONA LIZ eCookiesplitntttforvari 0 IA LL v AL UES len GT HINT TTN TT TTC P AIR AL LV AL uesisplitnttttcNamecPair 0 REPL ACE SSG NTT TT IFC N Ame CNN TT TT ntttttcValueunescapecPair 1 REPL ACE SSG NT TT TT BR EA k NT tttntttnttifcValuelength 0 NT TTN TT TT at gcompanycValuentttnttnttn
+varatgcountryUS

@@ -3,10 +3,10 @@
 import json
 import codecs
 from functools import wraps
-from resemblance.main.word2vec_sample.constants import *
-from resemblance.main.word2vec_sample.scraping import Scraping
-from resemblance.main.word2vec_sample.genModel import CreateModel
-from resemblance.main.word2vec_sample.loadModel import LoadModel
+from resemblance.main.similarity.conf.constants import *
+from resemblance.main.similarity.api.scraping import Scraping
+from resemblance.main.similarity.api.genModel import CreateModel
+from resemblance.main.similarity.api.loadModel import LoadModel
 
 from flask import Flask, abort, request, Response
 

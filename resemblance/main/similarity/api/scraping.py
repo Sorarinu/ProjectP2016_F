@@ -2,7 +2,7 @@
 
 from bs4 import BeautifulSoup
 import urllib.request
-from resemblance.main.word2vec_sample.constants import *
+from resemblance.main.similarity.conf.constants import *
 
 
 class Scraping(object):
