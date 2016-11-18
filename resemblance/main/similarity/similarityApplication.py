@@ -29,7 +29,7 @@ def consumes(content_type):
 
 @app.route('/api/v1/', methods=['POST'])
 @consumes('application/json')
-def hello_cloudBM():x
+def hello_cloudBM():
     test_data = codecs.decode(request.data, 'utf-8')
     json_data = json.dumps(test_data, ensure_ascii=False, sort_keys=True)
     return Response(json_data, mimetype='application/json')
