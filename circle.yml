@@ -1,0 +1,33 @@
+general:
+    branches:
+      ignore:
+        - gh-pages
+
+machine:
+    timezone: Asia/Tokyo
+
+dependencies:
+    cache_directories:
+      - ~/cache
+    override:
+      - mkdir -p ~/cache
+      # node_moduelsのコピーとかさせる
+      - bash circle.sh
+      # setup
+      - cd frontend && npm run setup
+test:
+    override:
+      #テストコマンドの上書き ここにテストのコマンドを
+      - cd frontend && npm run build
+      - cd frontend && npm run test
+
+deployment:
+    deploy:
+        branch: master
+        commands:
+          - git config --global user.name "CircleCI"
+          - git config --global user.email "circleci@example.com"
+          - cd frontend && npm run build
+          - cp circle.yml frontend/dist/circle.yml
+          - cd frontend && npm run deploy #Github-pagesにデプロイ
+          - bash csc-deploy.sh #CSCにデプロイ
