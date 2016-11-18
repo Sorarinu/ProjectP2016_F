@@ -10,13 +10,9 @@ class MeacabWakati(object):
     def __init__(self, file_name):
         self.file_name = file_name
 
-    # def preprocessing(self, sentence):
-    #     return sentence.rstrip()
-
     def extract_noun(self, sentence):
         tagger = MeCab.Tagger()
         nouns = []
-        # sentence = self.preprocessing(sentence)
         sentence = re.sub(re.compile("[!-/:-@[-`{-~]"), '', sentence)
         for chunk in tagger.parse(sentence).splitlines()[:-1]:
             (surface, feature) = chunk.split('\t')
