@@ -1,5 +1,6 @@
 import {State} from './store';
 import {Bookmark} from '../model/bookmark';
+import {BookmarkSimilarityValue} from '../model/bookmark-similarity';
 /**
  * Vuex　すべてのgetter関数のエクスポート.
  */
@@ -72,6 +73,21 @@ export function getSelectBMs(state : State) : Bookmark[] {
     return selectIds.map((id: number) => {
         return getBookmark(state, id);
     });
+}
+
+/**
+ * ブックマーク検索結果でTrueと判定されたものを抽出する.
+ * @param state
+ * @returns {Bookmark[]}
+ */
+export function getBookmarkSearchRes(state : State) : Bookmark[] {
+    const res : Bookmark[] = state.bookmarkSimilarityRes.bookmark
+            .filter((v: BookmarkSimilarityValue) => {
+                return v.similar_flag;
+            }).map((v: BookmarkSimilarityValue) => {
+                return getBookmark(state, v.id);
+            });
+    return res;
 }
 
 /**

@@ -22,6 +22,8 @@ import CLOSE_SEARCH_DIALOG = MutationTypes.CLOSE_SEARCH_DIALOG;
 import OPEN_SEARCH_DIALOG = MutationTypes.OPEN_SEARCH_DIALOG;
 import OPEN_UPLOAD_DIALOG = MutationTypes.OPEN_UPLOAD_DIALOG;
 import CLOSE_UPLOAD_DIALOG = MutationTypes.CLOSE_UPLOAD_DIALOG;
+import SET_BOOKMARK_SEARCH_RES = MutationTypes.SET_BOOKMARK_SEARCH_RES;
+import {BookmarkSimilarity} from '../model/bookmark-similarity';
 
 Vue.use(Vuex.install);
 
@@ -69,6 +71,7 @@ export class State {
     openBookmarkDirId : number;
 
 
+    bookmarkSimilarityRes : BookmarkSimilarity;
 
 
     // ui state ---------
@@ -96,6 +99,9 @@ export class State {
             Number.MAX_VALUE,
             null
         );
+
+        this.bookmarkSimilarityRes = new BookmarkSimilarity(this.bookmarkRoot, 'hoge');
+
         this.openBookmarkDirId = Number.MAX_VALUE;
 
         this.showBMDeleteDialog = false;
@@ -163,6 +169,14 @@ const mutations : MutationTree<State> = {
 
     // ----------------------------------------------------
 
+
+    // bookmark search mutation --------------------------
+
+    [SET_BOOKMARK_SEARCH_RES] (state: State, res: BookmarkSimilarity) {
+        state.bookmarkSimilarityRes = res;
+    },
+
+    // -----------------------------------------------------
 
     // ui mutations --------------------------------------
     [TOGGLE_CONTEXT_MENU] (state: State , closer: () => void ) {

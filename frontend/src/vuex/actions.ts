@@ -4,6 +4,7 @@ import {MutationTypes} from './mutation-types';
 import {State} from './store';
 import {ServiceFactory} from '../api/service-factory';
 import {Bookmark} from '../model/bookmark';
+import {BookmarkSimilarity} from '../model/bookmark-similarity';
 
 /**
  * Vuex, すべてのAction
@@ -64,6 +65,11 @@ export class Actions {
         };
 
 
+    static addBookmark: Action<State> =
+        (store: Store<State>, parent: Bookmark, bookmark: Bookmark) => {
+            store.dispatch(MutationTypes.ADD_BOOKMARK, parent, bookmark);
+        };
+
     /**
      * ブックマークを移動する.
      * @param store
@@ -94,7 +100,7 @@ export class Actions {
         (store: Store<State>, id: number) => {
             store.dispatch(MutationTypes.RESET_SELECT_BOOKMARK);
             store.dispatch(MutationTypes.ADD_SELECT_BOOKMARK, id);
-        }
+        };
 
     /**
      * ブックマークを選択状態にする
@@ -119,6 +125,23 @@ export class Actions {
 
             store.dispatch(MutationTypes.RESET_SELECT_BOOKMARK);
         };
+
+    /**
+     * ブックマークを類似度APIに問い合わせ検索する
+     * @param store
+     */
+    static searchBookmark : Action<State> =
+        (store: Store<State>, bmf: Bookmark , searchWord: string) => {
+            const service = ServiceFactory.getBookmarkSimirarityService();
+            service.search(searchWord, bmf, {
+                ok : (data: BookmarkSimilarity) => {
+                    store.dispatch(MutationTypes.SET_BOOKMARK_SEARCH_RES, data);
+                } ,
+                failed : (message: String) => {
+                    store.dispatch(MutationTypes.SET_BOOKMARK_ERROR, message);
+                }
+            });
+        }
 
 
 

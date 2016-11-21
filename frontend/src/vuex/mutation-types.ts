@@ -19,6 +19,9 @@ export namespace MutationTypes {
 
     export const MOVE_BOOKMARK = 'MOVE_BOOKMARK';
 
+
+    export const SET_BOOKMARK_SEARCH_RES = 'SET_BOOKMARK_SEARCH_RES';
+
     //ui mutations
     export const TOGGLE_CONTEXT_MENU = 'SHOW_CONTEXT_MENU';
 
