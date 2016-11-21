@@ -24,13 +24,17 @@ export class SearchDialog {
 
     searchWord : string;
 
+    checkState : number[];
 
     data() {
 
         this.searchWord = '';
         this.showRes = false;
 
+        this.checkState = [];
+
         return {
+            checkState : this.checkState,
             searchWord : this.searchWord,
             showRes : this.showRes,
         };
@@ -61,10 +65,34 @@ export class SearchDialog {
     }
 
     grouping() {
+        // IDとかはActionで外部問い合わせ後にわかるから本当はこうならないけど...
+        // TODO: クソ方式です　重大なパフォーマンス悪化とかバグが懸念されます...
+        const parent = this.hierarchy[this.hierarchy.length - 1];
+
+        const newId = new Date().getMilliseconds();
+        const newFolder = new Bookmark(true, newId, parent);
+        newFolder.title = this.searchWord;
+
+        this.addBookmarkAct(parent, newFolder);
+
+        this.bookmarkSearchRes.forEach((v: Bookmark) => {
+            this.moveBookmarkAct(v.id, newId);
+        });
+
         this.closeSearchDialogAct();
+
         return;
     }
 
+    @Action(Actions.addBookmark)
+    addBookmarkAct(parent: Bookmark, child: Bookmark) {
+        return;
+    }
+
+    @Action(Actions.moveBookmark)
+    moveBookmarkAct(from: number, to: number) {
+        return;
+    }
 
 
 

@@ -60,7 +60,7 @@ export class Actions {
      */
     static openBookmarkDir: Action<State> =
         (store: Store<State>, dirID: number) => {
-            Actions.selectBookmark(store, dirID);
+            // Actions.selectBookmark(store, dirID);
             store.dispatch(MutationTypes.SET_BOOKMARK_OPEN_DIR, dirID);
         };
 
@@ -109,6 +109,17 @@ export class Actions {
      */
     static addSelectBookmark: Action<State> =
         (store: Store<State>, id: number) => {
+            // すでに選択しているブックマークは選択状態にしない.
+            if (store.state.selectBMIds.indexOf(id) !== -1) {
+                return;
+            }
+
+            // 親フォルダが選択状態にある場合一旦リセットする
+            const parentId = store.state.bookmarkRoot.search(id).parent.id;
+            if (store.state.selectBMIds.indexOf(parentId) !== -1) {
+                store.dispatch(MutationTypes.RESET_SELECT_BOOKMARK);
+            }
+
             store.dispatch(MutationTypes.ADD_SELECT_BOOKMARK, id);
         };
 

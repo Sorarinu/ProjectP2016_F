@@ -20,6 +20,7 @@
             .res(v-if="showRes")
                 h4 {{searchWord}} の検索結果　{{bookmarkSearchRes.length}} 件
                 .bookmark-item(v-for="resBM in bookmarkSearchRes")
-                    checkbox(:checked.sync="resBM.checked") {{resBM.title}}
+                    input(type="checkbox" checked="checked")
+                    a(href="resBM.url") {{resBM.title}}
         div(slot="modal-footer", class="modal-footer")
             button.btn.btn-success(v-show="showRes", @click="grouping") {{searchWord}} フォルダにまとめる
