@@ -12,11 +12,14 @@
             <li class="Menu-item">
                 <a href="#!/contact">Contact</a>
             </li>
-            <li class="Menu-item">
+            <li v-if="!signInNow" class="Menu-item">
                 <a href="#!/signup">Sign Up</a>
             </li>
-            <li class="Menu-item">
+            <li  v-if="!signInNow" class="Menu-item">
                 <a href="#!/signin">Sign In</a>
+            </li>
+            <li  v-if="signInNow" class="Menu-item">
+                <a href="#!/signin">Sign Out</a>
             </li>
         </ul>
     </nav>

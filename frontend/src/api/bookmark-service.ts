@@ -30,4 +30,12 @@ export interface BookmarkService {
      * @param requestListener
      */
     deleteBookmark(bm: Bookmark, requestListener: RequestListener) : void;
+
+    /**
+     * ブックマークファイルをサーバにアップロード。
+     * データを取得します。
+     * @param formData
+     * @param requestListener
+     */
+    uploadBookmark(formData: FormData, requestListener: RequestListener) : void;
 }

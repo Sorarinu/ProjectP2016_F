@@ -35,6 +35,25 @@ export class Actions {
             store.dispatch(MutationTypes.SIGN_OUT);
         };
 
+
+    /**
+     * ブックマークをサーバーにアップロード
+     * @param store
+     * @param data
+     */
+    static uploadBookmark: Action<State> =
+        (store: Store<State>, data: FormData) => {
+            const service = ServiceFactory.getBookmarkService();
+            service.uploadBookmark(data, {
+                ok: (data: Bookmark) => {
+                    store.dispatch(MutationTypes.GET_BOOKMARK, data);
+                },
+                failed: (message: string) => {
+                    store.dispatch(MutationTypes.SET_BOOKMARK_ERROR, message);
+                }
+            });
+        };
+
     /**
      * BookmarkをAPIコールで取得.
      * 取得したBookmarkをコミットする.

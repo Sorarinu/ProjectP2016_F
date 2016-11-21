@@ -3,6 +3,7 @@ import {ApiUrl} from './apiurl';
 import BOOKMARK = ApiUrl.BOOKMARK;
 import {Bookmark} from '../model/bookmark';
 import {BookmarkService} from './bookmark-service';
+import BOOKMARK_UPLOAD = ApiUrl.BOOKMARK_UPLOAD;
 
 /**
  * Bookmarkデータの取得、更新とかを.
@@ -65,5 +66,27 @@ export class HttpBookmarkService　implements BookmarkService {
         .fail(() => {
             return;
         });
+    }
+
+
+    uploadBookmark(formData: FormData, requestListener: RequestListener): void {
+        $.ajax({
+            method: 'POST',
+            url: ApiUrl.resolvePath(BOOKMARK_UPLOAD),
+            data: formData,
+            processData: false,
+            dataType: 'json'
+        })
+        .done((data) => {
+            console.log(data);
+            requestListener.ok(data);
+            return;
+        })
+        .fail((data) => {
+            console.log(data);
+            requestListener.failed(data);
+            return;
+        });
+
     }
 }
