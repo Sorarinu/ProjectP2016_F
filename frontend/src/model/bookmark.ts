@@ -71,15 +71,6 @@ export class Bookmark implements Validation {
     }
 
     /**
-     * Bookmarkモデルの文字列表現を規定する.
-     * @returns {string}
-     */
-    toString() : string {
-        // 必要になるまではJSONでいい
-        return JSON.stringify(this);
-    };
-
-    /**
      * BookmarkをJSONへ変換する.
      * @param rootBM BookmarkRoot要素
      * @returns {string}
