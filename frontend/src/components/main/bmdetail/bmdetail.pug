@@ -4,9 +4,12 @@
          i(v-show="getBM().folder").fa.fa-folder-open-o
          | {{ getBM().title }}
         table
-            tr
+            tr(v-if="!getBM().folder")
                 th url
                 td: a(:href="getBM().url") {{getBM().url}}
+            tr(v-if="getBM().folder")
+                th size
+                td {{getBM().getSize()}} 件のブックマーク
             tr
                 th regDate
                 td {{getBM().regDate.toDateString() }}

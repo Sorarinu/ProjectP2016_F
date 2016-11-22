@@ -13,15 +13,12 @@ import {getUploadDialogShow} from '../../../../vuex/getter';
 })
 export class BmUploadDialog {
 
+    formData : FormData;
 
-    filePath : string;
-
-    data() {
-        this.filePath = '';
-
-        return {
-            filePath: this.filePath
-        };
+    fileChange(ev: Event) {
+        console.log('called' + ev);
+        this.formData = new FormData();
+        // TODO: formdataをボタンクリックで作ってActionへ流す
     }
 
 
@@ -30,7 +27,13 @@ export class BmUploadDialog {
 
 
     upload() {
+        this.uploadBookmarkAct(null);
         this.closeDialog();
+    }
+
+    @Action(Actions.uploadBookmark)
+    uploadBookmarkAct(formData: FormData) {
+        return;
     }
 
     closeDialog() {

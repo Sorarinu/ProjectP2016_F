@@ -3,7 +3,7 @@
  */
 export class ApiUrl {
     static resolvePath(path : string) : string {
-        const BASE_PATH = 'http://localhost:8000';
+        const BASE_PATH = 'https://nxtg-t.net';
         return BASE_PATH + path;
     }
 }

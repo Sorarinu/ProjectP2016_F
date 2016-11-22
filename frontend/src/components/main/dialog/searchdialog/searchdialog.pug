@@ -18,6 +18,9 @@
                     i.fa.fa-search
                     | 検索
             .res(v-if="showRes")
-                h2 ここには　機械学習プロが　素晴らしい検索結果を　提供してくれる　らしい
+                h4 {{searchWord}} の検索結果　{{bookmarkSearchRes.length}} 件
+                .bookmark-item(v-for="resBM in bookmarkSearchRes")
+                    input(type="checkbox" checked="checked")
+                    a(href="resBM.url") {{resBM.title}}
         div(slot="modal-footer", class="modal-footer")
             button.btn.btn-success(v-show="showRes", @click="grouping") {{searchWord}} フォルダにまとめる

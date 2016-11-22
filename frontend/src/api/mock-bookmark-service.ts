@@ -1,4 +1,3 @@
-
 import {BookmarkService} from './bookmark-service';
 import {Bookmark} from '../model/bookmark';
 /**
@@ -82,4 +81,10 @@ export class MockBookmarkService implements BookmarkService {
         localStorage.setItem(this.STORAGE_KEY, Bookmark.toJSON(this.rootBM));
     }
 
+
+    uploadBookmark(formData: FormData, requestListener: RequestListener): void {
+        setTimeout(() => {
+            requestListener.ok(this.rootBM);
+        }, 500);
+    }
 }

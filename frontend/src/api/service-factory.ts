@@ -1,9 +1,9 @@
 import {UserService} from './user-service';
 import {BookmarkService} from './bookmark-service';
-import {MockUserService} from './mock-user-service';
 import {MockBookmarkService} from './mock-bookmark-service';
 import {BookmarkSimilarityService} from './bookmark-similarity-service';
 import {MockBookmarkSimilarityService} from './mock-bookmark-similarity-service';
+import {HttpUserService} from './http-user-service';
 
 /**
  * MockとHttp通信するサービスクラスを柔軟に入れ替えるため.
@@ -14,7 +14,8 @@ export class ServiceFactory {
     private static userService: UserService;
     static getUserService() : UserService {
         if (!this.userService) {
-            this.userService = new MockUserService();
+            //this.userService = new MockUserService();
+            this.userService = new HttpUserService();
             return this.userService;
         }
 

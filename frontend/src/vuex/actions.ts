@@ -4,6 +4,7 @@ import {MutationTypes} from './mutation-types';
 import {State} from './store';
 import {ServiceFactory} from '../api/service-factory';
 import {Bookmark} from '../model/bookmark';
+import {BookmarkSimilarity} from '../model/bookmark-similarity';
 
 /**
  * Vuex, すべてのAction
@@ -34,6 +35,25 @@ export class Actions {
             store.dispatch(MutationTypes.SIGN_OUT);
         };
 
+
+    /**
+     * ブックマークをサーバーにアップロード
+     * @param store
+     * @param data
+     */
+    static uploadBookmark: Action<State> =
+        (store: Store<State>, data: FormData) => {
+            const service = ServiceFactory.getBookmarkService();
+            service.uploadBookmark(data, {
+                ok: (data: Bookmark) => {
+                    store.dispatch(MutationTypes.GET_BOOKMARK, data);
+                },
+                failed: (message: string) => {
+                    store.dispatch(MutationTypes.SET_BOOKMARK_ERROR, message);
+                }
+            });
+        };
+
     /**
      * BookmarkをAPIコールで取得.
      * 取得したBookmarkをコミットする.
@@ -59,10 +79,15 @@ export class Actions {
      */
     static openBookmarkDir: Action<State> =
         (store: Store<State>, dirID: number) => {
-            Actions.selectBookmark(store, dirID);
+            // Actions.selectBookmark(store, dirID);
             store.dispatch(MutationTypes.SET_BOOKMARK_OPEN_DIR, dirID);
         };
 
+
+    static addBookmark: Action<State> =
+        (store: Store<State>, parent: Bookmark, bookmark: Bookmark) => {
+            store.dispatch(MutationTypes.ADD_BOOKMARK, bookmark);
+        };
 
     /**
      * ブックマークを移動する.
@@ -94,7 +119,7 @@ export class Actions {
         (store: Store<State>, id: number) => {
             store.dispatch(MutationTypes.RESET_SELECT_BOOKMARK);
             store.dispatch(MutationTypes.ADD_SELECT_BOOKMARK, id);
-        }
+        };
 
     /**
      * ブックマークを選択状態にする
@@ -103,6 +128,17 @@ export class Actions {
      */
     static addSelectBookmark: Action<State> =
         (store: Store<State>, id: number) => {
+            // すでに選択しているブックマークは選択状態にしない.
+            if (store.state.selectBMIds.indexOf(id) !== -1) {
+                return;
+            }
+
+            // 親フォルダが選択状態にある場合一旦リセットする
+            const parentId = store.state.bookmarkRoot.search(id).parent.id;
+            if (store.state.selectBMIds.indexOf(parentId) !== -1) {
+                store.dispatch(MutationTypes.RESET_SELECT_BOOKMARK);
+            }
+
             store.dispatch(MutationTypes.ADD_SELECT_BOOKMARK, id);
         };
 
@@ -119,6 +155,23 @@ export class Actions {
 
             store.dispatch(MutationTypes.RESET_SELECT_BOOKMARK);
         };
+
+    /**
+     * ブックマークを類似度APIに問い合わせ検索する
+     * @param store
+     */
+    static searchBookmark : Action<State> =
+        (store: Store<State>, bmf: Bookmark , searchWord: string) => {
+            const service = ServiceFactory.getBookmarkSimirarityService();
+            service.search(searchWord, bmf, {
+                ok : (data: BookmarkSimilarity) => {
+                    store.dispatch(MutationTypes.SET_BOOKMARK_SEARCH_RES, data);
+                } ,
+                failed : (message: String) => {
+                    store.dispatch(MutationTypes.SET_BOOKMARK_ERROR, message);
+                }
+            });
+        }
 
 
 
