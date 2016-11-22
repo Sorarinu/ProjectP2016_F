@@ -76,8 +76,8 @@ export class SearchDialog {
         this.addBookmarkAct(parent, newFolder);
 
         this.bookmarkSearchRes.forEach((v: Bookmark) => {
-            this.moveBookmarkAct(v.id, newId);
-        });
+                this.moveBookmarkAct(v.id, newId);
+            });
 
         this.closeSearchDialogAct();
 

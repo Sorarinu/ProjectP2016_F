@@ -86,7 +86,7 @@ export class Actions {
 
     static addBookmark: Action<State> =
         (store: Store<State>, parent: Bookmark, bookmark: Bookmark) => {
-            store.dispatch(MutationTypes.ADD_BOOKMARK, parent, bookmark);
+            store.dispatch(MutationTypes.ADD_BOOKMARK, bookmark);
         };
 
     /**

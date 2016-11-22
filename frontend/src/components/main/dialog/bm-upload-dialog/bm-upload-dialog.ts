@@ -18,7 +18,7 @@ export class BmUploadDialog {
     fileChange(ev: Event) {
         console.log('called' + ev);
         this.formData = new FormData();
-        formData.append()
+        // TODO: formdataをボタンクリックで作ってActionへ流す
     }
 
 
