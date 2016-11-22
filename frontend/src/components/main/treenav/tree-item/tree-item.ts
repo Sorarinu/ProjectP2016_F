@@ -6,6 +6,9 @@ import {Bookmark} from '../../../../model/bookmark';
  */
 @Component({
     template: require('./tree-item.pug'),
+    components: {
+        TreeItem
+    },
     props: ['bookmark'],
 })
 export class TreeItem {
