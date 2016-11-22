@@ -8,7 +8,9 @@ import {TreeItem} from './tree-item/tree-item';
 require('./treenav.scss');
 @Component({
     template: require('./treenav.pug'),
-    components: [TreeItem]
+    components: {
+        TreeItem
+    }
 })
 export class TreeNav {
 
