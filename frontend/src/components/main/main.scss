@@ -5,6 +5,9 @@
 
   #ribbon-toggle {
     text-align: right;
+    &:hover{
+      cursor: pointer;
+    }
   }
 
   #ribbon {

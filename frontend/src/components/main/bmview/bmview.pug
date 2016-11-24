@@ -10,6 +10,7 @@
             @drop="onDrop($event, bm)",
         )
     .context-menu(v-show="showContextMenu", :style="posStyle")
+        button.btn.btn-default(@click="past") 貼り付け
         button.btn.btn-default(@click="addFolder") フォルダ追加
 
     bm-delete-dialog

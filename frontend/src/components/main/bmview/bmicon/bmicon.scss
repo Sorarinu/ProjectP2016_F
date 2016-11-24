@@ -21,6 +21,10 @@ $size : 180px;
     background-color: rgba(0,0,255,.1);
   }
 
+  &:hover{
+    cursor: pointer;
+  }
+
   .img{
     text-align: center;
 
