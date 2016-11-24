@@ -81,6 +81,11 @@ export function getSelectBMs(state : State) : Bookmark[] {
  * @returns {Bookmark[]}
  */
 export function getBookmarkSearchRes(state : State) : Bookmark[] {
+
+    if (state.bookmarkSimilarityRes == null) {
+        return null;
+    }
+
     const res : Bookmark[] = state.bookmarkSimilarityRes.bookmark
             .filter((v: BookmarkSimilarityValue) => {
                 return v.similar_flag;

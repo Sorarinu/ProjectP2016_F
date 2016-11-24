@@ -24,6 +24,7 @@ import OPEN_UPLOAD_DIALOG = MutationTypes.OPEN_UPLOAD_DIALOG;
 import CLOSE_UPLOAD_DIALOG = MutationTypes.CLOSE_UPLOAD_DIALOG;
 import SET_BOOKMARK_SEARCH_RES = MutationTypes.SET_BOOKMARK_SEARCH_RES;
 import {BookmarkSimilarity} from '../model/bookmark-similarity';
+import START_SEARCH = MutationTypes.START_SEARCH;
 
 Vue.use(Vuex.install);
 
@@ -171,6 +172,10 @@ const mutations : MutationTree<State> = {
 
 
     // bookmark search mutation --------------------------
+
+    [START_SEARCH] (state: State) {
+        state.bookmarkSimilarityRes = null;
+    },
 
     [SET_BOOKMARK_SEARCH_RES] (state: State, res: BookmarkSimilarity) {
         state.bookmarkSimilarityRes = res;

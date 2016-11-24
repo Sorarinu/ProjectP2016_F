@@ -12,12 +12,18 @@
 
             .input-group
                 span.input-group-addon SearchWord
-                input.form-control(type="text", v-model="searchWord")
+                input.form-control(type="text",@keyup.enter="search", v-model="searchWord")
                 span.input-group-btn
                   button.btn.btn-primary(@click="search", :disabled="searchWord.length === 0")
                     i.fa.fa-search
                     | 検索
-            .res(v-if="showRes")
+            .spinner(v-show="showRes && bookmarkSearchRes == null")
+                .rect1
+                .rect2
+                .rect3
+                .rect4
+                .rect5
+            .res(v-if="showRes && bookmarkSearchRes != null")
                 h4 {{searchWord}} の検索結果　{{bookmarkSearchRes.length}} 件
                 .bookmark-item(v-for="resBM in bookmarkSearchRes")
                     input(type="checkbox" checked="checked")
