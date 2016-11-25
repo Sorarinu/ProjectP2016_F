@@ -27,6 +27,7 @@ http://localhost:8000/ にアクセスするとLaravelのトップページが�
 ```
 APP_ENV=local
 APP_DEBUG=false
+APP_KEY=SomeRandomString
 
 DB_CONNECTION=mysql
 DB_HOST=nxtg-t.net
