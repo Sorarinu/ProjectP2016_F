@@ -3,8 +3,8 @@ import logging
 
 from gensim.models import word2vec
 
-from resemblance.main.similarity.api.search.wakati import MeacabWakati
-from resemblance.main.similarity.conf.constants import *
+from api.search.wakati import MeacabWakati
+from conf.constants import *
 
 
 class CreateModel(object):
