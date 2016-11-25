@@ -42,7 +42,7 @@ def add_flag():
     for bookmark_data in data['bookmark']:
         page = Scraping(bookmark_data['url']).create_scraping_file()
         CreateModel(page).create_model()
-        flag = LoadModelFlag(MODEL, data['search_word']).load_model_similar_flag()
+        flag = LoadModelFlag(MODEL, data['searchWord']).load_model_similar_flag()
         bookmark_data['similar_flag'] = flag
     return data
 
@@ -68,7 +68,7 @@ def add_tag():
     for bookmark_data in data['bookmark']:
         page = Scraping(bookmark_data['url']).create_scraping_file()
         CreateModel(page).create_model()
-        tag = LoadModelTag(MODEL, data['search_word']).load_model_similar_tag()
+        tag = LoadModelTag(MODEL, data['searchWord']).load_model_similar_tag()
         bookmark_data['tags'] = tag
     return data
 
