@@ -332,28 +332,41 @@ class ApiController extends Controller
      */
     public function similarity()
     {
-        $client = new Client();
+        $json = '{"search_word":"Java","bookmark" : [{"id":"1","url":"http://qiita.com/opengl-8080/items/05d9490d6f0544e2351a"},{"id":"2","url":"https://ja.wikipedia.org/wiki/Java"},{"id":"3","url" : "http://www.oracle.com/jp/java/overview/index.html"}]}';
 
-        $res = $client->request('POST', 'http://127.0.0.1:8080/api/v1/similarity-search/', [
+        $json = json_encode(json_decode($json), JSON_UNESCAPED_SLASHES);
+
+        /*$jsonTest = [
+            'search_word' => 'Java',
+            'bookmark' => [
+                [
+                    'id' => 1,
+                    'url' => 'http://qiita.com/opengl-8080/items/05d9490d6f0544e2351a'
+                ],
+                [
+                    'id' => 1,
+                    'url' => 'http://qiita.com/opengl-8080/items/05d9490d6f0544e2351a'
+                ],
+                [
+                    'id' => 1,
+                    'url' => 'http://qiita.com/opengl-8080/items/05d9490d6f0544e2351a'
+                ]
+            ]
+        ];
+        $jsonTestEncode = json_encode($jsonTest, JSON_UNESCAPED_SLASHES);*/
+
+        $client = new \GuzzleHttp\Client();;
+
+	Log::debug($json);
+
+        $res = $client->request('POST', 'http://127.0.0.1:8089/api/v1/similarity-search/', [
             'headers' => [
                 'Accept' => 'application/json',
                 'Content-type' => 'application/json'
             ],
-            'json' => [
-                'search_word' => 'Java',
-                'bookmark' => [
-                    [
-                        'id' => '1',
-                        'url' => 'http://qiita.com/opengl-8080/items/05d9490d6f0544e2351a'
-                    ],
-                    [
-                        'id' => '2',
-                        'url' => 'https://ja.wikipedia.org/wiki/Java'
-                    ]
-                ]
-            ]
+            'json' => $json
         ]);
-        Log::debug($res);
-        return json_encode($res->getBody());
+        
+        return $res->getBody();
     }
 }

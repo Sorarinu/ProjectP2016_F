@@ -31,13 +31,14 @@ def consumes(content_type):
 @app.route('/api/v1/', methods=['POST'])
 @consumes('application/json')
 def hello_cloudBM():
-    test_data = codecs.decode(request.data, 'utf-8')
+    test_data = request.json
     json_data = json.dumps(test_data, ensure_ascii=False, sort_keys=True)
     return Response(json_data, mimetype='application/json')
 
 
 def add_flag():
-    data = eval(codecs.decode(request.data, 'utf-8'))
+    print(type(request.json))
+    data = eval(request.json)
     for bookmark_data in data['bookmark']:
         page = Scraping(bookmark_data['url']).create_scraping_file()
         CreateModel(page).create_model()
@@ -63,7 +64,7 @@ def similarity_tag():
 
 
 def add_tag():
-    data = eval(codecs.decode(request.data, 'utf-8'))
+    data = eval(request.json)
     for bookmark_data in data['bookmark']:
         page = Scraping(bookmark_data['url']).create_scraping_file()
         CreateModel(page).create_model()
@@ -73,4 +74,4 @@ def add_tag():
 
 
 if __name__ == '__main__':
-    app.run(port=8080)
+    app.run(port=8089)
