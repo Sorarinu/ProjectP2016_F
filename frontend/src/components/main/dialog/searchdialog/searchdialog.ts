@@ -12,7 +12,7 @@ require('./searchdialog.scss');
     template: require('./searchdialog.pug'),
     components: {
         modal: require('vue-strap').modal,
-        checkbox: require('vue-strap').checkbox
+        progressbar: require('vue-strap').progressbar
     },
 })
 export class SearchDialog {

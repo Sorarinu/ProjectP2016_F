@@ -20,6 +20,9 @@ export namespace MutationTypes {
     export const MOVE_BOOKMARK = 'MOVE_BOOKMARK';
 
 
+    export const START_SEARCH = 'START_SEARCH';
+    export const END_SEARCH = 'END_SEARCH';
+
     export const SET_BOOKMARK_SEARCH_RES = 'SET_BOOKMARK_SEARCH_RES';
 
     //ui mutations

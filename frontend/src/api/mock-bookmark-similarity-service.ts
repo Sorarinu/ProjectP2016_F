@@ -22,7 +22,7 @@ export class MockBookmarkSimilarityService implements BookmarkSimilarityService 
 
         setTimeout(() => {
             requestListener.ok(similarityModel);
-        }, 1000);
+        }, 5000);
     }
 
 }

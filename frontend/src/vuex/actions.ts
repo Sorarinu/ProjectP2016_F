@@ -162,6 +162,9 @@ export class Actions {
      */
     static searchBookmark : Action<State> =
         (store: Store<State>, bmf: Bookmark , searchWord: string) => {
+
+            store.dispatch(MutationTypes.START_SEARCH);
+
             const service = ServiceFactory.getBookmarkSimirarityService();
             service.search(searchWord, bmf, {
                 ok : (data: BookmarkSimilarity) => {
