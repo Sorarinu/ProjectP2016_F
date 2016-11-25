@@ -2,7 +2,7 @@
 
 import MeCab
 import re
-from resemblance.main.similarity.conf.constants import *
+from conf.constants import *
 
 
 class MeacabWakati(object):

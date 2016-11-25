@@ -5,12 +5,12 @@ import json
 from functools import wraps
 
 from flask import Flask, abort, request, Response
-from resemblance.main.similarity.api.search.loadModel import LoadModelFlag
-from resemblance.main.similarity.api.search.scraping import Scraping
-from resemblance.main.similarity.api.tag.loadModel import LoadModelTag
+from api.search.loadModel import LoadModelFlag
+from api.search.scraping import Scraping
+from api.tag.loadModel import LoadModelTag
 
-from resemblance.main.similarity.api.search.genModel import CreateModel
-from resemblance.main.similarity.conf.constants import *
+from api.search.genModel import CreateModel
+from conf.constants import *
 
 app = Flask(__name__)
 

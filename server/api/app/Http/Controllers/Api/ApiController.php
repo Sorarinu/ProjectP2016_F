@@ -311,12 +311,48 @@ class ApiController extends Controller
     {
         return json_encode(Bookmark::getAllBookmarkByDB($this->request), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     }
-    
+
+    /**
+     * 指定されたホームページのスクショを取得する
+     *
+     * @return mixed
+     */
     public function snap()
     {
         $url = $this->request->input('url');
         $apiUrl = 'http://capture.heartrails.com/120×120?' . $url;
         $image = Image::make(file_get_contents($apiUrl));
         return $image->response('jpg');
+    }
+
+    /**
+     * 類似度のやつ
+     *
+     * @return mixed
+     */
+    public function similarity()
+    {
+        $client = new Client();
+
+        $res = $client->request('POST', 'http://127.0.0.1:8080/api/v1/similarity-search', [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Content-type' => 'application/json'
+            ],
+            'json' => [
+                'search_word' => 'Java',
+                'bookmark' => [
+                    [
+                        'id' => '1',
+                        'url' => 'http://qiita.com/opengl-8080/items/05d9490d6f0544e2351a'
+                    ],
+                    [
+                        'id' => '2',
+                        'url' => 'https://ja.wikipedia.org/wiki/Java'
+                    ]
+                ]
+            ]
+        ]);
+        return $res->getBody();
     }
 }
