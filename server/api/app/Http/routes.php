@@ -25,3 +25,4 @@ Route::put('api/v1/bookmarks/{bookmark_id}',         ['uses' => 'Api\ApiControll
 Route::delete('api/v1/bookmarks/{bookmark_id}',      ['uses' => 'Api\ApiController@delete']);
 Route::get('api/v1/bookmarks',                       ['uses' => 'Api\ApiController@getAll']);
 Route::get('api/v1/snap',                            ['uses' => 'Api\ApiController@snap']);
+Route::post('api/v1/similarity-search',              ['uses' => 'Api\ApiController@similarity']);

@@ -334,7 +334,7 @@ class ApiController extends Controller
     {
         $client = new Client();
 
-        $res = $client->request('POST', 'http://127.0.0.1:8080/api/v1/similarity-search', [
+        $res = $client->request('POST', 'http://127.0.0.1:8080/api/v1/similarity-search/', [
             'headers' => [
                 'Accept' => 'application/json',
                 'Content-type' => 'application/json'
@@ -353,6 +353,7 @@ class ApiController extends Controller
                 ]
             ]
         ]);
-        return $res->getBody();
+        Log::debug($res);
+        return json_encode($res->getBody());
     }
 }
