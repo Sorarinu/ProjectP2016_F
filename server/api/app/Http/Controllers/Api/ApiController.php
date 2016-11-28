@@ -332,10 +332,10 @@ class ApiController extends Controller
      */
     public function similarity()
     {
-        $json = '{"search_word":"Java","bookmark" : [{"id":"1","url":"http://qiita.com/opengl-8080/items/05d9490d6f0544e2351a"},{"id":"2","url":"https://ja.wikipedia.org/wiki/Java"},{"id":"3","url" : "http://www.oracle.com/jp/java/overview/index.html"}]}';
+        //$json = '{"search_word":"Java","bookmark" : [{"id":"1","url":"http://qiita.com/opengl-8080/items/05d9490d6f0544e2351a"},{"id":"2","url":"https://ja.wikipedia.org/wiki/Java"},{"id":"3","url" : "http://www.oracle.com/jp/java/overview/index.html"}]}';
 
-        $json = json_encode(json_decode($json), JSON_UNESCAPED_SLASHES);
-
+        $json = json_encode(json_decode(file_get_contents('php://input')), JSON_UNESCAPED_SLASHES);
+Log::debug($json);
         /*$jsonTest = [
             'search_word' => 'Java',
             'bookmark' => [
@@ -356,8 +356,6 @@ class ApiController extends Controller
         $jsonTestEncode = json_encode($jsonTest, JSON_UNESCAPED_SLASHES);*/
 
         $client = new \GuzzleHttp\Client();;
-
-	Log::debug($json);
 
         $res = $client->request('POST', 'http://127.0.0.1:8089/api/v1/similarity-search/', [
             'headers' => [
