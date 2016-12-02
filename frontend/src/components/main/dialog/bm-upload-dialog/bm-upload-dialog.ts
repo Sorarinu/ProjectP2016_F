@@ -26,15 +26,15 @@ export class BmUploadDialog {
     show : boolean;
 
 
-    upload() {
-        this.uploadBookmarkAct(null);
-        this.closeDialog();
-    }
+    // upload() {
+    //     this.uploadBookmarkAct(null);
+    //     this.closeDialog();
+    // }
 
-    @Action(Actions.uploadBookmark)
-    uploadBookmarkAct(formData: FormData) {
-        return;
-    }
+    // @Action(Actions.uploadBookmark)
+    // uploadBookmarkAct(formData: FormData) {
+    //     return;
+    // }
 
     closeDialog() {
         this.closeDialogAct();
