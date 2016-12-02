@@ -1,6 +1,5 @@
 # coding:utf-8
 
-import codecs
 import json
 from functools import wraps
 
@@ -13,6 +12,7 @@ from api.search.genModel import CreateModel
 from conf.constants import *
 
 app = Flask(__name__)
+app.config.from_object(__name__)
 
 
 def consumes(content_type):
@@ -38,12 +38,15 @@ def hello_cloudBM():
 
 def add_flag():
     print(type(request.json))
-    data = eval(request.json)
+    data = request.json
     for bookmark_data in data['bookmark']:
         page = Scraping(bookmark_data['url']).create_scraping_file()
-        CreateModel(page).create_model()
-        flag = LoadModelFlag(MODEL, data['searchWord']).load_model_similar_flag()
-        bookmark_data['similar_flag'] = flag
+        if page is None:
+            bookmark_data['similar_flag'] = False
+        else:
+            CreateModel(page).create_model()
+            flag = LoadModelFlag(MODEL, data['searchWord']).load_model_similar_flag()
+            bookmark_data['similar_flag'] = flag
     return data
 
 
