@@ -12,6 +12,7 @@ from api.search.genModel import CreateModel
 from conf.constants import *
 
 app = Flask(__name__)
+app.config.from_object(__name__)
 
 
 def consumes(content_type):
