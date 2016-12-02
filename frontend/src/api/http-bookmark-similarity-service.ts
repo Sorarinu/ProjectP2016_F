@@ -10,13 +10,13 @@ export class HttpBookmarkSimilarityService implements BookmarkSimilarityService 
         const bs = new BookmarkSimilarity(bmf, searchWord);
 
         $.ajax({
-            url: ApiUrl.resolvePath(ApiUrl.BOOKMARK_SIMIRARY),
+            url: ApiUrl.resolvePath(ApiUrl.BOOKMARK_SIMILARITY_SEARCH),
             dataType: 'json',
             method: 'POST',
             data: JSON.stringify(bs)
         })
         .done((data: any) => {
-            requestListener.ok(BookmarkSimilarity.fromJSON(data.responseText));
+            requestListener.ok(<BookmarkSimilarity>data);
         })
         .fail((xhr) => {
             requestListener.failed(`${xhr.status}: 類似度検索問い合わせ失敗`);
