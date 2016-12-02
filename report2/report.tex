@@ -2,6 +2,8 @@
 \usepackage{amsmath}
 \usepackage[dvipdfmx]{graphicx}
 
+\fboxsep=0pt
+\fboxrule=1pt
 
 \title{プロジェクト実習テーマP　CloudBM  中間レポート２}
 \author{
@@ -40,13 +42,13 @@
 以下に本システムのシステム構成を示す．
 \begin{figure}[htbp]
   \begin{center}
-    \includegraphics[clip,width=7.0cm]{./architecture.png}
+    \fbox{\includegraphics[clip,width=7.0cm]{./architecture.png}}
     \caption{システムアーキテクチャ}
     \label{fig:system}
   \end{center}
 \end{figure}
 本システムはSPAとして構成する．\par
-図にしめしたように,フロントサイドではJSフレームワークとしてVuejsを用いる． またサーバーとの通信に関してはAjaxを利用する．
+図\ref{fig:system}にしめしたように,フロントサイドではJSフレームワークとしてVuejsを用いる． またサーバーとの通信に関してはAjaxを利用する．
 サーバーサイドはLinux環境内にWEBサーバーとしてApacheを,データベースとしてMySQLを用意する． ApacheではPHPを利用しフロントサイドより呼び出すAPIを実装する．\par
 加えてサーバーサイドではブックマークの内容解析を行うためのAPIを用意する． このAPIはpythonとpythonのWebフレームワークであるflaskで構成されておりphpから利用される．\\
 \par
@@ -74,7 +76,7 @@
 
 \begin{figure}[h]
   \begin{center}
-    \includegraphics[width=9.0cm]{./prot1.png}
+    \fbox{\includegraphics[width=9.0cm]{./prot1.png}}
     \caption{プロトタイプ画面}
     \label{fig:prot1}
   \end{center}
@@ -84,7 +86,7 @@
 
 \begin{figure}[h]
   \begin{center}
-    \includegraphics[width=9.0cm]{./prot2.png}
+    \fbox{\includegraphics[width=9.0cm]{./prot2.png}}
     \caption{キーワード検索画面}
     \label{fig:prot2}
   \end{center}
@@ -94,7 +96,7 @@
 
 \begin{figure}[h]
   \begin{center}
-    \includegraphics[width=9.0cm]{./prot3.png}
+    \fbox{\includegraphics[width=9.0cm]{./prot3.png}}
     \caption{フォルダ整理後の画面}
     \label{fig:prot3}
   \end{center}
@@ -110,7 +112,7 @@
 
 \begin{figure}[h]
   \begin{center}
-    \includegraphics[width=9.0cm]{./prot4.png}
+    \fbox{\includegraphics[width=9.0cm]{./prot4.png}}
     \caption{コンテキストメニュー}
     \label{fig:prot4}
   \end{center}
@@ -189,18 +191,20 @@ Googleフォームを用いた市場調査から一定数サービスを利用�
   \end{enumerate}
 \end{enumerate}
 \subsection{インタビュー結果}
-質問に関する回答結果は以下のようになった
+質問に関する回答結果を図\ref{fig:bookmarkQuestion}，図\ref{fig:serviceQuestion}に示す．
 
 \begin{figure}[htbp]
   \begin{center}
-    \includegraphics[width=14cm]{./interview-res-1.png}
+    \fbox{\includegraphics[width=14cm]{./interview-res-1.png}}
     \caption{ブックマークに関する質問}
+    \label{fig:bookmarkQuestion}
   \end{center}
 \end{figure}
 \begin{figure}[htbp]
   \begin{center}
-    \includegraphics[width=14cm]{./interview-res-2.png}
+    \fbox{\includegraphics[width=14cm]{./interview-res-2.png}}
     \caption{サービスに関する質問}
+    \label{fig:serviceQuestion}
   \end{center}
 \end{figure}
 
