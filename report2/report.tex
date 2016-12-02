@@ -70,6 +70,53 @@
      \end{itemize}
 \end{itemize}
 \section{プロトタイプの説明(高畑)}
+このサービスに対して，価値があるのかを調査するため，インタビューを行った際にインタビュー対象者へ見てもらうプロトタイプの作成を行った．実際にインタビューを行う過程でプロトタイプを見てもらい，サービスの動きを視覚的に理解してもらうことが目的である．下記の図\ref{fig:prot1}はCloudBMのプロトタイプである．
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=14.0cm]{./prot1.png}
+    \caption{プロトタイプ画面} 
+    \label{fig:prot1}
+  \end{center}
+\end{figure}
+
+画面左側には，ブックマークフォルダのツリー構造，右側にはフォルダに格納されているブックマークが表示される．現状，動画サイトや各種SNSのページなど，様々なブックマークが表示されていて，整理出来ているとは言い難い．これらのブックマークを整理するため，画面下部の検索マークをクリックしキーワードの検索を行う．動作画面を図\ref{fig:prot2}に示す．
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=14.0cm]{./prot2.png}
+    \caption{キーワード検索画面} 
+    \label{fig:prot2}
+  \end{center}
+\end{figure}
+
+テキストボックスにキーワードを入力することで，関連するブックマークの一覧を確認することができ，またフォルダに纏めたい場合にはボタンをクリックするだけで，関連するブックマークを一つのフォルダに簡単に整理することができる．整理した際の画面を図\ref{fig:prot3}に示す．
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=14.0cm]{./prot3.png}
+    \caption{フォルダ整理後の画面} 
+    \label{fig:prot3}
+  \end{center}
+\end{figure}
+
+\newpage
+
+図\ref{fig:prot3}を見て分かるように，「GitHub」というキーワードに基づくブックマークがフォルダに纏められる．整理が完了したブックマークは，アドオンを利用することにより，Webブラウザと自動同期することが出来る．このシステムを利用することにより，これまで大量に存在したブックマークを手動でフォルダ分けする必要がなくなり，より良いブラウジングが可能となる．
+
+また，ブックマークに登録されているデータは，DnDで移動ができ，よりエクスプローラライクな操作感を実現した．また，不要になったWebページは右クリックで出現するコンテキストメニュー(図\ref{fig:prot4})より，削除をすることが出来る．
+
+そして，付加機能として，ブックマークデータをダブルクリックすることで，即座にWebページを開くことが出来るため，ブックマークを整理するだけではなく，そのままブックマークとして使用することも可能である．
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=14.0cm]{./prot4.png}
+    \caption{コンテキストメニュー} 
+    \label{fig:prot4}
+  \end{center}
+\end{figure}
+
+\newpage
 
 \section{顧客インタビューとその解析(上原)}
 
