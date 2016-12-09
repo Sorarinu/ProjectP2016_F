@@ -77,4 +77,4 @@ def add_tag():
 
 
 if __name__ == '__main__':
-    app.run(port=8089)
+    app.run(port=8089, debug=True)
