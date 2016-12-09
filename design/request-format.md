@@ -28,6 +28,8 @@
  * status : string
  "OK" or "NG"
  * message : string
+
+*初回アクセス時に必ずコールしてください*
  
 # サインアップ <*Done*>
 * メソッド : POST
