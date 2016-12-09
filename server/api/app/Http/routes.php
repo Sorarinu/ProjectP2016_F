@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('api/v1/init',                            ['uses' => 'Api\ApiController@init']);
 Route::post('api/v1/signup',                         ['uses' => 'Api\ApiController@signUp']);
 Route::post('api/v1/signin',                         ['uses' => 'Api\ApiController@signIn']);
 Route::get('api/v1/signout',                         ['uses' => 'Api\ApiController@signOut']);
