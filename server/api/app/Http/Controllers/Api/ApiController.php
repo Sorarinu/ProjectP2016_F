@@ -43,6 +43,30 @@ class ApiController extends Controller
     }
 
     /**
+     * ユーザのセッションIDをセッションに保存する
+     * 非ログインユーザの場合には，これをUserIdとして使用する
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function init(Request $request)
+    {
+        try {
+            $this->request->session()->put('user_id', $request->session()->get('_token'));
+
+            return new JsonResponse([
+                'status' => 'OK',
+                'message' => 'saved session id.'
+            ]);
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'status' => 'NG',
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    /**
      * サインアップ
      *
      * @return \Illuminate\Http\JsonResponse
@@ -71,6 +95,7 @@ class ApiController extends Controller
                 $user->save();
 
                 Slack::send('New user has been created！ This Email Address is *' . $data->email . '*.');
+
                 return new JsonResponse([
                     'status' => 'OK',
                     'message' => $data->email . ' created.'
@@ -122,8 +147,10 @@ class ApiController extends Controller
                     ->firstOrFail();
 
                 if (Hash::check($data->password, $user->password)) {
+                    Slack::send('User was Logged in at *' . $data->email . '*.');
+
                     $this->request->session()->put('email', $user->email);
-                    $this->request->session()->put('user_id', $user->id);
+                    $this->request->session()->put('user_id', $user->email);
                     return new JsonResponse([
                         'status' => 'OK',
                         'message' => 'Login success: ' . $user->email
@@ -176,12 +203,13 @@ class ApiController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function upload()
+    public function upload(Request $request)
     {
         $bookmarkDB = new BookmarkDB($this->request);
         $filePath = $this->request->file('bmfile')->getRealPath();
         $uploadClass = new BookmarkUpload($this->request);
 
+        Log::debug('UserId : ' . $request->session()->get('user_id'));
         try {
             $parser = new BookmarkParser();
             $bookmarks = $parser->parseFile($filePath);
@@ -332,29 +360,7 @@ class ApiController extends Controller
      */
     public function similarity()
     {
-        //$json = '{"search_word":"Java","bookmark" : [{"id":"1","url":"http://qiita.com/opengl-8080/items/05d9490d6f0544e2351a"},{"id":"2","url":"https://ja.wikipedia.org/wiki/Java"},{"id":"3","url" : "http://www.oracle.com/jp/java/overview/index.html"}]}';
-
         $json = json_encode(json_decode(file_get_contents('php://input')), JSON_UNESCAPED_SLASHES);
-Log::debug($json);
-        /*$jsonTest = [
-            'search_word' => 'Java',
-            'bookmark' => [
-                [
-                    'id' => 1,
-                    'url' => 'http://qiita.com/opengl-8080/items/05d9490d6f0544e2351a'
-                ],
-                [
-                    'id' => 1,
-                    'url' => 'http://qiita.com/opengl-8080/items/05d9490d6f0544e2351a'
-                ],
-                [
-                    'id' => 1,
-                    'url' => 'http://qiita.com/opengl-8080/items/05d9490d6f0544e2351a'
-                ]
-            ]
-        ];
-        $jsonTestEncode = json_encode($jsonTest, JSON_UNESCAPED_SLASHES);*/
-
         $client = new \GuzzleHttp\Client();;
 
         $res = $client->request('POST', 'http://127.0.0.1:8089/api/v1/similarity-search/', [
