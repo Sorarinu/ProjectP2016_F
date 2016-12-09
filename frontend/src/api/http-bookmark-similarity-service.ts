@@ -12,7 +12,6 @@ export class HttpBookmarkSimilarityService implements BookmarkSimilarityService 
         $.ajax({
             url: ApiUrl.resolvePath(ApiUrl.BOOKMARK_SIMILARITY_SEARCH),
             dataType: 'json',
-            contentType: 'application/json',
             method: 'POST',
             data: JSON.stringify(bs)
         })
