@@ -3,7 +3,8 @@
 import json
 from functools import wraps
 
-from flask import Flask, abort, request, Response
+from flask import Flask, abort, request, Response, g
+from flaskext.mysql import MySQL
 from api.search.loadModel import LoadModelFlag
 from api.search.scraping import Scraping
 from api.tag.loadModel import LoadModelTag
@@ -13,6 +14,12 @@ from conf.constants import *
 
 app = Flask(__name__)
 app.config.from_object(__name__)
+mysql = MySQL()
+app.config['MYSQL_DATABASE_USER'] = 'test'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'test'
+app.config['MYSQL_DATABASE_DB'] = 'test'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+mysql.init_app(app)
 
 
 def consumes(content_type):
@@ -28,16 +35,58 @@ def consumes(content_type):
     return _consumes
 
 
-@app.route('/api/v1/', methods=['POST'])
-@consumes('application/json')
-def hello_cloudBM():
-    test_data = request.json
-    json_data = json.dumps(test_data, ensure_ascii=False, sort_keys=True)
-    return Response(json_data, mimetype='application/json')
+def connect_db():
+    """Connects to the specific database."""
+    # rv = MySQL.connect(app.config['DATABASE'])
+    # rv.row_factory = MySQL.Row
+    rv = 1
+    return rv
+
+
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = mysql.connect()
+    return db
+
+
+def init_db():
+    with app.app_context():
+        db = get_db()
+        with app.open_resource('schema.sql', mode='r') as f:
+            db.cursor().executescript(f.read())
+        db.commit()
+
+
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
+
+
+def request_data_eval():
+    data = {
+        'serachWord': request.json['serachWord'],
+        'bookmark': request.json['bookmark']
+    }
+    return data
+
+
+def add_tag():
+    data = request_data_eval()
+    for bookmark_data in data['bookmark']:
+        page = Scraping(bookmark_data['url']).create_scraping_file()
+        if page is None:
+            pass
+        else:
+            CreateModel(page).create_model()
+            tag = LoadModelTag(MODEL, data['searchWord']).load_model_similar_tag()
+            bookmark_data['tags'] = tag
+    return data
 
 
 def add_flag():
-    print(type(request.json))
     data = request.json
     for bookmark_data in data['bookmark']:
         page = Scraping(bookmark_data['url']).create_scraping_file()
@@ -66,14 +115,13 @@ def similarity_tag():
     return Response(response, mimetype='application/json')
 
 
-def add_tag():
-    data = eval(request.json)
+@app.route('/api/v1/create-model/', methods=['POST'])
+@consumes('application/json')
+def create_model():
+    data = request_data_eval()
     for bookmark_data in data['bookmark']:
         page = Scraping(bookmark_data['url']).create_scraping_file()
         CreateModel(page).create_model()
-        tag = LoadModelTag(MODEL, data['searchWord']).load_model_similar_tag()
-        bookmark_data['tags'] = tag
-    return data
 
 
 if __name__ == '__main__':
