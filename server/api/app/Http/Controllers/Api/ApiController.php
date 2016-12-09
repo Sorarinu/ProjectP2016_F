@@ -43,6 +43,30 @@ class ApiController extends Controller
     }
 
     /**
+     * ユーザのセッションIDをセッションに保存する
+     * 非ログインユーザの場合には，これをUserIdとして使用する
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function init(Request $request)
+    {
+        try {
+            $this->request->session()->put('user_id', $request->session()->get('_token'));
+
+            return new JsonResponse([
+                'status' => 'OK',
+                'message' => 'saved session id.'
+            ]);
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'status' => 'NG',
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    /**
      * サインアップ
      *
      * @return \Illuminate\Http\JsonResponse
@@ -71,6 +95,7 @@ class ApiController extends Controller
                 $user->save();
 
                 Slack::send('New user has been created！ This Email Address is *' . $data->email . '*.');
+
                 return new JsonResponse([
                     'status' => 'OK',
                     'message' => $data->email . ' created.'
@@ -122,8 +147,10 @@ class ApiController extends Controller
                     ->firstOrFail();
 
                 if (Hash::check($data->password, $user->password)) {
+                    Slack::send('User was Logged in at *' . $data->email . '*.');
+
                     $this->request->session()->put('email', $user->email);
-                    $this->request->session()->put('user_id', $user->id);
+                    $this->request->session()->put('user_id', $user->email);
                     return new JsonResponse([
                         'status' => 'OK',
                         'message' => 'Login success: ' . $user->email
@@ -176,12 +203,13 @@ class ApiController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function upload()
+    public function upload(Request $request)
     {
         $bookmarkDB = new BookmarkDB($this->request);
         $filePath = $this->request->file('bmfile')->getRealPath();
         $uploadClass = new BookmarkUpload($this->request);
 
+        Log::debug('UserId : ' . $request->session()->get('user_id'));
         try {
             $parser = new BookmarkParser();
             $bookmarks = $parser->parseFile($filePath);

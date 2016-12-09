@@ -4,6 +4,7 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+- [Init <*Done*>](#init処理-done)
 - [サインアップ <*Done*>](#%E3%82%B5%E3%82%A4%E3%83%B3%E3%82%A2%E3%83%83%E3%83%97-done)
 - [サインイン <*Done*>](#%E3%82%B5%E3%82%A4%E3%83%B3%E3%82%A4%E3%83%B3-done)
 - [サインアウト <*Done*>](#%E3%82%B5%E3%82%A4%E3%83%B3%E3%82%A2%E3%82%A6%E3%83%88-done)
@@ -19,6 +20,17 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+# Init処理 <*Done*>
+* メソッド : GET
+* URL : /api/v1/init
+* パラメータ : なし
+* 応答 : JSON
+ * status : string
+ "OK" or "NG"
+ * message : string
+
+*初回アクセス時に必ずコールしてください*
+ 
 # サインアップ <*Done*>
 * メソッド : POST
 * URL : /api/v1/signup
