@@ -42,9 +42,28 @@ class ApiController extends Controller
         header("Access-Control-Allow-Origin: *");
     }
 
+    /**
+     * ユーザのセッションIDをセッションに保存する
+     * 非ログインユーザの場合には，これをUserIdとして使用する
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function init(Request $request)
     {
-        Log::debug($request->session()->all());
+        try {
+            $this->request->session()->put('user_id', $request->session()->get('_token'));
+
+            return new JsonResponse([
+                'status' => 'OK',
+                'message' => 'saved session id.'
+            ]);
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'status' => 'NG',
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
 
     /**
@@ -131,7 +150,7 @@ class ApiController extends Controller
                     Slack::send('User was Logged in at *' . $data->email . '*.');
 
                     $this->request->session()->put('email', $user->email);
-                    $this->request->session()->put('user_id', $user->id);
+                    $this->request->session()->put('user_id', $user->email);
                     return new JsonResponse([
                         'status' => 'OK',
                         'message' => 'Login success: ' . $user->email
@@ -184,12 +203,13 @@ class ApiController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function upload()
+    public function upload(Request $request)
     {
         $bookmarkDB = new BookmarkDB($this->request);
         $filePath = $this->request->file('bmfile')->getRealPath();
         $uploadClass = new BookmarkUpload($this->request);
 
+        Log::debug('UserId : ' . $request->session()->get('user_id'));
         try {
             $parser = new BookmarkParser();
             $bookmarks = $parser->parseFile($filePath);
