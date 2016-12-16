@@ -85,7 +85,10 @@
 
 サインアップと同じ感じでお願いします
 
-
+# Bookmarkアップロード(Add-on)
+* メソッド : POST
+* URL : /api/v1/bookmarks/upload/addon
+* パラメータ : JSON
 # Bookmarkファイルアップロード <*Done*>
 * メソッド : POST
 * URL : /api/v1/bookmarks/upload 
@@ -161,6 +164,42 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 * メソッド : POST
 * URL : /api/v1/bookmarks
 * パラメータ : JSON
+ * data : ブックマークの一覧
+```JSON(例)
+{
+  "title" : "Twitter",
+  "detail" : "",
+  "reg_date" : "2016/09/18 20:38:00",
+  "parent_id" : "1",
+  "folder" : "false",
+  "url" : "https://twitter.com/"
+},
+{
+  "title" : "Twitter",
+  "detail" : "",
+  "reg_date" : "2016/09/18 20:38:00",
+  "parent_id" : "1",
+  "folder" : "false",
+  "url" : "https://twitter.com/"
+},
+{
+  "title" : "Twitter",
+  "detail" : "",
+  "reg_date" : "2016/09/18 20:38:00",
+  "parent_id" : "1",
+  "folder" : "false",
+  "url" : "https://twitter.com/"
+}
+```
+* 応答 : JSON
+```JSON
+{
+  "status" : "OK" or "NG",
+  "message" : "",
+  "code" : 200 or ***
+}
+
+```
 
 例
 * folderならfolderがtrueになりurlはないか空文字列
