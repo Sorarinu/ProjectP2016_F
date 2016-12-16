@@ -207,13 +207,13 @@ class ApiController extends Controller
     {
         $bookmarkDB = new BookmarkDB($this->request);
         $filePath = $this->request->file('bmfile')->getRealPath();
-        $uploadClass = new BookmarkUpload($this->request);
+        $upload = new BookmarkUpload($this->request);
 
         Log::debug('UserId : ' . $request->session()->get('user_id'));
         try {
             $parser = new BookmarkParser();
             $bookmarks = $parser->parseFile($filePath);
-            $bookmarkJson = $uploadClass->makeBookmarkJson($bookmarks);
+            $bookmarkJson = $upload->makeBookmarkJson($bookmarks);
             $bookmarkDB->insertDB($bookmarkJson);
 
             return new JsonResponse($bookmarkJson);
@@ -222,6 +222,34 @@ class ApiController extends Controller
                 'status' => 'NG',
                 'message' => $e->getMessage()
             ], 400);
+        }
+    }
+
+    public function uploadAddon()
+    {
+
+        $data = json_decode(file_get_contents('php://input'), true);
+        $userId = $this->request->session()->get('user_id');
+
+        if (BookmarkDB::checkExists($userId)) {
+            BookmarkDB::deleteOldData($userId);
+        }
+
+        foreach ($data as $item) {
+            $dbBookmark = new Db_Bookmark();
+            $dbBookmark->bookmark_Id = $item['id'];
+            $dbBookmark->user_id = $userId;
+            $dbBookmark->parent_id = $item['parentId'];
+            $dbBookmark->title = $item['title'];
+            $dbBookmark->detail = '';
+            $dbBookmark->reg_date = $item['reg_date'];
+            $dbBookmark->folder = $item['folder'];
+
+            if ($item['folder'] !== true) {
+                $dbBookmark->url = $item['url'];
+            }
+            
+            $dbBookmark->save();
         }
     }
 
