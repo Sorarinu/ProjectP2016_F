@@ -29,7 +29,8 @@ class BookmarkUpload
     public function makeBookmarkJson($bookmarks)
     {
         $bookmarkDB = new BookmarkDB($this->request);
-        $id = $bookmarkDB->enquiryNextId();
+        //$id = $bookmarkDB->enquiryNextId();
+        $id = 0;
         $parent_id = null;
         $isFind = false;
         $tagPrevValue = null;

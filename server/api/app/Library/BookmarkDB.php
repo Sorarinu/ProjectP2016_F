@@ -47,7 +47,7 @@ class BookmarkDB
         foreach ($data['bookmark'] as $folder) {
             if (!isset($folder['url'])) {
                 $insertFolderData[] = [
-                    'id' => $folder['id'],
+                    'bookmark_Id' => $folder['id'],
                     'user_id' => $userId,
                     'parent_id' => $folder['parent_id'],
                     'title' => $folder['title'],
@@ -58,7 +58,7 @@ class BookmarkDB
             if (isset($folder['bookmark'])) {
                 foreach ($folder['bookmark'] as $node) {
                     $insertNodeData[] = [
-                        'id' => $node['id'],
+                        'bookmark_Id' => $node['id'],
                         'user_id' => $userId,
                         'parent_id' => $node['parent_id'],
                         'title' => $node['title'],
@@ -70,7 +70,7 @@ class BookmarkDB
                 }
             } else if (!isset($folder['bookmark']) && isset($folder['url'])) {
                 $insertNodeData[] = [
-                    'id' => $folder['id'],
+                    'bookmark_Id' => $folder['id'],
                     'user_id' => $userId,
                     'parent_id' => $folder['parent_id'],
                     'title' => $folder['title'],
@@ -101,7 +101,7 @@ class BookmarkDB
      * @param $userId
      * @return bool
      */
-    public function checkExists($userId)
+    public static function checkExists($userId)
     {
         $result = DB::table('bookmark')->select('user_id')->where('user_id', '=', $userId)->get();
 
@@ -118,7 +118,7 @@ class BookmarkDB
      * @param $userId
      * @return mixed
      */
-    public function deleteOldData($userId)
+    public static function deleteOldData($userId)
     {
         return DB::table('bookmark')->where('user_id', '=', $userId)->delete();
     }
