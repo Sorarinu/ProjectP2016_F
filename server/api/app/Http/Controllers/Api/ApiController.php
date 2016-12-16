@@ -232,6 +232,9 @@ class ApiController extends Controller
         $data = json_decode(file_get_contents('php://input'), true);
         $userId = $this->request->session()->get('user_id');
 
+        
+        Slack::send('upload session id: ' . $userId);
+
         if (BookmarkDB::checkExists($userId)) {
             BookmarkDB::deleteOldData($userId);
         }
