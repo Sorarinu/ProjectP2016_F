@@ -226,14 +226,14 @@ class ApiController extends Controller
         }
     }
 
-    public function uploadAddon()
+    public function uploadAddon(Request $request)
     {
 
         $data = json_decode(file_get_contents('php://input'), true);
         $userId = $this->request->session()->get('user_id');
 
-        
-        Slack::send('upload session id: ' . $userId);
+
+        Slack::send('upload session id: ' . $request->session()->get('user_id'));
 
         if (BookmarkDB::checkExists($userId)) {
             BookmarkDB::deleteOldData($userId);
