@@ -151,6 +151,7 @@ class ApiController extends Controller
 
                     $this->request->session()->put('email', $user->email);
                     $this->request->session()->put('user_id', $user->email);
+                    Slack::send('session id: ' . $this->request->session()->get('user_id'));
                     return new JsonResponse([
                         'status' => 'OK',
                         'message' => 'Login success: ' . $user->email
