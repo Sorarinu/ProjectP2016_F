@@ -1,0 +1,104 @@
+#about {
+    div {
+        display: block;
+    }
+
+    h3 {
+        margin-top: 200px;
+    }
+
+    /* BUTTON */
+    .btn {
+        color: #000000;
+        text-align: center;
+        line-height: 55px;
+        width: 380px;
+        height: 55px;
+        border: 1px solid #000000;
+        margin: 50px auto;
+    }
+
+    .btn:hover {
+        color: #ffffff;
+        text-align: center;
+        line-height: 55px;
+        width: 380px;
+        height: 55px;
+        border: 1px solid #000000;
+        background-color: #000000;
+        margin: 50px auto;
+    }
+
+    .btn-ghost.go_about {
+        font-size: 22px;
+        padding: 0px;
+    }
+
+    .btn-ghost.go_download {
+        font-size: 22px;
+        padding: 0px;
+    }
+
+    .btn-ghost {
+        background: transparent;
+    }
+
+    .btn-ghost.btn-default {
+        color: #777;
+    }
+
+    .btn-ghost.btn-primary {
+        color: #337ab7;
+    }
+
+    .btn-ghost.btn-success {
+        color: #5cb85c;
+    }
+
+    .btn-ghost.btn-info {
+        color: #5bc0de;
+    }
+
+    .btn-ghost.btn-warning {
+        color: #f0ad4e;
+    }
+
+    .btn-ghost.btn-danger {
+        color: #d9534f;
+    }
+
+    .btn-ghost.btn-primary:hover,
+    .btn-ghost.btn-success:hover,
+    .btn-ghost.btn-info:hover,
+    .btn-ghost.btn-warning:hover,
+    .btn-ghost.btn-danger:hover {
+        color: #fff;
+    }
+
+    .btn-ghost.btn-white {
+        color: #fff;
+        border: 1px solid #fff;
+    }
+
+    .btn-ghost.btn-white:hover {
+        color: #333;
+        background: #fff;
+    }
+
+    .row {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
+    .row .about_content {
+        margin-top: 150px;
+    }
+
+    .center_layout {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translateY(-50%) translateX(-50%);
+        transform: translateY(-50%) translateX(-50%);
+    }
+}
