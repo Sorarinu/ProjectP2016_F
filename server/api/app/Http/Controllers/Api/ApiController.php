@@ -39,7 +39,8 @@ class ApiController extends Controller
     {
         $this->request = $request;
         $this->fs = $fs;
-        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Origin: chrome-extension://dfindbpkmdbojghaccmolhbenghfbhhi/");
+        header("Access-Control-Allow-Credentials: true");
     }
 
     /**
@@ -232,8 +233,6 @@ class ApiController extends Controller
         $data = json_decode(file_get_contents('php://input'), true);
         $userId = $request->session()->get('user_id');
 
-
-        Slack::send($request->session());
         Slack::send('upload session id: ' . $request->session()->get('user_id'));
 
         if (BookmarkDB::checkExists($userId)) {
