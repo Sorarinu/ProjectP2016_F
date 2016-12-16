@@ -236,14 +236,17 @@ class ApiController extends Controller
         }
     }
 
+    /**
+     * アドオンから送られてきたブックマークのアップロード
+     * 
+     * @param Request $request
+     */
     public function uploadAddon(Request $request)
     {
         header("Access-Control-Allow-Origin: chrome-extension://dfindbpkmdbojghaccmolhbenghfbhhi");
 
         $data = json_decode(file_get_contents('php://input'), true);
         $userId = $request->session()->get('user_id');
-
-        Slack::send('upload session id: ' . $request->session()->get('user_id'));
 
         if (BookmarkDB::checkExists($userId)) {
             BookmarkDB::deleteOldData($userId);
