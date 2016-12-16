@@ -40,6 +40,7 @@ class ApiController extends Controller
         $this->request = $request;
         $this->fs = $fs;
         header("Access-Control-Allow-Origin: chrome-extension://dfindbpkmdbojghaccmolhbenghfbhhi/");
+        header("Access-Control-Allow-Credentials: true");
     }
 
     /**
