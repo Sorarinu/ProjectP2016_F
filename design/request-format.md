@@ -8,6 +8,7 @@
 - [サインアップ <*Done*>](#%E3%82%B5%E3%82%A4%E3%83%B3%E3%82%A2%E3%83%83%E3%83%97-done)
 - [サインイン <*Done*>](#%E3%82%B5%E3%82%A4%E3%83%B3%E3%82%A4%E3%83%B3-done)
 - [サインアウト <*Done*>](#%E3%82%B5%E3%82%A4%E3%83%B3%E3%82%A2%E3%82%A6%E3%83%88-done)
+- [Bookmarkアップロード(Add-on)](#bookmarkアップロードadd-on)
 - [Bookmarkファイルアップロード <*Done*>](#bookmark%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89-done)
 - [Bookmarkファイルエクスポート <*Done*>](#bookmark%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88)
 - [Bookmark情報 CRUD](#bookmark%E6%83%85%E5%A0%B1-crud)
@@ -39,22 +40,22 @@
  * password : string (min6)
 * 応答 : JSON
  * status : string  
- 要求が成功したかどうか　"OK" or "NG"
+ 要求が成功したかどうか "OK" or "NG"
  * message :string  
- 詳細を適当にわかりやすく　そのままＡｌｅｒｔで表示します
+ 詳細を適当にわかりやすく そのままAlertで表示します
 
-サンプルレスポンス１　（サインアップ成功例）
+サンプルレスポンス1 (サインアップ成功例)
  ```json
  {
    "status" : "OK",
    "message" : "[user_id] created"
  }
  ```
- サンプルレスポンス２(サインアップ失敗)
+ サンプルレスポンス2(サインアップ失敗)
  ```json
  {
    "status" : "NG",
-   "message" : "パスワードが短いですよ？"
+   "message" : "パスワードが短いですよ?"
  }
  ```
 
@@ -85,6 +86,45 @@
 
 サインアップと同じ感じでお願いします
 
+# Bookmarkアップロード(Add-on)
+* メソッド : POST
+* URL : /api/v1/bookmarks/upload/addon
+* パラメータ : JSON
+ * data : ブックマークの一覧
+```JSON(例)
+{
+  "title" : "Twitter",
+  "detail" : "",
+  "reg_date" : "2016/09/18 20:38:00",
+  "parent_id" : "1",
+  "folder" : "false",
+  "url" : "https://twitter.com/"
+},
+{
+  "title" : "Twitter",
+  "detail" : "",
+  "reg_date" : "2016/09/18 20:38:00",
+  "parent_id" : "1",
+  "folder" : "false",
+  "url" : "https://twitter.com/"
+},
+{
+  "title" : "Twitter",
+  "detail" : "",
+  "reg_date" : "2016/09/18 20:38:00",
+  "parent_id" : "1",
+  "folder" : "false",
+  "url" : "https://twitter.com/"
+}
+```
+* 応答 : JSON
+```JSON
+{
+  "status" : "OK" or "NG",
+  "message" : "",
+  "code" : 200 or ***
+}
+```
 
 # Bookmarkファイルアップロード <*Done*>
 * メソッド : POST
@@ -94,11 +134,11 @@
 * 送るファイル : ブックマークのブラウザからエクスポートしたファイル
 * 応答 : 解析されたブックマークデータと応答 JSON
 
-JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
+JSONはこんな感じで statusがNGならbookmarkはなくていいよ
 ```json
 {
   "status" : "OK" ,
-  "message" : "File loaded",　
+  "message" : "File loaded", 
   "bookmark" : [{
     "id" : "1",
     "title" : "Programming",
@@ -150,7 +190,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 * URL : /api/v1/bookmarks/export/{browser_type}
 * パラメータ :
  * browser_type : string  
- エクスポートしてほしいブラウザの種類　firefoxとかchromeとかsafariとかを指定
+ エクスポートしてほしいブラウザの種類 firefoxとかchromeとかsafariとかを指定
 * 応答
  * 指定したブラウザでインポート可能なブックマークファイルが送られてこればいい
 
@@ -179,9 +219,9 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 ```
 * 応答:JSON
 
-例　
-* 作成に成功した場合idはブックマークのＩＤ
-* 失敗したらstatusがＮＧでmessageに原因
+例 
+* 作成に成功した場合idはブックマークのID
+* 失敗したらstatusがNGでmessageに原因
 ```json
 {
   "status" : "OK" ,
@@ -205,7 +245,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 * メソッド:DELETE
 * URL: /api/v1/bookmarks/[bookmark_id]
 * パラメータ:なし
-* 応答：JSON
+* 応答:JSON
  * status : string  
  "OK" or "NG"
  * message : string
@@ -221,7 +261,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 
 ## 取得2(リソース指定取得)
 これ正直いらないかもしれない  
-/api/v1/bookmarks/[bookmark_id]　にGETでデータとれるやつ
+/api/v1/bookmarks/[bookmark_id] にGETでデータとれるやつ
 
 
 
@@ -229,7 +269,7 @@ JSONはこんな感じで statusがＮＧならbookmarkはなくていいよ
 * メソッド : POST
 * URL : /api/v1/similarity-search/
 * パラメータ : JSON
-パラメータというかＪＳＯＮ文字列入れて送ります
+パラメータというかJSON文字列入れて送ります
 Content-Type:application/json
 
 ```json
@@ -252,11 +292,11 @@ Content-Type:application/json
 }
 
 ```
-サーバー側にブックマークデータあるわけだからＵＲＬとかは正直送らなくてもいいかもしれない.
+サーバー側にブックマークデータあるわけだからURLとかは正直送らなくてもいいかもしれない.
 でも対象を絞ったり簡単にできるぶんクライアント側から飛ばした方がいいか・・・
 
 * 応答 : JSON
-送られたＪＳＯＮのbookmarkの各要素に結果付与して返却
+送られたJSONのbookmarkの各要素に結果付与して返却
 
 例 (上の例を送ったとき)
 ```json
