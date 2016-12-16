@@ -243,7 +243,9 @@ class ApiController extends Controller
             $dbBookmark = new Db_Bookmark();
             $dbBookmark->bookmark_Id = $item['id'];
             $dbBookmark->user_id = $userId;
-            $dbBookmark->parent_id = $item['parentId'];
+            if (isset($item['parentId'])) {
+                $dbBookmark->parent_id = $item['parentId'];
+            }
             $dbBookmark->title = $item['title'];
             $dbBookmark->detail = '';
             $dbBookmark->reg_date = $item['reg_date'];
