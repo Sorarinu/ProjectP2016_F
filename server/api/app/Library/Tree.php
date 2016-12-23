@@ -11,7 +11,7 @@ namespace app\Library;
 
 class Tree
 {
-    public static function listToTree($list = array(), $idField = 'id', $parentField = 'parent_id')
+    public static function listToTree($list = array(), $idField = 'bookmark_Id', $parentField = 'parent_id')
     {
         if (!is_array($list)) {
             return false;
