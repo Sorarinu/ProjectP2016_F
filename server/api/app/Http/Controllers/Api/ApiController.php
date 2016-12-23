@@ -39,7 +39,6 @@ class ApiController extends Controller
     {
         $this->request = $request;
         $this->fs = $fs;
-        header("Access-Control-Allow-Credentials: true");
     }
 
     /**
@@ -51,8 +50,6 @@ class ApiController extends Controller
      */
     public function init(Request $request)
     {
-        header("Access-Control-Allow-Origin: *");
-
         try {
             $this->request->session()->put('user_id', $request->session()->get('_token'));
 
@@ -75,8 +72,6 @@ class ApiController extends Controller
      */
     public function signUp()
     {
-        header("Access-Control-Allow-Origin: *");
-
         $errors = '';
 
         try {
@@ -131,8 +126,6 @@ class ApiController extends Controller
      */
     public function signIn()
     {
-        header("Access-Control-Allow-Origin: *");
-
         $errors = '';
 
         try {
@@ -190,8 +183,6 @@ class ApiController extends Controller
      */
     public function signOut()
     {
-        header("Access-Control-Allow-Origin: *");
-
         if ($this->request->session()->has('email')) {
             $this->request->session()->forget('email');
             $this->request->session()->forget('user_id');
@@ -214,8 +205,6 @@ class ApiController extends Controller
      */
     public function upload(Request $request)
     {
-        header("Access-Control-Allow-Origin: *");
-
         $bookmarkDB = new BookmarkDB($this->request);
         $filePath = $this->request->file('bmfile')->getRealPath();
         $upload = new BookmarkUpload($this->request);
@@ -243,8 +232,6 @@ class ApiController extends Controller
      */
     public function uploadAddon(Request $request)
     {
-        header("Access-Control-Allow-Origin: chrome-extension://dfindbpkmdbojghaccmolhbenghfbhhi");
-
         $data = json_decode(file_get_contents('php://input'), true);
         $userId = $request->session()->get('user_id');
 
@@ -280,8 +267,6 @@ class ApiController extends Controller
      */
     public function export($browserType)
     {
-        header("Access-Control-Allow-Origin: *");
-
         $bookmarkExport = new BookmarkExport();
         $prevId = null;
         $this->html .= $bookmarkExport->addHtmlHeaders($browserType);
@@ -299,8 +284,6 @@ class ApiController extends Controller
      */
     public function create()
     {
-        header("Access-Control-Allow-Origin: *");
-
         try {
             $json = json_decode(file_get_contents('php://input'));
 
@@ -339,8 +322,6 @@ class ApiController extends Controller
      */
     public function update($bookmarkId)
     {
-        header("Access-Control-Allow-Origin: *");
-
         try {
             $json = json_decode(file_get_contents('php://input'));
             $bookmark = Db_Bookmark::find($bookmarkId);
@@ -372,8 +353,6 @@ class ApiController extends Controller
      */
     public function delete($bookmarkId)
     {
-        header("Access-Control-Allow-Origin: *");
-
         try {
             $bookmark = Db_Bookmark::find($bookmarkId);
             $bookmark->delete();
@@ -392,7 +371,6 @@ class ApiController extends Controller
      */
     public function getAll()
     {
-        header("Access-Control-Allow-Origin: *");
         return json_encode(Bookmark::getAllBookmarkByDB($this->request), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     }
 
@@ -403,8 +381,6 @@ class ApiController extends Controller
      */
     public function snap()
     {
-        header("Access-Control-Allow-Origin: *");
-
         $url = $this->request->input('url');
         $apiUrl = 'http://capture.heartrails.com/120×120?' . $url;
         $image = Image::make(file_get_contents($apiUrl));
@@ -418,8 +394,6 @@ class ApiController extends Controller
      */
     public function similarity()
     {
-        header("Access-Control-Allow-Origin: *");
-        
         $json = json_encode(json_decode(file_get_contents('php://input')), JSON_UNESCAPED_SLASHES);
         $client = new \GuzzleHttp\Client();;
 
