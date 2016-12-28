@@ -50,13 +50,30 @@ class ApiController extends Controller
      */
     public function init(Request $request)
     {
-        try {
-            $this->request->session()->put('user_id', $request->session()->get('_token'));
+        $isLogin = $this->request->session()->get('isLogin');
 
-            return new JsonResponse([
-                'status' => 'OK',
-                'message' => 'saved session id.'
-            ]);
+        try {
+            if (!$isLogin) {
+                $this->request->session()->put('user_id', $request->session()->get('_token'));
+
+                return new JsonResponse(
+                    [
+                        'status' => 'OK',
+                        'login' => false,
+                        'email' => $request->session()->get('_token'),
+                        'message' => 'saved session id.'
+                    ]
+                );
+            } else {
+                return new JsonResponse(
+                    [
+                        'status' => 'OK',
+                        'login' => true,
+                        'email' => $request->session()->get('email'),
+                        'message' => 'user was logged in.'
+                    ]
+                );
+            }
         } catch (\Exception $e) {
             return new JsonResponse([
                 'status' => 'NG',
@@ -150,6 +167,7 @@ class ApiController extends Controller
 
                     $this->request->session()->put('email', $user->email);
                     $this->request->session()->put('user_id', $user->email);
+                    $this->request->session()->put('isLogin', true);
                     Slack::send('session id: ' . $this->request->session()->get('user_id'));
                     return new JsonResponse([
                         'status' => 'OK',
@@ -186,6 +204,7 @@ class ApiController extends Controller
         if ($this->request->session()->has('email')) {
             $this->request->session()->forget('email');
             $this->request->session()->forget('user_id');
+            $this->request->session()->put('isLogin', false);
             return new JsonResponse([
                 'status' => 'OK',
                 'message' => 'Logged out.'
