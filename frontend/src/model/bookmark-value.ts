@@ -7,7 +7,7 @@ import {Bookmark} from './bookmark';
 export class BookmarkValue {
 
     // プロパティ名はJSONの名前と同じ
-    private id: number;
+    private bookmark_Id: number;
     private parent_id: number;
     private title: string;
     private detail: string;
@@ -26,7 +26,7 @@ export class BookmarkValue {
         folder: boolean,
         bookmark: BookmarkValue[]
     )　{
-        this.id = id;
+        this.bookmark_Id = id;
         this.parent_id = parent_id;
         this.title = title;
         this.detail = detail;
@@ -58,13 +58,13 @@ export class BookmarkValue {
 
         // bmv -> bm 変換関数
         const bmvTobm = (bmv: BookmarkValue, parent: Bookmark) : Bookmark => {
-            var res = new Bookmark(bmv.folder, bmv.id, parent);
+            var res = new Bookmark(bmv.folder, bmv.bookmark_Id, parent);
             res.title = bmv.title;
             res.detail = bmv.detail;
             res.url = bmv.url;
             res.regDate = new Date(Date.parse(bmv.rag_date));
 
-            if (bmv.folder) {
+            if (bmv.folder && bmv.bookmark) {
                 bmv.bookmark.forEach( (v: BookmarkValue) => {
                     const bm = bmvTobm(v, res);
                     res.addChild(bm);

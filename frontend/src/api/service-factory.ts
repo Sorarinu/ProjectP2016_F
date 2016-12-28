@@ -1,9 +1,9 @@
 import {UserService} from './user-service';
 import {BookmarkService} from './bookmark-service';
-import {MockBookmarkService} from './mock-bookmark-service';
 import {BookmarkSimilarityService} from './bookmark-similarity-service';
 import {HttpUserService} from './http-user-service';
 import {HttpBookmarkSimilarityService} from './http-bookmark-similarity-service';
+import {HttpBookmarkService} from './http-bookmark-service';
 
 /**
  * MockとHttp通信するサービスクラスを柔軟に入れ替えるため.
@@ -25,7 +25,8 @@ export class ServiceFactory {
     private static bookmarkService: BookmarkService;
     static getBookmarkService() : BookmarkService {
         if (!this.bookmarkService) {
-            this.bookmarkService = new MockBookmarkService();
+            this.bookmarkService = new HttpBookmarkService();
+            //this.bookmarkService = new MockBookmarkService();
             return this.bookmarkService;
         }
 

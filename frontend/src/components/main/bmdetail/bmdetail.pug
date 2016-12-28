@@ -1,6 +1,6 @@
 #bmdetail
-    .single(v-if="selectBMIds.length <= 1")
-        h4
+    .single(v-if="selectBMIds.length <= 1 && getBM()")
+        h4.head
          i(v-show="getBM().folder").fa.fa-folder-open-o
          | {{ getBM().title }}
         table
@@ -17,4 +17,4 @@
                 th detail
                 td {{getBM().detail }}
     .multi(v-if="selectBMIds.length > 1")
-        h4 {{selectBMIds.length}} 件のブックマーク
+        h4.head {{selectBMIds.length}} 件のブックマーク

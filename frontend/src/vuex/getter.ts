@@ -1,6 +1,7 @@
 import {State} from './store';
 import {Bookmark} from '../model/bookmark';
 import {BookmarkSimilarityValue} from '../model/bookmark-similarity';
+import {User} from '../model/user';
 /**
  * Vuex　すべてのgetter関数のエクスポート.
  */
@@ -11,6 +12,10 @@ import {BookmarkSimilarityValue} from '../model/bookmark-similarity';
 
 
 // user state getter -----------------------------------
+
+export function getCurrentUser(state : State) : User {
+    return state.user;
+}
 
 export function getSignInNow(state : State) : boolean {
     return state.signInNow;
