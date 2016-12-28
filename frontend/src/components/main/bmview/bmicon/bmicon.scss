@@ -16,9 +16,11 @@ $size : 180px;
   justify-content: center;
   align-items: center;
 
-
+  transition: .2s;
   &.active {
+    transition: .2s;
     background-color: rgba(0,0,255,.1);
+    box-shadow: 4px 4px rgba(0,0,0,.25);
   }
 
   &:hover{

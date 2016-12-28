@@ -1,14 +1,17 @@
 #main
     //- mainpageのコンポーネント　大本.
-    #ribbon-toggle
-        i.fa.fa-angle-down(@click="openRibbon()", v-if="!ribbonVisible")
-        i.fa.fa-angle-up(@click="closeRibbon()", v-if="ribbonVisible")
-    ribbon(v-if="ribbonVisible").panel.panel-default
+    .head-bar
+        #ribbon-toggle
+            .left {{user.email}}
+            .right
+                i.fa.fa-angle-down(@click="openRibbon()", v-if="!ribbonVisible")
+                i.fa.fa-angle-up(@click="closeRibbon()", v-if="ribbonVisible")
+        ribbon(v-if="ribbonVisible")
     .two-col
         #side.hidden-sm.hidden-xs.hidden-md
-            tree-nav.panel.panel-default
-            bm-detail.panel.panel-default
+            tree-nav
+            bm-detail
         #center
-            breadcrumbs.panel.panel-default
-            bm-view.panel.panel-default
+            breadcrumbs
+            bm-view
             toolbar
