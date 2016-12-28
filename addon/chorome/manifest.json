@@ -1,0 +1,20 @@
+{
+  "name": "CloudBM",
+  "version": "1.0",
+  "description": "CloudBMのアドオン",
+  "permissions": [
+    "bookmarks"
+  ],
+  "background": {
+    "scripts": [
+      "src/js/background.js"
+    ],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_title": "CloudBM",
+    "default_icon": "img/logo.png",
+    "default_popup": "src/popup.html"
+  },
+  "manifest_version": 2
+}
