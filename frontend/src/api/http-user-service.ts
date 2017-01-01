@@ -46,6 +46,26 @@ export class HttpUserService implements UserService {
     }
 
     /**
+     * Initしてログインしてるか確認.
+     * @param requestListener
+     */
+    init(requestListener: RequestListener): void {
+        $.ajax({
+            url: ApiUrl.resolvePath(ApiUrl.INIT),
+            dataType: 'json',
+            method: 'GET'
+        })
+        .done((data: any) => {
+            if (!data.logined) {
+                return;
+            }
+
+            const user = new User(data.email, '');
+            requestListener.ok(user);
+        });
+    }
+
+    /**
      * SignInリクエストを送りSignInします
      * @param requestListener
      * @param user

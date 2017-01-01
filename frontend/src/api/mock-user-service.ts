@@ -19,6 +19,10 @@ export class MockUserService implements UserService {
 
     }
 
+    init(requestListener: RequestListener): void {
+        requestListener.ok(new User('hoge@hoge.com', ''));
+    }
+
     signIn(requestListener: RequestListener, user: User): void {
         if (user.validate() === true) {
             setTimeout(() => {

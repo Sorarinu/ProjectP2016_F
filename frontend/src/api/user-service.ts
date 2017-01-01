@@ -24,4 +24,10 @@ export interface UserService {
      * @param requestListener
      */
     signOut(requestListener: RequestListener) : void;
+
+    /**
+     * ログインチェック. 初期init
+     * @param requestListener
+     */
+    init(requestListener: RequestListener) : void;
 }

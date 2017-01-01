@@ -6,10 +6,33 @@
 </head>
 <body>
 <!-- CONTENT HERE -->
-<a href="loginform.html">Login</a>
-<button id="upload-btn">Sync BookMark</button>
+<div id="app">
+    <div v-if="!login">
+        <div class="login-form">
+            <div class="form-group">
+                <label>E-mail</label>
+                <input type="text" v-model="user.email"></input>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" v-model="user.password"></input>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" @click="signIn">SignIn</button>
+            </div>
+        </div>
+    </div>
+    <div v-if="login">
+        <!-- LOGIN FORM -->
+        <button class="btn btn-default" @click="signOut">Sign Out</button>
+        <div class="user-name">{{ user.email }}</div>
+        <button class="btn btn-primary" @click="uploadBM">Upload Bookmark</button>
+    </div>
+</div>
+
 <!-- CONTENT END -->
 <script src="assets/vendor/jquery-3.1.1.min.js"></script>
+<script src="assets/vendor/vue.min.js"></script>
 <script src="./js/main.js"></script>
 </body>
 </html>
