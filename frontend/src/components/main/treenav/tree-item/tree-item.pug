@@ -2,11 +2,11 @@
     span(
         v-if="bookmark.folder",
         @click="toggle")
-            i(v-if="expandNow").fa.fa-minus-square
-            i(v-if="!expandNow").fa.fa-plus-square
+            i(v-if="expandNow").fa.fa-caret-down
+            i(v-if="!expandNow").fa.fa-caret-right
     span(@dblclick="openBm")
         i(v-if="!bookmark.folder").fa.fa-bookmark
-        | {{bookmark.title}}
+    span.title {{bookmark.title}}
     ul(v-show="expandNow")
         tree-item(v-for="bm in bookmark.bookmark",
         :bookmark="bm")

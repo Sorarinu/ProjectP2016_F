@@ -1,7 +1,8 @@
 import {Navbar} from './components/navbar/navbar';
 import {Footbar} from './components/footer/footbar';
 import store from './vuex/store';
-import {Component} from './vue-typed/vue-typed';
+import {Component, Action} from './vue-typed/vue-typed';
+import {Actions} from './vuex/actions';
 /*
 * アプリケーションのトップレベルコンポーネントです
  */
@@ -23,5 +24,14 @@ export class App {
             showFooter: this.showFooter,
             showNav: this.showNav
         };
+    }
+
+    @Action(Actions.init)
+    init() {
+        return;
+    }
+
+    created() {
+        this.init();
     }
 }
