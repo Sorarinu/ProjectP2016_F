@@ -419,7 +419,7 @@ class ApiController extends Controller
     public function similarity()
     {
         $json = json_encode(json_decode(file_get_contents('php://input')), JSON_UNESCAPED_SLASHES);
-        $client = new \GuzzleHttp\Client();;
+        $client = new \GuzzleHttp\Client();
 
         $res = $client->request('POST', 'http://127.0.0.1:8089/api/v1/similarity-search/', [
             'headers' => [
