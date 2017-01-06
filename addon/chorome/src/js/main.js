@@ -14,6 +14,9 @@ var app = new Vue({
     loading: false
   },
   created: function() {
+    $.ajaxSetup({xhrFields: {
+      withCredentials: true
+    }})
     this.initLogin()
   },
   methods: {
@@ -22,10 +25,7 @@ var app = new Vue({
         url: 'https://nxtg-t.net/api/v1/signin',
         method: 'POST',
         requestType: 'json',
-        data: this.user,
-        xhrFields: {
-          withCredentials: true
-        }
+        data: this.user
       }).done(function (res) {
         if (res.status === 'OK') {
           app.login = true
@@ -52,10 +52,7 @@ var app = new Vue({
     signOut: function() {
       $.ajax({
         url: 'https://nxtg-t.net/api/v1/signout',
-        method: 'GET',
-        xhrFields: {
-          withCredentials: true
-        }
+        method: 'GET'
       }).done(function (res) {
         app.login = false
       })
@@ -81,7 +78,7 @@ var app = new Vue({
           + format(date.getHours()) + ':' + format(date.getMinutes()) + ':' + format(date.getSeconds())
 
         return {
-          reg_date: dateStr,
+          reg_date: bookmark.dateAdded,
           id: bookmark.id,
           index: bookmark.index,
           folder: folder,
@@ -109,10 +106,7 @@ var app = new Vue({
         $.ajax({
           url: 'https://nxtg-t.net/api/v1/bookmarks/upload/addon',
           method: 'POST',
-          data: JSON.stringify(res),
-          xhrFields: {
-            withCredentials: true
-          }
+          data: JSON.stringify(res)
         })
       })
     },
