@@ -56,7 +56,7 @@ class ApiController extends Controller
         try {
             if (!$isLogin) {
                 $this->request->session()->put('user_id', $request->session()->get('_token'));
-
+                Slack::send('init');
                 return new JsonResponse(
                     [
                         'status' => 'OK',
