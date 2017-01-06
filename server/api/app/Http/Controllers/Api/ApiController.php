@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Library\Bookmark;
 use App\Library\BookmarkUpload;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -267,7 +268,7 @@ class ApiController extends Controller
             }
             $dbBookmark->title = $item['title'];
             $dbBookmark->detail = '';
-            $dbBookmark->reg_date = $item['reg_date'];
+            $dbBookmark->reg_date = Carbon::createFromTimestamp($item['reg_date']);
             $dbBookmark->folder = $item['folder'];
 
             if ($item['folder'] !== true) {
