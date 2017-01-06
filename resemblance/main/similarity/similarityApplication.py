@@ -2,8 +2,10 @@
 
 import json
 import os
+import random
 import sys
 import time
+import threading
 from functools import wraps
 from flaskext.mysql import MySQL
 from flask import Flask, abort, request, Response
@@ -24,6 +26,16 @@ def connnection():
     cur = mysql.connect().cursor()
     return cur
 
+data_store = {'a': 1}
+def interval_query():
+    while True:
+        time.sleep(1)
+        vals = {'a': random.randint(0,100)}
+        data_store.update(vals)
+
+thread = threading.Thread(name='interval_query', target=interval_query)
+thread.setDaemon(True)
+thread.start()
 
 def consumes(content_type):
     def _consumes(function):
