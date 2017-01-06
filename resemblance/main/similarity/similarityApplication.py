@@ -1,18 +1,27 @@
 # coding:utf-8
 
 import json
+import os
+import sys
 from functools import wraps
-
+from flaskext.mysql import MySQL
 from flask import Flask, abort, request, Response
 from api.search.loadModel import LoadModelFlag
-from api.search.scraping import Scraping
+from api.create.scraping import Scraping
 from api.tag.loadModel import LoadModelTag
 
-from api.search.genModel import CreateModel
+from api.create.genModel import CreateModel
 from conf.constants import *
 
 app = Flask(__name__)
 app.config.from_object(__name__)
+mysql = MySQL()
+mysql.init_app(app)
+
+
+def connnection():
+    cur = mysql.connect().cursor()
+    return cur
 
 
 def consumes(content_type):
@@ -26,14 +35,6 @@ def consumes(content_type):
         return __consumes
 
     return _consumes
-
-
-@app.route('/api/v1/', methods=['POST'])
-@consumes('application/json')
-def hello_cloudBM():
-    test_data = request.json
-    json_data = json.dumps(test_data, ensure_ascii=False, sort_keys=True)
-    return Response(json_data, mimetype='application/json')
 
 
 def add_flag():
@@ -76,5 +77,11 @@ def add_tag():
     return data
 
 
+def fork():
+    pid = os.fork()
+    if pid == 0:
+        app.run(port=8089, debug=True)
+
+
 if __name__ == '__main__':
-    app.run(port=8089, debug=True)
+    fork()

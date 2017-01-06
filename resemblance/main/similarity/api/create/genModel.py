@@ -3,7 +3,7 @@ import logging
 
 from gensim.models import word2vec
 
-from api.search.wakati import MeacabWakati
+from api.create.wakati import MeacabWakati
 from conf.constants import *
 
 
