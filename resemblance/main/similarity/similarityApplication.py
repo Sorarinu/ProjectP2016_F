@@ -3,6 +3,7 @@
 import json
 import os
 import sys
+import time
 from functools import wraps
 from flaskext.mysql import MySQL
 from flask import Flask, abort, request, Response
@@ -77,10 +78,24 @@ def add_tag():
     return data
 
 
+def sample():
+    while 1:
+        time.sleep(5)
+        print("sample-daemon")
+
+
 def fork():
     pid = os.fork()
+
+    if pid > 0:
+        f = open('/var/www/html/ProjectP2016_F/resemblance/main/similarity/pid/similarity.pid', 'w')
+        f.write(str(pid) + "\n")
+        f.close()
+        sys.exit()
+
     if pid == 0:
-        app.run(port=8089, debug=True)
+        sample()
+        app.run()
 
 
 if __name__ == '__main__':
