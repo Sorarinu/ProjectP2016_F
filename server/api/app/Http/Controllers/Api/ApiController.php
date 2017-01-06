@@ -168,7 +168,7 @@ class ApiController extends Controller
                     $this->request->session()->put('email', $user->email);
                     $this->request->session()->put('user_id', $user->email);
                     $this->request->session()->put('isLogin', true);
-                    
+
                     Slack::send('User was Logged in at *' . $this->request->session()->get('user_id') . '*.');
 
                     return new JsonResponse([
@@ -255,7 +255,7 @@ class ApiController extends Controller
     public function uploadAddon(Request $request)
     {
         $data = json_decode(file_get_contents('php://input'), true);
-        $userId = $request->session()->get('user_id');
+        $userId = $this->request->session()->get('user_id');
 
         if (BookmarkDB::checkExists($userId)) {
             BookmarkDB::deleteOldData($userId);
