@@ -173,7 +173,7 @@ class ApiController extends Controller
 
                     return new JsonResponse([
                         'status' => 'OK',
-                        'message' => 'Login success: ' . $user->email
+                        'message' => 'Login success: ' . $this->request->session()->get('user_id')
                     ]);
                 }
 
