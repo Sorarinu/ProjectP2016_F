@@ -164,11 +164,12 @@ class ApiController extends Controller
                     ->firstOrFail();
 
                 if (Hash::check($data->password, $user->password)) {
-                    Slack::send('User was Logged in at *' . $data->email . '*.');
 
                     $this->request->session()->put('email', $user->email);
                     $this->request->session()->put('user_id', $user->email);
                     $this->request->session()->put('isLogin', true);
+                    
+                    Slack::send('User was Logged in at *' . $this->request->session()->get('user_id') . '*.');
 
                     return new JsonResponse([
                         'status' => 'OK',
