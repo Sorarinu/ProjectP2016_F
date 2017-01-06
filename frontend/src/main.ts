@@ -2,6 +2,7 @@ import Vue = require('vue');
 import VueRouter = require('vue-router');
 import {App} from './app';
 import {configureRouter} from './route-config';
+import * as $ from 'jquery';
 /**
  * Application Main Entry Point here!!
  *
@@ -9,6 +10,10 @@ import {configureRouter} from './route-config';
  * routing start!!
  */
 
+//  jquery
+$.ajaxSetup({xhrFields: {
+    withCredentials: true
+}});
 
 // Router -----------------------------
 

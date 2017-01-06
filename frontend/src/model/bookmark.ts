@@ -112,6 +112,11 @@ export class Bookmark implements Validation {
         if (this.folder === false) {
             return 1;
         }
+
+        if (!this.bookmark) {
+            return 0;
+        }
+
         return this.bookmark
         .map( (bm: Bookmark) => { return bm.getSize(); })
         .reduce((x: number, y: number) => { return x + y; }, 1);

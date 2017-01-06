@@ -1,10 +1,12 @@
-import {Component} from '../../vue-typed/vue-typed';
+import {Component, Getter} from '../../vue-typed/vue-typed';
 import {BmDetail} from './bmdetail/bmdetail';
 import {Breadcrumbs} from './breadcrumbs/breadcrumbs';
 import {Toolbar} from './toolbar/toolbar';
 import {BmView} from './bmview/bmview';
 import {TreeNav} from './treenav/treenav';
 import {Ribbon} from './ribbon/ribbon';
+import {getCurrentUser} from '../../vuex/getter';
+import {User} from '../../model/user';
 
 /**
  * Main Component
@@ -33,6 +35,9 @@ export class Main {
             ribbonVisible: this.ribbonVisible
         };
     }
+
+    @Getter(getCurrentUser)
+    user: User;
 
     openRibbon() {
         this.ribbonVisible = true;

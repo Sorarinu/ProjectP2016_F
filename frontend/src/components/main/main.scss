@@ -1,18 +1,30 @@
+@import "src/assets/csslib/my-lib.scss";
+
 #main {
 
   display: flex;
   flex-direction: column;
-
-  #ribbon-toggle {
-    text-align: right;
-    &:hover{
-      cursor: pointer;
+  .head-bar{
+    padding: 20px;
+    #ribbon-toggle {
+      display: flex;
+      .left{
+        flex-grow: 1;
+      }
+      i {
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
+
+    background-color: $primary-color-dark;
+    color: $primary-color-text;
+    z-index: 100;
+    box-shadow: 0px 9px 3px -3px rgba(0,0,0,.25);
+
   }
 
-  #ribbon {
-
-  }
 
   .two-col{
 
@@ -22,27 +34,41 @@
     flex-direction: row;
 
     #side {
+      background-color: $primary-color-light;
+      color: $primary-text-color;
+      //box-shadow: 8px 0px 8px -1px rgba(0,0,0,.25);
+      margin-right: 30px;
 
       width:25vw;
       flex-shrink: 0;
 
-      margin: 8px;
 
       display: flex;
       flex-direction: column;
 
       #treenav {
         flex-grow: 3;
-        max-height: 70vh;
+        //max-height: 70vh;
+        padding: 20px;
+
       }
 
-      #bmdetail {
-        flex-grow: 1;
-        flex-basis: auto;
-      }
+      //#bmdetail {
+      //  flex-grow: 1;
+      //  flex-basis: auto;
+      //  padding: 20px;
+      //
+      //  display: flex;
+      //  justify-content: center;
+      //  align-items: center;
+      //  text-align: center;
+      //}
+
+      padding: 10px;
 
     }
     #center {
+      padding: 10px;
 
       flex-grow: 1;
 
@@ -58,7 +84,7 @@
       }
 
       #toolbar{
-        position: absolute;
+        position: fixed;
         right: 5vw;
         bottom: 5vh;
       }

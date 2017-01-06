@@ -37,6 +37,10 @@ export class BmView {
     showContextMenu : boolean;
     posStyle : PosStyle;
 
+    created() {
+        this.uploadBookmark();
+    }
+
     data() {
 
         this.showContextMenu = false;

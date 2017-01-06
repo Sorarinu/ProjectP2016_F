@@ -16,6 +16,19 @@ export class Actions {
     // MutationはAction外で呼ぶことはできません.
     // Mutationは単純なStateの状態変更で同期的である必要がありますが,Actionは非同期処理を内包できます.
 
+    static init: Action<State> =
+        ({dispatch}: any) => {
+            const service = ServiceFactory.getUserService();
+            service.init({
+                ok: (user: User) => {
+                    dispatch(MutationTypes.SIGN_IN, user);
+                },
+                failed: (message: string) => {
+                    return;
+                }
+            });
+        };
+
     /**
      * SignInをコミットする
      * @param dispatch

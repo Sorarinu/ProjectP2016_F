@@ -30,11 +30,13 @@ export class HttpBookmarkService　implements BookmarkService {
             url: ApiUrl.resolvePath(BOOKMARK),
             dataType: 'json'
         })
-        .done(() => {
-            return;
+        .done((data: any) => {
+            console.log(JSON.stringify(data));
+            const bookmark = Bookmark.fromJSON(JSON.stringify(data));
+            requestListener.ok(bookmark);
         })
-        .fail(() => {
-            return;
+        .fail((xhr) => {
+            requestListener.failed((xhr.status));
         });
     }
 

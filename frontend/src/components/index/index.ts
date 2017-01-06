@@ -14,7 +14,7 @@ require('./css/layout_top.scss');
 })
 export class Index {
     goAbout() {
-        router.go('about');
+        router.go('main');
     }
 
     goSignIn() {
