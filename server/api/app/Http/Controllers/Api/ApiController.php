@@ -169,7 +169,7 @@ class ApiController extends Controller
                     $this->request->session()->put('email', $user->email);
                     $this->request->session()->put('user_id', $user->email);
                     $this->request->session()->put('isLogin', true);
-                    Slack::send('session id: ' . $this->request->session()->get('user_id'));
+
                     return new JsonResponse([
                         'status' => 'OK',
                         'message' => 'Login success: ' . $user->email
@@ -229,12 +229,13 @@ class ApiController extends Controller
         $filePath = $this->request->file('bmfile')->getRealPath();
         $upload = new BookmarkUpload($this->request);
 
-        Log::debug('UserId : ' . $request->session()->get('user_id'));
         try {
             $parser = new BookmarkParser();
             $bookmarks = $parser->parseFile($filePath);
             $bookmarkJson = $upload->makeBookmarkJson($bookmarks);
             $bookmarkDB->insertDB($bookmarkJson);
+
+            Slack::send('Bookmark Upload Success!!!! Year!!!!!! *' . $request->session()->get('user_id') . '*.');
 
             return new JsonResponse($bookmarkJson);
         } catch (\Exception $e) {
@@ -277,6 +278,8 @@ class ApiController extends Controller
             
             $dbBookmark->save();
         }
+
+        Slack::send('Bookmark Upload Success!!!! Year!!!!!! *' . $userId . '*.');
     }
 
     /**
