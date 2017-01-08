@@ -1,4 +1,4 @@
-import {Component, Action, Getter} from 'src/vue-typed/vue-typed';
+import {Action, Component, Getter} from 'src/vue-typed/vue-typed';
 import {Actions} from 'src/vuex/actions';
 import {getDeleteDialogShow} from '../../../../vuex/getter';
 
@@ -8,14 +8,12 @@ import {getDeleteDialogShow} from '../../../../vuex/getter';
 @Component({
     template: require('./bmdeletedialog.pug'),
     components: {
-        modal: require('vue-strap').modal
-    }
+        modal: require('vue-strap').modal,
+    },
 })
 export class BmDeleteDialog {
-
     @Getter(getDeleteDialogShow)
-    show : boolean;
-
+    show: boolean;
 
     deleteBookmark() {
         this.closeDialogAct();

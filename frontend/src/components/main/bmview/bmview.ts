@@ -1,11 +1,11 @@
-import {Component, Action, Getter} from 'src/vue-typed/vue-typed';
-import {BmIcon} from './bmicon/bmicon';
-import {bookmarkIsEmpty, getShowBookmarks} from 'src/vuex/getter';
-import {Actions} from 'src/vuex/actions';
 import {Bookmark} from 'src/model/bookmark';
+import {Action, Component, Getter} from 'src/vue-typed/vue-typed';
+import {Actions} from 'src/vuex/actions';
+import {bookmarkIsEmpty, getShowBookmarks} from 'src/vuex/getter';
+import {BmUploadDialog} from '../dialog/bm-upload-dialog/bm-upload-dialog';
 import {BmDeleteDialog} from '../dialog/bmdeletedialog/bmdeletedialog';
 import {SearchDialog} from '../dialog/searchdialog/searchdialog';
-import {BmUploadDialog} from '../dialog/bm-upload-dialog/bm-upload-dialog';
+import {BmIcon} from './bmicon/bmicon';
 /**
  * BmView Component
  * ブックマーク表示コンポーネント.
@@ -17,16 +17,16 @@ require('./bmview.scss');
         BmIcon,
         BmDeleteDialog,
         SearchDialog,
-        BmUploadDialog
-    }
+        BmUploadDialog,
+    },
 })
 export class BmView {
 
     @Getter(bookmarkIsEmpty)
-    bookmarkEmpty : boolean;
+    bookmarkEmpty: boolean;
 
     @Getter(getShowBookmarks)
-    bookmarks : Bookmark[];
+    bookmarks: Bookmark[];
 
     // アップロードボタンが押されたらフォルダ選択のモーダル=> uploadアクション.の流れだけど
     // とりあえず簡単のために押されたらbookmarkをフェッチしちゃう.
@@ -34,8 +34,8 @@ export class BmView {
     @Action(Actions.fetchBookmark)
     uploadBookmark() {return ; }
 
-    showContextMenu : boolean;
-    posStyle : PosStyle;
+    showContextMenu: boolean;
+    posStyle: PosStyle;
 
     created() {
         this.uploadBookmark();
@@ -48,24 +48,23 @@ export class BmView {
         this.posStyle = {
             position: 'absolute',
             top: '0px',
-            left: '0px'
+            left: '0px',
         };
 
         return {
             showContextMenu: this.showContextMenu,
-            posStyle : this.posStyle,
+            posStyle: this.posStyle,
         };
     }
 
-
-    private dragNow : Bookmark;
+    private dragNow: Bookmark;
     /**
      * DragStartでコールされるイベントハンドラ
      * @param e
      * @param bm
      */
     onDragStart(e: DragEvent, bm: Bookmark) {
-        console.log(`dragStart : ${bm.id}`);
+        // console.log(`dragStart : ${bm.id}`);
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('id', `${bm.id}`);
 
@@ -93,9 +92,6 @@ export class BmView {
         e.preventDefault();
     }
 
-
-
-
     /**
      * Dropでコールされるイベントハンドラ.
      * @param e
@@ -109,7 +105,7 @@ export class BmView {
 
         const from = Number(e.dataTransfer.getData('id'));
         const to = bm.id;
-        console.log(`dragged id=${from} -> ${to}`);
+        // console.log(`dragged id=${from} -> ${to}`);
 
         if (from === to) {
             throw Error('おいなんで同じところにDnDしようとしてるんだよ・・・');
@@ -124,7 +120,6 @@ export class BmView {
         return;
     }
 
-
     contextmenu(e: MouseEvent) {
         this.posStyle.left = e.clientX + 'px';
         this.posStyle.top = e.clientY + 'px';
@@ -138,10 +133,9 @@ export class BmView {
     }
 
     @Action(Actions.toggleContextMenu)
-    contextMenuOpenSet(closer : () => void) {
+    contextMenuOpenSet(closer: () => void) {
         return;
     }
-
 
     addFolder() {
         return;
@@ -156,9 +150,7 @@ export class BmView {
 }
 
 interface PosStyle {
-    position : string;
-    left : string;
-    top : string;
+    position: string;
+    left: string;
+    top: string;
 }
-
-

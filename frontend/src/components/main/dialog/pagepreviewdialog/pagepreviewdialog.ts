@@ -8,18 +8,17 @@ require('./searchdialog.scss');
 @Component({
     template: require('./searchdialog.pug'),
     components: {
-        modal: require('vue-strap').modal
-    }
+        modal: require('vue-strap').modal,
+    },
 })
 export class PagePreviewDialog {
-
-    show : boolean;
+    show: boolean;
 
     data() {
         this.show = false;
 
         return {
-            show: this.show
+            show: this.show,
         };
     }
 

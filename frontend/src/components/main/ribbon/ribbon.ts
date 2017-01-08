@@ -1,4 +1,4 @@
-import {Component, Action} from '../../../vue-typed/vue-typed';
+import {Action, Component} from '../../../vue-typed/vue-typed';
 import {Actions} from '../../../vuex/actions';
 /**
  * Ribbon Component
@@ -6,7 +6,7 @@ import {Actions} from '../../../vuex/actions';
  */
 require('./ribbon.scss');
 @Component({
-    template: require('./ribbon.pug')
+    template: require('./ribbon.pug'),
 })
 export class Ribbon {
 

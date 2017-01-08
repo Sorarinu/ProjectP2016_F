@@ -1,8 +1,8 @@
 import Vue = require('vue');
 import VueRouter = require('vue-router');
+import * as $ from 'jquery';
 import {App} from './app';
 import {configureRouter} from './route-config';
-import * as $ from 'jquery';
 /**
  * Application Main Entry Point here!!
  *
@@ -12,7 +12,7 @@ import * as $ from 'jquery';
 
 //  jquery
 $.ajaxSetup({xhrFields: {
-    withCredentials: true
+    withCredentials: true,
 }});
 
 // Router -----------------------------
@@ -24,6 +24,4 @@ configureRouter(router);
 router.start(App, '#app');
 export default router; // エクスポートしたrouter これを使うことで任意にルーティングできる
 
-//--------------------------------------
-
-
+// --------------------------------------

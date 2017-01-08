@@ -7,8 +7,8 @@ require('./help.scss');
     template: require('./help.pug'),
     components: {
         alert : require('vue-strap').alert ,
-        bsInput : require('vue-strap').input
-    }
+        bsInput : require('vue-strap').input,
+    },
 })
 export class Help {
     data() {

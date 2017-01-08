@@ -8,11 +8,10 @@ interface RequestListener {
      * サーバーからのレスポンスでstatus ok が帰ってきたとき
      * @param data
      */
-    ok: (data : any) => void;
+    ok: (data: any) => void;
 
     /**
      * リクエストが失敗したとき
      */
-    failed: (message : string) => void;
-
+    failed: (message: string) => void;
 }

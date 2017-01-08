@@ -23,7 +23,7 @@ export class BookmarkSimilarity {
                 return {
                     id : bm.id,
                     url : bm.url,
-                    similar_flag : undefined
+                    similar_flag : undefined,
                 };
             };
 

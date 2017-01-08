@@ -1,4 +1,4 @@
-import {Component, Action, Getter} from 'src/vue-typed/vue-typed';
+import {Action, Component, Getter} from 'src/vue-typed/vue-typed';
 import {Actions} from 'src/vuex/actions';
 import {getUploadDialogShow} from '../../../../vuex/getter';
 
@@ -8,23 +8,21 @@ import {getUploadDialogShow} from '../../../../vuex/getter';
 @Component({
     template: require('./bm-upload-dialog.pug'),
     components: {
-        modal: require('vue-strap').modal
-    }
+        modal: require('vue-strap').modal,
+    },
 })
 export class BmUploadDialog {
 
-    formData : FormData;
+    formData: FormData;
 
     fileChange(ev: Event) {
-        console.log('called' + ev);
+        // console.log('called' + ev);
         this.formData = new FormData();
         // TODO: formdataをボタンクリックで作ってActionへ流す
     }
 
-
     @Getter(getUploadDialogShow)
-    show : boolean;
-
+    show: boolean;
 
     // upload() {
     //     this.uploadBookmarkAct(null);

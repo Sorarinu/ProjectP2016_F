@@ -9,27 +9,27 @@ export interface BookmarkService {
      * @param bm
      * @param requestListener
      */
-    postBookmark(bm: Bookmark, requestListener: RequestListener) : void;
+    postBookmark(bm: Bookmark, requestListener: RequestListener): void;
 
     /**
      * Bookmarkを全取得します.
      * @param requestListener
      */
-    getBookmarks(requestListener: RequestListener) : void;
+    getBookmarks(requestListener: RequestListener): void;
 
     /**
      * 指定されたブックマークを更新します
      * @param bm
      * @param requestListener
      */
-    updateBookmark(bm: Bookmark, requestListener: RequestListener) : void;
+    updateBookmark(bm: Bookmark, requestListener: RequestListener): void;
 
     /**
      * 指定されたブックマークを削除します
      * @param bm
      * @param requestListener
      */
-    deleteBookmark(bm: Bookmark, requestListener: RequestListener) : void;
+    deleteBookmark(bm: Bookmark, requestListener: RequestListener): void;
 
     /**
      * ブックマークファイルをサーバにアップロード。
@@ -37,5 +37,5 @@ export interface BookmarkService {
      * @param formData
      * @param requestListener
      */
-    uploadBookmark(formData: FormData, requestListener: RequestListener) : void;
+    uploadBookmark(formData: FormData, requestListener: RequestListener): void;
 }

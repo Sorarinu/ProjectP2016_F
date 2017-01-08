@@ -1,8 +1,8 @@
-import {Navbar} from './components/navbar/navbar';
 import {Footbar} from './components/footer/footbar';
-import store from './vuex/store';
-import {Component, Action} from './vue-typed/vue-typed';
+import {Navbar} from './components/navbar/navbar';
+import {Action, Component} from './vue-typed/vue-typed';
 import {Actions} from './vuex/actions';
+import store from './vuex/store';
 /*
 * アプリケーションのトップレベルコンポーネントです
  */
@@ -10,7 +10,7 @@ require('./app.scss');
 @Component({
     template: require('./app.pug'),
     components: { Navbar, Footbar },
-    store: store
+    store: store,
 })
 export class App {
 
@@ -22,7 +22,7 @@ export class App {
         this.showNav = false;
         return {
             showFooter: this.showFooter,
-            showNav: this.showNav
+            showNav: this.showNav,
         };
     }
 

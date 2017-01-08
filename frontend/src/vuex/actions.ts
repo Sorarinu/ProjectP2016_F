@@ -1,10 +1,10 @@
 import {Action, Store} from '~vuex/index';
-import {User} from '../model/user';
-import {MutationTypes} from './mutation-types';
-import {State} from './store';
 import {ServiceFactory} from '../api/service-factory';
 import {Bookmark} from '../model/bookmark';
 import {BookmarkSimilarity} from '../model/bookmark-similarity';
+import {User} from '../model/user';
+import {MutationTypes} from './mutation-types';
+import {State} from './store';
 
 /**
  * Vuex, すべてのAction
@@ -25,9 +25,9 @@ export class Actions {
                 },
                 failed: (message: string) => {
                     return;
-                }
+                },
             });
-        };
+        }
 
     /**
      * SignInをコミットする
@@ -37,7 +37,7 @@ export class Actions {
     static signIn: Action<State> =
         ({dispatch}: any, user: User) => {
             dispatch(MutationTypes.SIGN_IN, user);
-        };
+        }
 
     /**
      * SignOutをコミットする
@@ -46,7 +46,7 @@ export class Actions {
     static signOut: Action<State> =
         (store: Store<State>) => {
             store.dispatch(MutationTypes.SIGN_OUT);
-        };
+        }
 
 
     /**
@@ -65,7 +65,7 @@ export class Actions {
             //         store.dispatch(MutationTypes.SET_BOOKMARK_ERROR, message);
             //     }
             // });
-        };
+        }
 
 
     /**
@@ -82,9 +82,9 @@ export class Actions {
                 },
                 failed : (message: string ) => {
                     store.dispatch(MutationTypes.SET_BOOKMARK_ERROR, message);
-                }
+                },
             });
-        };
+        }
 
     /**
      * ブックマークの現在開いているディレクトリのIDをコミットする.
@@ -95,13 +95,13 @@ export class Actions {
         (store: Store<State>, dirID: number) => {
             // Actions.selectBookmark(store, dirID);
             store.dispatch(MutationTypes.SET_BOOKMARK_OPEN_DIR, dirID);
-        };
+        }
 
 
     static addBookmark: Action<State> =
         (store: Store<State>, parent: Bookmark, bookmark: Bookmark) => {
             store.dispatch(MutationTypes.ADD_BOOKMARK, bookmark);
-        };
+        }
 
     /**
      * ブックマークを移動する.
@@ -112,7 +112,7 @@ export class Actions {
     static moveBookmark: Action<State> =
         (store: Store<State>, from: number , to: number) => {
             store.dispatch(MutationTypes.MOVE_BOOKMARK, from, to);
-        };
+        }
 
     /**
      * ブックマークを削除する.
@@ -122,7 +122,7 @@ export class Actions {
     static deleteBookmark: Action<State> =
         (store: Store<State>, id: number) => {
             store.dispatch(MutationTypes.DELETE_BOOKMARK, id);
-        };
+        }
 
     /**
      * ブックマークを単一選択状態にする
@@ -133,7 +133,7 @@ export class Actions {
         (store: Store<State>, id: number) => {
             store.dispatch(MutationTypes.RESET_SELECT_BOOKMARK);
             store.dispatch(MutationTypes.ADD_SELECT_BOOKMARK, id);
-        };
+        }
 
     /**
      * ブックマークを選択状態にする
@@ -154,7 +154,7 @@ export class Actions {
             }
 
             store.dispatch(MutationTypes.ADD_SELECT_BOOKMARK, id);
-        };
+        }
 
     /**
      * 選択状態にあるブックマークを全部削除し
@@ -168,13 +168,13 @@ export class Actions {
             });
 
             store.dispatch(MutationTypes.RESET_SELECT_BOOKMARK);
-        };
+        }
 
     /**
      * ブックマークを類似度APIに問い合わせ検索する
      * @param store
      */
-    static searchBookmark : Action<State> =
+    static searchBookmark: Action<State> =
         (store: Store<State>, bmf: Bookmark , searchWord: string) => {
 
             store.dispatch(MutationTypes.START_SEARCH);
@@ -186,7 +186,7 @@ export class Actions {
                 } ,
                 failed : (message: String) => {
                     store.dispatch(MutationTypes.SET_BOOKMARK_ERROR, message);
-                }
+                },
             });
         }
 
@@ -195,38 +195,38 @@ export class Actions {
     static openBMDeleteDialog: Action<State> =
         (store: Store<State>) => {
             store.dispatch(MutationTypes.OPEN_DELETE_DIALOG);
-        };
+        }
 
     static closeBMDeleteDialog: Action<State> =
         (store: Store<State>) => {
             store.dispatch(MutationTypes.CLOSE_DELETE_DIALOG);
-        };
+        }
 
     static openSearchDialog: Action<State> =
         (store: Store<State>) => {
             store.dispatch(MutationTypes.OPEN_SEARCH_DIALOG);
-        };
+        }
 
     static closeSearchDialog: Action<State> =
         (store: Store<State>) => {
             store.dispatch(MutationTypes.CLOSE_SEARCH_DIALOG);
-        };
+        }
 
     static openUploadDialog: Action<State> =
         (store: Store<State>) => {
             store.dispatch(MutationTypes.OPEN_UPLOAD_DIALOG);
-        };
+        }
 
     static closeUploadDialog: Action<State> =
         (store: Store<State>) => {
             store.dispatch(MutationTypes.CLOSE_UPLOAD_DIALOG);
-        };
+        }
 
     /**
      * コンテキストメニューの表示、非表示状態を切り替える.
      * @param store
      */
-    static toggleContextMenu : Action<State> =
+    static toggleContextMenu: Action<State> =
         (store: Store<State>, closer: () => void) => {
             store.dispatch(MutationTypes.TOGGLE_CONTEXT_MENU, closer);
         }

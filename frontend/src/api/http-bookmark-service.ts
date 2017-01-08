@@ -10,11 +10,11 @@ import BOOKMARK_UPLOAD = ApiUrl.BOOKMARK_UPLOAD;
  */
 export class HttpBookmarkService　implements BookmarkService {
 
-    postBookmark(bm: Bookmark, requestListener: RequestListener) : void {
+    postBookmark(bm: Bookmark, requestListener: RequestListener): void {
         $.ajax({
             method: 'POST',
             url: ApiUrl.resolvePath(BOOKMARK),
-            dataType: 'json'
+            dataType: 'json',
         })
         .done(() => {
             return;
@@ -24,14 +24,14 @@ export class HttpBookmarkService　implements BookmarkService {
         });
     }
 
-    getBookmarks(requestListener: RequestListener) : void {
+    getBookmarks(requestListener: RequestListener): void {
         $.ajax({
             method: 'GET',
             url: ApiUrl.resolvePath(BOOKMARK),
-            dataType: 'json'
+            dataType: 'json',
         })
         .done((data: any) => {
-            console.log(JSON.stringify(data));
+            // console.log(JSON.stringify(data));
             const bookmark = Bookmark.fromJSON(JSON.stringify(data));
             requestListener.ok(bookmark);
         })
@@ -40,12 +40,12 @@ export class HttpBookmarkService　implements BookmarkService {
         });
     }
 
-    updateBookmark(bm: Bookmark) : void {
+    updateBookmark(bm: Bookmark): void {
         const id = bm.id;
         $.ajax({
             method: 'PUT',
             url: ApiUrl.resolvePath(BOOKMARK) + '/' + id,
-            dataType: 'json'
+            dataType: 'json',
         })
         .done(() => {
             return;
@@ -55,12 +55,12 @@ export class HttpBookmarkService　implements BookmarkService {
         });
     }
 
-    deleteBookmark(bm: Bookmark) : void {
+    deleteBookmark(bm: Bookmark): void {
         const id = bm.id;
         $.ajax({
             method: 'DELETE',
             url: ApiUrl.resolvePath(BOOKMARK) + '/' + id,
-            dataType: 'json'
+            dataType: 'json',
         })
         .done(() => {
             return;
@@ -69,7 +69,6 @@ export class HttpBookmarkService　implements BookmarkService {
             return;
         });
     }
-
 
     uploadBookmark(formData: FormData, requestListener: RequestListener): void {
         $.ajax({
@@ -77,15 +76,15 @@ export class HttpBookmarkService　implements BookmarkService {
             url: ApiUrl.resolvePath(BOOKMARK_UPLOAD),
             data: formData,
             processData: false,
-            dataType: 'json'
+            dataType: 'json',
         })
         .done((data) => {
-            console.log(data);
+            // console.log(data);
             requestListener.ok(data);
             return;
         })
         .fail((data) => {
-            console.log(data);
+            // console.log(data);
             requestListener.failed(data);
             return;
         });

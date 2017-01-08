@@ -1,5 +1,5 @@
-import {Component} from '../../vue-typed/vue-typed';
 import router from '../../main';
+import {Component} from '../../vue-typed/vue-typed';
 
 /**
  * IndexPage Component
@@ -9,8 +9,8 @@ require('./css/layout_top.scss');
 @Component({
     template: require('./index.html'),
     components: {
-        alert: require('vue-strap').alert
-    }
+        alert: require('vue-strap').alert,
+    },
 })
 export class Index {
     goAbout() {
@@ -29,7 +29,7 @@ export class Index {
 
     data() {
         return {
-            movie: require('./video/movie_pc.mp4')
+            movie: require('./video/movie_pc.mp4'),
         };
     }
 }

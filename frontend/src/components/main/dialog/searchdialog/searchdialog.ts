@@ -1,6 +1,6 @@
-import {Component, Getter, Action} from 'src/vue-typed/vue-typed';
 import {Bookmark} from 'src/model/bookmark';
-import {getBookmarkHierarchy, getSearchDialogShow, getBookmarkSearchRes, getBookmark} from 'src/vuex/getter';
+import {Action, Component, Getter} from 'src/vue-typed/vue-typed';
+import {getBookmark, getBookmarkHierarchy, getBookmarkSearchRes, getSearchDialogShow} from 'src/vuex/getter';
 import {Actions} from '../../../../vuex/actions';
 
 /**
@@ -12,19 +12,19 @@ require('./searchdialog.scss');
     template: require('./searchdialog.pug'),
     components: {
         modal: require('vue-strap').modal,
-        progressbar: require('vue-strap').progressbar
+        progressbar: require('vue-strap').progressbar,
     },
 })
 export class SearchDialog {
 
     @Getter(getSearchDialogShow)
-    show : boolean;
+    show: boolean;
 
-    showRes : boolean;
+    showRes: boolean;
 
-    searchWord : string;
+    searchWord: string;
 
-    checkState : number[];
+    checkState: number[];
 
     data() {
 
@@ -39,7 +39,6 @@ export class SearchDialog {
             showRes : this.showRes,
         };
     }
-
 
     /**
      * APIへの問い合わせを行い結果を表示する.
@@ -57,7 +56,7 @@ export class SearchDialog {
     }
 
     @Getter(getBookmarkSearchRes)
-    bookmarkSearchRes : Bookmark[];
+    bookmarkSearchRes: Bookmark[];
 
     @Getter(getBookmark)
     getBookmark(id: number): Bookmark {
@@ -94,21 +93,17 @@ export class SearchDialog {
         return;
     }
 
-
-
     @Action(Actions.closeSearchDialog)
     closeSearchDialogAct() {
         return;
     }
 
-
-
     @Getter(getBookmarkHierarchy)
-    hierarchy : Bookmark[];
+    hierarchy: Bookmark[];
 
-    getFromPath() : string {
+    getFromPath(): string {
 
-        const ret = this.hierarchy.map((v : Bookmark) => {
+        const ret = this.hierarchy.map((v: Bookmark) => {
             return v.title;
         }).join('/');
 

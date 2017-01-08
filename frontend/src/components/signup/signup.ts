@@ -1,9 +1,8 @@
+import {ServiceFactory} from '../../api/service-factory';
 import router from '../../main';
 import {User} from '../../model/user';
-import {Component, Action} from '../../vue-typed/vue-typed';
+import {Action, Component} from '../../vue-typed/vue-typed';
 import {Actions} from '../../vuex/actions';
-import {ServiceFactory} from '../../api/service-factory';
-
 
 /**
  * SignUpコンポーネント
@@ -13,24 +12,22 @@ require('./signup.scss');
     template: require('./signup.pug'),
     components: {
         bsInput : require('vue-strap').input ,
-        alert : require('vue-strap').alert
-    }
+        alert : require('vue-strap').alert,
+    },
 })
 export class SignUp {
 
     private user: User;
 
-    private passwordConfilm : string;
+    private passwordConfilm: string;
 
     private alertProp: {show: boolean, type: string, message: string};
 
     data() {
-
-
         this.alertProp = {
             show: false,
             type: 'info',
-            message: 'sign-in-alert-message'
+            message: 'sign-in-alert-message',
         };
 
         this.user = new User('', '');
@@ -38,21 +35,21 @@ export class SignUp {
         return {
             user : this.user,
             passwordConfilm : this.passwordConfilm,
-            alertProp : this.alertProp
+            alertProp : this.alertProp,
         };
     }
 
     @Action(Actions.signIn)
-    signInCommit(user : User) {return; }
+    signInCommit(user: User) {return; }
 
-    formValidate() : boolean {
+    formValidate(): boolean {
         return [
             this.user.validate(),
-            this.user.password === this.passwordConfilm
+            this.user.password === this.passwordConfilm,
         ].every((x: boolean) => x);
     }
 
-    signUp() : void {
+    signUp(): void {
         ServiceFactory.getUserService().signUp({
             ok: (data: any) => {
                 this.signInCommit(this.user);
@@ -62,17 +59,17 @@ export class SignUp {
                 this.alertProp.show = true;
                 this.alertProp.type = 'danger';
                 this.alertProp.message = message;
-            }
+            },
         }, this.user);
     }
 
-    alert(message: string, type : string) : void {
+    alert(message: string, type: string): void {
         this.alertProp.show = true;
         this.alertProp.type = type;
         this.alertProp.message = message;
     }
 
-    transitionHome() : void {
+    transitionHome(): void {
         router.replace('main');
     }
 }

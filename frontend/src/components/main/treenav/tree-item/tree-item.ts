@@ -1,13 +1,13 @@
-import {Component, Action} from '../../../../vue-typed/vue-typed';
-import {Actions} from '../../../../vuex/actions';
 import {Bookmark} from '../../../../model/bookmark';
+import {Action, Component} from '../../../../vue-typed/vue-typed';
+import {Actions} from '../../../../vuex/actions';
 /**
  * TreeNav フォルダをツリー表示するナビゲーション
  */
 @Component({
     template: require('./tree-item.pug'),
     components: {
-        TreeItem
+        TreeItem,
     },
     props: ['bookmark'],
 })
@@ -22,7 +22,7 @@ export class TreeItem {
         this.expandNow = false;
 
         return {
-            expandNow : this.expandNow
+            expandNow : this.expandNow,
         };
     }
 

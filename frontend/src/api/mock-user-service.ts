@@ -1,5 +1,5 @@
-import {UserService} from './user-service';
 import {User} from '../model/user';
+import {UserService} from './user-service';
 
 /**
  * UserService ローカルで完結するMock

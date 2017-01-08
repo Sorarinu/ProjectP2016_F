@@ -24,7 +24,7 @@ export class BookmarkValue {
         url: string,
         reg_date: string,
         folder: boolean,
-        bookmark: BookmarkValue[]
+        bookmark: BookmarkValue[],
     )　{
         this.bookmark_Id = id;
         this.parent_id = parent_id;
@@ -41,7 +41,7 @@ export class BookmarkValue {
      * @param json
      * @returns {any}
      */
-    static fromJSON(json: string) : BookmarkValue[] {
+    static fromJSON(json: string): BookmarkValue[] {
         return JSON.parse(json);
     }
 
@@ -51,14 +51,14 @@ export class BookmarkValue {
      * @param topBMVs　
      * @returns {Bookmark}
      */
-    static toBM(topBMVs : BookmarkValue[]) : Bookmark {
-        //root
+    static toBM(topBMVs: BookmarkValue[]): Bookmark {
+        // root
         const bmRoot = new Bookmark(true, Number.MAX_VALUE, null);
         bmRoot.title = 'TOP';
 
         // bmv -> bm 変換関数
         const bmvTobm = (bmv: BookmarkValue, parent: Bookmark) : Bookmark => {
-            var res = new Bookmark(bmv.folder, bmv.bookmark_Id, parent);
+            const res = new Bookmark(bmv.folder, bmv.bookmark_Id, parent);
             res.title = bmv.title;
             res.detail = bmv.detail;
             res.url = bmv.url;
@@ -74,7 +74,7 @@ export class BookmarkValue {
             return res;
         };
 
-        const bms : Bookmark[] = topBMVs.map((v: BookmarkValue) => {return bmvTobm(v, bmRoot); });
+        const bms: Bookmark[] = topBMVs.map((v: BookmarkValue) => {return bmvTobm(v, bmRoot); });
         bms.forEach((bm: Bookmark) => {
             bmRoot.addChild(bm);
         });
@@ -88,13 +88,13 @@ export class BookmarkValue {
      * @param rootBM
      * @returns {Bookmark}
      */
-    static fromBM(rootBM : Bookmark) : BookmarkValue[] {
-        //root除外.
+    static fromBM(rootBM: Bookmark): BookmarkValue[] {
+        // root除外.
         const bms = rootBM.bookmark;
 
         // bmv -> bm 変換関数.
         const bmTobmv = (bm: Bookmark) : BookmarkValue => {
-            var chileds;
+            let chileds;
             if (bm.folder) {
                 chileds = bm.bookmark.map(bmTobmv);
             }
@@ -108,7 +108,7 @@ export class BookmarkValue {
                 bm.url,
                 bm.regDate.toDateString(),
                 bm.folder,
-                (bm.folder) ? chileds : undefined
+                (bm.folder) ? chileds : undefined,
             );
         };
 
@@ -120,7 +120,7 @@ export class BookmarkValue {
      * @param bmv
      * @returns {string}
      */
-    static toJSON(bmv : BookmarkValue[]) : string {
+    static toJSON(bmv: BookmarkValue[]): string {
         return JSON.stringify(bmv);
     }
 }

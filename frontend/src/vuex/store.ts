@@ -1,9 +1,9 @@
 import Vue = require('vue');
 import Vuex = require('vuex');
-import {User} from '../model/user';
 import {MutationTree} from '~vuex/index';
-import {MutationTypes} from './mutation-types';
 import {Bookmark} from '../model/bookmark';
+import {User} from '../model/user';
+import {MutationTypes} from './mutation-types';
 import SIGN_IN = MutationTypes.SIGN_IN;
 import SIGN_OUT = MutationTypes.SIGN_OUT;
 import GET_BOOKMARK = MutationTypes.GET_BOOKMARK;
@@ -42,50 +42,48 @@ export class State {
     /**
      * サインイン中かどうか
      */
-    signInNow : boolean;
+    signInNow: boolean;
 
     /**
      * ログイン中のユーザー情報
      */
-    user : User;
+    user: User;
 
     // bookmarkRoot stateーーーーーーーーーーーーー
 
     /**
      * ブックマーク処理通信にエラーがあるか
      */
-    bookmarkComError : boolean;
+    bookmarkComError: boolean;
 
     /**
      * ブックマーク通信処理のエラーメッセージ
      */
-    bookmarkComErrorMessage : string;
+    bookmarkComErrorMessage: string;
 
     /**
      * ブックマーク
      */
-    bookmarkRoot : Bookmark;
+    bookmarkRoot: Bookmark;
 
     /**
      * 開くブックマークのディレクトリID
      */
-    openBookmarkDirId : number;
+    openBookmarkDirId: number;
 
-
-    bookmarkSimilarityRes : BookmarkSimilarity;
-
+    bookmarkSimilarityRes: BookmarkSimilarity;
 
     // ui state ---------
-    selectBMIds : number[];
+    selectBMIds: number[];
 
-    showBMDeleteDialog : boolean;
-    showSearchDialog : boolean;
-    showUploadDialog : boolean;
+    showBMDeleteDialog: boolean;
+    showSearchDialog: boolean;
+    showUploadDialog: boolean;
 
     /**
      * 今開いているコンテキストメニューを閉じる関数.
      */
-    contextMenuCloser : () => void;
+    contextMenuCloser: () => void;
 
 
     // state initializer
@@ -98,7 +96,7 @@ export class State {
         this.bookmarkRoot = new Bookmark(
             true,
             Number.MAX_VALUE,
-            null
+            null,
         );
 
         this.bookmarkSimilarityRes = new BookmarkSimilarity(this.bookmarkRoot, 'hoge');
@@ -229,7 +227,7 @@ const mutations : MutationTree<State> = {
 
     [RESET_SELECT_BOOKMARK] (state: State) {
         state.selectBMIds = [];
-    }
+    },
 
     // --------------
 };

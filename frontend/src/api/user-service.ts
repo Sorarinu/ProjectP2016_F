@@ -10,24 +10,24 @@ export interface UserService {
      * @param requestListener
      * @param user
      */
-    signUp(requestListener: RequestListener, user: User) : void;
+    signUp(requestListener: RequestListener, user: User): void;
 
     /**
      * サインインします.
      * @param requestListener
      * @param user
      */
-    signIn(requestListener: RequestListener, user: User) : void;
+    signIn(requestListener: RequestListener, user: User): void;
 
     /**
      * サインアウトします.
      * @param requestListener
      */
-    signOut(requestListener: RequestListener) : void;
+    signOut(requestListener: RequestListener): void;
 
     /**
      * ログインチェック. 初期init
      * @param requestListener
      */
-    init(requestListener: RequestListener) : void;
+    init(requestListener: RequestListener): void;
 }

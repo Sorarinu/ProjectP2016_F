@@ -8,8 +8,8 @@ require('./layout.scss');
 @Component({
     template: require('./contact.html'),
     components: {
-        navbar : require('vue-strap').navbar
-    }
+        navbar: require('vue-strap').navbar,
+    },
 })
 export class Contact {
 

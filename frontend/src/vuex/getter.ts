@@ -1,7 +1,7 @@
-import {State} from './store';
 import {Bookmark} from '../model/bookmark';
 import {BookmarkSimilarityValue} from '../model/bookmark-similarity';
 import {User} from '../model/user';
+import {State} from './store';
 /**
  * Vuex　すべてのgetter関数のエクスポート.
  */
@@ -10,18 +10,15 @@ import {User} from '../model/user';
 // vueの算出プロパティのように考えるといいでしょう.
 // stateに対して参照透過である必要があります.
 
-
 // user state getter -----------------------------------
 
-export function getCurrentUser(state : State) : User {
+export function getCurrentUser(state: State): User {
     return state.user;
 }
 
-export function getSignInNow(state : State) : boolean {
+export function getSignInNow(state: State): boolean {
     return state.signInNow;
 }
-
-
 
 // bookmarkRoot state getter --------------------------------
 
@@ -30,7 +27,7 @@ export function getSignInNow(state : State) : boolean {
  * @param state
  * @returns {Bookmark}
  */
-export function getBookmarkRoot(state : State) : Bookmark {
+export function getBookmarkRoot(state: State): Bookmark {
     return state.bookmarkRoot;
 }
 
@@ -39,7 +36,7 @@ export function getBookmarkRoot(state : State) : Bookmark {
  * @param state
  * @returns {boolean}
  */
-export function bookmarkIsEmpty(state : State) : boolean {
+export function bookmarkIsEmpty(state: State): boolean {
     // root要素BM以外のBMが存在しない.
     return state.bookmarkRoot.getSize() === 1;
 }
@@ -48,7 +45,7 @@ export function bookmarkIsEmpty(state : State) : boolean {
  * 現在の開いているブックマークのディレクトリからrootまでの階層を配列で得ます.
  * @param state
  */
-export function getBookmarkHierarchy(state: State) : Bookmark[] {
+export function getBookmarkHierarchy(state: State): Bookmark[] {
     const openID = state.openBookmarkDirId;
 
     const openBM = state.bookmarkRoot.search(openID);
@@ -59,21 +56,20 @@ export function getBookmarkHierarchy(state: State) : Bookmark[] {
  * 表示すべきブックマークの１階層分を得ます.
  * @param state
  */
-export function getShowBookmarks(state : State) : Bookmark[] {
+export function getShowBookmarks(state: State): Bookmark[] {
     const dirID = state.openBookmarkDirId;
     return state.bookmarkRoot.search(dirID).bookmark;
 }
 
-export function getOpenDirId(state: State) : number {
+export function getOpenDirId(state: State): number {
     return state.openBookmarkDirId;
 }
 
-
-export function getSelectedBMIds(state : State) : number[] {
+export function getSelectedBMIds(state: State): number[] {
     return state.selectBMIds;
 }
 
-export function getSelectBMs(state : State) : Bookmark[] {
+export function getSelectBMs(state: State): Bookmark[] {
     const selectIds : number[] = getSelectedBMIds(state);
     return selectIds.map((id: number) => {
         return getBookmark(state, id);
@@ -85,13 +81,13 @@ export function getSelectBMs(state : State) : Bookmark[] {
  * @param state
  * @returns {Bookmark[]}
  */
-export function getBookmarkSearchRes(state : State) : Bookmark[] {
+export function getBookmarkSearchRes(state: State): Bookmark[] {
 
     if (state.bookmarkSimilarityRes == null) {
         return null;
     }
 
-    const res : Bookmark[] = state.bookmarkSimilarityRes.bookmark
+    const res: Bookmark[] = state.bookmarkSimilarityRes.bookmark
             .filter((v: BookmarkSimilarityValue) => {
                 return v.similar_flag;
             }).map((v: BookmarkSimilarityValue) => {
@@ -106,21 +102,18 @@ export function getBookmarkSearchRes(state : State) : Bookmark[] {
  * @param bmId
  * @returns {Bookmark}
  */
-export function getBookmark(state : State , bmId : number) {
+export function getBookmark(state: State , bmId: number) {
     return state.bookmarkRoot.searchAll(bmId);
 }
 
-
-
-export function getDeleteDialogShow(state : State) {
+export function getDeleteDialogShow(state: State) {
     return state.showBMDeleteDialog;
 }
 
-export function getSearchDialogShow(state : State) {
+export function getSearchDialogShow(state: State) {
     return state.showSearchDialog;
 }
 
-export function getUploadDialogShow(state : State) {
+export function getUploadDialogShow(state: State) {
     return state.showUploadDialog;
 }
-

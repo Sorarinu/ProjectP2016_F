@@ -1,5 +1,5 @@
-import {Component} from '../../vue-typed/vue-typed';
 import router from '../../main';
+import {Component} from '../../vue-typed/vue-typed';
 /**
  * AboutPage Component
  */
@@ -9,7 +9,7 @@ require('./css/index.scss');
     template: require('./about.html'),
 })
 export class About {
-    toMain() : void {
+    toMain(): void {
         router.go('main');
     }
 

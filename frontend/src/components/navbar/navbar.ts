@@ -1,7 +1,7 @@
-import {Component, Action, Getter} from '../../vue-typed/vue-typed';
+import {ServiceFactory} from '../../api/service-factory';
+import {Action, Component, Getter} from '../../vue-typed/vue-typed';
 import {Actions} from '../../vuex/actions';
 import {getSignInNow} from '../../vuex/getter';
-import {ServiceFactory} from '../../api/service-factory';
 
 
 /**
@@ -12,8 +12,8 @@ require('./navbar.scss');
 @Component({
     template: require('./navbar.html'),
     components: {
-        navbar : require('vue-strap').navbar
-    }
+        navbar : require('vue-strap').navbar,
+    },
 })
 export class Navbar {
 
@@ -30,7 +30,7 @@ export class Navbar {
                 this.signOutCommit();
                 return;
             },
-            failed: () => {return; }
+            failed: () => {return; },
         });
 
         this.signOutCommit();

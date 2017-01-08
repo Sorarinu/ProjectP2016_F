@@ -6,12 +6,12 @@ export class User implements Validation {
     /**
      * ユーザーEmail
      */
-    email : string;
+    email: string;
 
     /**
      * ユーザーパスワード
      */
-    password : string;
+    password: string;
 
     constructor(email: string, password: string) {
         this.email = email;
@@ -31,7 +31,7 @@ export class User implements Validation {
      * @param password
      * @returns {boolean}
      */
-    static passwordValidate(password: string) : boolean {
+    static passwordValidate(password: string): boolean {
         // Passwordは6文字以上
         return password.length >= 6;
     }
@@ -44,7 +44,7 @@ export class User implements Validation {
      */
     static emailValidate(email: string) : boolean {
         // 発狂する人がいるかもしれないのでけっこうしっかりした正規表現をチョイス
-        var emailRegExp = /^(?:(?:(?:(?:[a-zA-Z0-9_!#\$\%&'*+/=?\^`{}~|\-]+)(?:\.(?:[a-zA-Z0-9_!#\$\%&'*+/=?\^`{}~|\-]+))*)|(?:"(?:\\[^\r\n]|[^\\"])*")))\@(?:(?:(?:(?:[a-zA-Z0-9_!#\$\%&'*+/=?\^`{}~|\-]+)(?:\.(?:[a-zA-Z0-9_!#\$\%&'*+/=?\^`{}~|\-]+))*)|(?:\[(?:\\\S|[\x21-\x5a\x5e-\x7e])*\])))$/;
+        let emailRegExp = /^(?:(?:(?:(?:[a-zA-Z0-9_!#\$\%&'*+/=?\^`{}~|\-]+)(?:\.(?:[a-zA-Z0-9_!#\$\%&'*+/=?\^`{}~|\-]+))*)|(?:"(?:\\[^\r\n]|[^\\"])*")))\@(?:(?:(?:(?:[a-zA-Z0-9_!#\$\%&'*+/=?\^`{}~|\-]+)(?:\.(?:[a-zA-Z0-9_!#\$\%&'*+/=?\^`{}~|\-]+))*)|(?:\[(?:\\\S|[\x21-\x5a\x5e-\x7e])*\])))$/;
         return emailRegExp.test(email);
     }
 
