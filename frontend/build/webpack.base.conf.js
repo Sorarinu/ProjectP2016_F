@@ -53,7 +53,7 @@ module.exports = {
       },
       {
         test: /\.ts$/,
-        loader: 'ts-loader'
+        loader: 'babel-loader!ts-loader'
       },
       {
         test: /\.json$/,
