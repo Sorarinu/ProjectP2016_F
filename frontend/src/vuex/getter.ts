@@ -27,7 +27,7 @@ const getters = {
      */
     bookmarkIsEmpty(state: State): boolean {
         // root要素BM以外のBMが存在しない.
-        return state.bookmarkRoot.getSize() === 1;
+        return state.bookmarkRoot.getSize() <= 1;
     },
     /**
      * 現在の開いているブックマークのディレクトリからrootまでの階層を配列で得ます.

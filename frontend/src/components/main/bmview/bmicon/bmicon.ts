@@ -52,11 +52,14 @@ export class BmIcon extends Vue {
     }
 
     get getSelectBMIds () {
-        return this.$store.getters.getSelectBMIds;
+        return this.$store.state.selectBMIds;
     }
 
     get isActive () {
-        return this.getSelectBMIds && this.getSelectBMIds.indexOf(this.bookmark.id);
+        if (!this.getSelectBMIds) {
+            return false;
+        }
+        return this.getSelectBMIds.indexOf(this.bookmark.id) >= 0;
     }
 
     /**

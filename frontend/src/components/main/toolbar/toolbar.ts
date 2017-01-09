@@ -9,7 +9,7 @@ require('./toolbar.scss');
 @Component({
     template: require('./toolbar.pug'),
     components: {
-        SearchDialog
+        SearchDialog,
     },
 })
 export class Toolbar extends Vue {

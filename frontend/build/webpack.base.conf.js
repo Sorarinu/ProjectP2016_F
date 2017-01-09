@@ -6,11 +6,17 @@ var path = require('path')
 
 module.exports = {
   entry: {
-    app: ['./src/main.ts']
+    app: './src/main.ts',
+    vendor: [
+      'vue',
+      'vue-router',
+      'vuex',
+      'es6-promise'
+    ]
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name].js'
+    filename: '[name].[hash].js'
   },
   resolve: {
     extensions: ['', '.js', '.ts'],

@@ -10,7 +10,7 @@ describe('vuex-getter-test', () => {
     });
 
     it('bookmarkIsEmpty', () => {
-        const ret1 = getters.bookmarkIsEmpty;
+        const ret1 = getters.bookmarkIsEmpty(state);
         expect(ret1).toEqual(true);
 
         state.bookmarkRoot.addChild(new Bookmark(

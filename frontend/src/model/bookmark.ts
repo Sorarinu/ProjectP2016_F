@@ -98,7 +98,7 @@ export class Bookmark implements Validation {
      * @returns {boolean}
      */
     validate() {
-        //TODO: そのうち実装.
+        // TODO: そのうち実装.
         return true;
     }
 
@@ -221,7 +221,8 @@ export class Bookmark implements Validation {
         // rootまでの親を順繰りに辿って配列に入れていく.
         do {
             hierarchy.push(tmp);
-        }while ((tmp = (tmp.parent)) !== null);
+            tmp = tmp.parent;
+        }while (tmp !== null);
 
         // [0] root -> ... -> this になるように順番変える.
         return hierarchy.reverse();
@@ -233,7 +234,8 @@ export class Bookmark implements Validation {
      * @param id
      */
     searchAll(id: number): Bookmark {
-        return this.getRoot().search(id);
+        const root = this.getRoot();
+        return root.search(id);
     }
 
 }

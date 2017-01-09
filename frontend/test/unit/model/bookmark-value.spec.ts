@@ -12,7 +12,6 @@ describe('BookmarkValue ブックマークモデルとJSONを中継するクラ�
         rootBM =  new Bookmark(true, Number.MAX_VALUE, null);
         rootBM.title = 'root-folder';
 
-
         child1 = new Bookmark(false, 1, rootBM);
         child1.title = 'child1';
         rootBM.addChild(child1);
@@ -21,38 +20,38 @@ describe('BookmarkValue ブックマークモデルとJSONを中継するクラ�
         child2.title = 'child2';
         rootBM.addChild(child2);
 
-        let child21 = new Bookmark(false, 3, child2);
-        child21.title = 'child2-1';
-        rootBM.addChild(child21);
+        // const child21 = new Bookmark(false, 3, child2);
+        // child21.title = 'child2-1';
+        // rootBM.addChild(child21);
     });
 
     it('toBMV()', () => {
-        let bmvs = BookmarkValue.fromBM(rootBM);
+        const bmvs = BookmarkValue.fromBM(rootBM);
         expect(bmvs.length).toBe(2);
     });
 
     it('toJSON()', () => {
-        let jsonStr = BookmarkValue.toJSON(
+        const jsonStr = BookmarkValue.toJSON(
             BookmarkValue.fromBM(rootBM),
         );
-        console.log(jsonStr);
+        // console.log(jsonStr);
     });
 
     it('fromJSON()', () => {
-        let jsonStr = BookmarkValue.toJSON(
+        const jsonStr = BookmarkValue.toJSON(
             BookmarkValue.fromBM(rootBM),
         );
-        let bmvs = BookmarkValue.fromJSON(jsonStr);
+        const bmvs = BookmarkValue.fromJSON(jsonStr);
         expect(bmvs.length).toBe(2);
     });
 
     it('fromBMV()', () => {
-        let jsonStr = BookmarkValue.toJSON(
+        const jsonStr = BookmarkValue.toJSON(
             BookmarkValue.fromBM(rootBM),
         );
-        let bmvs = BookmarkValue.fromJSON(jsonStr);
-        let revertRoot = BookmarkValue.toBM(bmvs);
-        expect(revertRoot.getSize()).toBe(4);
+        const bmvs = BookmarkValue.fromJSON(jsonStr);
+        const revertRoot = BookmarkValue.toBM(bmvs);
+        expect(revertRoot.getSize()).toBe(3);
     });
 
 });

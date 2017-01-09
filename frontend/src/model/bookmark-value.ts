@@ -3,9 +3,10 @@ import {Bookmark} from './bookmark';
 /**
  * BookmarkモデルのJSON変換用中継値クラス.
  * {@link Bookmark} <=> {@link BookmarkValue} <=> JSON
+ *
  */
 export class BookmarkValue {
-
+    /* tslint:disable:variable-name */
     // プロパティ名はJSONの名前と同じ
     private bookmark_Id: number;
     private parent_id: number;
@@ -93,7 +94,7 @@ export class BookmarkValue {
         const bms = rootBM.bookmark;
 
         // bmv -> bm 変換関数.
-        const bmTobmv = (bm: Bookmark) : BookmarkValue => {
+        const bmTobmv = (bm: Bookmark): BookmarkValue => {
             let chileds;
             if (bm.folder) {
                 chileds = bm.bookmark.map(bmTobmv);

@@ -46,6 +46,7 @@ export class BookmarkSimilarity {
     }
 }
 
+/* tslint:disable:variable-name */
 export interface BookmarkSimilarityValue {
     id: number;
     url: string;
