@@ -16,7 +16,7 @@
     "vue": "^2.1.8",
     "vue-class-component": "^4.4.0",
     "vue-router": "^2.1.1",
-    "vue-strap": "^1.1.18",
+    "vue-strap": "github:wffranco/vue-strap.git",
     "vuex-router-sync": "^4.1.0"
   },
   "devDependencies": {
