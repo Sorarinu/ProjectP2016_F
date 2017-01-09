@@ -10,26 +10,31 @@
                 dismissable
              )
                  span {{alertProp.message}}
+
              form
-                 .input-group
-                     span.input-group-addon Email
-                     input.form-control(
-                        v-model="user.email",
-                        name="email",
-                        type="email",
-                        required,
-                     )
-                 .input-group
-                    span.input-group-addon Password
-                    input.form-control(
-                        v-model="user.password",
-                        label="password",
-                        type="password",
-                        required,
-                    )
+                 bs-input(
+                    v-model="user.email",
+                    name="email",
+                    type="email",
+                    :label="'email'",
+                    required,
+                    :icon="true",
+                    :error="'Insert your email'",
+                 )
+
+                 bs-input(
+                     v-model="user.password",
+                     label="password",
+                     type="password",
+                     required,
+                     icon,
+                     error="'Insert your password'",
+                     minLength="6"
+                 )
+
                  //- 入力値がUserのvalidateionを通過する場合のみ押せるようにする
                  button.form-control.btn.btn-primary(
-                    type="button",
-                    :disabled="!isValidFormData()",
-                    @click="signIn()"
+                     type="button",
+                     :disabled="!isValidFormData()",
+                     @click="signIn()"
                  ) SignIn
