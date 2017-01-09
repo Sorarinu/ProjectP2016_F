@@ -1,29 +1,29 @@
-import {Component, Action, Getter} from 'src/vue-typed/vue-typed';
 import {Bookmark} from 'src/model/bookmark';
-import {Actions} from 'src/vuex/actions';
+import Component from 'vue-class-component';
 import {BmDeleteDialog} from '../../dialog/bmdeletedialog/bmdeletedialog';
-import {getSelectedBMIds} from '../../../../vuex/getter';
+import Vue = require('vue');
 /**
  * BmIcon Component
  * ブックマーク表示コンポーネント.
  */
 require('./bmicon.scss');
 @Component({
+    name: 'bmicon',
     template: require('./bmicon.pug'),
     props: ['bookmark'],
-    components : [
-        BmDeleteDialog
-    ]
+    components : {
+        BmDeleteDialog,
+    },
 })
-export class BmIcon {
-    bookmark : Bookmark;
+export class BmIcon extends Vue {
+    bookmark: Bookmark;
 
-    showContextMenu : boolean;
-    posStyle : PosStyle;
+    showContextMenu: boolean;
+    posStyle: PosStyle;
 
-    imgSrc : string;
+    imgSrc: string;
 
-    showDeleteDialog : boolean;
+    showDeleteDialog: boolean;
 
     data() {
         this.showContextMenu = false;
@@ -31,7 +31,7 @@ export class BmIcon {
         this.posStyle = {
             position: 'absolute',
             top: '0px',
-            left: '0px'
+            left: '0px',
         };
 
         this.imageLoad();
@@ -42,7 +42,7 @@ export class BmIcon {
             showContextMenu: this.showContextMenu,
             posStyle : this.posStyle,
             imgSrc : this.imgSrc,
-            showDeleteDialog : this.showDeleteDialog
+            showDeleteDialog : this.showDeleteDialog,
         };
     }
 
@@ -51,15 +51,21 @@ export class BmIcon {
         this.imageLoad();
     }
 
+    get getSelectBMIds () {
+        return this.$store.state.selectBMIds;
+    }
 
-    @Getter(getSelectedBMIds)
-    getSelectBMIds : number[];
+    get isActive () {
+        if (!this.getSelectBMIds) {
+            return false;
+        }
+        return this.getSelectBMIds.indexOf(this.bookmark.id) >= 0;
+    }
 
     /**
      * サイトのプレビューイメージを取得.
      */
     imageLoad() {
-
         if (this.bookmark.folder === true) {
             return;
         }
@@ -77,8 +83,9 @@ export class BmIcon {
     }
 
     // bookmarkのディレクトリ開く.
-    @Action(Actions.openBookmarkDir)
-    openDir(id: number) { return ; }
+    openDir(id: number) {
+        this.$store.dispatch('openBookmarkDir', id);
+    }
 
     open() {
         this.contextMenuClose();
@@ -90,8 +97,7 @@ export class BmIcon {
      * 最大文字長 = 6
      * 長い場合は末尾を...にする
      */
-    getTitle() : string {
-
+    getTitle(): string {
         let ret = this.bookmark.title;
         if (ret.length >= 6) {
             ret = ret.substr(0, 6);
@@ -102,28 +108,24 @@ export class BmIcon {
     }
 
     // bookmark削除ダイアログ表示
-    openDeleteDialog(e : MouseEvent) {
+    openDeleteDialog(e: MouseEvent) {
         this.contextMenuClose();
         this.openDeleteDialogAct();
 
         e.stopPropagation();
     }
-    @Action(Actions.openBMDeleteDialog)
+
     openDeleteDialogAct() {
-        return ;
+        this.$store.dispatch('openBMDeleteDialog');
     }
-
-
 
     /**
      * コンテキストメニューの展開、折りたたみを行う.
      * 右クリックにバンドル.
      */
     toggleContextMenu(e: MouseEvent) {
-
         this.posStyle.left = e.clientX + 'px';
         this.posStyle.top = e.clientY + 'px';
-
 
         // 次にどこかのcontextmenu開くときにこれを閉じるための関数をセットし
         // 今開いている物を閉じる
@@ -140,12 +142,13 @@ export class BmIcon {
         e.preventDefault();
         e.stopPropagation();
     }
-    @Action(Actions.toggleContextMenu)
-    contextMenuOpenAct(closer : () => void) {
+
+    contextMenuOpenAct(closer: () => void) {
+        this.$store.dispatch('toggleContextMenu', closer);
         return;
     }
 
-    selectBookmark(e : MouseEvent) {
+    selectBookmark(e: MouseEvent) {
         // コントロールキー押されていれば複数選択
         // 押されていなければ単体選択
         if (e.ctrlKey) {
@@ -155,14 +158,12 @@ export class BmIcon {
         }
     }
 
-    @Action(Actions.addSelectBookmark)
     addSelectBookmarkAct(id: number) {
-        return;
+        this.$store.dispatch('addSelectBookmark', id);
     }
 
-    @Action(Actions.selectBookmark)
     selectBookmarkAct(id: number) {
-        return;
+        this.$store.dispatch('selectBookmark', id);
     }
 
     /**
@@ -175,7 +176,7 @@ export class BmIcon {
 }
 
 interface PosStyle {
-    position : string;
-    left : string;
-    top : string;
+    position: string;
+    left: string;
+    top: string;
 }

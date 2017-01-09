@@ -1,46 +1,44 @@
-import {User} from '../../model/user';
-import router from '../../main';
-import {Component, Action} from '../../vue-typed/vue-typed';
-import {Actions} from '../../vuex/actions';
+import Component from 'vue-class-component';
 import {ServiceFactory} from '../../api/service-factory';
+import {User} from '../../model/user';
+import Vue = require('vue');
 
 /**
  * SignIn Component
  */
 require('./signin.scss');
 @Component({
+    name: 'signin',
     template: require('./signin.pug'),
     components: {
-        bsInput: require('vue-strap').input ,
-        alert: require('vue-strap').alert
+        bsInput: require('vue-strap').input,
+        alert: require('vue-strap').alert,
     },
 })
-export class SignIn {
-
-    private user : User;
+export class SignIn extends Vue {
+    private user: User;
     private alertProp: {show: boolean, type: string, message: string};
 
     data() {
-
         this.user = new User('', '');
 
         this.alertProp = {
             show: false,
             type: 'info',
-            message: 'alert-message'
+            message: 'alert-message',
         };
 
         return {
             alertProp: this.alertProp,
-            user: this.user
+            user: this.user,
         };
     }
 
-    @Action(Actions.signIn)
-    signInCommit(user : User) {return; }
+    signInCommit(user: User) {
+        this.$store.dispatch('signIn', user);
+    }
 
-
-    signIn() : void {
+    signIn(): void {
         ServiceFactory.getUserService().signIn({
             ok: (data: any) => {
                 this.signInCommit(this.user);
@@ -50,15 +48,15 @@ export class SignIn {
                 this.alertProp.show = true;
                 this.alertProp.type = 'danger';
                 this.alertProp.message = message;
-            }
+            },
         }, this.user);
     }
 
-    isValidFormData() : boolean {
+    isValidFormData(): boolean {
         return this.user.validate();
     }
 
-    transitionHome() : void {
-        router.replace('main');
+    transitionHome(): void {
+        this.$router.push('main');
     }
 }

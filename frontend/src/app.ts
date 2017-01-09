@@ -1,8 +1,8 @@
-import {Navbar} from './components/navbar/navbar';
+import Component from 'vue-class-component';
 import {Footbar} from './components/footer/footbar';
-import store from './vuex/store';
-import {Component, Action} from './vue-typed/vue-typed';
-import {Actions} from './vuex/actions';
+import {Navbar} from './components/navbar/navbar';
+import Vue = require('vue');
+
 /*
 * アプリケーションのトップレベルコンポーネントです
  */
@@ -10,28 +10,20 @@ require('./app.scss');
 @Component({
     template: require('./app.pug'),
     components: { Navbar, Footbar },
-    store: store
 })
-export class App {
+export class App extends Vue {
 
-    showFooter : boolean;
-    showNav : boolean;
-
-    data() {
-        this.showFooter = false;
-        this.showNav = false;
-        return {
-            showFooter: this.showFooter,
-            showNav: this.showNav
-        };
+    beforeMount() {
+        this.$store.dispatch('init');
     }
 
-    @Action(Actions.init)
-    init() {
-        return;
+    get showFooter() {
+        // routerのパスを見て産出する
+        return this.$store.state.route.fullPath !== '/main';
     }
 
-    created() {
-        this.init();
+    get showNav() {
+        // routerのパスを見て産出する
+        return this.$store.state.route.fullPath !== '/main';
     }
 }

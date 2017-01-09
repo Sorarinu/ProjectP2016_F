@@ -1,58 +1,54 @@
-import router from '../../main';
-import {User} from '../../model/user';
-import {Component, Action} from '../../vue-typed/vue-typed';
-import {Actions} from '../../vuex/actions';
+import Component from 'vue-class-component';
 import {ServiceFactory} from '../../api/service-factory';
-
+import {User} from '../../model/user';
+import Vue = require('vue');
 
 /**
  * SignUpコンポーネント
  */
 require('./signup.scss');
 @Component({
+    name: 'signup',
     template: require('./signup.pug'),
     components: {
-        bsInput : require('vue-strap').input ,
-        alert : require('vue-strap').alert
-    }
+        bsInput: require('vue-strap').input,
+        alert: require('vue-strap').alert,
+    },
 })
-export class SignUp {
-
+export class SignUp extends Vue {
     private user: User;
-
-    private passwordConfilm : string;
+    private passwordConfilm: string;
 
     private alertProp: {show: boolean, type: string, message: string};
 
     data() {
-
-
         this.alertProp = {
             show: false,
             type: 'info',
-            message: 'sign-in-alert-message'
+            message: 'sign-in-alert-message',
         };
 
         this.user = new User('', '');
 
         return {
-            user : this.user,
-            passwordConfilm : this.passwordConfilm,
-            alertProp : this.alertProp
+            user: this.user,
+            passwordConfilm: this.passwordConfilm,
+            alertProp: this.alertProp,
         };
     }
 
-    @Action(Actions.signIn)
-    signInCommit(user : User) {return; }
+    signInCommit(user: User) {
+        this.$store.dispatch('signIn', user);
+    }
 
-    formValidate() : boolean {
+    formValidate(): boolean {
         return [
             this.user.validate(),
-            this.user.password === this.passwordConfilm
+            this.user.password === this.passwordConfilm,
         ].every((x: boolean) => x);
     }
 
-    signUp() : void {
+    signUp(): void {
         ServiceFactory.getUserService().signUp({
             ok: (data: any) => {
                 this.signInCommit(this.user);
@@ -62,17 +58,17 @@ export class SignUp {
                 this.alertProp.show = true;
                 this.alertProp.type = 'danger';
                 this.alertProp.message = message;
-            }
+            },
         }, this.user);
     }
 
-    alert(message: string, type : string) : void {
+    alert(message: string, type: string): void {
         this.alertProp.show = true;
         this.alertProp.type = type;
         this.alertProp.message = message;
     }
 
-    transitionHome() : void {
-        router.replace('main');
+    transitionHome(): void {
+        this.$router.push('main');
     }
 }

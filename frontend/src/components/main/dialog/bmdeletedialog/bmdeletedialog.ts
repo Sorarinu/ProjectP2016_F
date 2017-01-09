@@ -1,35 +1,26 @@
-import {Component, Action, Getter} from 'src/vue-typed/vue-typed';
-import {Actions} from 'src/vuex/actions';
-import {getDeleteDialogShow} from '../../../../vuex/getter';
 
+import * as Vue from 'vue';
+import Component from 'vue-class-component';
 /**
  * ブックマーク本当に削除していいの？　ダイアログ
  */
 @Component({
     template: require('./bmdeletedialog.pug'),
     components: {
-        modal: require('vue-strap').modal
-    }
+        modal: require('vue-strap').modal,
+    },
 })
-export class BmDeleteDialog {
-
-    @Getter(getDeleteDialogShow)
-    show : boolean;
-
+export class BmDeleteDialog extends Vue {
+    get show() {
+        return this.$store.state.showBMDeleteDialog;
+    };
 
     deleteBookmark() {
-        this.closeDialogAct();
-        this.deleteBookmarkAct();
+        this.$store.dispatch('deleteSelectBookmark');
+        this.$store.dispatch('closeBMDeleteDialog');
     }
 
-    @Action(Actions.deleteSelectBookmark)
-    deleteBookmarkAct() {
-        return;
-    }
-
-    @Action(Actions.closeBMDeleteDialog)
     closeDialogAct() {
-        return;
+        this.$store.dispatch('closeBMDeleteDialog');
     }
-
 }

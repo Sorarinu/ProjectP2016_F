@@ -1,11 +1,10 @@
-import {Component, Action, Getter} from 'src/vue-typed/vue-typed';
-import {BmIcon} from './bmicon/bmicon';
-import {bookmarkIsEmpty, getShowBookmarks} from 'src/vuex/getter';
-import {Actions} from 'src/vuex/actions';
 import {Bookmark} from 'src/model/bookmark';
+import Component from 'vue-class-component';
+import {BmUploadDialog} from '../dialog/bm-upload-dialog/bm-upload-dialog';
 import {BmDeleteDialog} from '../dialog/bmdeletedialog/bmdeletedialog';
 import {SearchDialog} from '../dialog/searchdialog/searchdialog';
-import {BmUploadDialog} from '../dialog/bm-upload-dialog/bm-upload-dialog';
+import {BmIcon} from './bmicon/bmicon';
+import Vue = require('vue');
 /**
  * BmView Component
  * ブックマーク表示コンポーネント.
@@ -17,55 +16,56 @@ require('./bmview.scss');
         BmIcon,
         BmDeleteDialog,
         SearchDialog,
-        BmUploadDialog
-    }
+        BmUploadDialog,
+    },
 })
-export class BmView {
+export class BmView extends Vue {
 
-    @Getter(bookmarkIsEmpty)
-    bookmarkEmpty : boolean;
+    get bookmarkEmpty () {
+        return this.$store.getters.bookmarkIsEmpty;
+    }
 
-    @Getter(getShowBookmarks)
-    bookmarks : Bookmark[];
+    get bookmarks () {
+        return this.$store.getters.getShowBookmarks;
+    }
 
     // アップロードボタンが押されたらフォルダ選択のモーダル=> uploadアクション.の流れだけど
     // とりあえず簡単のために押されたらbookmarkをフェッチしちゃう.
     // fetchでモックのBM読まれてストアに追加される.
-    @Action(Actions.fetchBookmark)
-    uploadBookmark() {return ; }
+    uploadBookmark() {
+        this.$store.dispatch('fetchBookmark');
+    }
 
-    showContextMenu : boolean;
-    posStyle : PosStyle;
+    showContextMenu: boolean;
+    posStyle: PosStyle;
 
     created() {
         this.uploadBookmark();
     }
 
     data() {
-
         this.showContextMenu = false;
 
         this.posStyle = {
             position: 'absolute',
             top: '0px',
-            left: '0px'
+            left: '0px',
         };
 
         return {
             showContextMenu: this.showContextMenu,
-            posStyle : this.posStyle,
+            posStyle: this.posStyle,
         };
     }
 
-
-    private dragNow : Bookmark;
+    private dragNow: Bookmark;
     /**
      * DragStartでコールされるイベントハンドラ
      * @param e
      * @param bm
      */
     onDragStart(e: DragEvent, bm: Bookmark) {
-        console.log(`dragStart : ${bm.id}`);
+        // console.log(`dragStart : ${bm.id}`);
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('id', `${bm.id}`);
 
@@ -93,9 +93,6 @@ export class BmView {
         e.preventDefault();
     }
 
-
-
-
     /**
      * Dropでコールされるイベントハンドラ.
      * @param e
@@ -109,7 +106,7 @@ export class BmView {
 
         const from = Number(e.dataTransfer.getData('id'));
         const to = bm.id;
-        console.log(`dragged id=${from} -> ${to}`);
+        // console.log(`dragged id=${from} -> ${to}`);
 
         if (from === to) {
             throw Error('おいなんで同じところにDnDしようとしてるんだよ・・・');
@@ -119,11 +116,9 @@ export class BmView {
         this.moveBookmark(from, to);
     }
 
-    @Action(Actions.moveBookmark)
     moveBookmark(from: number, to: number) {
-        return;
+        this.$store.dispatch('moveBookmark', {from, to});
     }
-
 
     contextmenu(e: MouseEvent) {
         this.posStyle.left = e.clientX + 'px';
@@ -137,11 +132,13 @@ export class BmView {
         e.preventDefault();
     }
 
-    @Action(Actions.toggleContextMenu)
-    contextMenuOpenSet(closer : () => void) {
-        return;
+    contextMenuOpenSet(closer: () => void) {
+        this.$store.dispatch('toggleContextMenu', closer);
     }
 
+    paste() {
+        return;
+    }
 
     addFolder() {
         return;
@@ -156,9 +153,7 @@ export class BmView {
 }
 
 interface PosStyle {
-    position : string;
-    left : string;
-    top : string;
+    position: string;
+    left: string;
+    top: string;
 }
-
-

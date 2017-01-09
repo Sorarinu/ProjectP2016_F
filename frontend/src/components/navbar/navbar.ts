@@ -1,8 +1,6 @@
-import {Component, Action, Getter} from '../../vue-typed/vue-typed';
-import {Actions} from '../../vuex/actions';
-import {getSignInNow} from '../../vuex/getter';
+import Component from 'vue-class-component';
 import {ServiceFactory} from '../../api/service-factory';
-
+import Vue = require('vue');
 
 /**
  * NavigationBar Component
@@ -10,30 +8,25 @@ import {ServiceFactory} from '../../api/service-factory';
 require('./navbar.scss');
 
 @Component({
+    name: 'navbar',
     template: require('./navbar.html'),
     components: {
-        navbar : require('vue-strap').navbar
-    }
+        navbar: require('vue-strap').navbar,
+    },
 })
-export class Navbar {
+export class Navbar extends Vue {
 
-    @Getter(getSignInNow)
-    signInNow: boolean;
+    get signInNow (): boolean {
+        return this.$store.state.signInNow;
+    }
 
-    @Action(Actions.signOut)
-    signOutCommit() { return; }
-
-    signOut() : void {
-        //TODO: エラー処理実装.
+    signOut(): void {
+        // TODO: エラー処理実装.
         ServiceFactory.getUserService().signOut({
-            ok: () => {
-                this.signOutCommit();
-                return;
-            },
-            failed: () => {return; }
+            ok: () => {return; },
+            failed: () => {return; },
         });
 
-        this.signOutCommit();
+        this.$store.dispatch('signOut');
     }
-
 }

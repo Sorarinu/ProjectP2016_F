@@ -1,6 +1,6 @@
-import {UserService} from '../../../src/api/user-service';
-import {ServiceFactory} from '../../../src/api/service-factory';
 import {BookmarkService} from '../../../src/api/bookmark-service';
+import {ServiceFactory} from '../../../src/api/service-factory';
+import {UserService} from '../../../src/api/user-service';
 describe('service-factory-test', () => {
 
 

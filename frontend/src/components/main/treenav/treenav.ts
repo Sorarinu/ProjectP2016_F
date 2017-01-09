@@ -1,20 +1,20 @@
-import {Component, Getter} from '../../../vue-typed/vue-typed';
-import {Bookmark} from '../../../model/bookmark';
-import {getBookmarkRoot} from '../../../vuex/getter';
+import Component from 'vue-class-component';
 import {TreeItem} from './tree-item/tree-item';
+import Vue = require('vue');
+
 /**
  * TreeNav フォルダをツリー表示するナビゲーション
  */
 require('./treenav.scss');
 @Component({
+    name: 'treenav',
     template: require('./treenav.pug'),
     components: {
-        TreeItem
-    }
+        TreeItem,
+    },
 })
-export class TreeNav {
-
-    @Getter(getBookmarkRoot)
-    bookmarkRoot : Bookmark;
-
+export class TreeNav extends Vue {
+    get bookmarkRoot() {
+        return this.$store.state.bookmarkRoot;
+    };
 }

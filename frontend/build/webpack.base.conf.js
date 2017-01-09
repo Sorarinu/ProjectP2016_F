@@ -6,29 +6,29 @@ var path = require('path')
 
 module.exports = {
   entry: {
-    app: ['./src/main.ts']
+    app: './src/main.ts',
+    vendor: [
+      'vue',
+      'vue-router',
+      'vuex',
+      'es6-promise'
+    ]
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name].js'
+    filename: '[name].[hash].js'
   },
   resolve: {
     extensions: ['', '.js', '.ts'],
     alias: {
-      'src': path.resolve(__dirname, '../src')
+      'src': path.resolve(__dirname, '../src'),
+      'vue': 'vue/dist/vue.js'
     }
   },
   resolveLoader: {
     root: path.join(__dirname, 'node_modules')
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.ts$/,
-        exclude: /node_modules/,
-        loader: 'tslint'
-      }
-    ],
     loaders: [
       // production側の設定でごにょごにょするので
       // これより上に要素かかないでください
@@ -53,7 +53,7 @@ module.exports = {
       },
       {
         test: /\.ts$/,
-        loader: 'ts-loader'
+        loader: 'babel-loader!ts-loader!tslint-loader'
       },
       {
         test: /\.json$/,
@@ -107,9 +107,6 @@ module.exports = {
   },
   eslint: {
     formatter: require('eslint-friendly-formatter')
-  },
-  ts: {
-    experimentalDecorators: true
   },
   tslint: {
     configuration: require('../tslint.json'),

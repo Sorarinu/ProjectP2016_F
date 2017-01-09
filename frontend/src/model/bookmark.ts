@@ -9,48 +9,48 @@ export class Bookmark implements Validation {
      * BookmarkリソースID
      * このIDを元にputやdeleteを送るURIを決定します.
      */
-    id : number;
+    id: number;
 
     /**
      * このブックマークが所属する親フォルダの参照
      * ルート要素であればnullです.
      */
-    parent : Bookmark;
+    parent: Bookmark;
 
     /**
      * ブックマークのタイトル（表題）
      * ページタイトルだったりフォルダ名だったり
      */
-    title : string;
+    title: string;
 
     /**
      * ブックマーク詳細
      * ページの概要だったり、フォルダの内容説明だったり
      */
-    detail : string;
+    detail: string;
 
     /**
      * ブックマークのリンク先URL
      * フォルダの場合この値は空文字になります.
      */
-    url : string;
+    url: string;
 
     /**
      * ブックマークが登録された日
      */
-    regDate : Date;
+    regDate: Date;
 
     /**
      * このインスタンスがブックマークフォルダであるかどうか
      * フォルダならばTRUE
      */
-    folder : boolean;
+    folder: boolean;
 
     /**
      * ブックマークフォルダであれば子要素を持つので.
      * フォルダではない場合このプロパティはnull
      */
-    bookmark : Bookmark[];
+    bookmark: Bookmark[];
 
     /**
      * Bookmarkモデルインスタンスを作成.
@@ -59,7 +59,7 @@ export class Bookmark implements Validation {
      * @param id ブックマークリソースIDを指定
      * @param parentId 親のフォルダのリソースID
      */
-    constructor (folder: boolean , id: number , parent: Bookmark) {
+    constructor(folder: boolean , id: number , parent: Bookmark) {
         this.id = id;
         this.parent = parent;
         this.title = '';
@@ -75,7 +75,7 @@ export class Bookmark implements Validation {
      * @param rootBM BookmarkRoot要素
      * @returns {string}
      */
-    static toJSON(rootBM: Bookmark) : string {
+    static toJSON(rootBM: Bookmark): string {
         // JSON値用クラスへ変換.
         const bookmarkValues = BookmarkValue.fromBM(rootBM);
         // 値用クラスをJSONへ変換.
@@ -86,7 +86,7 @@ export class Bookmark implements Validation {
      * JSON文字列をBookmarkにパースします.
      * @param jsonStr
      */
-    static fromJSON(jsonStr: string) : Bookmark {
+    static fromJSON(jsonStr: string): Bookmark {
         // JSONを値用クラスにパース.
         const bookmarkValues = BookmarkValue.fromJSON(jsonStr);
         // 値用クラスをブックマークインスタンスへ
@@ -98,7 +98,7 @@ export class Bookmark implements Validation {
      * @returns {boolean}
      */
     validate() {
-        //TODO: そのうち実装.
+        // TODO: そのうち実装.
         return true;
     }
 
@@ -108,7 +108,7 @@ export class Bookmark implements Validation {
      *
      * @return {number} このブックマークが持つブックマークの数.
      */
-    getSize() : number {
+    getSize(): number {
         if (this.folder === false) {
             return 1;
         }
@@ -125,8 +125,8 @@ export class Bookmark implements Validation {
     /**
      * 親を得ます.
      */
-    getRoot() : Bookmark {
-        var bm : Bookmark = this;
+    getRoot(): Bookmark {
+        let bm: Bookmark = this;
         // 親を辿って着くまで探す.
         // 仕様: ルート要素のparentはnull
         while (bm.parent !== null) {
@@ -146,8 +146,7 @@ export class Bookmark implements Validation {
      * @param bm 追加するBM.
      *
      */
-    addChild(bm: Bookmark) : void {
-
+    addChild(bm: Bookmark): void {
         // parentが指定されていないならこのインスタンスの子要素についか
         if (!bm.parent) {
             bm.parent = this;
@@ -171,7 +170,7 @@ export class Bookmark implements Validation {
     /**
      * このブックマークを削除（全体のツリーから除外）します
      */
-    remove() : void {
+    remove(): void {
         if (!this.parent) {
             throw Error('ブックマーク削除エラー: root要素は消せません.');
         }
@@ -188,13 +187,11 @@ export class Bookmark implements Validation {
      *
      * @return Bookmark
      */
-    search(id: number) : Bookmark {
-
+    search(id: number): Bookmark {
         // 一致したら返す
         if ( this.id === id ) {
             return this;
         }
-
 
         // フォルダじゃないなら下の階層はないから探索を切る
         if (this.folder === false) {
@@ -203,9 +200,9 @@ export class Bookmark implements Validation {
 
         // フォルダに対して
         if (this.bookmark) {
-            for (var i = 0; i < this.bookmark.length; i++) {
+            for (const bm of this.bookmark) {
                 // 深さ優先探索
-                var ret = this.bookmark[i].search(id);
+                const ret = bm.search(id);
                 if (ret) {
                     return ret;
                 }
@@ -218,13 +215,14 @@ export class Bookmark implements Validation {
     /**
      * rootまでの階層を得る
      */
-    getHierarchy() : Bookmark[] {
-        const hierarchy : Bookmark[] = [];
-        var tmp : Bookmark = this;
+    getHierarchy(): Bookmark[] {
+        const hierarchy: Bookmark[] = [];
+        let tmp: Bookmark = this;
         // rootまでの親を順繰りに辿って配列に入れていく.
         do {
             hierarchy.push(tmp);
-        }while ((tmp = (tmp.parent)) !== null);
+            tmp = tmp.parent;
+        }while (tmp !== null);
 
         // [0] root -> ... -> this になるように順番変える.
         return hierarchy.reverse();
@@ -235,8 +233,9 @@ export class Bookmark implements Validation {
      * 存在しない場合undefinedが返ります.
      * @param id
      */
-    searchAll(id: number) : Bookmark {
-        return this.getRoot().search(id);
+    searchAll(id: number): Bookmark {
+        const root = this.getRoot();
+        return root.search(id);
     }
 
 }

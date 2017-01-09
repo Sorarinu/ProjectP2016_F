@@ -1,5 +1,5 @@
-import {BookmarkService} from './bookmark-service';
 import {Bookmark} from '../model/bookmark';
+import {BookmarkService} from './bookmark-service';
 /**
  * ブックマーク操作APIコールの実装
  * ローカルで完結するMock
@@ -10,7 +10,6 @@ export class MockBookmarkService implements BookmarkService {
      * BookmarkRoot
      */
     rootBM: Bookmark;
-
 
     private PROCESS_TIME = 500;
     private STORAGE_KEY = 'Bookmark-data';
@@ -24,7 +23,7 @@ export class MockBookmarkService implements BookmarkService {
     }
 
     postBookmark(bm: Bookmark, requestListener: RequestListener): void {
-        //　bookmarkをローカルストレージへ追加する処理.
+        // bookmarkをローカルストレージへ追加する処理.
 
         // bookmarkにIDを付与.
         // 本番ではサーバーからIDは与えられるが今回は時刻をIDにする
@@ -42,7 +41,7 @@ export class MockBookmarkService implements BookmarkService {
 
     getBookmarks(requestListener: RequestListener): void {
         // localstorageからbookmark取り出して返す.
-        const bookmark : Bookmark = Bookmark.fromJSON(localStorage.getItem(this.STORAGE_KEY));
+        const bookmark: Bookmark = Bookmark.fromJSON(localStorage.getItem(this.STORAGE_KEY));
         this.rootBM = bookmark;
 
         // 応答
@@ -54,7 +53,7 @@ export class MockBookmarkService implements BookmarkService {
 
     updateBookmark(bm: Bookmark, requestListener: RequestListener): void {
         // 置き換え
-        var target = this.rootBM.searchAll(bm.id);
+        let target = this.rootBM.searchAll(bm.id);
         target = bm;
         this.saveLocalStorage();
 
@@ -66,7 +65,7 @@ export class MockBookmarkService implements BookmarkService {
 
     deleteBookmark(bm: Bookmark, requestListener: RequestListener): void {
         // 削除
-        var target = this.rootBM.searchAll(bm.id);
+        const target = this.rootBM.searchAll(bm.id);
         target.remove();
         this.saveLocalStorage();
 
@@ -76,15 +75,13 @@ export class MockBookmarkService implements BookmarkService {
         }, this.PROCESS_TIME);
     }
 
-
-    private saveLocalStorage() {
-        localStorage.setItem(this.STORAGE_KEY, Bookmark.toJSON(this.rootBM));
-    }
-
-
     uploadBookmark(formData: FormData, requestListener: RequestListener): void {
         setTimeout(() => {
             requestListener.ok(this.rootBM);
         }, 500);
+    }
+
+    private saveLocalStorage() {
+        localStorage.setItem(this.STORAGE_KEY, Bookmark.toJSON(this.rootBM));
     }
 }

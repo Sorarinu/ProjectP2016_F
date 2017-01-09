@@ -4,9 +4,8 @@
         .container(style="margin-top: 20px")
             .col-sm-6.col-sm-offset-3
              h3  SignIn
-
              alert(
-                :show.sync="alertProp.show",
+                v-model="alertProp.show",
                 :type="alertProp.type",
                 dismissable
              )
@@ -14,23 +13,24 @@
 
              form
                  bs-input(
+                    v-model="user.email",
                     name="email",
                     type="email",
+                    :label="'email'",
                     required,
+                    :icon="true",
                     :error="'Insert your email'",
-                    :value.sync="user.email",
                  )
-                    div(slot="label") email
 
                  bs-input(
-                     name="password",
+                     v-model="user.password",
+                     label="password",
                      type="password",
                      required,
-                     :error="'Insert your password'",
-                     :value.sync="user.password",
+                     icon,
+                     error="'Insert your password'",
                      minLength="6"
                  )
-                    div(slot="label") password
 
                  //- 入力値がUserのvalidateionを通過する場合のみ押せるようにする
                  button.form-control.btn.btn-primary(

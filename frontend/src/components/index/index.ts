@@ -1,5 +1,5 @@
-import {Component} from '../../vue-typed/vue-typed';
-import router from '../../main';
+import Component from 'vue-class-component';
+import Vue = require('vue');
 
 /**
  * IndexPage Component
@@ -9,27 +9,25 @@ require('./css/layout_top.scss');
 @Component({
     template: require('./index.html'),
     components: {
-        alert: require('vue-strap').alert
-    }
+        alert: require('vue-strap').alert,
+    },
 })
-export class Index {
+export class Index extends Vue {
     goAbout() {
-        router.go('main');
+        this.$router.push('main');
     }
 
     goSignIn() {
-
-        router.go('signin');
-
+        this.$router.push('signin');
     }
 
     goSignUp() {
-        router.go('signup');
+        this.$router.push('signup');
     }
 
     data() {
         return {
-            movie: require('./video/movie_pc.mp4')
+            movie: require('./video/movie_pc.mp4'),
         };
     }
 }

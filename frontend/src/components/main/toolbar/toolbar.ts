@@ -1,7 +1,6 @@
-import {Component, Getter, Action} from '../../../vue-typed/vue-typed';
+import Component from 'vue-class-component';
 import {SearchDialog} from '../dialog/searchdialog/searchdialog';
-import {bookmarkIsEmpty} from '../../../vuex/getter';
-import {Actions} from '../../../vuex/actions';
+import Vue = require('vue');
 /**
  * Toolbar Component
  * BMの操作用Actionを呼び出せるアイコンとかを配置するツールバー
@@ -9,16 +8,17 @@ import {Actions} from '../../../vuex/actions';
 require('./toolbar.scss');
 @Component({
     template: require('./toolbar.pug'),
-    components: [SearchDialog]
+    components: {
+        SearchDialog,
+    },
 })
-export class Toolbar {
+export class Toolbar extends Vue {
+    get bookmarkEmpty () {
+        return this.$store.getters.bookmarkIsEmpty;
+    };
 
-    @Getter(bookmarkIsEmpty)
-    bookmarkEmpty : boolean;
-
-    @Action(Actions.openSearchDialog)
     openSearchDialogAct() {
-        return;
+        this.$store.dispatch('openSearchDialog');
     }
 
 }

@@ -1,28 +1,26 @@
-import {Component, Action} from '../../../../vue-typed/vue-typed';
-import {Actions} from '../../../../vuex/actions';
+import Component from 'vue-class-component';
 import {Bookmark} from '../../../../model/bookmark';
+import Vue = require('vue');
 /**
  * TreeNav フォルダをツリー表示するナビゲーション
  */
 @Component({
+    name: 'tree-item',
     template: require('./tree-item.pug'),
     components: {
-        TreeItem
+        TreeItem,
     },
     props: ['bookmark'],
 })
-export class TreeItem {
-
-    expandNow : boolean;
-
-    bookmark : Bookmark;
+export class TreeItem extends Vue {
+    expandNow: boolean;
+    bookmark: Bookmark;
 
     data() {
-
         this.expandNow = false;
 
         return {
-            expandNow : this.expandNow
+            expandNow : this.expandNow,
         };
     }
 
@@ -46,9 +44,8 @@ export class TreeItem {
      * BookmarkView側でフォルダを展開します.
      * @param id
      */
-    @Action(Actions.openBookmarkDir)
-    openDir(id : number) {
-        return ;
+    openDir(id: number) {
+        this.$store.dispatch('openBookmarkDir', id);
     }
 
 }

@@ -1,8 +1,7 @@
-import {User} from '../model/user';
 import * as $ from 'jquery';
+import {User} from '../model/user';
 import {ApiUrl} from './apiurl';
 import {UserService} from './user-service';
-
 
 /**
  * ユーザーについてのAPIコール機能提供.
@@ -18,7 +17,7 @@ export class HttpUserService implements UserService {
      * @param requestListener
      * @param user
      */
-    signUp(requestListener: RequestListener, user: User) : void {
+    public signUp(requestListener: RequestListener, user: User): void {
         Object.freeze(user);
 
         if (!user.validate()) {
@@ -32,8 +31,8 @@ export class HttpUserService implements UserService {
             method: 'POST',
             data: {
                 email: user.email,
-                password: user.password
-            }
+                password: user.password,
+            },
         })
         .done((data: any) => {
             // 登録成功.
@@ -49,11 +48,11 @@ export class HttpUserService implements UserService {
      * Initしてログインしてるか確認.
      * @param requestListener
      */
-    init(requestListener: RequestListener): void {
+    public init(requestListener: RequestListener): void {
         $.ajax({
             url: ApiUrl.resolvePath(ApiUrl.INIT),
             dataType: 'json',
-            method: 'GET'
+            method: 'GET',
         })
         .done((data: any) => {
             if (!data.logined) {
@@ -70,7 +69,7 @@ export class HttpUserService implements UserService {
      * @param requestListener
      * @param user
      */
-    signIn(requestListener: RequestListener, user: User): void {
+    public signIn(requestListener: RequestListener, user: User): void {
         Object.freeze(user);
 
         if (!user.validate()) {
@@ -84,10 +83,10 @@ export class HttpUserService implements UserService {
             method: 'POST',
             data: {
                 email: user.email,
-                password: user.password
-            }
+                password: user.password,
+            },
         })
-        .done((data : any) => {
+        .done((data: any) => {
             if (data.status === 'OK') {
                 requestListener.ok(data);
             }
@@ -101,7 +100,7 @@ export class HttpUserService implements UserService {
      * SignOut
      * @param requestListener
      */
-    signOut(requestListener: RequestListener): void {
+    public signOut(requestListener: RequestListener): void {
         $.ajax({
             url: ApiUrl.resolvePath(ApiUrl.SIGN_OUT),
             dataType: 'json',

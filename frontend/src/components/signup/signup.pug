@@ -6,7 +6,7 @@
                 h3 SignUp
 
                 alert(
-                    :show.sync="alertProp.show",
+                    v-model="alertProp.show",
                     :type="alertProp.type",
                     dismissable
                 )

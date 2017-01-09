@@ -5,11 +5,11 @@ export class MutationTypes {
 
 }
 export namespace MutationTypes {
-    //user mutations
+    // user mutations
     export const SIGN_IN = 'SIGNIN';
     export const SIGN_OUT = 'SIGNOUT';
 
-    //bookmarkRoot mutations
+    // bookmarkRoot mutations
     export const ADD_BOOKMARK = 'ADD_BOOKMARK';
     export const GET_BOOKMARK = 'GET_BOOKMARK';
     export const UPDATE_BOOKMARK = 'UPDATE_BOOKMARK';
@@ -19,13 +19,12 @@ export namespace MutationTypes {
 
     export const MOVE_BOOKMARK = 'MOVE_BOOKMARK';
 
-
     export const START_SEARCH = 'START_SEARCH';
     export const END_SEARCH = 'END_SEARCH';
 
     export const SET_BOOKMARK_SEARCH_RES = 'SET_BOOKMARK_SEARCH_RES';
 
-    //ui mutations
+    // ui mutations
     export const TOGGLE_CONTEXT_MENU = 'SHOW_CONTEXT_MENU';
 
     export const OPEN_DELETE_DIALOG = 'OPEN_DELETE_DIALOG';
@@ -33,7 +32,6 @@ export namespace MutationTypes {
 
     export const OPEN_SEARCH_DIALOG = 'OPEN_SEARCH_DIALOG';
     export const CLOSE_SEARCH_DIALOG = 'CLOSE_SEARCH_DIALOG';
-
 
     export const OPEN_UPLOAD_DIALOG = 'OPEN_UPLOAD_DIALOG';
     export const CLOSE_UPLOAD_DIALOG = 'CLOSE_UPLOAD_DIALOG';

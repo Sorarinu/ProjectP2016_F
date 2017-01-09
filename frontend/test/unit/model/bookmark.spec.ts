@@ -5,7 +5,7 @@ import {Bookmark} from '../../../src/model/bookmark';
  */
 describe('bookmark-model unit test', () => {
 
-    var rootBM : Bookmark;
+    let rootBM: Bookmark;
     beforeAll(   () => {
         // init by default
         rootBM = new Bookmark(true, Number.MAX_VALUE, null);
@@ -45,9 +45,8 @@ describe('bookmark-model unit test', () => {
         expect(searched).toBe(rootBM);
     });
 
-
     describe('子を追加したりしてちゃんと動くか確かめる', () => {
-        var child : Bookmark;
+        let child: Bookmark;
         beforeAll(() => {
             child = new Bookmark(false, 2, rootBM);
             rootBM.addChild(child);
@@ -75,7 +74,7 @@ describe('bookmark-model unit test', () => {
 
         it('JSON T-way-Convert 1', () => {
             const jsonStr = Bookmark.toJSON(rootBM);
-            console.log('rootBM JSON = \n' + jsonStr);
+            // console.log('rootBM JSON = \n' + jsonStr);
             const revert = Bookmark.fromJSON(jsonStr);
 
             expect(rootBM.getSize()).toBe(revert.getSize());

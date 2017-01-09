@@ -1,8 +1,10 @@
 import Vue = require('vue');
 import VueRouter = require('vue-router');
-import {App} from './app';
-import {configureRouter} from './route-config';
 import * as $ from 'jquery';
+import {sync} from 'vuex-router-sync';
+import {App} from './app';
+import router from './router/index';
+import store from './vuex/store';
 /**
  * Application Main Entry Point here!!
  *
@@ -12,18 +14,24 @@ import * as $ from 'jquery';
 
 //  jquery
 $.ajaxSetup({xhrFields: {
-    withCredentials: true
+    withCredentials: true,
 }});
 
-// Router -----------------------------
+const debug = process.env.NODE_ENV !== 'production';
+// Vue.config.silent = debug;
+// Vue.config.devtools = debug;
 
-Vue.use(VueRouter);
-const router = new VueRouter<App>();
-configureRouter(router);
+sync(store, router);
 
-router.start(App, '#app');
-export default router; // エクスポートしたrouter これを使うことで任意にルーティングできる
+const app = new Vue({
+    components: {
+        App,
+    },
+    router,
+    store,
+    template: `<app></app>`,
+});
+app.$mount('#app');
 
-//--------------------------------------
-
+export {app, router, store}
 
