@@ -21,7 +21,6 @@
   },
   "devDependencies": {
     "@types/jasmine": "^2.5.40",
-    "@types/karma": "^0.13.33",
     "@types/requirejs": "^2.1.28",
     "babel-core": "^6.0.0",
     "babel-loader": "^6.0.0",

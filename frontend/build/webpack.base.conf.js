@@ -101,9 +101,6 @@ module.exports = {
   eslint: {
     formatter: require('eslint-friendly-formatter')
   },
-  ts: {
-    experimentalDecorators: true
-  },
   tslint: {
     configuration: require('../tslint.json'),
 
