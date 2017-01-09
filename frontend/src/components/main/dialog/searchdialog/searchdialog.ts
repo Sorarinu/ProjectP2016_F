@@ -17,7 +17,7 @@ require('./searchdialog.scss');
 export class SearchDialog extends Vue {
 
     get show () {
-        return this.$store.state.searchDialogShow;
+        return this.$store.state.showSearchDialog;
     }
 
     showRes: boolean;
@@ -54,7 +54,7 @@ export class SearchDialog extends Vue {
     }
 
     get bookmarkSearchRes () {
-        return this.$store.getters.getBookmarkSearchRes();
+        return this.$store.getters.getBookmarkSearchRes;
     }
 
     getBookmark(id: number) {
@@ -94,7 +94,7 @@ export class SearchDialog extends Vue {
     }
 
     get hierarchy() {
-        return this.$store.getters.getBookmarkHierarchy();
+        return this.$store.getters.getBookmarkHierarchy;
     }
 
     getFromPath(): string {

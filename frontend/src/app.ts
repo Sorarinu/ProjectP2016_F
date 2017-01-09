@@ -8,7 +8,6 @@ import Vue = require('vue');
  */
 require('./app.scss');
 @Component({
-    name: 'app',
     template: require('./app.pug'),
     components: { Navbar, Footbar },
 })
@@ -18,12 +17,12 @@ export class App extends Vue {
         this.$store.dispatch('init');
     }
 
-    get showFooter () {
+    get showFooter() {
         // routerのパスを見て産出する
         return true;
     }
 
-    get showNavbar () {
+    get showNav() {
         // routerのパスを見て産出する
         return true;
     }

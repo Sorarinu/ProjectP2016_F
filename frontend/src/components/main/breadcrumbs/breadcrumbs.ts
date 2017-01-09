@@ -7,12 +7,13 @@ import Vue = require('vue');
  */
 require('./breadcrumbs.scss');
 @Component({
+    name: 'breadcrumbs',
     template: require('./breadcrumbs.pug'),
 })
 export class Breadcrumbs extends Vue {
 
     get bookmarkHierarchy() {
-        return this.$store.getters.bookmarkHierarchy();
+        return this.$store.getters.getBookmarkHierarchy;
     }
 
     get openDirId(): number {

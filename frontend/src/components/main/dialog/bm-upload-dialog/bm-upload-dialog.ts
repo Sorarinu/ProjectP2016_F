@@ -20,7 +20,7 @@ export class BmUploadDialog extends Vue {
     }
 
     get show () {
-        return this.$store.state.uploadDialogShow;
+        return this.$store.state.showUploadDialog;
     }
 
     // upload() {

@@ -12,6 +12,7 @@ import Vue = require('vue');
  */
 require('./main.scss');
 @Component({
+    name: 'main',
     template: require('./main.pug'),
     components: {
         Ribbon,

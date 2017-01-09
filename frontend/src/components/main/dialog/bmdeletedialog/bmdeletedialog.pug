@@ -1,8 +1,8 @@
 #bmdeletedialog
     modal(
         mediam,
-        :show="show",
-        backdrop="false"
+        :value="show",
+        :backdrop="false"
     )
         div(slot="modal-header", class="modal-header")
             button.close(@click="closeDialogAct")

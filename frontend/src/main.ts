@@ -18,8 +18,8 @@ $.ajaxSetup({xhrFields: {
 }});
 
 const debug = process.env.NODE_ENV !== 'production';
-Vue.config.silent = debug;
-Vue.config.devtools = debug;
+// Vue.config.silent = debug;
+// Vue.config.devtools = debug;
 
 sync(store, router);
 
@@ -33,5 +33,5 @@ const app = new Vue({
 });
 app.$mount('#app');
 
-export {app, router, store };
+export {app, router, store}
 

@@ -3,4 +3,4 @@
         li(v-for="folder in bookmarkHierarchy")
             a(
             @click="openDir(folder.id)",
-            :class="{active : folder.id === openDirId}") {{$index == 0 ? 'HOME' : folder.title}}
+            :class="{active : folder.id === openDirId}") {{folder.title}}

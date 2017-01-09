@@ -4,22 +4,22 @@
     <nav class="Menu">
         <ul class="Menu-list">
             <li class="Menu-item">
-                <a href="#!/">TOP</a>
+                <router-link to="/">TOP</router-link>
             </li>
             <li class="Menu-item">
-                <a href="#!/about">About</a>
+                <router-link to="/about">About</router-link>
             </li>
             <li class="Menu-item">
-                <a href="#!/contact">Contact</a>
+                <router-link to="/contact">Contact</router-link>
             </li>
             <li v-if="!signInNow" class="Menu-item">
-                <a href="#!/signup">Sign Up</a>
+                <router-link to="/signup">Sign Up</router-link>
             </li>
             <li  v-if="!signInNow" class="Menu-item">
-                <a href="#!/signin">Sign In</a>
+                <router-link to="/signin">Sign In</router-link>
             </li>
             <li  v-if="signInNow" class="Menu-item">
-                <a href="#!/signin">Sign Out</a>
+                <span @click="signOut">Sign Out</span>
             </li>
         </ul>
     </nav>

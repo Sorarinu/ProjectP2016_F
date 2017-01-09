@@ -20,7 +20,6 @@ export class SignIn extends Vue {
     private alertProp: {show: boolean, type: string, message: string};
 
     data() {
-
         this.user = new User('', '');
 
         this.alertProp = {

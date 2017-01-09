@@ -4,8 +4,8 @@
         #ribbon-toggle
             .left {{user.email}}
             .right
-                i.fa.fa-angle-down(@click="openRibbon()", v-if="!ribbonVisible")
-                i.fa.fa-angle-up(@click="closeRibbon()", v-if="ribbonVisible")
+                i.fa.fa-angle-down(@click="openRibbon", v-if="!ribbonVisible")
+                i.fa.fa-angle-up(@click="closeRibbon", v-if="ribbonVisible")
         ribbon(v-if="ribbonVisible")
     .two-col
         #side.hidden-sm.hidden-xs.hidden-md

@@ -5,6 +5,7 @@ import Vue = require('vue');
  * TreeNav フォルダをツリー表示するナビゲーション
  */
 @Component({
+    name: 'tree-item',
     template: require('./tree-item.pug'),
     components: {
         TreeItem,

@@ -1,7 +1,7 @@
 .bmicon(
         @contextmenu="toggleContextMenu($event)",
         @click="selectBookmark($event)",
-        :class = "{active : getSelectBMIds.indexOf(bookmark.id) >= 0}"
+        :class = "{active : isActive}"
     )
     .bookmark(v-if="!bookmark.folder", @dblclick="open")
         .img

@@ -4,37 +4,32 @@
         .container(style="margin-top: 20px")
             .col-sm-6.col-sm-offset-3
              h3  SignIn
-
              alert(
-                :show.sync="alertProp.show",
+                v-model="alertProp.show",
                 :type="alertProp.type",
                 dismissable
              )
                  span {{alertProp.message}}
-
              form
-                 bs-input(
-                    name="email",
-                    type="email",
-                    required,
-                    :error="'Insert your email'",
-                    :value.sync="user.email",
-                 )
-                    div(slot="label") email
-
-                 bs-input(
-                     name="password",
-                     type="password",
-                     required,
-                     :error="'Insert your password'",
-                     :value.sync="user.password",
-                     minLength="6"
-                 )
-                    div(slot="label") password
-
+                 .input-group
+                     span.input-group-addon Email
+                     input.form-control(
+                        v-model="user.email",
+                        name="email",
+                        type="email",
+                        required,
+                     )
+                 .input-group
+                    span.input-group-addon Password
+                    input.form-control(
+                        v-model="user.password",
+                        label="password",
+                        type="password",
+                        required,
+                    )
                  //- 入力値がUserのvalidateionを通過する場合のみ押せるようにする
                  button.form-control.btn.btn-primary(
-                     type="button",
-                     :disabled="!isValidFormData()",
-                     @click="signIn()"
+                    type="button",
+                    :disabled="!isValidFormData()",
+                    @click="signIn()"
                  ) SignIn

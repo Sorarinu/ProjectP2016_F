@@ -22,11 +22,11 @@ require('./bmview.scss');
 export class BmView extends Vue {
 
     get bookmarkEmpty () {
-        return this.$store.getters.bookmarkIsEmpty();
+        return this.$store.getters.bookmarkIsEmpty;
     }
 
     get bookmarks () {
-        return this.$store.getters.getShowBookmarks();
+        return this.$store.getters.getShowBookmarks;
     }
 
     // アップロードボタンが押されたらフォルダ選択のモーダル=> uploadアクション.の流れだけど
@@ -134,6 +134,10 @@ export class BmView extends Vue {
 
     contextMenuOpenSet(closer: () => void) {
         this.$store.dispatch('toggleContextMenu', closer);
+    }
+
+    paste() {
+        return;
     }
 
     addFolder() {
