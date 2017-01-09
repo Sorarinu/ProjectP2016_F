@@ -7,6 +7,7 @@ import Vue = require('vue');
  */
 require('./treenav.scss');
 @Component({
+    name: 'treenav',
     template: require('./treenav.pug'),
     components: {
         TreeItem,
