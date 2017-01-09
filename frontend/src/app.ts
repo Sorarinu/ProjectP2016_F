@@ -1,37 +1,30 @@
+import Component from 'vue-class-component';
 import {Footbar} from './components/footer/footbar';
 import {Navbar} from './components/navbar/navbar';
-import {Action, Component} from './vue-typed/vue-typed';
-import {Actions} from './vuex/actions';
-import store from './vuex/store';
+import Vue = require('vue');
+
 /*
 * アプリケーションのトップレベルコンポーネントです
  */
 require('./app.scss');
 @Component({
+    name: 'app',
     template: require('./app.pug'),
     components: { Navbar, Footbar },
-    store: store,
 })
-export class App {
+export class App extends Vue {
 
-    showFooter : boolean;
-    showNav : boolean;
-
-    data() {
-        this.showFooter = false;
-        this.showNav = false;
-        return {
-            showFooter: this.showFooter,
-            showNav: this.showNav,
-        };
+    beforeMount() {
+        this.$store.dispatch('init');
     }
 
-    @Action(Actions.init)
-    init() {
-        return;
+    get showFooter () {
+        // routerのパスを見て産出する
+        return true;
     }
 
-    created() {
-        this.init();
+    get showNavbar () {
+        // routerのパスを見て産出する
+        return true;
     }
 }

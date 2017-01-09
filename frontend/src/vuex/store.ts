@@ -8,15 +8,7 @@ import state from './state';
 Vue.use(Vuex);
 
 // debug setting.
-interface process {
-    env: {
-        NODE_ENV: string,
-    };
-}
-declare var process;
-
 const debug = (process.env.NODE_ENV !== 'production');
-Vue.config.debug = debug;
 
 // A Vuex instance is created by combining the state, the actions,
 // and the mutations. Because the actions and mutations are just

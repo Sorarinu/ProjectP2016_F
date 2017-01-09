@@ -10,8 +10,7 @@ import {State} from './state';
 // getterはstateの状態を取得する関数です.
 // vueの算出プロパティのように考えるといいでしょう.
 // stateに対して参照透過である必要があります.
-
-const getters: GetterTree<State, State> = {
+const getters = {
     // user state getter -----------------------------------
     getCurrentUser(state: State): User {
         return state.user;

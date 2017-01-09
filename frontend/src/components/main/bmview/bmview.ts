@@ -1,11 +1,10 @@
 import {Bookmark} from 'src/model/bookmark';
-import {Action, Component, Getter} from 'src/vue-typed/vue-typed';
-import {Actions} from 'src/vuex/actions';
-import {bookmarkIsEmpty, getShowBookmarks} from 'src/vuex/getter';
+import Component from 'vue-class-component';
 import {BmUploadDialog} from '../dialog/bm-upload-dialog/bm-upload-dialog';
 import {BmDeleteDialog} from '../dialog/bmdeletedialog/bmdeletedialog';
 import {SearchDialog} from '../dialog/searchdialog/searchdialog';
 import {BmIcon} from './bmicon/bmicon';
+import Vue = require('vue');
 /**
  * BmView Component
  * ブックマーク表示コンポーネント.
@@ -20,19 +19,22 @@ require('./bmview.scss');
         BmUploadDialog,
     },
 })
-export class BmView {
+export class BmView extends Vue {
 
-    @Getter(bookmarkIsEmpty)
-    bookmarkEmpty: boolean;
+    get bookmarkEmpty () {
+        return this.$store.getters.bookmarkIsEmpty();
+    }
 
-    @Getter(getShowBookmarks)
-    bookmarks: Bookmark[];
+    get bookmarks () {
+        return this.$store.getters.getShowBookmarks();
+    }
 
     // アップロードボタンが押されたらフォルダ選択のモーダル=> uploadアクション.の流れだけど
     // とりあえず簡単のために押されたらbookmarkをフェッチしちゃう.
     // fetchでモックのBM読まれてストアに追加される.
-    @Action(Actions.fetchBookmark)
-    uploadBookmark() {return ; }
+    uploadBookmark() {
+        this.$store.dispatch('fetchBookmark');
+    }
 
     showContextMenu: boolean;
     posStyle: PosStyle;
@@ -42,7 +44,6 @@ export class BmView {
     }
 
     data() {
-
         this.showContextMenu = false;
 
         this.posStyle = {
@@ -115,9 +116,8 @@ export class BmView {
         this.moveBookmark(from, to);
     }
 
-    @Action(Actions.moveBookmark)
     moveBookmark(from: number, to: number) {
-        return;
+        this.$store.dispatch('moveBookmark', {from, to});
     }
 
     contextmenu(e: MouseEvent) {
@@ -132,9 +132,8 @@ export class BmView {
         e.preventDefault();
     }
 
-    @Action(Actions.toggleContextMenu)
     contextMenuOpenSet(closer: () => void) {
-        return;
+        this.$store.dispatch('toggleContextMenu', closer);
     }
 
     addFolder() {

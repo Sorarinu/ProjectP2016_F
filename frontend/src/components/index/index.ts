@@ -1,5 +1,5 @@
-import router from '../../main';
-import {Component} from '../../vue-typed/vue-typed';
+import Component from 'vue-class-component';
+import Vue = require('vue');
 
 /**
  * IndexPage Component
@@ -12,19 +12,17 @@ require('./css/layout_top.scss');
         alert: require('vue-strap').alert,
     },
 })
-export class Index {
+export class Index extends Vue {
     goAbout() {
-        router.go('main');
+        this.$router.push('main');
     }
 
     goSignIn() {
-
-        router.go('signin');
-
+        this.$router.push('signin');
     }
 
     goSignUp() {
-        router.go('signup');
+        this.$router.push('signup');
     }
 
     data() {

@@ -91,7 +91,7 @@ const mutations: MutationTree<State> = {
     // -----------------------------------------------------
 
     // ui mutations --------------------------------------
-    [TOGGLE_CONTEXT_MENU]: (state: State , closer: () => void ) => {
+    [TOGGLE_CONTEXT_MENU]: (state: State, closer: () => void ) => {
         if (state.contextMenuCloser) {
             state.contextMenuCloser();
         }
@@ -121,14 +121,14 @@ const mutations: MutationTree<State> = {
 
     // ブックマーク選択系
 
-    [ADD_SELECT_BOOKMARK]: (state: State , id: number) => {
+    [ADD_SELECT_BOOKMARK]: (state: State, id: number) => {
         state.selectBMIds.push(id);
     },
 
-    [DELETE_SELECT_BOOKMARK]: (state: State , id: number) => {
+    [DELETE_SELECT_BOOKMARK]: (state: State, id: number) => {
         const i = state.selectBMIds.indexOf(id);
         if (i >= 0) {
-            state.selectBMIds.$remove(i);
+            state.selectBMIds.splice(i, 1);
         }
     },
 

@@ -1,22 +1,21 @@
+import Component from 'vue-class-component';
 import {ServiceFactory} from '../../api/service-factory';
-import router from '../../main';
 import {User} from '../../model/user';
-import {Action, Component} from '../../vue-typed/vue-typed';
-import {Actions} from '../../vuex/actions';
+import Vue = require('vue');
 
 /**
  * SignIn Component
  */
 require('./signin.scss');
 @Component({
+    name: 'signin',
     template: require('./signin.pug'),
     components: {
-        bsInput: require('vue-strap').input ,
+        bsInput: require('vue-strap').input,
         alert: require('vue-strap').alert,
     },
 })
-export class SignIn {
-
+export class SignIn extends Vue {
     private user: User;
     private alertProp: {show: boolean, type: string, message: string};
 
@@ -36,8 +35,9 @@ export class SignIn {
         };
     }
 
-    @Action(Actions.signIn)
-    signInCommit(user: User) {return; }
+    signInCommit(user: User) {
+        this.$store.dispatch('signIn', user);
+    }
 
     signIn(): void {
         ServiceFactory.getUserService().signIn({
@@ -58,6 +58,6 @@ export class SignIn {
     }
 
     transitionHome(): void {
-        router.replace('main');
+        this.$router.push('main');
     }
 }

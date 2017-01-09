@@ -1,21 +1,21 @@
 import {Bookmark} from 'src/model/bookmark';
-import {Action, Component, Getter} from 'src/vue-typed/vue-typed';
-import {Actions} from 'src/vuex/actions';
-import {getSelectedBMIds} from '../../../../vuex/getter';
+import Component from 'vue-class-component';
 import {BmDeleteDialog} from '../../dialog/bmdeletedialog/bmdeletedialog';
+import Vue = require('vue');
 /**
  * BmIcon Component
  * ブックマーク表示コンポーネント.
  */
 require('./bmicon.scss');
 @Component({
+    name: 'bmicon',
     template: require('./bmicon.pug'),
     props: ['bookmark'],
-    components : [
+    components : {
         BmDeleteDialog,
-    ],
+    },
 })
-export class BmIcon {
+export class BmIcon extends Vue {
     bookmark: Bookmark;
 
     showContextMenu: boolean;
@@ -51,8 +51,9 @@ export class BmIcon {
         this.imageLoad();
     }
 
-    @Getter(getSelectedBMIds)
-    getSelectBMIds: number[];
+    get getSelectBMIds () {
+        return this.$store.getters.getSelectBMIds();
+    }
 
     /**
      * サイトのプレビューイメージを取得.
@@ -75,8 +76,9 @@ export class BmIcon {
     }
 
     // bookmarkのディレクトリ開く.
-    @Action(Actions.openBookmarkDir)
-    openDir(id: number) { return ; }
+    openDir(id: number) {
+        this.$store.dispatch('openBookmarkDir', id);
+    }
 
     open() {
         this.contextMenuClose();
@@ -105,9 +107,9 @@ export class BmIcon {
 
         e.stopPropagation();
     }
-    @Action(Actions.openBMDeleteDialog)
+
     openDeleteDialogAct() {
-        return ;
+        this.$store.dispatch('openBMDeleteDialog');
     }
 
     /**
@@ -133,8 +135,9 @@ export class BmIcon {
         e.preventDefault();
         e.stopPropagation();
     }
-    @Action(Actions.toggleContextMenu)
+
     contextMenuOpenAct(closer: () => void) {
+        this.$store.dispatch('toggleContextMenu', closer);
         return;
     }
 
@@ -148,14 +151,12 @@ export class BmIcon {
         }
     }
 
-    @Action(Actions.addSelectBookmark)
     addSelectBookmarkAct(id: number) {
-        return;
+        this.$store.dispatch('addSelectBookmark', id);
     }
 
-    @Action(Actions.selectBookmark)
     selectBookmarkAct(id: number) {
-        return;
+        this.$store.dispatch('selectBookmark', id);
     }
 
     /**

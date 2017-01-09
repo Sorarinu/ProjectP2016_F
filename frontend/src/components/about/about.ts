@@ -1,19 +1,20 @@
-import router from '../../main';
-import {Component} from '../../vue-typed/vue-typed';
+import Component from 'vue-class-component';
+import Vue = require('vue');
 /**
  * AboutPage Component
  */
 require('./css/index.scss');
 
 @Component({
+    name: 'about',
     template: require('./about.html'),
 })
-export class About {
+export class About extends Vue {
     toMain(): void {
-        router.go('main');
+        this.$router.push('main');
     }
 
     goAbout() {
-        router.go('main');
+        this.$router.push('main');
     }
 }

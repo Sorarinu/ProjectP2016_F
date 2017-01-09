@@ -1,20 +1,23 @@
+import Component from 'vue-class-component';
 import {Bookmark} from '../../../model/bookmark';
-import {Component, Getter} from '../../../vue-typed/vue-typed';
-import {getSelectBMs, getSelectedBMIds} from '../../../vuex/getter';
+import Vue = require('vue');
 /**
  * BmDetail Component
  * 今アクティブなBMの詳細を出したりする
  */
 require('./bmdetail.scss');
 @Component({
+    name: 'bmdetail',
     template: require('./bmdetail.pug'),
 })
-export class BmDetail {
-    @Getter(getSelectedBMIds)
-    selectBMIds: number[];
+export class BmDetail extends Vue {
+    get selectBMIds () {
+        return this.$store.getters.getSelectBMIds();
+    }
 
-    @Getter(getSelectBMs)
-    selectBMs: Bookmark[];
+    get selectBMs () {
+        return this.$store.getters.getSelectBMs();
+    }
 
     getBM(): Bookmark {
         return this.selectBMs[0];

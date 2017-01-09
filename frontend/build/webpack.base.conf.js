@@ -22,13 +22,6 @@ module.exports = {
     root: path.join(__dirname, 'node_modules')
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.ts$/,
-        exclude: /node_modules/,
-        loader: 'tslint'
-      }
-    ],
     loaders: [
       // production側の設定でごにょごにょするので
       // これより上に要素かかないでください
@@ -53,7 +46,7 @@ module.exports = {
       },
       {
         test: /\.ts$/,
-        loader: 'babel-loader!ts-loader'
+        loader: 'babel-loader!ts-loader!tslint-loader'
       },
       {
         test: /\.json$/,

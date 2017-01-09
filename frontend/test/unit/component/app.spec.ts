@@ -5,7 +5,7 @@ describe('AppComponent-Test', () => {
 
     const vm = new Vue({
         template: '<div><app></app></div>',
-        components: {App}
+        components: {App},
     }).$mount();
 
 

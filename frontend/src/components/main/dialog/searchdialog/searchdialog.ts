@@ -1,7 +1,6 @@
-import {Bookmark} from 'src/model/bookmark';
-import {Action, Component, Getter} from 'src/vue-typed/vue-typed';
-import {getBookmark, getBookmarkHierarchy, getBookmarkSearchRes, getSearchDialogShow} from 'src/vuex/getter';
-import {Actions} from '../../../../vuex/actions';
+import Component from 'vue-class-component';
+import Vue = require('vue');
+import {Bookmark} from '../../../../model/bookmark';
 
 /**
  * SearchDialog
@@ -15,10 +14,11 @@ require('./searchdialog.scss');
         progressbar: require('vue-strap').progressbar,
     },
 })
-export class SearchDialog {
+export class SearchDialog extends Vue {
 
-    @Getter(getSearchDialogShow)
-    show: boolean;
+    get show () {
+        return this.$store.state.searchDialogShow;
+    }
 
     showRes: boolean;
 
@@ -27,7 +27,6 @@ export class SearchDialog {
     checkState: number[];
 
     data() {
-
         this.searchWord = '';
         this.showRes = false;
 
@@ -50,17 +49,16 @@ export class SearchDialog {
         return;
     }
 
-    @Action(Actions.searchBookmark)
     searchBookmarkAct(bmf: Bookmark, searchWord: string) {
-        return;
+        this.$store.dispatch('searchBookmark', {bmf, searchWord});
     }
 
-    @Getter(getBookmarkSearchRes)
-    bookmarkSearchRes: Bookmark[];
+    get bookmarkSearchRes () {
+        return this.$store.getters.getBookmarkSearchRes();
+    }
 
-    @Getter(getBookmark)
-    getBookmark(id: number): Bookmark {
-        return;
+    getBookmark(id: number) {
+        return this.$store.getters.getBookmark(id);
     }
 
     grouping() {
@@ -83,26 +81,23 @@ export class SearchDialog {
         return;
     }
 
-    @Action(Actions.addBookmark)
     addBookmarkAct(parent: Bookmark, child: Bookmark) {
-        return;
+        this.$store.dispatch('addBookmark', {parent, child});
     }
 
-    @Action(Actions.moveBookmark)
     moveBookmarkAct(from: number, to: number) {
-        return;
+        this.$store.dispatch('moveBookmark', {from, to});
     }
 
-    @Action(Actions.closeSearchDialog)
     closeSearchDialogAct() {
-        return;
+        this.$store.dispatch('closeSearchDialog');
     }
 
-    @Getter(getBookmarkHierarchy)
-    hierarchy: Bookmark[];
+    get hierarchy() {
+        return this.$store.getters.getBookmarkHierarchy();
+    }
 
     getFromPath(): string {
-
         const ret = this.hierarchy.map((v: Bookmark) => {
             return v.title;
         }).join('/');

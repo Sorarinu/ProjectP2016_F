@@ -1,42 +1,32 @@
-import {State} from '../../../src/vuex/store';
-import {bookmarkIsEmpty, getSignInNow, getBookmarkHierarchy} from '../../../src/vuex/getter';
 import {Bookmark} from '../../../src/model/bookmark';
+import getters from '../../../src/vuex/getter';
+import {State} from '../../../src/vuex/state';
+
 describe('vuex-getter-test', () => {
 
-    var state: State;
-
+    let state: State;
     beforeEach(() => {
         state = new State();
     });
 
-    it('getSignInNow', () => {
-        const ret1 = getSignInNow(state);
-        expect(ret1).toEqual(false);
-
-        state.signInNow = true;
-        const ret2 = getSignInNow(state);
-        expect(ret2).toEqual(true);
-    });
-
-
     it('bookmarkIsEmpty', () => {
-        const ret1 = bookmarkIsEmpty(state);
+        const ret1 = getters.bookmarkIsEmpty;
         expect(ret1).toEqual(true);
 
         state.bookmarkRoot.addChild(new Bookmark(
             false,
             1,
-            state.bookmarkRoot
+            state.bookmarkRoot,
         ));
 
-        const ret2 = bookmarkIsEmpty(state);
+        const ret2 = getters.bookmarkIsEmpty(state);
         expect(ret2).toEqual(false);
     });
 
     it('bookmarkHierarchy', () => {
         // root開く.
         state.openBookmarkDirId = Number.MAX_VALUE;
-        expect(getBookmarkHierarchy(state)).toBeDefined();
+        expect(getters.getBookmarkHierarchy(state)).toBeDefined();
     });
 
 });

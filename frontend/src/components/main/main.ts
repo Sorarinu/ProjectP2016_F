@@ -1,12 +1,11 @@
-import {User} from '../../model/user';
-import {Component, Getter} from '../../vue-typed/vue-typed';
-import {getCurrentUser} from '../../vuex/getter';
+import Component from 'vue-class-component';
 import {BmDetail} from './bmdetail/bmdetail';
 import {BmView} from './bmview/bmview';
 import {Breadcrumbs} from './breadcrumbs/breadcrumbs';
 import {Ribbon} from './ribbon/ribbon';
 import {Toolbar} from './toolbar/toolbar';
 import {TreeNav} from './treenav/treenav';
+import Vue = require('vue');
 
 /**
  * Main Component
@@ -23,7 +22,7 @@ require('./main.scss');
         Toolbar,
     },
 })
-export class Main {
+export class Main extends Vue {
 
     ribbonVisible: boolean;
 
@@ -36,8 +35,9 @@ export class Main {
         };
     }
 
-    @Getter(getCurrentUser)
-    use: User;
+    get user () {
+        return this.$store.state.user;
+    }
 
     openRibbon() {
         this.ribbonVisible = true;

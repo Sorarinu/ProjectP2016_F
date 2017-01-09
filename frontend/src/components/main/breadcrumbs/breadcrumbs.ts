@@ -1,7 +1,6 @@
-import {Bookmark} from 'src/model/bookmark';
-import {Action, Component, Getter} from 'src/vue-typed/vue-typed';
-import {Actions} from 'src/vuex/actions';
-import {getBookmarkHierarchy, getOpenDirId} from 'src/vuex/getter';
+import Component from 'vue-class-component';
+import Vue = require('vue');
+
 /**
  * Breadcrumbs Component
  * パンくずナビゲーション
@@ -10,16 +9,17 @@ require('./breadcrumbs.scss');
 @Component({
     template: require('./breadcrumbs.pug'),
 })
-export class Breadcrumbs {
+export class Breadcrumbs extends Vue {
 
-    @Getter(getBookmarkHierarchy)
-    bookmarkHierarchy: Bookmark[];
+    get bookmarkHierarchy() {
+        return this.$store.getters.bookmarkHierarchy();
+    }
 
-    @Getter(getOpenDirId)
-    openDirId: number;
+    get openDirId(): number {
+        return this.$store.state.openDir;
+    }
 
-    @Action(Actions.openBookmarkDir)
     openDir(id: number) {
-        return ;
+        this.$store.dispatch('openBookmarkDir', id);
     }
 }

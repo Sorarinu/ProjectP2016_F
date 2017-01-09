@@ -200,9 +200,9 @@ export class Bookmark implements Validation {
 
         // フォルダに対して
         if (this.bookmark) {
-            for(let i = 0; i < this.bookmark.length; i++) {
+            for (const bm of this.bookmark) {
                 // 深さ優先探索
-                const ret = this.bookmark[i].search(id);
+                const ret = bm.search(id);
                 if (ret) {
                     return ret;
                 }

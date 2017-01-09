@@ -1,5 +1,6 @@
-import {Component} from 'src/vue-typed/vue-typed';
 
+import * as Vue from 'vue';
+import Component from 'vue-class-component';
 /**
  * PagePreviewDialog
  * ブックマークのプレビューをオーバーレイ表示するダイアログ
@@ -11,7 +12,7 @@ require('./searchdialog.scss');
         modal: require('vue-strap').modal,
     },
 })
-export class PagePreviewDialog {
+export class PagePreviewDialog extends Vue {
     show: boolean;
 
     data() {

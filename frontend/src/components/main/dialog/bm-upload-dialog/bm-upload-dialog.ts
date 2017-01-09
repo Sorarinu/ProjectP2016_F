@@ -1,7 +1,5 @@
-import {Action, Component, Getter} from 'src/vue-typed/vue-typed';
-import {Actions} from 'src/vuex/actions';
-import {getUploadDialogShow} from '../../../../vuex/getter';
-
+import * as Vue from 'vue';
+import Component from 'vue-class-component';
 /**
  * ブックマークファイルをアップロードするダイアログ
  */
@@ -11,7 +9,7 @@ import {getUploadDialogShow} from '../../../../vuex/getter';
         modal: require('vue-strap').modal,
     },
 })
-export class BmUploadDialog {
+export class BmUploadDialog extends Vue {
 
     formData: FormData;
 
@@ -21,8 +19,9 @@ export class BmUploadDialog {
         // TODO: formdataをボタンクリックで作ってActionへ流す
     }
 
-    @Getter(getUploadDialogShow)
-    show: boolean;
+    get show () {
+        return this.$store.state.uploadDialogShow;
+    }
 
     // upload() {
     //     this.uploadBookmarkAct(null);
@@ -35,11 +34,6 @@ export class BmUploadDialog {
     // }
 
     closeDialog() {
-        this.closeDialogAct();
+        this.$store.dispatch('closeUploadDialog');
     }
-    @Action(Actions.closeUploadDialog)
-    closeDialogAct() {
-        return;
-    }
-
 }

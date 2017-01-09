@@ -6,7 +6,7 @@ import {BookmarkSimilarity} from '../../../src/model/bookmark-similarity';
  */
 describe('bookmark-similarity unit test', () => {
 
-    var rootBM : Bookmark;
+    let rootBM : Bookmark;
     beforeAll(   () => {
         // init by default
         const mockData = require('src/api/mock-data/bookmark.json');

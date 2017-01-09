@@ -7,6 +7,6 @@
     "object-literal-sort-keys": false,
     "no-namespace": false,
     "member-access": false,
-    "member-ordering": [true, { "order": "fields-first" }]
+    "member-ordering": false
   }
 }

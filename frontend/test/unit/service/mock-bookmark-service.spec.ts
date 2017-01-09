@@ -4,7 +4,7 @@ import {MockBookmarkService} from '../../../src/api/mock-bookmark-service';
  */
 describe('ブックマークMOCKサービスクラスのテスト', () => {
 
-    var service;
+    let service;
     beforeAll(() => {
         service = new MockBookmarkService();
     });
