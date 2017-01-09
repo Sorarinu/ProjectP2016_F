@@ -4,7 +4,6 @@
 
 cd frontend
 npm install
-npm run setup
 npm run build
 cd ../
 rm -rf project/*
