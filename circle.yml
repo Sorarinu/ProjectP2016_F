@@ -13,8 +13,6 @@ dependencies:
       - mkdir -p ~/cache
       # node_moduelsのコピーとかさせる
       - bash circle.sh
-      # setup
-      - cd frontend && npm run setup
 test:
     override:
       #テストコマンドの上書き ここにテストのコマンドを
