@@ -19,11 +19,11 @@ export class App extends Vue {
 
     get showFooter() {
         // routerのパスを見て産出する
-        return true;
+        return this.$store.state.route.fullPath !== '/main';
     }
 
     get showNav() {
         // routerのパスを見て産出する
-        return true;
+        return this.$store.state.route.fullPath !== '/main';
     }
 }
