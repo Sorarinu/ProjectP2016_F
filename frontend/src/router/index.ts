@@ -13,10 +13,10 @@ import {SignUp} from '../components/signup/signup';
  */
 
 Vue.use(Router);
-
+const base = process.env.NODE_ENV === 'production' ? '/ProjectP2016_F' : '/';
 const router = new Router({
     mode: 'history',
-    base: '/ProjectP2016_F/',
+    base,
     routes: [
         { // ルートパスはIndexへとばす
             name: 'root',
