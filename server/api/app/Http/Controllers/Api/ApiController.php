@@ -418,17 +418,28 @@ class ApiController extends Controller
      */
     public function similarity()
     {
+        //$res = null;
         $json = json_encode(json_decode(file_get_contents('php://input')), JSON_UNESCAPED_SLASHES);
-        $client = new \GuzzleHttp\Client();
+        $url = 'http://127.0.0.1:8089/api/v1/similarity-search/';
 
-        $res = $client->request('POST', 'http://127.0.0.1:8089/api/v1/similarity-search/', [
-            'headers' => [
-                'Accept' => 'application/json',
-                'Content-type' => 'application/json'
-            ],
-            'json' => $json
-        ]);
-        
-        return $res->getBody();
+        $options = array(
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_AUTOREFERER => true,
+	);
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+	curl_setopt($ch, CURLOPT_VERBOSE, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt_array($ch, $options);
+	$result = curl_exec($ch);
+	curl_close($ch);
+
+	return $result;
     }
 }
