@@ -16,6 +16,7 @@ Vue.use(Router);
 
 const router = new Router({
     mode: 'history',
+    base: '/ProjectP2016_F/',
     routes: [
         { // ルートパスはIndexへとばす
             name: 'root',
