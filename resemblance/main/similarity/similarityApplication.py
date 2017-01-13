@@ -7,7 +7,6 @@ import sys
 import time
 import threading
 from functools import wraps
-from flaskext.mysql import MySQL
 from flask import Flask, abort, request, Response
 from api.search.loadModel import LoadModelFlag
 from api.create.scraping import Scraping
@@ -18,13 +17,6 @@ from conf.constants import *
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-mysql = MySQL()
-mysql.init_app(app)
-
-
-def connnection():
-    cur = mysql.connect().cursor()
-    return cur
 
 data_store = {'a': 1}
 def interval_query():
@@ -93,8 +85,6 @@ def add_tag():
 def sample():
     while 1:
         time.sleep(5)
-        print("sample-daemon")
-
 
 def fork():
     pid = os.fork()
