@@ -1,4 +1,4 @@
-# coding:utf-8
+#!/root/.pyenv/shims/python
 
 import json
 import os
@@ -81,11 +81,6 @@ def add_tag():
         bookmark_data['tags'] = tag
     return data
 
-
-def sample():
-    while 1:
-        time.sleep(5)
-
 def fork():
     pid = os.fork()
 
@@ -96,8 +91,9 @@ def fork():
         sys.exit()
 
     if pid == 0:
-        sample()
-        app.run(port=8089)
+        while 1:
+            app.run(port=8089, debug=True)
+            time.sleep(5)
 
 
 if __name__ == '__main__':
