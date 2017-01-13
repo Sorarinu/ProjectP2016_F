@@ -107,7 +107,7 @@ def fork():
 
     if pid == 0:
         sample()
-        app.run()
+        app.run(port=8089)
 
 
 if __name__ == '__main__':
