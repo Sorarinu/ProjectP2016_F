@@ -17,14 +17,14 @@
                         required icon,
                         type="email",
                         label="email",
-                        :value.sync="user.email",
+                        v-model="user.email",
                         error="Insert your email"
                     )
                     bs-input(
                         required icon,
                         label="password",
                         type="password",
-                        :value.sync="user.password",
+                        v-model="user.password",
                         error="Insert password",
                         minLength="6"
                     )
@@ -32,9 +32,9 @@
                         required icon,
                         label="password-confilm",
                         type="password",
-                        :value.sync="passwordConfilm",
+                        v-model="passwordConfilm",
                         error="Don't match password",
-                        :match="user.password"
+                        :match="user.password",
                     )
 
                     button.form-control.btn.btn-primary(
