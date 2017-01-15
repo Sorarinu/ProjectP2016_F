@@ -2,6 +2,8 @@
   overflow: scroll;
   white-space: nowrap;
 
+  user-select: none;
+
   .tree-item{
     .folder{
       margin-bottom: 4px;

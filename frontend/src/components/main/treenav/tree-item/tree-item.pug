@@ -6,7 +6,7 @@
             i(v-if="!expandNow").fa.fa-caret-right
     span(@dblclick="openBm")
         i(v-if="!bookmark.folder").fa.fa-bookmark
-    span.title {{bookmark.title}}
+        span.title {{bookmark.title}}
     ul(v-show="expandNow")
         tree-item(v-for="bm in bookmark.bookmark",
         :bookmark="bm")
