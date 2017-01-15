@@ -1,12 +1,23 @@
 .tree-item(:class="{folder : bookmark.folder}")
+    // bookmark
+    tooltip(
+        v-if="!bookmark.folder"
+        effect="fadein",
+        placement="bottom",
+        :content="bookmark.url",
+        trigger="hover"
+    )
+        span(@dblclick="openBm")
+            i.fa.fa-bookmark
+            span.title {{bookmark.title}}
+    // folder
     span(
         v-if="bookmark.folder",
-        @click="toggle")
-            i(v-if="expandNow").fa.fa-caret-down
-            i(v-if="!expandNow").fa.fa-caret-right
-    span(@dblclick="openBm")
-        i(v-if="!bookmark.folder").fa.fa-bookmark
-        span.title {{bookmark.title}}
+        @click="toggle"
+    )
+        i(v-if="expandNow").fa.fa-caret-down
+        i(v-if="!expandNow").fa.fa-caret-right
+        span(@dblclick="openBm").title {{bookmark.title}}
     ul(v-show="expandNow")
         tree-item(v-for="bm in bookmark.bookmark",
         :bookmark="bm")
