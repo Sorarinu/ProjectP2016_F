@@ -1,5 +1,5 @@
 # coding:utf-8
-import logging
+# import logging
 
 from gensim.models import word2vec
 
@@ -12,7 +12,7 @@ class CreateModel(object):
         self.file_name = file_name
 
     def create_model(self):
-        logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+        # logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
         wakati_file = MeacabWakati(self.file_name).write_wakati()
         with open(wakati_file.name, 'r', encoding='utf-8') as file:
             sentences = word2vec.LineSentence(file)
