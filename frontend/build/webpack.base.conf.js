@@ -1,8 +1,8 @@
 /**
  * Webpackの共通設定ファイル. モジュールのローダとか
  */
-
-var path = require('path')
+const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -11,6 +11,7 @@ module.exports = {
       'vue',
       'vue-router',
       'vuex',
+      'vuetify',
       'es6-promise'
     ]
   },
@@ -19,33 +20,27 @@ module.exports = {
     filename: '[name].[hash].js'
   },
   resolve: {
-    extensions: ['', '.js', '.ts'],
+    extensions: ['.js', '.ts'],
     alias: {
       'src': path.resolve(__dirname, '../src'),
       'vue': 'vue/dist/vue.js'
     }
   },
-  resolveLoader: {
-    root: path.join(__dirname, 'node_modules')
-  },
   module: {
-    loaders: [
-      // production側の設定でごにょごにょするので
-      // これより上に要素かかないでください
-      // あと編集しないでください
+    rules: [
       {
-        test: /\.css$/,
-        loader: 'style!css'
+        test: /\.(css|scss)$/,
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader:[
+            'css-loader',
+            'sass-loader'
+          ]
+        })
       },
-      {
-        test: /\.scss$/,
-        loader: 'style!css!sass'
-      },
-      // ごにょごにょする領域はここまで
-      // 下は適当に
       {
         test: /\.pug$/,
-        loader: 'pug-html'
+        loader: 'pug-html-loader'
       },
       {
         test: /\.html$/,
@@ -53,24 +48,28 @@ module.exports = {
       },
       {
         test: /\.ts$/,
-        loader: 'babel-loader!ts-loader!tslint-loader'
+        use: [
+          'babel-loader',
+          'ts-loader',
+          'tslint-loader'
+          ]
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       },
       {
         test: /\.vue$/,
-        loader: 'vue'
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,
-        loader: 'babel!eslint',
+        loader: 'babel-loader',
         exclude: /node_modules/
       },
       {
         test: /\.(png|jpg|gif)$/,
-        loader: 'url',
+        loader: 'url-loader',
         query: {
           limit: 10000,
           name: '[name].[ext]?[hash:7]'
@@ -88,36 +87,22 @@ module.exports = {
         }
       },
       {
-        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?mimetype=application/font-woff'
-      },
-      {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?mimetype=application/font-woff'
-      },
-      {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff2|eot|ttf)(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url-loader?mimetype=application/font-woff'
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=image/svg+xml'
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
       }
     ]
   },
-  eslint: {
-    formatter: require('eslint-friendly-formatter')
-  },
-  tslint: {
-    configuration: require('../tslint.json'),
-
-    // tslint errors are displayed by default as warnings
-    // set emitErrors to true to display them as errors
-    emitErrors: true,
-
-    // tslint does not interrupt the compilation by default
-    // if you want any file with tslint errors to fail
-    // set failOnHint to true
-    failOnHint: true
-  }
+  plugins: [
+    new ExtractTextPlugin(
+      {
+        filename: '[name].[hash].css',
+        disable: false,
+        allChunks: true
+      }
+    )
+  ]
 }
