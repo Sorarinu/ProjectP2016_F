@@ -5,9 +5,11 @@ import getters from './getter';
 import mutations from './mutations';
 import state from './state';
 
+
 Vue.use(Vuex);
 
 // debug setting.
+declare var process: any;
 const debug = (process.env.NODE_ENV !== 'production');
 
 // A Vuex instance is created by combining the state, the actions,

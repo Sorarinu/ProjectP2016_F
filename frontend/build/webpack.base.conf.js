@@ -30,13 +30,18 @@ module.exports = {
     rules: [
       {
         test: /\.(css|scss)$/,
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader:[
-            'css-loader',
-            'sass-loader'
-          ]
-        })
+        // loader: ExtractTextPlugin.extract({
+        //   fallbackLoader: 'style-loader',
+        //   loader:[
+        //     'css-loader',
+        //     'sass-loader'
+        //   ]
+        // })
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
       },
       {
         test: /\.pug$/,
@@ -97,12 +102,12 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin(
-      {
-        filename: '[name].[hash].css',
-        disable: false,
-        allChunks: true
-      }
-    )
+    // new ExtractTextPlugin(
+    //   {
+    //     filename: '[name].[hash].css',
+    //     disable: false,
+    //     allChunks: true
+    //   }
+    // )
   ]
 }

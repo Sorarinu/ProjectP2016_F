@@ -33,6 +33,11 @@ config.plugins = (config.plugins || []).concat([
     filename: 'index.html',
     template: 'src/index.html',
     inject: true
+  }),
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: '"development"'
+    }
   })
 ])
 

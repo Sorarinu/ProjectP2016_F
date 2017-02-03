@@ -1,18 +1,25 @@
 #breadcrumbs {
+  font-size: 2rem;
   margin:4px;
   ul{
+
+    li{
+      text-decoration: none;
+      display: inline;
+    }
+
     margin:4px;
   }
   a{
-    &.active{
-      pointer-events: none;
-      cursor: default;
-      text-decoration: none;
-      color: gray;
-    }
 
     &:hover{
       cursor: pointer;
+    }
+
+    &::after{
+      margin-left: 8px;
+      margin-right: 8px;
+      content:'>';
     }
   }
 }

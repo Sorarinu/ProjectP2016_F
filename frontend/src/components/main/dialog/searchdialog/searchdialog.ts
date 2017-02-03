@@ -10,7 +10,6 @@ require('./searchdialog.scss');
 @Component({
     template: require('./searchdialog.pug'),
     components: {
-        modal: require('vue-strap').modal,
         progressbar: require('vue-strap').progressbar,
     },
 })

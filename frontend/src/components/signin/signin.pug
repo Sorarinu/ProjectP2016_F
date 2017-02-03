@@ -1,40 +1,38 @@
 #signin
-    //- Userのサインインフォーム
-    .inner
-        .container(style="margin-top: 20px")
-            .col-sm-6.col-sm-offset-3
-             h3  SignIn
-             alert(
+    v-container
+        v-row
+            v-col(xs3)
+            v-col(xs6)
+                h1.display-3  SignIn
+                v-alert(
                 v-model="alertProp.show",
-                :type="alertProp.type",
-                dismissable
-             )
-                 span {{alertProp.message}}
+                error,
+                dismissible
+                )
+                    span {{alertProp.message}}
 
-             form
-                 bs-input(
-                    v-model="user.email",
-                    name="email",
-                    type="email",
-                    :label="'email'",
+                form
+                    v-text-input.form(
+                    v-model="user.email"
+                    id="email"
+                    name="email"
+                    label="Email"
+                    required
+                    type="email"
+                    )
+
+                    v-text-input.form(
+                    v-model="user.password",
+                    label="Password",
+                    type="password",
                     required,
-                    :icon="true",
-                    :error="'Insert your email'",
-                 )
+                    minLength="6",
+                    )
 
-                 bs-input(
-                     v-model="user.password",
-                     label="password",
-                     type="password",
-                     required,
-                     icon,
-                     error="'Insert your password'",
-                     minLength="6",
-                 )
-
-                 //- 入力値がUserのvalidateionを通過する場合のみ押せるようにする
-                 button.form-control.btn.btn-primary(
-                     type="button",
-                     :disabled="!isValidFormData()",
-                     @click="signIn()"
-                 ) SignIn
+                    //- 入力値がUserのvalidateionを通過する場合のみ押せるようにする
+                    v-btn.form(
+                    ripple info large block
+                    :disabled="!isValidFormData()",
+                    @click.native="signIn()"
+                    ) SignIn
+            v-col(xs3)

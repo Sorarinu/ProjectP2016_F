@@ -10,10 +10,6 @@ require('./signin.scss');
 @Component({
     name: 'signin',
     template: require('./signin.pug'),
-    components: {
-        bsInput: require('vue-strap').input,
-        alert: require('vue-strap').alert,
-    },
 })
 export class SignIn extends Vue {
     private user: User;

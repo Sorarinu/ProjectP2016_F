@@ -1,6 +1,10 @@
 #breadcrumbs
     ul.breadcrumb
-        li(v-for="folder in bookmarkHierarchy")
+        li(v-for="(folder, index) in bookmarkHierarchy")
             a(
-            @click="openDir(folder.id)",
-            :class="{active : folder.id === openDirId}") {{folder.title}}
+                v-if="index !== bookmarkHierarchy.length -1",
+                @click="openDir(folder.id)",
+            ) {{folder.title}}
+            span(
+                v-if="index === bookmarkHierarchy.length -1 "
+            ) {{folder.title}}

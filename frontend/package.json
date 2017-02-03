@@ -14,10 +14,9 @@
     "es6-promise": "^4.0.5",
     "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",
-    "vue": "2.1.10",
+    "vue": "2.1.6",
     "vue-class-component": "^4.4.0",
     "vue-router": "^2.2.0",
-    "vue-strap": "github:wffranco/vue-strap.git",
     "vuetify": "^0.8.7",
     "vuex-router-sync": "^4.1.2"
   },

@@ -3,18 +3,7 @@
         @click="selectBookmark($event)",
         :class = "{active : isActive}"
     )
-    .bookmark(v-if="!bookmark.folder", @dblclick="open")
-        .img
-            img(:alt="bookmark.title", :src="imgSrc")
-        .detail {{getTitle()}}
-    .folder(v-if="bookmark.folder", @dblclick="openDir(bookmark.id)")
-        .img
-            i.fa.fa-4x.fa-folder
-        .detail {{getTitle()}}
-    .context-menu(v-show="showContextMenu", :style="posStyle")
-        button.btn.btn-default(v-if="!bookmark.folder", @click="open") 開く
-        button.btn.btn-default コピー
-        button.btn.btn-default 切り取り
-        button.btn.btn-default 編集
-        button.btn.btn-default(v-if="!bookmark.folder", @click="openDeleteDialog($event)") 削除
-        button.btn.btn-default(v-if="bookmark.folder",  @click="openDeleteDialog($event)") フォルダ削除
+    .folder(v-if="bookmark.folder")
+        include bmicon-folder
+    .item(v-if="!bookmark.folder")
+        include bmicon-item

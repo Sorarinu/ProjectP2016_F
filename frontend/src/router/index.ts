@@ -8,11 +8,14 @@ import {Index} from '../components/index/index';
 import {Main} from '../components/main/main';
 import {SignIn} from '../components/signin/signin';
 import {SignUp} from '../components/signup/signup';
+
 /**
  * Vue-routerのルーケティング設定.
  */
 
 Vue.use(Router);
+
+declare var process: any;
 const base = process.env.NODE_ENV === 'production' ? '/ProjectP2016_F' : '/';
 const router = new Router({
     mode: 'history',

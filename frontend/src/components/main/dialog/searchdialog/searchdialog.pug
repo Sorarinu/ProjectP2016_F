@@ -1,32 +1,45 @@
 #searchdialog
-    modal(large, :value="show", :backdrop="false")
-        div(slot="modal-header", class="modal-header")
-            button.close(@click="closeSearchDialogAct")
-                span &times;
-            h4.modal-title ブックマーク検索
+    v-modal(
+        id="search_modal"
+    )
+        v-card.content
+            v-card-text
+                p.text-xs-center.display-1 ブックマーク検索
+            v-card-column
+                v-text-input(
+                    label="From",
+                    disabled,
+                )
+                v-card-row
+                    v-text-input(
+                        label="SearchWord",
+                        v-model="searchWord",
+                        @keyup.enter="search"
+                    )
+                    v-btn(
+                        info
+                        @click.native="search"
+                    )
+                        i.fa.fa-search
 
-        div(slot="modal-body", class="modal-body")
-            .input-group
-                span.input-group-addon From
-                input.form-control(type="text" disabled="disabled", :value="getFromPath()")
-
-            .input-group
-                span.input-group-addon SearchWord
-                input.form-control(type="text",@keyup.enter="search", v-model="searchWord")
-                span.input-group-btn
-                  button.btn.btn-primary(@click="search", :disabled="searchWord.length === 0")
-                    i.fa.fa-search
-                    | 検索
-            .spinner(v-show="showRes && bookmarkSearchRes == null")
-                .rect1
-                .rect2
-                .rect3
-                .rect4
-                .rect5
-            .res(v-if="showRes && bookmarkSearchRes != null")
-                h4 {{searchWord}} の検索結果　{{bookmarkSearchRes.length}} 件
-                .bookmark-item(v-for="resBM in bookmarkSearchRes")
-                    input(type="checkbox" checked="checked")
-                    a(href="resBM.url") {{resBM.title}}
-        div(slot="modal-footer", class="modal-footer")
-            button.btn.btn-success(v-show="showRes", @click="grouping") {{searchWord}} フォルダにまとめる
+                .spinner(v-show="showRes && bookmarkSearchRes == null")
+                    .rect1
+                    .rect2
+                    .rect3
+                    .rect4
+                    .rect5
+                .res(v-if="showRes && bookmarkSearchRes != null")
+                    h4 {{searchWord}} の検索結果　{{bookmarkSearchRes.length}} 件
+                    v-table-overflow
+                        table
+                            thead
+                                tr
+                                    th
+                                    th name
+                            tbody
+                                tr(v-for="(resBM,index) in bookmarkSearchRes")
+                                    td
+                                        v-checkbox(:id="'checkbox' + index" checked)
+                                    td  {{resBM.title}}
+            div
+                v-btn(v-show="showRes", @click.native="grouping", large success) {{searchWord}} フォルダにまとめる

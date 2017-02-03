@@ -1,17 +1,14 @@
 .tree-item(:class="{folder : bookmark.folder}")
     // bookmark
-    tooltip(
-        v-if="!bookmark.folder"
-        effect="fadein",
-        placement="bottom",
-        :content="bookmark.url",
-        trigger="hover"
-    )
-        span(@dblclick="openBm")
-            i.fa.fa-bookmark
-            span.title {{bookmark.title}}
-    // folder
     span(
+        v-if="!bookmark.folder",
+        @dblclick="openBm",
+        v-tooltip:bottom="{ html: bookmark.url }"
+    )
+        i.fa.fa-bookmark
+        span.title {{bookmark.title}}
+    // folder
+    .headline(
         v-if="bookmark.folder",
         @click="toggle"
     )

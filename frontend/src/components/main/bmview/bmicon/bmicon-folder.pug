@@ -1,0 +1,10 @@
+.folder(ripple @dblclick="openDir(bookmark.id)")
+    .img
+        i.fa.fa-4x.fa-folder
+    .detail {{getTitle()}}
+.context-menu(v-show="showContextMenu", :style="posStyle")
+    button.btn.btn-default(@click="open") 開く
+    button.btn.btn-default コピー
+    button.btn.btn-default 切り取り
+    button.btn.btn-default 編集
+    button.btn.btn-default(@click="openDeleteDialog($event)") フォルダ削除
