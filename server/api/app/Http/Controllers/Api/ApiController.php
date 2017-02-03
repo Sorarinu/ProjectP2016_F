@@ -406,7 +406,7 @@ class ApiController extends Controller
     public function snap()
     {
         $url = $this->request->input('url');
-        $apiUrl = 'http://capture.heartrails.com/120×120?' . $url;
+        $apiUrl = 'http://capture.heartrails.com/500×500?' . $url;
         $image = Image::make(file_get_contents($apiUrl));
         return $image->response('jpg');
     }
