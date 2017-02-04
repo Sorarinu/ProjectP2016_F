@@ -6,9 +6,6 @@ import Component from 'vue-class-component';
  */
 @Component({
     template: require('./bmdeletedialog.pug'),
-    components: {
-        modal: require('vue-strap').modal,
-    },
 })
 export class BmDeleteDialog extends Vue {
     get show() {

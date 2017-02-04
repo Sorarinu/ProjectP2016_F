@@ -9,9 +9,6 @@ require('./layout.scss');
 @Component({
     name: 'contact',
     template: require('./contact.html'),
-    components: {
-        navbar: require('vue-strap').navbar,
-    },
 })
 export class Contact extends Vue {
 

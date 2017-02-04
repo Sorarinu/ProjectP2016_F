@@ -9,9 +9,6 @@ import {Bookmark} from '../../../../model/bookmark';
 require('./searchdialog.scss');
 @Component({
     template: require('./searchdialog.pug'),
-    components: {
-        progressbar: require('vue-strap').progressbar,
-    },
 })
 export class SearchDialog extends Vue {
 

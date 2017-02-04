@@ -27,7 +27,6 @@ config.plugins = (config.plugins || []).concat([
       warnings: false
     }
   }),
-  new webpack.optimize.OccurenceOrderPlugin(),
   // generate dist index.html with correct asset hash for caching.
   // you can customize output by editing /src/index.html
   // see https://github.com/ampedandwired/html-webpack-plugin

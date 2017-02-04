@@ -9,7 +9,6 @@ import Vue = require('vue');
     template: require('./tree-item.pug'),
     components: {
         TreeItem,
-        Tooltip: require('vue-strap').tooltip,
     },
     props: ['bookmark'],
 })

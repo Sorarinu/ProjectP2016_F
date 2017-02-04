@@ -3,8 +3,8 @@ import {BookmarkSimilarityService} from './bookmark-similarity-service';
 import {HttpBookmarkService} from './http-bookmark-service';
 import {HttpBookmarkSimilarityService} from './http-bookmark-similarity-service';
 import {HttpUserService} from './http-user-service';
-import {UserService} from './user-service';
 import {MockBookmarkSimilarityService} from './mock-bookmark-similarity-service';
+import {UserService} from './user-service';
 
 /**
  * MockとHttp通信するサービスクラスを柔軟に入れ替えるため.

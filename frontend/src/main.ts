@@ -33,7 +33,7 @@ const app = new Vue({
     },
     router,
     store,
-    template: `<app></app>`
+    template: `<app></app>`,
 });
 app.$mount('#app');
 

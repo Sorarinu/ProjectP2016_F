@@ -13,7 +13,7 @@ require('./app.scss');
 })
 export class App extends Vue {
     mounted() {
-        this.$vuetify.init()
+        this.$vuetify.init();
     }
     beforeMount() {
         this.$store.dispatch('init');
