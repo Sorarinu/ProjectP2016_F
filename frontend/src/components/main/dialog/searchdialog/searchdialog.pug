@@ -8,6 +8,7 @@
             v-card-column
                 v-text-input(
                     label="From",
+                    :placeholder="getFromPath()"
                     disabled,
                 )
                 v-card-row
@@ -29,17 +30,19 @@
                     .rect4
                     .rect5
                 .res(v-if="showRes && bookmarkSearchRes != null")
-                    h4 {{searchWord}} の検索結果　{{bookmarkSearchRes.length}} 件
-                    v-table-overflow
-                        table
-                            thead
-                                tr
-                                    th
-                                    th name
-                            tbody
-                                tr(v-for="(resBM,index) in bookmarkSearchRes")
-                                    td
-                                        v-checkbox(:id="'checkbox' + index" checked)
-                                    td  {{resBM.title}}
-            div
-                v-btn(v-show="showRes", @click.native="grouping", large success) {{searchWord}} フォルダにまとめる
+                    div(v-if="bookmarkSearchRes.length === 0 ")
+                        h1.headline.text-sm-center 内容一致するブックマークが見つかりませんでした.
+                    div(v-if="bookmarkSearchRes.length > 0")
+                        v-table-overflow
+                            table
+                                thead
+                                    tr
+                                        th
+                                        th name
+                                tbody
+                                    tr(v-for="(resBM,index) in bookmarkSearchRes")
+                                        td
+                                            v-checkbox(:id="'checkbox' + index" v-model="checkState")
+                                        td  {{resBM.title}}
+                        div(style="text-align:right")
+                            v-btn(@click.native="grouping", large success) {{searchWord}} フォルダにまとめる

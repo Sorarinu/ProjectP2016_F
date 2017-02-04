@@ -1,5 +1,10 @@
 #bmview(@contextmenu="contextmenu($event)",@click="contextMenuClose")
     include ./empty-message.pug
+    .view-toggle(style="text-align:right")
+        v-btn(disabled)
+            i.fa.fa-th
+        v-btn
+            i.fa.fa-list-ul
     #bm-icons(v-if="!bookmarkEmpty")
         bm-icon(
             v-for="bm in bookmarks",

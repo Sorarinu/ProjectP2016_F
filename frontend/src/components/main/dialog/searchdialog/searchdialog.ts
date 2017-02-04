@@ -32,7 +32,7 @@ export class SearchDialog extends Vue {
         this.checkState = [];
 
         return {
-            checkState : this.checkState,
+            checkState : true,
             searchWord : this.searchWord,
             showRes : this.showRes,
         };

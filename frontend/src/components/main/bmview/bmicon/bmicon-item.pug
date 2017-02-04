@@ -1,9 +1,10 @@
 .bookmark(
-    v-tooltip:bottom="{ html: bookmark.title + ':' + bookmark.url }",
+    v-tooltip:bottom="{ html: bookmark.title}",
     @dblclick="open"
 )
     .img
-        img(:alt="bookmark.title", :src="imgSrc")
+        img(v-show="loaded", :alt="bookmark.title", :src="imgSrc")
+        v-progress-circular.primary--text(v-show="!loaded" indeterminate)
     .detail {{getTitle()}}
 .context-menu(v-show="showContextMenu", :style="posStyle")
     button.btn.btn-default(@click="open") 開く
