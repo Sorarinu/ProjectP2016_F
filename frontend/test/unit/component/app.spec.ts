@@ -6,6 +6,9 @@ import store from '../../../src/vuex/store';
 import router from '../../../src/router/index';
 import Vue = require('vue');
 import Vuex = require('vuex');
+import Vuetify = require('vuetify');
+
+Vue.use(Vuetify)
 
 describe('AppComponent-Test', () => {
 
@@ -15,6 +18,9 @@ describe('AppComponent-Test', () => {
         components: {App},
         store,
         router,
+        mounted() {
+            this.$vuetify.init();
+        },
     }).$mount();
 
     it('AppComponentがレンダリングされる', () => {
