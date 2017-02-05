@@ -6,14 +6,14 @@
             v-col(xs6)
                 h1.display-2 SignUp
 
-                alert(
+                v-alert(
                     v-model="alertProp.show",
-                    :type="alertProp.type",
+                    error,
                     dismissable
                 )
                     span {{alertProp.message}}
 
-                form
+                form(@keyup.enter="signUp()")
                     v-text-input.form(
                         type="email",
                         label="Email",

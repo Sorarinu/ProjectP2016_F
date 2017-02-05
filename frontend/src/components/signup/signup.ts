@@ -45,6 +45,9 @@ export class SignUp extends Vue {
     }
 
     signUp(): void {
+        if (!this.formValidate()) {
+            return;
+        }
         ServiceFactory.getUserService().signUp({
             ok: (data: any) => {
                 this.signInCommit(this.user);

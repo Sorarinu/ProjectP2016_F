@@ -35,6 +35,9 @@ export class SignIn extends Vue {
     }
 
     signIn(): void {
+        if (!this.isValidFormData()) {
+            return;
+        }
         ServiceFactory.getUserService().signIn({
             ok: (data: any) => {
                 this.signInCommit(this.user);

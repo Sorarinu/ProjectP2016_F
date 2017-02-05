@@ -15,7 +15,7 @@
                     v-text-input(
                         label="SearchWord",
                         v-model="searchWord",
-                        @keyup.enter="search"
+                        @keyup.enter.native="search"
                     )
                     v-btn(
                         info

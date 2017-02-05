@@ -65,7 +65,7 @@ export class BmView extends Vue {
      * @param bm
      */
     onDragStart(e: DragEvent, bm: Bookmark) {
-        // console.log(`dragStart : ${bm.id}`);
+        console.log(`dragStart : ${bm.id}`);
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('id', `${bm.id}`);
 
@@ -106,7 +106,7 @@ export class BmView extends Vue {
 
         const from = Number(e.dataTransfer.getData('id'));
         const to = bm.id;
-        // console.log(`dragged id=${from} -> ${to}`);
+        console.log(`dragged id=${from} -> ${to}`);
 
         if (from === to) {
             throw Error('おいなんで同じところにDnDしようとしてるんだよ・・・');
