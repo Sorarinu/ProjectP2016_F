@@ -23,6 +23,7 @@ export class BookmarkSimilarity {
                     id : bm.id,
                     url : bm.url,
                     similar_flag : undefined,
+                    title : bm.title,
                 };
             };
 
@@ -51,4 +52,5 @@ export interface BookmarkSimilarityValue {
     id: number;
     url: string;
     similar_flag: boolean;
+    title?: string;
 }

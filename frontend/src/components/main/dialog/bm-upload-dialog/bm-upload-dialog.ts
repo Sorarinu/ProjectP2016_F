@@ -5,9 +5,6 @@ import Component from 'vue-class-component';
  */
 @Component({
     template: require('./bm-upload-dialog.pug'),
-    components: {
-        modal: require('vue-strap').modal,
-    },
 })
 export class BmUploadDialog extends Vue {
 

@@ -1,26 +1,22 @@
 $size : 180px;
 
-
 .bmicon {
-
   width: $size;
   height: $size;
 
   margin: 20px;
-
-  border-radius: $size / 20;
-  background-color: rgba(0,0,0,.08);
+  border-radius: 4px;
+  background-color: darken(white,1%);
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   transition: .2s;
   &.active {
     transition: .2s;
-    background-color: rgba(0,0,255,.1);
-    box-shadow: 4px 4px rgba(0,0,0,.25);
+    background-color: lighten(cyan,45%);
   }
 
   &:hover{
@@ -29,17 +25,17 @@ $size : 180px;
 
   .img{
     text-align: center;
-
-    width: $size * 0.7;
-    height: $size * 0.7;
-
-    overflow: hidden;
+    width: $size * 0.9;
+    img{
+      width: 100%;
+      overflow: hidden;
+    }
+    color: darken(lightyellow,10%);
   }
 
   .detail{
     text-align: center;
-    font-weight: bold;
-    font-size: 0.7rem;
+    font-size: 1.4rem;
   }
 
   .contextMenu {

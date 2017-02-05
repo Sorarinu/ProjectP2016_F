@@ -8,9 +8,6 @@ require('./css/index.scss');
 require('./css/layout_top.scss');
 @Component({
     template: require('./index.html'),
-    components: {
-        alert: require('vue-strap').alert,
-    },
 })
 export class Index extends Vue {
     goAbout() {

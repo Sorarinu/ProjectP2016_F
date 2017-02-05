@@ -1,4 +1,5 @@
 #app
     navbar(v-if="showNav")
-    router-view.maincontent
-    footbar(v-if="showFooter")
+    transition(name="fade" mode="out-in")
+        router-view.maincontent
+    // footbar(v-if="showFooter")

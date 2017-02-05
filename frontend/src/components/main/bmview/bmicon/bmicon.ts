@@ -24,7 +24,7 @@ export class BmIcon extends Vue {
     imgSrc: string;
 
     showDeleteDialog: boolean;
-
+    loaded: boolean;
     data() {
         this.showContextMenu = false;
 
@@ -42,6 +42,7 @@ export class BmIcon extends Vue {
             showContextMenu: this.showContextMenu,
             posStyle : this.posStyle,
             imgSrc : this.imgSrc,
+            loaded : false,
             showDeleteDialog : this.showDeleteDialog,
         };
     }
@@ -78,6 +79,7 @@ export class BmIcon extends Vue {
         xhr.addEventListener('load', () => {
             const oURL = URL.createObjectURL(xhr.response);
             this.imgSrc = oURL;
+            this.loaded = true;
         });
         xhr.send(null);
     }
@@ -99,8 +101,8 @@ export class BmIcon extends Vue {
      */
     getTitle(): string {
         let ret = this.bookmark.title;
-        if (ret.length >= 6) {
-            ret = ret.substr(0, 6);
+        if (ret.length >= 7) {
+            ret = ret.substr(0, 7);
             ret += '...';
         }
 

@@ -1,46 +1,44 @@
 #signup
     //- ユーザーのSingUpフォーム
-    .inner
-       .container(style="margin-top: 20px")
-            .col-sm-6.col-sm-offset-3
-                h3 SignUp
+    v-container
+        v-row
+            v-col(xs3)
+            v-col(xs6)
+                h1.display-2 SignUp
 
-                alert(
+                v-alert(
                     v-model="alertProp.show",
-                    :type="alertProp.type",
+                    error,
                     dismissable
                 )
                     span {{alertProp.message}}
 
-                form
-                    bs-input(
-                        required icon,
+                form(@keyup.enter="signUp()")
+                    v-text-input.form(
                         type="email",
-                        label="email",
-                        :value.sync="user.email",
+                        label="Email",
+                        v-model="user.email",
                         error="Insert your email"
                     )
-                    bs-input(
-                        required icon,
-                        label="password",
+                    v-text-input.form(
+                        label="Password",
                         type="password",
-                        :value.sync="user.password",
+                        v-model="user.password",
                         error="Insert password",
                         minLength="6"
                     )
-                    bs-input(
-                        required icon,
-                        label="password-confilm",
+                    v-text-input.form(
+                        label="Password-confilm",
                         type="password",
-                        :value.sync="passwordConfilm",
+                        v-model="passwordConfilm",
                         error="Don't match password",
-                        :match="user.password"
+                        :match="user.password",
                     )
 
-                    button.form-control.btn.btn-primary(
+                    v-btn.form(
+                        large info block
                         type="button",
                         :disabled="!formValidate()",
-                        @click="signUp()"
+                        @click.native="signUp()"
                     ) SignUp
-
-
+            v-col(xs3)

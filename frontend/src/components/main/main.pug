@@ -1,8 +1,9 @@
 #main
     //- mainpageのコンポーネント　大本.
-    .head-bar
+    .head-bar.primary
         #ribbon-toggle
-            .left {{user.email}}
+            //.left {{user.email}}
+            .left hoge@hoge.com
             .right
                 i.fa.fa-angle-down(@click="openRibbon", v-if="!ribbonVisible")
                 i.fa.fa-angle-up(@click="closeRibbon", v-if="ribbonVisible")

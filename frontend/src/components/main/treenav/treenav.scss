@@ -1,15 +1,27 @@
 #treenav{
+  height:80vh;
   overflow: scroll;
   white-space: nowrap;
+
+  user-select: none;
+
+  .folder-row{
+    font-weight: bold;
+  }
 
   .tree-item{
     .folder{
       margin-bottom: 4px;
       margin-top: 4px;
+      padding: 4px;
     }
 
     &:hover{
       cursor: pointer;
+    }
+
+    i {
+      margin-right: 4px;
     }
 
     ul {

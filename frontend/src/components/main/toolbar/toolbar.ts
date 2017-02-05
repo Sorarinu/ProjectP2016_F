@@ -16,9 +16,4 @@ export class Toolbar extends Vue {
     get bookmarkEmpty () {
         return this.$store.getters.bookmarkIsEmpty;
     };
-
-    openSearchDialogAct() {
-        this.$store.dispatch('openSearchDialog');
-    }
-
 }

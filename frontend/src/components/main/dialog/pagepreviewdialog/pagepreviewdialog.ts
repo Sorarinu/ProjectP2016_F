@@ -8,9 +8,6 @@ import Component from 'vue-class-component';
 require('./searchdialog.scss');
 @Component({
     template: require('./searchdialog.pug'),
-    components: {
-        modal: require('vue-strap').modal,
-    },
 })
 export class PagePreviewDialog extends Vue {
     show: boolean;

@@ -9,10 +9,6 @@ import {Bookmark} from '../../../../model/bookmark';
 require('./searchdialog.scss');
 @Component({
     template: require('./searchdialog.pug'),
-    components: {
-        modal: require('vue-strap').modal,
-        progressbar: require('vue-strap').progressbar,
-    },
 })
 export class SearchDialog extends Vue {
 
@@ -33,7 +29,7 @@ export class SearchDialog extends Vue {
         this.checkState = [];
 
         return {
-            checkState : this.checkState,
+            checkState : true,
             searchWord : this.searchWord,
             showRes : this.showRes,
         };

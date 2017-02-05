@@ -3,6 +3,7 @@ import {BookmarkSimilarityService} from './bookmark-similarity-service';
 import {HttpBookmarkService} from './http-bookmark-service';
 import {HttpBookmarkSimilarityService} from './http-bookmark-similarity-service';
 import {HttpUserService} from './http-user-service';
+import {MockBookmarkSimilarityService} from './mock-bookmark-similarity-service';
 import {UserService} from './user-service';
 
 /**
@@ -37,7 +38,7 @@ export class ServiceFactory {
 
     static getBookmarkSimirarityService(): BookmarkSimilarityService {
         if (!this.bookmarkSimilarityService) {
-            this.bookmarkSimilarityService = new HttpBookmarkSimilarityService();
+            this.bookmarkSimilarityService = new MockBookmarkSimilarityService();
             return this.bookmarkSimilarityService;
         }
 

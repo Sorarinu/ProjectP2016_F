@@ -10,9 +10,6 @@ require('./navbar.scss');
 @Component({
     name: 'navbar',
     template: require('./navbar.html'),
-    components: {
-        navbar: require('vue-strap').navbar,
-    },
 })
 export class Navbar extends Vue {
 

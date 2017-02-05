@@ -10,10 +10,6 @@ require('./signup.scss');
 @Component({
     name: 'signup',
     template: require('./signup.pug'),
-    components: {
-        bsInput: require('vue-strap').input,
-        alert: require('vue-strap').alert,
-    },
 })
 export class SignUp extends Vue {
     private user: User;
@@ -49,6 +45,9 @@ export class SignUp extends Vue {
     }
 
     signUp(): void {
+        if (!this.formValidate()) {
+            return;
+        }
         ServiceFactory.getUserService().signUp({
             ok: (data: any) => {
                 this.signInCommit(this.user);

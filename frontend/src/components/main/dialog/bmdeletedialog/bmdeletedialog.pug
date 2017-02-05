@@ -1,14 +1,12 @@
 #bmdeletedialog
-    modal(
-        mediam,
-        :value="show",
-        :backdrop="false"
+    v-modal(
+        id="bmdelete_modal"
     )
-        div(slot="modal-header", class="modal-header")
+        div
             button.close(@click="closeDialogAct")
                 span &times;
             h4.modal-title Confilm
-        div(slot="modal-body", class="modal-body")
+        div
             .media
                 .media-left
                     i.fa.fa-2x.fa-exclamation-triangle

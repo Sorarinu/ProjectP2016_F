@@ -8,6 +8,11 @@ export class MockBookmarkSimilarityService implements BookmarkSimilarityService 
 
         // 処理処理処理・・・
         similarityModel.bookmark = similarityModel.bookmark.map((v) => {
+            // タイトルが取れるなら含まれるか.
+            if (v.title) {
+                v.similar_flag = v.title.indexOf(searchWord) > -1;
+                return v;
+            }
             // ランダムに２割で検索に一致と判断
             const rand = Math.random();
             if (rand >= 0.8) {
@@ -21,7 +26,7 @@ export class MockBookmarkSimilarityService implements BookmarkSimilarityService 
 
         setTimeout(() => {
             requestListener.ok(similarityModel);
-        }, 5000);
+        }, 2000);
     }
 
 }

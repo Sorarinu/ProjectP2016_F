@@ -1,0 +1,14 @@
+.bookmark(
+    v-tooltip:bottom="{ html: bookmark.title}",
+    @dblclick="open"
+)
+    .img
+        img(v-show="loaded", :alt="bookmark.title", :src="imgSrc")
+        v-progress-circular.primary--text(v-show="!loaded" indeterminate)
+    .detail {{getTitle()}}
+.context-menu(v-show="showContextMenu", :style="posStyle")
+    button.btn.btn-default(@click="open") 開く
+    button.btn.btn-default コピー
+    button.btn.btn-default 切り取り
+    button.btn.btn-default 編集
+    button.btn.btn-default(@click="openDeleteDialog($event)") 削除

@@ -12,7 +12,9 @@ require('./app.scss');
     components: { Navbar, Footbar },
 })
 export class App extends Vue {
-
+    mounted() {
+        this.$vuetify.init();
+    }
     beforeMount() {
         this.$store.dispatch('init');
     }
