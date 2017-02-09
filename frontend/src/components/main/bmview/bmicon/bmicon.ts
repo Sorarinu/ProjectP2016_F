@@ -112,8 +112,9 @@ export class BmIcon extends Vue {
     // bookmark削除ダイアログ表示
     openDeleteDialog(e: MouseEvent) {
         this.contextMenuClose();
-        this.openDeleteDialogAct();
 
+        this.$vuetify.bus.pub('modal:toggle:bmdelete_modal');
+        this.$store.dispatch('deleteSelectBookmark');
         e.stopPropagation();
     }
 
