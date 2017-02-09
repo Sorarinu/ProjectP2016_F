@@ -71,14 +71,12 @@ export class SearchDialog extends Vue {
         this.bookmarkSearchRes.forEach((v: Bookmark) => {
                 this.moveBookmarkAct(v.id, newId);
             });
-
-        this.closeSearchDialogAct();
-
+        this.$vuetify.bus.pub('modal:toggle:search_modal');
         return;
     }
 
-    addBookmarkAct(parent: Bookmark, child: Bookmark) {
-        this.$store.dispatch('addBookmark', {parent, child});
+    addBookmarkAct(parent: Bookmark, bookmark: Bookmark) {
+        this.$store.dispatch('addBookmark', {parent, bookmark});
     }
 
     moveBookmarkAct(from: number, to: number) {
