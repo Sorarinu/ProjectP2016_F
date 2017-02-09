@@ -8,6 +8,7 @@
     #bm-icons(v-if="!bookmarkEmpty")
         bm-icon(
             v-for="bm in bookmarks",
+            :key="bm.id",
             :bookmark="bm",
             draggable="true",
             @dragstart.native="onDragStart($event, bm)",
