@@ -8,16 +8,7 @@ import Component from 'vue-class-component';
     template: require('./bmdeletedialog.pug'),
 })
 export class BmDeleteDialog extends Vue {
-    get show() {
-        return this.$store.state.showBMDeleteDialog;
-    };
-
     deleteBookmark() {
         this.$store.dispatch('deleteSelectBookmark');
-        this.$store.dispatch('closeBMDeleteDialog');
-    }
-
-    closeDialogAct() {
-        this.$store.dispatch('closeBMDeleteDialog');
     }
 }

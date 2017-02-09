@@ -1,16 +1,10 @@
 #bmdeletedialog
     v-modal(
         id="bmdelete_modal"
+        bottom
     )
-        div
-            button.close(@click="closeDialogAct")
-                span &times;
-            h4.modal-title Confilm
-        div
-            .media
-                .media-left
-                    i.fa.fa-2x.fa-exclamation-triangle
-                .media-body 削除してもよろしいですか？
-        div(slot="modal-footer", class="modal-footer")
-            button.btn.btn-default(@click="closeDialogAct") Cancel
-            button.btn.btn-danger(@click="deleteBookmark") OK
+        v-card.secondary.white--text
+            v-card-row(actions)
+                div ブックマーク削除しました
+                v-spacer
+                v-btn.warning.white--text 元に戻す
