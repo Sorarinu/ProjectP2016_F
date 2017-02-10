@@ -277,7 +277,8 @@ class ApiController extends Controller
                 $dbBookmark->url = $item['url'];
             }
             
-            $dbBookmark->save();
+	    $dbBookmark->save();
+	    $this->firstCallSnapApi($item['url'], 350);
         }
 
         Slack::send('Bookmark Upload Success!!!! Year!!!!!! *' . $userId . '*.');
@@ -399,14 +400,43 @@ class ApiController extends Controller
     }
 
     /**
+     * ブックマークアップロードの時にAPIサーバへサムネ取得のリクエストを投げる
+     */
+    public function firstCallSnapApi($url, $w)
+    {
+        $url = uelencode($url);
+	$apiUrl = 'https://s.wordpress.com/mshots/v1/' . $url . '?w=' . $w;
+
+        $options = [
+            CURLOPT_RETURNTRANSFER => true,
+	    CURLOPT_FOLLOWLOCATION => true,
+	    CURLOPT_AUTOREFERER => true,
+	]
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $apiUrl);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+	curl_setopt($ch, CURLOPT_VERBOSE, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt_array($ch, $options);
+	curl_exec($ch);
+
+	return;
+    }
+
+    /**
      * 指定されたホームページのスクショを取得する
      *
      * @return mixed
      */
     public function snap()
     {
+	$w = 350;
         $url = $this->request->input('url');
-        $apiUrl = 'http://capture.heartrails.com/350x300?' . $url;
+	//$apiUrl = 'http://capture.heartrails.com/350x300?' . $url;
+	$apiUrl = 'https://s.wordpress.com/mshots/v1/' . $url . '?w=' . $w;
         $image = Image::make(file_get_contents($apiUrl));
         return $image->response('jpg');
     }
